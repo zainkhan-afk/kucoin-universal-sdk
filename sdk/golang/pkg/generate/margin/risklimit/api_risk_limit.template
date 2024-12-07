@@ -1,0 +1,25 @@
+# API FUNCTION TEMPLATE
+
+
+func TestRiskLimitGetMarginRiskLimitReq(t *testing.T) {
+    // GetMarginRiskLimit
+    // Get Margin Risk Limit
+    // /api/v3/margin/currencies
+
+    builder := risklimit.NewGetMarginRiskLimitReqBuilder()
+    builder.SetIsIsolated(?).SetCurrency(?).SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := risklimitApi.GetMarginRiskLimit(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

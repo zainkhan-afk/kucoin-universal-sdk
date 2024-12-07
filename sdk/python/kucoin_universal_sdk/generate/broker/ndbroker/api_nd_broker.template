@@ -1,0 +1,249 @@
+# API FUNCTION TEMPLATE
+
+
+def test_get_deposit_list_req(self):
+    """
+        get_deposit_list
+        Get Deposit List
+        /api/v1/asset/ndbroker/deposit/list
+    """
+
+    builder = GetDepositListReqBuilder()
+    builder.set_currency(?).set_status(?).set_hash(?).set_start_timestamp(?).set_end_timestamp(?).set_limit(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_deposit_list(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_delete_sub_account_api_req(self):
+    """
+        delete_sub_account_api
+        Delete SubAccount API
+        /api/v1/broker/nd/account/apikey
+    """
+
+    builder = DeleteSubAccountApiReqBuilder()
+    builder.set_uid(?).set_api_key(?)
+    req = builder.build()
+    try:
+        resp = self.api.delete_sub_account_api(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_sub_account_api_req(self):
+    """
+        get_sub_account_api
+        Get SubAccount API
+        /api/v1/broker/nd/account/apikey
+    """
+
+    builder = GetSubAccountApiReqBuilder()
+    builder.set_uid(?).set_api_key(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_sub_account_api(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_sub_account_api_req(self):
+    """
+        add_sub_account_api
+        Add SubAccount API
+        /api/v1/broker/nd/account/apikey
+    """
+
+    builder = AddSubAccountApiReqBuilder()
+    builder.set_uid(?).set_passphrase(?).set_ip_whitelist(?).set_permissions(?).set_label(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_sub_account_api(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_sub_account_req(self):
+    """
+        get_sub_account
+        Get SubAccount
+        /api/v1/broker/nd/account
+    """
+
+    builder = GetSubAccountReqBuilder()
+    builder.set_uid(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_sub_account(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_sub_account_req(self):
+    """
+        add_sub_account
+        Add SubAccount
+        /api/v1/broker/nd/account
+    """
+
+    builder = AddSubAccountReqBuilder()
+    builder.set_account_name(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_sub_account(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_modify_sub_account_api_req(self):
+    """
+        modify_sub_account_api
+        Modify SubAccount API
+        /api/v1/broker/nd/account/update-apikey
+    """
+
+    builder = ModifySubAccountApiReqBuilder()
+    builder.set_uid(?).set_ip_whitelist(?).set_permissions(?).set_label(?).set_api_key(?)
+    req = builder.build()
+    try:
+        resp = self.api.modify_sub_account_api(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_broker_info_req(self):
+    """
+        get_broker_info
+        Get Broker Info
+        /api/v1/broker/nd/info
+    """
+
+    builder = GetBrokerInfoReqBuilder()
+    builder.set_begin(?).set_end(?).set_trade_type(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_broker_info(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_rebase_req(self):
+    """
+        get_rebase
+        Get Broker Rebate
+        /api/v1/broker/nd/rebase/download
+    """
+
+    builder = GetRebaseReqBuilder()
+    builder.set_begin(?).set_end(?).set_trade_type(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_rebase(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_transfer_req(self):
+    """
+        transfer
+        Transfer
+        /api/v1/broker/nd/transfer
+    """
+
+    builder = TransferReqBuilder()
+    builder.set_currency(?).set_amount(?).set_direction(?).set_account_type(?).set_special_uid(?).set_special_account_type(?).set_client_oid(?)
+    req = builder.build()
+    try:
+        resp = self.api.transfer(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_deposit_detail_req(self):
+    """
+        get_deposit_detail
+        Get Deposit Detail
+        /api/v3/broker/nd/deposit/detail
+    """
+
+    builder = GetDepositDetailReqBuilder()
+    builder.set_currency(?).set_hash(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_deposit_detail(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_transfer_history_req(self):
+    """
+        get_transfer_history
+        Get Transfer History
+        /api/v3/broker/nd/transfer/detail
+    """
+
+    builder = GetTransferHistoryReqBuilder()
+    builder.set_order_id(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_transfer_history(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_withdraw_detail_req(self):
+    """
+        get_withdraw_detail
+        Get Withdraw Detail
+        /api/v3/broker/nd/withdraw/detail
+    """
+
+    builder = GetWithdrawDetailReqBuilder()
+    builder.set_withdrawal_id(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_withdraw_detail(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e

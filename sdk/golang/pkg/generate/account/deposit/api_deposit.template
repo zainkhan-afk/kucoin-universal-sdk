@@ -1,0 +1,163 @@
+# API FUNCTION TEMPLATE
+
+
+func TestDepositGetDepositAddressV1Req(t *testing.T) {
+    // GetDepositAddressV1
+    // Get Deposit Addresses - V1
+    // /api/v1/deposit-addresses
+
+    builder := deposit.NewGetDepositAddressV1ReqBuilder()
+    builder.SetCurrency(?).SetChain(?)
+    req := builder.Build()
+
+    resp, err := depositApi.GetDepositAddressV1(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDepositAddDepositAddressV1Req(t *testing.T) {
+    // AddDepositAddressV1
+    // Add Deposit Address - V1
+    // /api/v1/deposit-addresses
+
+    builder := deposit.NewAddDepositAddressV1ReqBuilder()
+    builder.SetCurrency(?).SetChain(?)
+    req := builder.Build()
+
+    resp, err := depositApi.AddDepositAddressV1(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDepositGetDepositHistoryReq(t *testing.T) {
+    // GetDepositHistory
+    // Get Deposit History
+    // /api/v1/deposits
+
+    builder := deposit.NewGetDepositHistoryReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := depositApi.GetDepositHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDepositGetDepositHistoryOldReq(t *testing.T) {
+    // GetDepositHistoryOld
+    // Get Deposit History - Old
+    // /api/v1/hist-deposits
+
+    builder := deposit.NewGetDepositHistoryOldReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetStartAt(?).SetEndAt(?)
+    req := builder.Build()
+
+    resp, err := depositApi.GetDepositHistoryOld(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDepositGetDepositAddressV2Req(t *testing.T) {
+    // GetDepositAddressV2
+    // Get Deposit Addresses(V2)
+    // /api/v2/deposit-addresses
+
+    builder := deposit.NewGetDepositAddressV2ReqBuilder()
+    builder.SetCurrency(?)
+    req := builder.Build()
+
+    resp, err := depositApi.GetDepositAddressV2(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDepositAddDepositAddressV3Req(t *testing.T) {
+    // AddDepositAddressV3
+    // Add Deposit Address(V3)
+    // /api/v3/deposit-address/create
+
+    builder := deposit.NewAddDepositAddressV3ReqBuilder()
+    builder.SetCurrency(?).SetChain(?).SetTo(?).SetAmount(?)
+    req := builder.Build()
+
+    resp, err := depositApi.AddDepositAddressV3(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDepositGetDepositAddressV3Req(t *testing.T) {
+    // GetDepositAddressV3
+    // Get Deposit Addresses(V3)
+    // /api/v3/deposit-addresses
+
+    builder := deposit.NewGetDepositAddressV3ReqBuilder()
+    builder.SetCurrency(?).SetAmount(?).SetChain(?)
+    req := builder.Build()
+
+    resp, err := depositApi.GetDepositAddressV3(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

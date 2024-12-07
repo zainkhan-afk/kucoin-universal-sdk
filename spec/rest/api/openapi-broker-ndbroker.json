@@ -1,0 +1,1875 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "broker",
+        "description": "ndbroker",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v1/broker/nd/rebase/download": {
+            "get": {
+                "summary": "Get Broker Rebate",
+                "deprecated": false,
+                "description": "This interface supports downloading Broker rebate orders",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "begin",
+                        "in": "query",
+                        "description": "Start time, for example: 20240610",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "End time, for example: 20241010 (query data with a maximum interval of 6 months)\n",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tradeType",
+                        "in": "query",
+                        "description": "Transaction type, 1: spot 2: futures",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "1",
+                                    "name": "",
+                                    "description": "spot"
+                                },
+                                {
+                                    "value": "2",
+                                    "name": "",
+                                    "description": "futures"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "url": {
+                                                    "type": "string",
+                                                    "description": "Rebate order file (link is valid for 1 day)"
+                                                }
+                                            },
+                                            "required": [
+                                                "url"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getRebase",
+                "x-sdk-method-description": "This interface supports downloading Broker rebate orders",
+                "x-api-rate-limit": 3,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"url\\\": \\\"https://kc-v2-promotion.s3.ap-northeast-1.amazonaws.com/broker/671aec522593f600019766d0_file.csv?X-Amz-Security-Token=IQo*********2cd90f14efb\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"begin\\\": \\\"20240610\\\", \\\"end\\\": \\\"20241010\\\", \\\"tradeType\\\": \\\"1\\\"}"
+            }
+        },
+        "/api/v1/broker/nd/info": {
+            "get": {
+                "summary": "Get Broker Info",
+                "deprecated": false,
+                "description": "This endpoint supports querying the basic information of the current Broker",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "begin",
+                        "in": "query",
+                        "description": "Start time, for example: 20230110",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "End time, for example: 20230210 (query data with a maximum interval of 6 months)\n",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tradeType",
+                        "in": "query",
+                        "description": "Transaction type, 1: spot 2: futures",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "1",
+                                    "name": "",
+                                    "description": "spot"
+                                },
+                                {
+                                    "value": "2",
+                                    "name": "",
+                                    "description": "futures"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "accountSize": {
+                                                    "type": "integer",
+                                                    "description": "Number of sub-accounts created"
+                                                },
+                                                "maxAccountSize": {
+                                                    "type": "integer",
+                                                    "description": "The maximum number of sub-accounts allowed to be created, null means no limit"
+                                                },
+                                                "level": {
+                                                    "type": "integer",
+                                                    "description": "Broker level"
+                                                }
+                                            },
+                                            "required": [
+                                                "accountSize",
+                                                "maxAccountSize",
+                                                "level"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getBrokerInfo",
+                "x-sdk-method-description": "This endpoint supports querying the basic information of the current Broker",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"accountSize\\\": 0,\\n        \\\"maxAccountSize\\\": null,\\n        \\\"level\\\": 0\\n    }\\n}",
+                "x-request-example": "{\\\"begin\\\": \\\"20240510\\\", \\\"end\\\": \\\"20241010\\\", \\\"tradeType\\\": \\\"1\\\"}"
+            }
+        },
+        "/api/v1/broker/nd/account": {
+            "get": {
+                "summary": "Get SubAccount",
+                "deprecated": false,
+                "description": "This interface supports querying sub-accounts created by Broker",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "query",
+                        "description": "Sub-account UID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current page, default is 1",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The number returned per page, the default is 20, the maximum is 100",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 20,
+                            "maximum": 100,
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "Current page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "Page Size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "Total Number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "Total Page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "accountName": {
+                                                                "type": "string",
+                                                                "description": "Sub-account name"
+                                                            },
+                                                            "uid": {
+                                                                "type": "string",
+                                                                "description": "Sub-account UID"
+                                                            },
+                                                            "createdAt": {
+                                                                "type": "integer",
+                                                                "description": "Creation time, unix timestamp (milliseconds)",
+                                                                "format": "int64"
+                                                            },
+                                                            "level": {
+                                                                "type": "integer",
+                                                                "description": "Sub-account VIP level\n"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "accountName",
+                                                            "uid",
+                                                            "createdAt",
+                                                            "level"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getSubAccount",
+                "x-sdk-method-description": "This interface supports querying sub-accounts created by Broker",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 20,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"accountName\\\": \\\"Account15\\\",\\n                \\\"uid\\\": \\\"226383154\\\",\\n                \\\"createdAt\\\": 1729819382000,\\n                \\\"level\\\": 0\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 20}"
+            },
+            "post": {
+                "summary": "Add SubAccount",
+                "deprecated": false,
+                "description": "This endpoint supports Broker users to create sub-accounts",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "accountName": {
+                                                    "type": "string",
+                                                    "description": "Sub-Account name\n"
+                                                },
+                                                "uid": {
+                                                    "type": "string",
+                                                    "description": "Sub-Account UID"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Creation time, unix timestamp (milliseconds)",
+                                                    "format": "int64"
+                                                },
+                                                "level": {
+                                                    "type": "integer",
+                                                    "description": "Subaccount VIP level"
+                                                }
+                                            },
+                                            "required": [
+                                                "accountName",
+                                                "uid",
+                                                "createdAt",
+                                                "level"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "addSubAccount",
+                "x-sdk-method-description": "This endpoint supports Broker users to create sub-accounts",
+                "x-api-rate-limit": 3,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "accountName": {
+                                        "type": "string",
+                                        "description": "Sub Account Name, Note that this name is unique across the exchange. It is recommended to add a special identifier to prevent name duplication."
+                                    }
+                                },
+                                "required": [
+                                    "accountName"
+                                ]
+                            },
+                            "example": "{\n    \"accountName\": \"Account1\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"accountName\\\": \\\"Account15\\\",\\n        \\\"uid\\\": \\\"226383154\\\",\\n        \\\"createdAt\\\": 1729819381908,\\n        \\\"level\\\": 0\\n    }\\n}",
+                "x-request-example": "{\\\"accountName\\\": \\\"Account1\\\"}"
+            }
+        },
+        "/api/v1/broker/nd/account/apikey": {
+            "get": {
+                "summary": "Get SubAccount API",
+                "deprecated": false,
+                "description": "This interface supports querying the Broker’s sub-account APIKEY",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "query",
+                        "description": "Sub-account UID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "Sub-account apiKey\n",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "uid": {
+                                                        "type": "string",
+                                                        "description": "Sub-Account UID"
+                                                    },
+                                                    "label": {
+                                                        "type": "string",
+                                                        "description": "apikey remarks"
+                                                    },
+                                                    "apiKey": {
+                                                        "type": "string",
+                                                        "description": "apiKey"
+                                                    },
+                                                    "apiVersion": {
+                                                        "type": "integer",
+                                                        "description": "apiVersion"
+                                                    },
+                                                    "permissions": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "General",
+                                                                "Spot",
+                                                                "Futures"
+                                                            ],
+                                                            "x-api-enum": [
+                                                                {
+                                                                    "value": "General",
+                                                                    "name": "",
+                                                                    "description": ""
+                                                                },
+                                                                {
+                                                                    "value": "Spot",
+                                                                    "name": "",
+                                                                    "description": ""
+                                                                },
+                                                                {
+                                                                    "value": "Futures",
+                                                                    "name": "",
+                                                                    "description": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        "description": "Permission group list"
+                                                    },
+                                                    "ipWhitelist": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "description": "IP whitelist list"
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "integer",
+                                                        "description": "Creation time, unix timestamp (milliseconds)",
+                                                        "format": "int64"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "uid",
+                                                    "label",
+                                                    "apiKey",
+                                                    "apiVersion",
+                                                    "permissions",
+                                                    "ipWhitelist",
+                                                    "createdAt"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getSubAccountAPI",
+                "x-sdk-method-description": "This interface supports querying the Broker’s sub-account APIKEY",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"uid\\\": \\\"226383154\\\",\\n            \\\"label\\\": \\\"This is remarks\\\",\\n            \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\",\\n            \\\"apiVersion\\\": 3,\\n            \\\"permissions\\\": [\\n                \\\"General\\\",\\n                \\\"Spot\\\"\\n            ],\\n            \\\"ipWhitelist\\\": [\\n                \\\"127.**.1\\\",\\n                \\\"203.**.154\\\"\\n            ],\\n            \\\"createdAt\\\": 1729821494000\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\"}"
+            },
+            "delete": {
+                "summary": "Delete SubAccount API",
+                "deprecated": false,
+                "description": "This interface supports deleting Broker’s sub-account APIKEY",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "query",
+                        "description": "Sub-account UID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "Sub-account apiKey\n",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "deleteSubAccountAPI",
+                "x-sdk-method-description": "This interface supports deleting Broker’s sub-account APIKEY",
+                "x-api-rate-limit": 3,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": true\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\"}"
+            },
+            "post": {
+                "summary": "Add SubAccount API",
+                "deprecated": false,
+                "description": "This interface supports the creation of Broker sub-account APIKEY",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uid": {
+                                                    "type": "string",
+                                                    "description": "Sub-Account UID"
+                                                },
+                                                "label": {
+                                                    "type": "string",
+                                                    "description": "apikey remarks"
+                                                },
+                                                "apiKey": {
+                                                    "type": "string",
+                                                    "description": "apiKey"
+                                                },
+                                                "secretKey": {
+                                                    "type": "string",
+                                                    "description": "secretKey"
+                                                },
+                                                "apiVersion": {
+                                                    "type": "integer",
+                                                    "description": "apiVersion"
+                                                },
+                                                "permissions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Permission group list"
+                                                },
+                                                "ipWhitelist": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "IP whitelist list"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Creation time, unix timestamp (milliseconds)",
+                                                    "format": "int64"
+                                                }
+                                            },
+                                            "required": [
+                                                "uid",
+                                                "label",
+                                                "apiKey",
+                                                "secretKey",
+                                                "apiVersion",
+                                                "permissions",
+                                                "ipWhitelist",
+                                                "createdAt"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "addSubAccountApi",
+                "x-sdk-method-description": "This interface supports the creation of Broker sub-account APIKEY",
+                "x-api-rate-limit": 3,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "uid": {
+                                        "type": "string",
+                                        "description": "Subaccount UID"
+                                    },
+                                    "passphrase": {
+                                        "type": "string",
+                                        "description": "API passphrase"
+                                    },
+                                    "ipWhitelist": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "IP whitelist list, supports up to 20 IPs"
+                                    },
+                                    "permissions": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "general",
+                                                "spot",
+                                                "futures"
+                                            ],
+                                            "x-api-enum": [
+                                                {
+                                                    "value": "general",
+                                                    "name": "General",
+                                                    "description": ""
+                                                },
+                                                {
+                                                    "value": "spot",
+                                                    "name": "Spot",
+                                                    "description": ""
+                                                },
+                                                {
+                                                    "value": "futures",
+                                                    "name": "Futures",
+                                                    "description": ""
+                                                }
+                                            ]
+                                        },
+                                        "description": "Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )\n"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "apikey remarks (length 4~32)\n",
+                                        "minLength": 4,
+                                        "maxLength": 32
+                                    }
+                                },
+                                "required": [
+                                    "uid",
+                                    "passphrase",
+                                    "ipWhitelist",
+                                    "permissions",
+                                    "label"
+                                ]
+                            },
+                            "example": "{\n    \"uid\": \"226383154\",\n    \"passphrase\": \"11223344\",\n    \"ipWhitelist\": [\n        \"127.0.0.1\",\"123.123.123.123\"\n    ],\n    \"permissions\": [\n        \"general\",\"spot\"\n    ],\n    \"label\": \"This is remarks\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"uid\\\": \\\"226383154\\\",\\n        \\\"label\\\": \\\"This is remarks\\\",\\n        \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\",\\n        \\\"secretKey\\\": \\\"d694df2******5bae05b96\\\",\\n        \\\"apiVersion\\\": 3,\\n        \\\"permissions\\\": [\\n            \\\"General\\\",\\n            \\\"Spot\\\"\\n        ],\\n        \\\"ipWhitelist\\\": [\\n            \\\"127.0.0.1\\\",\\n            \\\"123.123.123.123\\\"\\n        ],\\n        \\\"createdAt\\\": 1729821494000\\n    }\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"passphrase\\\": \\\"11223344\\\", \\\"ipWhitelist\\\": [\\\"127.0.0.1\\\", \\\"123.123.123.123\\\"], \\\"permissions\\\": [\\\"general\\\", \\\"spot\\\"], \\\"label\\\": \\\"This is remarks\\\"}"
+            }
+        },
+        "/api/v1/asset/ndbroker/deposit/list": {
+            "get": {
+                "summary": "Get Deposit List",
+                "deprecated": false,
+                "description": "This endpoint can obtain the deposit records of each sub-account under the ND Broker.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status. Available value: PROCESSING, SUCCESS, FAILURE",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "hash",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "startTimestamp",
+                        "in": "query",
+                        "description": "Start time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endTimestamp",
+                        "in": "query",
+                        "description": "End time (milisecond)，Default sorting in descending order",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Maximum number of returned items, maximum 1000, default 1000",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1000,
+                            "maximum": 1000
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "msg": {
+                                            "type": "string"
+                                        },
+                                        "retry": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "uid": {
+                                                        "type": "number",
+                                                        "description": "deposit uid"
+                                                    },
+                                                    "hash": {
+                                                        "type": "string",
+                                                        "description": "hash"
+                                                    },
+                                                    "address": {
+                                                        "type": "string",
+                                                        "description": "Deposit address"
+                                                    },
+                                                    "memo": {
+                                                        "type": "string",
+                                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                                    },
+                                                    "amount": {
+                                                        "type": "string",
+                                                        "description": "Deposit amount"
+                                                    },
+                                                    "fee": {
+                                                        "type": "string",
+                                                        "description": "Fees charged for deposit"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency"
+                                                    },
+                                                    "isInner": {
+                                                        "type": "boolean",
+                                                        "description": "Internal deposit or not"
+                                                    },
+                                                    "walletTxId": {
+                                                        "type": "string",
+                                                        "description": "Wallet Txid"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "PROCESSING",
+                                                            "SUCCESS",
+                                                            "FAILURE"
+                                                        ],
+                                                        "description": "Status. Available value: PROCESSING, SUCCESS, FAILURE",
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "PROCESSING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "SUCCESS",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "FAILURE",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "remark": {
+                                                        "type": "string",
+                                                        "description": "remark"
+                                                    },
+                                                    "chain": {
+                                                        "type": "string",
+                                                        "description": "chain name of currency"
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "integer",
+                                                        "format": "int64",
+                                                        "description": "Creation time of the database record"
+                                                    },
+                                                    "updatedAt": {
+                                                        "type": "integer",
+                                                        "format": "int64",
+                                                        "description": "Update time of the database record"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "uid",
+                                                    "hash",
+                                                    "address",
+                                                    "memo",
+                                                    "amount",
+                                                    "fee",
+                                                    "currency",
+                                                    "isInner",
+                                                    "walletTxId",
+                                                    "status",
+                                                    "remark",
+                                                    "chain",
+                                                    "createdAt",
+                                                    "updatedAt"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "code",
+                                        "msg",
+                                        "retry",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getDepositList",
+                "x-sdk-method-description": "This endpoint can obtain the deposit records of each sub-account under the ND Broker.",
+                "x-api-rate-limit": 10,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"uid\\\": 165111215,\\n            \\\"hash\\\": \\\"6724e363a492800007ec602b\\\",\\n            \\\"address\\\": \\\"xxxxxxx@gmail.com\\\",\\n            \\\"memo\\\": \\\"\\\",\\n            \\\"amount\\\": \\\"3.0\\\",\\n            \\\"fee\\\": \\\"0.0\\\",\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"isInner\\\": true,\\n            \\\"walletTxId\\\": \\\"bbbbbbbbb\\\",\\n            \\\"status\\\": \\\"SUCCESS\\\",\\n            \\\"chain\\\": \\\"\\\",\\n            \\\"remark\\\": \\\"\\\",\\n            \\\"createdAt\\\": 1730470760000,\\n            \\\"updatedAt\\\": 1730470760000\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"hash\\\": \\\"example_string_default_value\\\", \\\"startTimestamp\\\": 123456, \\\"endTimestamp\\\": 123456, \\\"limit\\\": 100}"
+            }
+        },
+        "/api/v3/broker/nd/transfer/detail": {
+            "get": {
+                "summary": "Get Transfer History",
+                "deprecated": false,
+                "description": "This endpoint supports querying transfer records of the broker itself and its created sub-accounts.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "query",
+                        "description": "Transfer Order ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderId": {
+                                                    "type": "string",
+                                                    "description": "Transfer Order ID"
+                                                },
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "Currency"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Transfer Amount"
+                                                },
+                                                "fromUid": {
+                                                    "type": "integer",
+                                                    "description": "UID of the user transferring out"
+                                                },
+                                                "fromAccountType": {
+                                                    "type": "string",
+                                                    "description": "From Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
+                                                    "enum": [
+                                                        "MAIN",
+                                                        "TRADE",
+                                                        "CONTRACT",
+                                                        "MARGIN",
+                                                        "ISOLATED"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "MAIN",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "TRADE",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "CONTRACT",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "MARGIN",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "ISOLATED",
+                                                            "name": "",
+                                                            "description": ""
+                                                        }
+                                                    ]
+                                                },
+                                                "fromAccountTag": {
+                                                    "type": "string",
+                                                    "description": "Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT",
+                                                    "example": [
+                                                        "BTC-USDT",
+                                                        "ETH-USDT",
+                                                        "KCS-USDT"
+                                                    ]
+                                                },
+                                                "toUid": {
+                                                    "type": "integer",
+                                                    "description": "UID of the user transferring in"
+                                                },
+                                                "toAccountType": {
+                                                    "type": "string",
+                                                    "description": "Account Type:Account Type: MAIN, TRADE, CONTRACT, MARGIN, ISOLATED",
+                                                    "enum": [
+                                                        "MAIN",
+                                                        "TRADE",
+                                                        "CONTRACT",
+                                                        "MARGIN",
+                                                        "ISOLATED"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "MAIN",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "TRADE",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "CONTRACT",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "MARGIN",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "ISOLATED",
+                                                            "name": "",
+                                                            "description": ""
+                                                        }
+                                                    ]
+                                                },
+                                                "toAccountTag": {
+                                                    "type": "string",
+                                                    "description": "To Trading pair, required if the account type is ISOLATED, e.g., BTC-USDT",
+                                                    "example": [
+                                                        "BTC-USDT",
+                                                        "ETH-USDT",
+                                                        "KCS-USDT"
+                                                    ]
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status: PROCESSING (processing), SUCCESS (successful), FAILURE (failed)",
+                                                    "enum": [
+                                                        "PROCESSING",
+                                                        "SUCCESS",
+                                                        "FAILURE"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "PROCESSING",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "SUCCESS",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "FAILURE",
+                                                            "name": "",
+                                                            "description": ""
+                                                        }
+                                                    ]
+                                                },
+                                                "reason": {
+                                                    "type": "string",
+                                                    "description": "Failure Reason"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Creation Time (Unix timestamp in milliseconds)",
+                                                    "format": "int64"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderId",
+                                                "currency",
+                                                "amount",
+                                                "fromUid",
+                                                "fromAccountType",
+                                                "fromAccountTag",
+                                                "toUid",
+                                                "toAccountType",
+                                                "toAccountTag",
+                                                "status",
+                                                "reason",
+                                                "createdAt"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getTransferHistory",
+                "x-sdk-method-description": "This endpoint supports querying transfer records of the broker itself and its created sub-accounts.",
+                "x-api-rate-limit": 1,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"671b4600c1e3dd000726866d\\\",\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"amount\\\": \\\"1\\\",\\n        \\\"fromUid\\\": 165111215,\\n        \\\"fromAccountType\\\": \\\"MAIN\\\",\\n        \\\"fromAccountTag\\\": \\\"DEFAULT\\\",\\n        \\\"toUid\\\": 226383154,\\n        \\\"toAccountType\\\": \\\"MAIN\\\",\\n        \\\"toAccountTag\\\": \\\"DEFAULT\\\",\\n        \\\"status\\\": \\\"SUCCESS\\\",\\n        \\\"reason\\\": null,\\n        \\\"createdAt\\\": 1729840640000\\n    }\\n}",
+                "x-request-example": "{\\\"orderId\\\": \\\"671b4600c1e3dd000726866d\\\"}"
+            }
+        },
+        "/api/v3/broker/nd/withdraw/detail": {
+            "get": {
+                "summary": "Get Withdraw Detail",
+                "deprecated": false,
+                "description": "This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "withdrawalId",
+                        "in": "query",
+                        "description": "Withdrawal ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "description": "Withdrawal ID"
+                                                },
+                                                "chain": {
+                                                    "type": "string",
+                                                    "description": "chain id of currency"
+                                                },
+                                                "walletTxId": {
+                                                    "type": "string",
+                                                    "description": "Wallet Transaction ID"
+                                                },
+                                                "uid": {
+                                                    "type": "integer",
+                                                    "description": "UID"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "integer",
+                                                    "description": "Update Time (milliseconds)",
+                                                    "format": "int64"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Amount"
+                                                },
+                                                "memo": {
+                                                    "type": "string",
+                                                    "description": "Memo"
+                                                },
+                                                "fee": {
+                                                    "type": "string",
+                                                    "description": "Fee"
+                                                },
+                                                "address": {
+                                                    "type": "string",
+                                                    "description": "Address"
+                                                },
+                                                "remark": {
+                                                    "type": "string",
+                                                    "description": "Remark"
+                                                },
+                                                "isInner": {
+                                                    "type": "boolean",
+                                                    "description": "Is Internal (true or false)"
+                                                },
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "Currency"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status (PROCESSING, WALLET_PROCESSING, REVIEW, SUCCESS, FAILURE)",
+                                                    "enum": [
+                                                        "PROCESSING",
+                                                        "WALLET_PROCESSING",
+                                                        "REVIEW",
+                                                        "SUCCESS",
+                                                        "FAILURE"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "PROCESSING",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "WALLET_PROCESSING",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "REVIEW",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "SUCCESS",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "FAILURE",
+                                                            "name": "",
+                                                            "description": ""
+                                                        }
+                                                    ]
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Creation Time (milliseconds)",
+                                                    "format": "int64"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "chain",
+                                                "walletTxId",
+                                                "uid",
+                                                "updatedAt",
+                                                "amount",
+                                                "memo",
+                                                "fee",
+                                                "address",
+                                                "remark",
+                                                "isInner",
+                                                "currency",
+                                                "status",
+                                                "createdAt"
+                                            ]
+                                        },
+                                        "code": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "code"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getWithdrawDetail",
+                "x-sdk-method-description": "This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).",
+                "x-api-rate-limit": 1,
+                "x-response-example": "{\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"66617a2***3c9a\\\",\\n        \\\"chain\\\": \\\"ton\\\",\\n        \\\"walletTxId\\\": \\\"AJ***eRI=\\\",\\n        \\\"uid\\\": 157267400,\\n        \\\"amount\\\": \\\"1.00000000\\\",\\n        \\\"memo\\\": \\\"7025734\\\",\\n        \\\"fee\\\": \\\"0.00000000\\\",\\n        \\\"address\\\": \\\"EQDn***dKbGzr\\\",\\n        \\\"remark\\\": \\\"\\\",\\n        \\\"isInner\\\": false,\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"status\\\": \\\"SUCCESS\\\",\\n        \\\"createdAt\\\": 1717664288000,\\n        \\\"updatedAt\\\": 1717664375000\\n    },\\n    \\\"code\\\": \\\"200000\\\"\\n}",
+                "x-request-example": "{\\\"withdrawalId\\\": \\\"66617a2***3c9a\\\"}"
+            }
+        },
+        "/api/v3/broker/nd/deposit/detail": {
+            "get": {
+                "summary": "Get Deposit Detail",
+                "deprecated": false,
+                "description": "This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "Hash Value",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "chain": {
+                                                    "type": "string",
+                                                    "description": "chain id of currency"
+                                                },
+                                                "hash": {
+                                                    "type": "string",
+                                                    "description": "Hash"
+                                                },
+                                                "walletTxId": {
+                                                    "type": "string",
+                                                    "description": "Wallet Transaction ID"
+                                                },
+                                                "uid": {
+                                                    "type": "integer",
+                                                    "description": "UID"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "integer",
+                                                    "description": "Update Time (milliseconds)",
+                                                    "format": "int64"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Amount"
+                                                },
+                                                "memo": {
+                                                    "type": "string",
+                                                    "description": "Memo"
+                                                },
+                                                "fee": {
+                                                    "type": "string",
+                                                    "description": "Fee"
+                                                },
+                                                "address": {
+                                                    "type": "string",
+                                                    "description": "Address"
+                                                },
+                                                "remark": {
+                                                    "type": "string",
+                                                    "description": "Remark"
+                                                },
+                                                "isInner": {
+                                                    "type": "boolean",
+                                                    "description": "Is Internal (true or false)"
+                                                },
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "Currency"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status (PROCESSING, SUCCESS, FAILURE)",
+                                                    "enum": [
+                                                        "SUCCESS",
+                                                        "FAILURE",
+                                                        "PROCESSING"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "SUCCESS",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "FAILURE",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "PROCESSING",
+                                                            "name": "",
+                                                            "description": ""
+                                                        }
+                                                    ]
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Creation Time (milliseconds)",
+                                                    "format": "int64"
+                                                }
+                                            },
+                                            "required": [
+                                                "chain",
+                                                "hash",
+                                                "walletTxId",
+                                                "uid",
+                                                "updatedAt",
+                                                "amount",
+                                                "memo",
+                                                "fee",
+                                                "address",
+                                                "remark",
+                                                "isInner",
+                                                "currency",
+                                                "status",
+                                                "createdAt"
+                                            ]
+                                        },
+                                        "code": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "data",
+                                        "code"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "getDepositDetail",
+                "x-sdk-method-description": "This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)",
+                "x-api-rate-limit": 1,
+                "x-response-example": "{\\n  \\\"data\\\" : {\\n    \\\"chain\\\" : \\\"trx\\\",\\n    \\\"hash\\\" : \\\"30bb0e0b***4156c5188\\\",\\n    \\\"walletTxId\\\" : \\\"30bb0***610d1030f\\\",\\n    \\\"uid\\\" : 201496341,\\n    \\\"updatedAt\\\" : 1713429174000,\\n    \\\"amount\\\" : \\\"8.5\\\",\\n    \\\"memo\\\" : \\\"\\\",\\n    \\\"fee\\\" : \\\"0.0\\\",\\n    \\\"address\\\" : \\\"THLPzUrbd1o***vP7d\\\",\\n    \\\"remark\\\" : \\\"Deposit\\\",\\n    \\\"isInner\\\" : false,\\n    \\\"currency\\\" : \\\"USDT\\\",\\n    \\\"status\\\" : \\\"SUCCESS\\\",\\n    \\\"createdAt\\\" : 1713429173000\\n  },\\n  \\\"code\\\" : \\\"200000\\\"\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"hash\\\": \\\"30bb0e0b***4156c5188\\\"}"
+            }
+        },
+        "/api/v1/broker/nd/account/update-apikey": {
+            "post": {
+                "summary": "Modify SubAccount API",
+                "deprecated": false,
+                "description": "This interface supports modify the Broker’s sub-account APIKEY",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uid": {
+                                                    "type": "string",
+                                                    "description": "Sub-Account UID"
+                                                },
+                                                "label": {
+                                                    "type": "string",
+                                                    "description": "apikey remarks"
+                                                },
+                                                "apiKey": {
+                                                    "type": "string",
+                                                    "description": "apiKey"
+                                                },
+                                                "apiVersion": {
+                                                    "type": "integer",
+                                                    "description": "apiVersion"
+                                                },
+                                                "permissions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Permission group list"
+                                                },
+                                                "ipWhitelist": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "IP whitelist list"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Creation time, unix timestamp (milliseconds)",
+                                                    "format": "int64"
+                                                }
+                                            },
+                                            "required": [
+                                                "uid",
+                                                "label",
+                                                "apiKey",
+                                                "apiVersion",
+                                                "permissions",
+                                                "ipWhitelist",
+                                                "createdAt"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "modifySubAccountApi",
+                "x-sdk-method-description": "This interface supports modify the Broker’s sub-account APIKEY",
+                "x-api-rate-limit": 3,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "uid": {
+                                        "type": "string",
+                                        "description": "Subaccount UID"
+                                    },
+                                    "ipWhitelist": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "IP whitelist list, supports up to 20 IPs"
+                                    },
+                                    "permissions": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "general",
+                                                "spot",
+                                                "futures"
+                                            ],
+                                            "x-api-enum": [
+                                                {
+                                                    "value": "general",
+                                                    "name": "General",
+                                                    "description": ""
+                                                },
+                                                {
+                                                    "value": "spot",
+                                                    "name": "Spot",
+                                                    "description": ""
+                                                },
+                                                {
+                                                    "value": "futures",
+                                                    "name": "Futures",
+                                                    "description": ""
+                                                }
+                                            ]
+                                        },
+                                        "description": "Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )\n"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "apikey remarks (length 4~32)\n",
+                                        "minLength": 4,
+                                        "maxLength": 32
+                                    },
+                                    "apiKey": {
+                                        "type": "string",
+                                        "description": "Subaccount apiKey"
+                                    }
+                                },
+                                "required": [
+                                    "uid",
+                                    "apiKey",
+                                    "ipWhitelist",
+                                    "permissions",
+                                    "label"
+                                ]
+                            },
+                            "example": "{\n    \"uid\": \"226383154\",\n    \"apiKey\": \"671afb36cee20f00015cfaf1\",\n    \"ipWhitelist\": [\n        \"127.0.0.1\",\n        \"123.123.123.123\"\n    ],\n    \"permissions\": [\n        \"general\",\n        \"spot\"\n    ],\n    \"label\": \"This is remarks\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"uid\\\": \\\"226383154\\\",\\n        \\\"label\\\": \\\"This is remarks\\\",\\n        \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\",\\n        \\\"apiVersion\\\": 3,\\n        \\\"permissions\\\": [\\n            \\\"General\\\",\\n            \\\"Spot\\\"\\n        ],\\n        \\\"ipWhitelist\\\": [\\n            \\\"127.**.1\\\",\\n            \\\"123.**.123\\\"\\n        ],\\n        \\\"createdAt\\\": 1729821494000\\n    }\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"226383154\\\", \\\"apiKey\\\": \\\"671afb36cee20f00015cfaf1\\\", \\\"ipWhitelist\\\": [\\\"127.0.0.1\\\", \\\"123.123.123.123\\\"], \\\"permissions\\\": [\\\"general\\\", \\\"spot\\\"], \\\"label\\\": \\\"This is remarks\\\"}"
+            }
+        },
+        "/api/v1/broker/nd/transfer": {
+            "post": {
+                "summary": "Transfer",
+                "deprecated": false,
+                "description": "This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderId": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Broker",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Broker",
+                "x-sdk-service": "Broker",
+                "x-sdk-sub-service": "NDBroker",
+                "x-sdk-method-name": "transfer",
+                "x-sdk-method-description": "This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.",
+                "x-api-rate-limit": 1,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Currency"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Transfer Amount (must be a positive integer in the currency's precision)"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "Fund transfer direction: OUT (Broker account is transferred to Broker sub-account), IN (Broker sub-account is transferred to Broker account)",
+                                        "enum": [
+                                            "OUT",
+                                            "IN"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "OUT",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "IN",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "accountType": {
+                                        "type": "string",
+                                        "description": "Broker account types: MAIN (Funding account), TRADE (Spot trading account)",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "specialUid": {
+                                        "type": "string",
+                                        "description": "Broker subaccount uid, must be the Broker subaccount created by the current Broker user."
+                                    },
+                                    "specialAccountType": {
+                                        "type": "string",
+                                        "description": "Broker sub-account types: MAIN (Funding account), TRADE (Spot trading account)",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "clientOid": {
+                                        "type": "string",
+                                        "description": "Client Order Id, The unique identifier created by the client. It is recommended to use UUID. The maximum length is 128 bits.",
+                                        "maxLength": 128
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "amount",
+                                    "direction",
+                                    "accountType",
+                                    "specialUid",
+                                    "specialAccountType",
+                                    "clientOid"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"USDT\",\n    \"amount\": \"1\",\n    \"clientOid\": \"e6c24d23-6bc2-401b-bf9e-55e2daddfbc1\",\n    \"direction\": \"OUT\",\n    \"accountType\": \"MAIN\",\n    \"specialUid\": \"226383154\",\n    \"specialAccountType\": \"MAIN\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"671b4600c1e3dd000726866d\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"1\\\", \\\"clientOid\\\": \\\"e6c24d23-6bc2-401b-bf9e-55e2daddfbc1\\\", \\\"direction\\\": \\\"OUT\\\", \\\"accountType\\\": \\\"MAIN\\\", \\\"specialUid\\\": \\\"226383154\\\", \\\"specialAccountType\\\": \\\"MAIN\\\"}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

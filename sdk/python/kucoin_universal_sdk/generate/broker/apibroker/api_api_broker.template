@@ -1,0 +1,21 @@
+# API FUNCTION TEMPLATE
+
+
+def test_get_rebase_req(self):
+    """
+        get_rebase
+        Get Broker Rebate
+        /api/v1/broker/api/rebase/download
+    """
+
+    builder = GetRebaseReqBuilder()
+    builder.set_begin(?).set_end(?).set_trade_type(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_rebase(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e

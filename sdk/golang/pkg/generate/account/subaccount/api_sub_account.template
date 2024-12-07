@@ -1,0 +1,295 @@
+# API FUNCTION TEMPLATE
+
+
+func TestSubAccountGetFuturesSubAccountListV2Req(t *testing.T) {
+    // GetFuturesSubAccountListV2
+    // Get SubAccount List - Futures Balance(V2)
+    // /api/v1/account-overview-all
+
+    builder := subaccount.NewGetFuturesSubAccountListV2ReqBuilder()
+    builder.SetCurrency(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.GetFuturesSubAccountListV2(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountGetSpotSubAccountListV1Req(t *testing.T) {
+    // GetSpotSubAccountListV1
+    // Get SubAccount List - Spot Balance(V1)
+    // /api/v1/sub-accounts
+
+
+    resp, err := subaccountApi.GetSpotSubAccountListV1(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountGetSpotSubAccountDetailReq(t *testing.T) {
+    // GetSpotSubAccountDetail
+    // Get SubAccount Detail - Balance
+    // /api/v1/sub-accounts/{subUserId}
+
+    builder := subaccount.NewGetSpotSubAccountDetailReqBuilder()
+    builder.SetSubUserId(?).SetIncludeBaseAmount(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.GetSpotSubAccountDetail(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountDeleteSubAccountApiReq(t *testing.T) {
+    // DeleteSubAccountApi
+    // Delete SubAccount API
+    // /api/v1/sub/api-key
+
+    builder := subaccount.NewDeleteSubAccountApiReqBuilder()
+    builder.SetApiKey(?).SetSubName(?).SetPassphrase(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.DeleteSubAccountApi(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountGetSubAccountApiListReq(t *testing.T) {
+    // GetSubAccountApiList
+    // Get SubAccount API List
+    // /api/v1/sub/api-key
+
+    builder := subaccount.NewGetSubAccountApiListReqBuilder()
+    builder.SetApiKey(?).SetSubName(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.GetSubAccountApiList(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountAddSubAccountApiReq(t *testing.T) {
+    // AddSubAccountApi
+    // Add SubAccount API
+    // /api/v1/sub/api-key
+
+    builder := subaccount.NewAddSubAccountApiReqBuilder()
+    builder.SetPassphrase(?).SetRemark(?).SetPermission(?).SetIpWhitelist(?).SetExpire(?).SetSubName(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.AddSubAccountApi(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountModifySubAccountApiReq(t *testing.T) {
+    // ModifySubAccountApi
+    // Modify SubAccount API
+    // /api/v1/sub/api-key/update
+
+    builder := subaccount.NewModifySubAccountApiReqBuilder()
+    builder.SetPassphrase(?).SetPermission(?).SetIpWhitelist(?).SetExpire(?).SetSubName(?).SetApiKey(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.ModifySubAccountApi(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountGetSpotSubAccountsSummaryV1Req(t *testing.T) {
+    // GetSpotSubAccountsSummaryV1
+    // Get SubAccount List - Summary Info(V1)
+    // /api/v1/sub/user
+
+
+    resp, err := subaccountApi.GetSpotSubAccountsSummaryV1(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountGetSpotSubAccountListV2Req(t *testing.T) {
+    // GetSpotSubAccountListV2
+    // Get SubAccount List - Spot Balance(V2)
+    // /api/v2/sub-accounts
+
+    builder := subaccount.NewGetSpotSubAccountListV2ReqBuilder()
+    builder.SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.GetSpotSubAccountListV2(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountAddSubAccountReq(t *testing.T) {
+    // AddSubAccount
+    // Add SubAccount
+    // /api/v2/sub/user/created
+
+    builder := subaccount.NewAddSubAccountReqBuilder()
+    builder.SetPassword(?).SetRemarks(?).SetSubName(?).SetAccess(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.AddSubAccount(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountGetSpotSubAccountsSummaryV2Req(t *testing.T) {
+    // GetSpotSubAccountsSummaryV2
+    // Get SubAccount List - Summary Info
+    // /api/v2/sub/user
+
+    builder := subaccount.NewGetSpotSubAccountsSummaryV2ReqBuilder()
+    builder.SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.GetSpotSubAccountsSummaryV2(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountAddSubAccountFuturesPermissionReq(t *testing.T) {
+    // AddSubAccountFuturesPermission
+    // Add SubAccount Futures Permission
+    // /api/v3/sub/user/futures/enable
+
+    builder := subaccount.NewAddSubAccountFuturesPermissionReqBuilder()
+    builder.SetUid(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.AddSubAccountFuturesPermission(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestSubAccountAddSubAccountMarginPermissionReq(t *testing.T) {
+    // AddSubAccountMarginPermission
+    // Add SubAccount Margin Permission
+    // /api/v3/sub/user/margin/enable
+
+    builder := subaccount.NewAddSubAccountMarginPermissionReqBuilder()
+    builder.SetUid(?)
+    req := builder.Build()
+
+    resp, err := subaccountApi.AddSubAccountMarginPermission(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

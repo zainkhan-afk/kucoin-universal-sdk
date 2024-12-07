@@ -1,0 +1,140 @@
+# API FUNCTION TEMPLATE
+
+
+func TestWithdrawalGetWithdrawalHistoryOldReq(t *testing.T) {
+    // GetWithdrawalHistoryOld
+    // Get Withdrawal History - Old
+    // /api/v1/hist-withdrawals
+
+    builder := withdrawal.NewGetWithdrawalHistoryOldReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.GetWithdrawalHistoryOld(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestWithdrawalGetWithdrawalHistoryReq(t *testing.T) {
+    // GetWithdrawalHistory
+    // Get Withdrawal History
+    // /api/v1/withdrawals
+
+    builder := withdrawal.NewGetWithdrawalHistoryReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.GetWithdrawalHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestWithdrawalWithdrawalV1Req(t *testing.T) {
+    // WithdrawalV1
+    // Withdraw - V1
+    // /api/v1/withdrawals
+
+    builder := withdrawal.NewWithdrawalV1ReqBuilder()
+    builder.SetCurrency(?).SetChain(?).SetAddress(?).SetAmount(?).SetMemo(?).SetIsInner(?).SetRemark(?).SetFeeDeductType(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.WithdrawalV1(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestWithdrawalGetWithdrawalQuotasReq(t *testing.T) {
+    // GetWithdrawalQuotas
+    // Get Withdrawal Quotas
+    // /api/v1/withdrawals/quotas
+
+    builder := withdrawal.NewGetWithdrawalQuotasReqBuilder()
+    builder.SetCurrency(?).SetChain(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.GetWithdrawalQuotas(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestWithdrawalCancelWithdrawalReq(t *testing.T) {
+    // CancelWithdrawal
+    // Cancel Withdrawal
+    // /api/v1/withdrawals/{withdrawalId}
+
+    builder := withdrawal.NewCancelWithdrawalReqBuilder()
+    builder.SetWithdrawalId(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.CancelWithdrawal(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestWithdrawalWithdrawalV3Req(t *testing.T) {
+    // WithdrawalV3
+    // Withdraw(V3)
+    // /api/v3/withdrawals
+
+    builder := withdrawal.NewWithdrawalV3ReqBuilder()
+    builder.SetCurrency(?).SetChain(?).SetAmount(?).SetMemo(?).SetIsInner(?).SetRemark(?).SetFeeDeductType(?).SetToAddress(?).SetWithdrawType(?)
+    req := builder.Build()
+
+    resp, err := withdrawalApi.WithdrawalV3(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

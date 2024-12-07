@@ -1,0 +1,218 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "margin",
+        "description": "risklimit",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v3/margin/currencies": {
+            "get": {
+                "summary": "Get Margin Risk Limit",
+                "deprecated": false,
+                "description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "isIsolated",
+                        "in": "query",
+                        "description": "true-isolated, false-cross",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency, This field is only required for cross margin",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "symbol, This field is only required for isolated margin",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC-USDT",
+                                "ETH-USDT",
+                                "KCS-USDT"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "timestamp": {
+                                                        "type": "integer",
+                                                        "description": "Time stamp",
+                                                        "format": "int64"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, Currency"
+                                                    },
+                                                    "borrowMaxAmount": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, Maximum personal borrow amount. If the platform has no borrowing amount, this value will still be displayed."
+                                                    },
+                                                    "buyMaxAmount": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, Maximum buy amount"
+                                                    },
+                                                    "holdMaxAmount": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, Maximum holding amount"
+                                                    },
+                                                    "borrowCoefficient": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, [Borrow Coefficient](https://www.kucoin.com/land/price-protect)"
+                                                    },
+                                                    "marginCoefficient": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, [Margin Coefficient](https://www.kucoin.com/land/price-protect)"
+                                                    },
+                                                    "precision": {
+                                                        "type": "integer",
+                                                        "description": "CROSS MARGIN RESPONSES, Currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+                                                    },
+                                                    "borrowMinAmount": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, Minimum personal borrow amount"
+                                                    },
+                                                    "borrowMinUnit": {
+                                                        "type": "string",
+                                                        "description": "CROSS MARGIN RESPONSES, Minimum unit for borrowing, the borrowed amount must be an integer multiple of this value"
+                                                    },
+                                                    "borrowEnabled": {
+                                                        "type": "boolean",
+                                                        "description": "CROSS MARGIN RESPONSES, Whether to support borrowing"
+                                                    },
+                                                    "symbol": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Symbol"
+                                                    },
+                                                    "baseMaxBorrowAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base maximum personal borrow amount. If the platform has no borrowing amount, this value will still be displayed."
+                                                    },
+                                                    "quoteMaxBorrowAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote maximum personal borrow amount. If the platform has no borrowing amount, this value will still be displayed."
+                                                    },
+                                                    "baseMaxBuyAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base maximum buy amount\n"
+                                                    },
+                                                    "quoteMaxBuyAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote maximum buy amount"
+                                                    },
+                                                    "baseMaxHoldAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base maximum holding amount\n"
+                                                    },
+                                                    "quoteMaxHoldAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote maximum holding amount\n"
+                                                    },
+                                                    "basePrecision": {
+                                                        "type": "integer",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001"
+                                                    },
+                                                    "quotePrecision": {
+                                                        "type": "integer",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote currency precision. the minimum repayment amount of a single transaction should be >= currency precision, for example, the precision of ETH is 8, and the minimum repayment amount is 0.00000001\n"
+                                                    },
+                                                    "baseBorrowMinAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base minimum personal borrow amount\n"
+                                                    },
+                                                    "quoteBorrowMinAmount": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote minimum personal borrow amount"
+                                                    },
+                                                    "baseBorrowMinUnit": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base minimum unit for borrowing, the borrowed amount must be an integer multiple of this value"
+                                                    },
+                                                    "quoteBorrowMinUnit": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote minimum unit for borrowing, the borrowed amount must be an integer multiple of this value"
+                                                    },
+                                                    "baseBorrowEnabled": {
+                                                        "type": "boolean",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Base whether to support borrowing\n"
+                                                    },
+                                                    "quoteBorrowEnabled": {
+                                                        "type": "boolean",
+                                                        "description": "ISOLATED MARGIN RESPONSES, Quote whether to support borrowing\n"
+                                                    },
+                                                    "baseBorrowCoefficient": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, [Base Borrow Coefficient](https://www.kucoin.com/land/price-protect)"
+                                                    },
+                                                    "quoteBorrowCoefficient": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, [Quote Borrow Coefficient](https://www.kucoin.com/land/price-protect)"
+                                                    },
+                                                    "baseMarginCoefficient": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, [Base Margin Coefficient](https://www.kucoin.com/land/price-protect)"
+                                                    },
+                                                    "quoteMarginCoefficient": {
+                                                        "type": "string",
+                                                        "description": "ISOLATED MARGIN RESPONSES, [Quote Margin Coefficient](https://www.kucoin.com/land/price-protect)"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "RiskLimit",
+                "x-sdk-method-name": "getMarginRiskLimit",
+                "x-sdk-method-description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
+                "x-api-rate-limit": 20,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"timestamp\\\": 1729678659275,\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"borrowMaxAmount\\\": \\\"75.15\\\",\\n            \\\"buyMaxAmount\\\": \\\"217.12\\\",\\n            \\\"holdMaxAmount\\\": \\\"217.12\\\",\\n            \\\"borrowCoefficient\\\": \\\"1\\\",\\n            \\\"marginCoefficient\\\": \\\"1\\\",\\n            \\\"precision\\\": 8,\\n            \\\"borrowMinAmount\\\": \\\"0.001\\\",\\n            \\\"borrowMinUnit\\\": \\\"0.0001\\\",\\n            \\\"borrowEnabled\\\": true\\n        }\\n    ]\\n}\\n",
+                "x-request-example": "{\\\"isIsolated\\\": true, \\\"currency\\\": \\\"BTC\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

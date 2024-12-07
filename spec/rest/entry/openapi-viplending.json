@@ -1,0 +1,250 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "viplending",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v1/otc-loan/loan": {
+            "get": {
+                "summary": "Get Account Detail",
+                "deprecated": false,
+                "description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "parentUid": {
+                                                    "type": "string",
+                                                    "description": "Master UID"
+                                                },
+                                                "orders": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "orderId": {
+                                                                "type": "string",
+                                                                "description": "Loan Orders ID"
+                                                            },
+                                                            "principal": {
+                                                                "type": "string",
+                                                                "description": "Principal to Be Repaid"
+                                                            },
+                                                            "interest": {
+                                                                "type": "string",
+                                                                "description": "Interest to Be Repaid"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "Loan Currency"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "orderId",
+                                                            "currency",
+                                                            "principal",
+                                                            "interest"
+                                                        ]
+                                                    },
+                                                    "description": "Loan Orders"
+                                                },
+                                                "ltv": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "transferLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Restricted Transfers to Funding Account"
+                                                        },
+                                                        "onlyClosePosLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Reduce Only (Restricted Open Positions)"
+                                                        },
+                                                        "delayedLiquidationLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Delayed Liquidation"
+                                                        },
+                                                        "instantLiquidationLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Instant Liquidation"
+                                                        },
+                                                        "currentLtv": {
+                                                            "type": "string",
+                                                            "description": "Current LTV"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "transferLtv",
+                                                        "onlyClosePosLtv",
+                                                        "delayedLiquidationLtv",
+                                                        "instantLiquidationLtv",
+                                                        "currentLtv"
+                                                    ],
+                                                    "description": "Loan-to-Value Ratio\n"
+                                                },
+                                                "totalMarginAmount": {
+                                                    "type": "string",
+                                                    "description": "Total Margin Amount (USDT)"
+                                                },
+                                                "transferMarginAmount": {
+                                                    "type": "string",
+                                                    "description": "Total Maintenance Margin for Restricted Transfers (USDT)"
+                                                },
+                                                "margins": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "marginCcy": {
+                                                                "type": "string",
+                                                                "description": "Margin Currency"
+                                                            },
+                                                            "marginQty": {
+                                                                "type": "string",
+                                                                "description": "Maintenance Quantity (Calculated with Margin Coefficient)"
+                                                            },
+                                                            "marginFactor": {
+                                                                "type": "string",
+                                                                "description": "Margin Coefficient return real time margin discount rate to USDT"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "marginCcy",
+                                                            "marginQty",
+                                                            "marginFactor"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "parentUid",
+                                                "orders",
+                                                "ltv",
+                                                "totalMarginAmount",
+                                                "transferMarginAmount",
+                                                "margins"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "VIPLending",
+                "x-sdk-sub-service": "VIPLending",
+                "x-sdk-method-name": "getAccountDetail",
+                "x-sdk-method-description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.",
+                "x-api-rate-limit": 1,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"parentUid\\\": \\\"1260004199\\\",\\n        \\\"orders\\\": [{\\n            \\\"orderId\\\": \\\"671a2be815f4140007a588e1\\\",\\n            \\\"principal\\\": \\\"100\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"currency\\\": \\\"USDT\\\"\\n        }],\\n        \\\"ltv\\\": {\\n            \\\"transferLtv\\\": \\\"0.6000\\\",\\n            \\\"onlyClosePosLtv\\\": \\\"0.7500\\\",\\n            \\\"delayedLiquidationLtv\\\": \\\"0.7500\\\",\\n            \\\"instantLiquidationLtv\\\": \\\"0.8000\\\",\\n            \\\"currentLtv\\\": \\\"0.1111\\\"\\n        },\\n        \\\"totalMarginAmount\\\": \\\"900.00000000\\\",\\n        \\\"transferMarginAmount\\\": \\\"166.66666666\\\",\\n        \\\"margins\\\": [{\\n            \\\"marginCcy\\\": \\\"USDT\\\",\\n            \\\"marginQty\\\": \\\"1000.00000000\\\",\\n            \\\"marginFactor\\\": \\\"0.9000000000\\\"\\n        }]\\n    }\\n}"
+            }
+        },
+        "/api/v1/otc-loan/accounts": {
+            "get": {
+                "summary": "Get Accounts",
+                "deprecated": false,
+                "description": "Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "uid": {
+                                                        "type": "string",
+                                                        "description": "UID"
+                                                    },
+                                                    "marginCcy": {
+                                                        "type": "string",
+                                                        "description": "Margin Currency"
+                                                    },
+                                                    "marginQty": {
+                                                        "type": "string",
+                                                        "description": "Maintenance Quantity (Calculated with Margin Coefficient)"
+                                                    },
+                                                    "marginFactor": {
+                                                        "type": "string",
+                                                        "description": "Margin Coefficient"
+                                                    },
+                                                    "accountType": {
+                                                        "type": "string",
+                                                        "description": "Account Type: TRADE - Trading Account CONTRACT - Futures Account (for Total Futures Equity)"
+                                                    },
+                                                    "isParent": {
+                                                        "type": "boolean",
+                                                        "description": "If It Is Master Account"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "uid",
+                                                    "marginCcy",
+                                                    "marginQty",
+                                                    "marginFactor",
+                                                    "accountType",
+                                                    "isParent"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "VIPLending",
+                "x-sdk-sub-service": "VIPLending",
+                "x-sdk-method-name": "getAccounts",
+                "x-sdk-method-description": "Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.",
+                "x-api-rate-limit": 1,
+                "x-response-example": "\\n{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [{\\n        \\\"uid\\\": \\\"1260004199\\\",\\n        \\\"marginCcy\\\": \\\"USDT\\\",\\n        \\\"marginQty\\\": \\\"900\\\",\\n        \\\"marginFactor\\\": \\\"0.9000000000\\\",\\n        \\\"accountType\\\": \\\"TRADE\\\",\\n        \\\"isParent\\\": true\\n    }]\\n}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

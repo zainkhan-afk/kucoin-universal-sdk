@@ -1,0 +1,9 @@
+.vscode/
+.idea
+.DS_Store
+.venv
+.venv-test
+__pycache__
+logs
+*.egg-info
+test.log

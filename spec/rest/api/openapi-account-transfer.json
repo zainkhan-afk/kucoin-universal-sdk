@@ -1,0 +1,1309 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "account",
+        "description": "transfer",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v3/accounts/universal-transfer": {
+            "post": {
+                "summary": "Flex Transfer",
+                "deprecated": false,
+                "description": "This interface can be used for transfers between master and sub accounts and inner transfers",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderId": {
+                                                    "type": "string",
+                                                    "description": "Transfer order ID"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "FlexTransfers",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "flexTransfer",
+                "x-sdk-method-description": "This interface can be used for transfers between master and sub accounts and inner transfers",
+                "x-api-rate-limit": 4,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "clientOid": {
+                                        "type": "string",
+                                        "description": "Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "currency"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Transfer amount, the amount is a positive integer multiple of the currency precision."
+                                    },
+                                    "fromUserId": {
+                                        "type": "string",
+                                        "description": "Transfer out UserId， This is required when transferring sub-account to master-account. It is optional for internal transfers."
+                                    },
+                                    "fromAccountType": {
+                                        "type": "string",
+                                        "description": "Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE",
+                                            "CONTRACT",
+                                            "MARGIN",
+                                            "ISOLATED",
+                                            "MARGIN_V2",
+                                            "ISOLATED_V2",
+                                            "OPTION"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "MAIN",
+                                                "description": "Funding account"
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "TRADE",
+                                                "description": "Spot account"
+                                            },
+                                            {
+                                                "value": "CONTRACT",
+                                                "name": "CONTRACT",
+                                                "description": "Futures account"
+                                            },
+                                            {
+                                                "value": "MARGIN",
+                                                "name": "MARGIN",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "ISOLATED",
+                                                "name": "ISOLATED",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "MARGIN_V2",
+                                                "name": "MARGIN_V2",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "ISOLATED_V2",
+                                                "name": "ISOLATED_V2",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "OPTION",
+                                                "name": "OPTION",
+                                                "description": "Option account"
+                                            }
+                                        ]
+                                    },
+                                    "fromAccountTag": {
+                                        "type": "string",
+                                        "description": "Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "description": "Transfer type：INTERNAL(Transfer within account)、PARENT_TO_SUB(Transfer from master-account to sub-account)，SUB_TO_PARENT(Transfer from sub-account to master-account)",
+                                        "enum": [
+                                            "INTERNAL",
+                                            "PARENT_TO_SUB",
+                                            "SUB_TO_PARENT"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "INTERNAL",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "PARENT_TO_SUB",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "SUB_TO_PARENT",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "toUserId": {
+                                        "type": "string",
+                                        "description": "Transfer in UserId， This is required when transferring master-account to sub-account. It is optional for internal transfers."
+                                    },
+                                    "toAccountType": {
+                                        "type": "string",
+                                        "description": "Account type：MAIN、TRADE、CONTRACT、MARGIN、ISOLATED、MARGIN_V2、ISOLATED_V2",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE",
+                                            "CONTRACT",
+                                            "MARGIN",
+                                            "ISOLATED",
+                                            "MARGIN_V2",
+                                            "ISOLATED_V2",
+                                            "OPTION"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "MAIN",
+                                                "description": "Funding account"
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "TRADE",
+                                                "description": "Spot account"
+                                            },
+                                            {
+                                                "value": "CONTRACT",
+                                                "name": "CONTRACT",
+                                                "description": "Futures account"
+                                            },
+                                            {
+                                                "value": "MARGIN",
+                                                "name": "MARGIN",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "ISOLATED",
+                                                "name": "ISOLATED",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "MARGIN_V2",
+                                                "name": "MARGIN_V2",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "ISOLATED_V2",
+                                                "name": "ISOLATED_V2",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "OPTION",
+                                                "name": "OPTION",
+                                                "description": "Option account"
+                                            }
+                                        ]
+                                    },
+                                    "toAccountTag": {
+                                        "type": "string",
+                                        "description": "Symbol, required when the account type is ISOLATED or ISOLATED_V2, for example: BTC-USDT"
+                                    }
+                                },
+                                "required": [
+                                    "clientOid",
+                                    "amount",
+                                    "fromAccountType",
+                                    "type",
+                                    "toAccountType",
+                                    "currency"
+                                ]
+                            },
+                            "example": "//transfer from master-account to sub-account\n{\n  \"clientOid\": \"64ccc0f164781800010d8c09\",\n  \"type\": \"PARENT_TO_SUB\",\n  \"currency\": \"USDT\",\n  \"amount\": \"0.01\",\n  \"fromAccountType\": \"TRADE\",\n  \"toUserId\": \"63743f07e0c5230001761d08\",\n  \"toAccountType\": \"TRADE\"\n}\n\n//transfer from sub-account to master-account\n// {\n//   \"clientOid\": \"64ccc0f164781800010d8c09\",\n//   \"type\": \"SUB_TO_PARENT\",\n//   \"currency\": \"BTC\",\n//   \"amount\": 1,\n//   \"fromUserId\": \"62f5f5d4d72aaf000122707e\",\n//   \"fromAccountType\": \"TRADE\",\n//   \"toAccountType\": \"CONTRACT\"\n// }\n\n// internal transfer\n// {\n//   \"clientOid\": \"53666633336123\",\n//   \"type\": \"INTERNAL\",\n//   \"currency\": \"BTC\",\n//   \"amount\": 0.0003,\n//   \"fromAccountType\": \"TRADE\",\n//   \"toAccountType\": \"MAIN\"\n// }\n\n\n\n\n\n"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"6705f7248c6954000733ecac\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"type\\\": \\\"PARENT_TO_SUB\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"fromAccountType\\\": \\\"TRADE\\\", \\\"toUserId\\\": \\\"63743f07e0c5230001761d08\\\", \\\"toAccountType\\\": \\\"TRADE\\\"}"
+            }
+        },
+        "/api/v1/accounts/transferable": {
+            "get": {
+                "summary": "Get Transfer Quotas",
+                "deprecated": false,
+                "description": "This endpoint returns the transferable balance of a specified account.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "USDT"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "The account type:MAIN、TRADE、MARGIN、ISOLATED",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "MAIN",
+                                "TRADE",
+                                "MARGIN",
+                                "ISOLATED",
+                                "OPTION"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "MAIN",
+                                    "name": "MAIN",
+                                    "description": "Funding account"
+                                },
+                                {
+                                    "value": "TRADE",
+                                    "name": "TRADE",
+                                    "description": "Spot account"
+                                },
+                                {
+                                    "value": "MARGIN",
+                                    "name": "MARGIN",
+                                    "description": "Cross margin account"
+                                },
+                                {
+                                    "value": "ISOLATED",
+                                    "name": "ISOLATED",
+                                    "description": "Isolated margin account"
+                                },
+                                {
+                                    "value": "OPTION",
+                                    "name": "OPTION",
+                                    "description": "Option account"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "BTC-USDT",
+                            "example": [
+                                "ETH-USDT",
+                                "KCS-USDT"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "Currency"
+                                                },
+                                                "balance": {
+                                                    "type": "string",
+                                                    "description": "Total funds in an account."
+                                                },
+                                                "available": {
+                                                    "type": "string",
+                                                    "description": "Funds available to withdraw or trade."
+                                                },
+                                                "holds": {
+                                                    "type": "string",
+                                                    "description": "Funds on hold (not available for use)."
+                                                },
+                                                "transferable": {
+                                                    "type": "string",
+                                                    "description": "Funds available to transfer."
+                                                }
+                                            },
+                                            "required": [
+                                                "currency",
+                                                "balance",
+                                                "available",
+                                                "holds",
+                                                "transferable"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "getTransferQuotas",
+                "x-sdk-method-description": "This endpoint returns the transferable balance of a specified account.",
+                "x-api-rate-limit": 20,
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"USDT\\\",\\\"balance\\\":\\\"10.5\\\",\\\"available\\\":\\\"10.5\\\",\\\"holds\\\":\\\"0\\\",\\\"transferable\\\":\\\"10.5\\\"}}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": \\\"ETH-USDT\\\"}"
+            }
+        },
+        "/api/v2/accounts/sub-transfer": {
+            "post": {
+                "summary": "SubAccount Transfer",
+                "deprecated": true,
+                "description": "Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderId": {
+                                                    "type": "string",
+                                                    "description": "Transfer order ID"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "abandon",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Spot",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "subAccountTransfer",
+                "x-sdk-method-description": "Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.",
+                "x-api-rate-limit": 30,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "clientOid": {
+                                        "type": "string",
+                                        "description": "Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "currency"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Transfer amount, the amount is a positive integer multiple of the currency precision."
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "OUT — the master user to sub user\nIN — the sub user to the master user.",
+                                        "enum": [
+                                            "IN",
+                                            "OUT"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "IN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "OUT",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "accountType": {
+                                        "type": "string",
+                                        "description": "Account type：MAIN、TRADE、CONTRACT、MARGIN",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE",
+                                            "MARGIN",
+                                            "CONTRACT",
+                                            "OPTION"
+                                        ],
+                                        "default": "MAIN",
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "MAIN",
+                                                "description": "Funding account"
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "TRADE",
+                                                "description": "Spot account"
+                                            },
+                                            {
+                                                "value": "MARGIN",
+                                                "name": "MARGIN",
+                                                "description": "Margin account"
+                                            },
+                                            {
+                                                "value": "CONTRACT",
+                                                "name": "CONTRACT",
+                                                "description": "Futures account"
+                                            },
+                                            {
+                                                "value": "OPTION",
+                                                "name": "OPTION",
+                                                "description": "Option account"
+                                            }
+                                        ]
+                                    },
+                                    "subAccountType": {
+                                        "type": "string",
+                                        "description": "Sub Account type：MAIN、TRADE、CONTRACT、MARGIN",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE",
+                                            "MARGIN",
+                                            "CONTRACT"
+                                        ],
+                                        "default": "MAIN",
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "MARGIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "CONTRACT",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "subUserId": {
+                                        "type": "string",
+                                        "description": "the user ID of a sub-account."
+                                    }
+                                },
+                                "required": [
+                                    "clientOid",
+                                    "amount",
+                                    "currency",
+                                    "direction"
+                                ]
+                            },
+                            "example": "{\n    \"clientOid\": \"64ccc0f164781800010d8c09\",\n    \"currency\": \"USDT\",\n    \"amount\": \"0.01\",\n    \"direction\": \"OUT\",\n    \"accountType\": \"MAIN\",\n    \"subAccountType\": \"MAIN\",\n    \"subUserId\": \"63743f07e0c5230001761d08\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"670be6b0b1b9080007040a9b\\\"}}",
+                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"direction\\\": \\\"OUT\\\", \\\"accountType\\\": \\\"MAIN\\\", \\\"subAccountType\\\": \\\"MAIN\\\", \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\"}"
+            }
+        },
+        "/api/v2/accounts/inner-transfer": {
+            "post": {
+                "summary": "Inner Transfer",
+                "deprecated": true,
+                "description": "This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge. ",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderId": {
+                                                    "type": "string",
+                                                    "description": "Transfer order ID"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "abandon",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Spot",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "innerTransfer",
+                "x-sdk-method-description": "This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge. ",
+                "x-api-rate-limit": 10,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "clientOid": {
+                                        "type": "string",
+                                        "description": "Unique order id created by users to identify their orders, e.g. UUID, with a maximum length of 128 bits"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "currency"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Transfer amount, the amount is a positive integer multiple of the currency precision."
+                                    },
+                                    "to": {
+                                        "type": "string",
+                                        "description": "Receiving Account Type: main, trade, margin, isolated, margin_v2, isolated_v2, contract",
+                                        "enum": [
+                                            "main",
+                                            "trade",
+                                            "margin",
+                                            "isolated",
+                                            "margin_v2",
+                                            "isolated_v2",
+                                            "option"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "main",
+                                                "name": "main",
+                                                "description": "Funding account"
+                                            },
+                                            {
+                                                "value": "trade",
+                                                "name": "trade",
+                                                "description": "Spot account"
+                                            },
+                                            {
+                                                "value": "margin",
+                                                "name": "margin",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "isolated",
+                                                "name": "isolated",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "margin_v2",
+                                                "name": "margin_v2",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "isolated_v2",
+                                                "name": "isolated_v2",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "option",
+                                                "name": "option",
+                                                "description": "Option account"
+                                            }
+                                        ]
+                                    },
+                                    "fromTag": {
+                                        "type": "string",
+                                        "description": "Trading pair, required when the payment account type is isolated, e.g.: BTC-USDT"
+                                    },
+                                    "toTag": {
+                                        "type": "string",
+                                        "description": "Trading pair, required when the payment account type is isolated, e.g.: BTC-USDT"
+                                    },
+                                    "from": {
+                                        "type": "string",
+                                        "description": "Payment Account Type: main, trade, margin, isolated, margin_v2, isolated_v2",
+                                        "enum": [
+                                            "main",
+                                            "trade",
+                                            "margin",
+                                            "isolated",
+                                            "margin_v2",
+                                            "isolated_v2",
+                                            "option"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "main",
+                                                "name": "main",
+                                                "description": "Funding account"
+                                            },
+                                            {
+                                                "value": "trade",
+                                                "name": "trade",
+                                                "description": "Spot account"
+                                            },
+                                            {
+                                                "value": "margin",
+                                                "name": "margin",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "isolated",
+                                                "name": "isolated",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "margin_v2",
+                                                "name": "margin_v2",
+                                                "description": "Cross margin account"
+                                            },
+                                            {
+                                                "value": "isolated_v2",
+                                                "name": "isolated_v2",
+                                                "description": "Isolated margin account"
+                                            },
+                                            {
+                                                "value": "option",
+                                                "name": "option",
+                                                "description": "Option account"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "clientOid",
+                                    "amount",
+                                    "currency",
+                                    "from",
+                                    "to"
+                                ]
+                            },
+                            "example": "{\n    \"clientOid\": \"64ccc0f164781800010d8c09\",\n    \"currency\": \"USDT\",\n    \"amount\": \"0.01\",\n    \"from\": \"main\",\n    \"to\": \"trade\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"670beb3482a1bb0007dec644\\\"}}",
+                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"from\\\": \\\"main\\\", \\\"to\\\": \\\"trade\\\"}"
+            }
+        },
+        "/api/v3/transfer-out": {
+            "post": {
+                "summary": "Futures Account Transfer Out",
+                "deprecated": true,
+                "description": "The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "applyId": {
+                                                    "type": "string",
+                                                    "description": "Transfer order ID"
+                                                },
+                                                "bizNo": {
+                                                    "type": "string",
+                                                    "description": "Business number"
+                                                },
+                                                "payAccountType": {
+                                                    "type": "string",
+                                                    "description": "Pay account type"
+                                                },
+                                                "payTag": {
+                                                    "type": "string",
+                                                    "description": "Pay account sub type"
+                                                },
+                                                "remark": {
+                                                    "type": "string",
+                                                    "description": "User remark"
+                                                },
+                                                "recAccountType": {
+                                                    "type": "string",
+                                                    "description": "Receive account type"
+                                                },
+                                                "recTag": {
+                                                    "type": "string",
+                                                    "description": "Receive account sub type"
+                                                },
+                                                "recRemark": {
+                                                    "type": "string",
+                                                    "description": "Receive account tx remark"
+                                                },
+                                                "recSystem": {
+                                                    "type": "string",
+                                                    "description": "Receive system"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status:APPLY, PROCESSING, PENDING_APPROVAL, APPROVED, REJECTED, PENDING_CANCEL, CANCEL, SUCCESS"
+                                                },
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "Currency"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Transfer amout"
+                                                },
+                                                "fee": {
+                                                    "type": "string",
+                                                    "description": "Transfer fee"
+                                                },
+                                                "sn": {
+                                                    "type": "integer",
+                                                    "description": "Serial number",
+                                                    "format": "int64"
+                                                },
+                                                "reason": {
+                                                    "type": "string",
+                                                    "description": "Fail Reason"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Create time",
+                                                    "format": "int64"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "integer",
+                                                    "description": "Update time",
+                                                    "format": "int64"
+                                                }
+                                            },
+                                            "required": [
+                                                "applyId",
+                                                "bizNo",
+                                                "payAccountType",
+                                                "payTag",
+                                                "remark",
+                                                "recAccountType",
+                                                "recTag",
+                                                "recRemark",
+                                                "recSystem",
+                                                "status",
+                                                "currency",
+                                                "amount",
+                                                "fee",
+                                                "sn",
+                                                "reason",
+                                                "createdAt",
+                                                "updatedAt"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "abandon",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "futuresAccountTransferOut",
+                "x-sdk-method-description": "The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.",
+                "x-api-rate-limit": 20,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Currency, including XBT,USDT...",
+                                        "example": [
+                                            "XBT",
+                                            "USDT",
+                                            "ETH"
+                                        ]
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "description": "Amount to be transfered out, the maximum cannot exceed 1000000000",
+                                        "maximum": 1000000000
+                                    },
+                                    "recAccountType": {
+                                        "type": "string",
+                                        "description": "Receive account type, including MAIN,TRADE",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "amount",
+                                    "currency",
+                                    "recAccountType"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"USDT\",\n    \"amount\": 0.01,\n    \"recAccountType\": \"MAIN\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"applyId\\\": \\\"670bf84c577f6c00017a1c48\\\",\\n        \\\"bizNo\\\": \\\"670bf84c577f6c00017a1c47\\\",\\n        \\\"payAccountType\\\": \\\"CONTRACT\\\",\\n        \\\"payTag\\\": \\\"DEFAULT\\\",\\n        \\\"remark\\\": \\\"\\\",\\n        \\\"recAccountType\\\": \\\"MAIN\\\",\\n        \\\"recTag\\\": \\\"DEFAULT\\\",\\n        \\\"recRemark\\\": \\\"\\\",\\n        \\\"recSystem\\\": \\\"KUCOIN\\\",\\n        \\\"status\\\": \\\"PROCESSING\\\",\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"amount\\\": \\\"0.01\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"sn\\\": 1519769124134806,\\n        \\\"reason\\\": \\\"\\\",\\n        \\\"createdAt\\\": 1728837708000,\\n        \\\"updatedAt\\\": 1728837708000\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"recAccountType\\\": \\\"MAIN\\\"}"
+            }
+        },
+        "/api/v1/transfer-in": {
+            "post": {
+                "summary": "Futures Account Transfer In",
+                "deprecated": true,
+                "description": "The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount Account, or the transfer will fail.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "abandon",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "futuresAccountTransferIn",
+                "x-sdk-method-description": "The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount Account, or the transfer will fail.",
+                "x-api-rate-limit": 20,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Currency, including XBT,USDT...",
+                                        "example": [
+                                            "XBT",
+                                            "USDT",
+                                            "ETH"
+                                        ]
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "description": "Amount to be transfered in"
+                                    },
+                                    "payAccountType": {
+                                        "type": "string",
+                                        "description": "Payment account type, including MAIN,TRADE",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "amount",
+                                    "currency",
+                                    "payAccountType"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"USDT\",\n    \"amount\": 0.01,\n    \"payAccountType\": \"MAIN\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"payAccountType\\\": \\\"MAIN\\\"}"
+            }
+        },
+        "/api/v1/transfer-list": {
+            "get": {
+                "summary": "Get Futures Account Transfer Out Ledger",
+                "deprecated": true,
+                "description": "This endpoint can get futures account transfer out ledger",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "XBT",
+                                "USDT",
+                                "ETH"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Status PROCESSING, SUCCESS, FAILURE",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "MAIN",
+                                "TRADE",
+                                "MARGIN",
+                                "ISOLATED"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "MAIN",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "TRADE",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "MARGIN",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "ISOLATED",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Status List PROCESSING, SUCCESS, FAILURE",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "startAt",
+                        "in": "query",
+                        "description": "Start time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endAt",
+                        "in": "query",
+                        "description": "End time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current request page, The default currentPage is 1",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize, The default pageSize is 50",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": 50
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "current page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "page size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "total number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "total page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "applyId": {
+                                                                "type": "string",
+                                                                "description": "Transfer order ID"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "Currency"
+                                                            },
+                                                            "recRemark": {
+                                                                "type": "string",
+                                                                "description": "Receive account tx remark"
+                                                            },
+                                                            "recSystem": {
+                                                                "type": "string",
+                                                                "description": "Receive system"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "Status PROCESSING, SUCCESS, FAILURE",
+                                                                "enum": [
+                                                                    "PROCESSING",
+                                                                    "SUCCESS",
+                                                                    "FAILURE"
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "PROCESSING",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "SUCCESS",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "FAILURE",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "amount": {
+                                                                "type": "string",
+                                                                "description": "Transaction amount"
+                                                            },
+                                                            "reason": {
+                                                                "type": "string",
+                                                                "description": "Reason caused the failure"
+                                                            },
+                                                            "offset": {
+                                                                "type": "integer",
+                                                                "description": "Offset",
+                                                                "format": "int64"
+                                                            },
+                                                            "createdAt": {
+                                                                "type": "integer",
+                                                                "description": "Request application time",
+                                                                "format": "int64"
+                                                            },
+                                                            "remark": {
+                                                                "type": "string",
+                                                                "description": "User remark"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "abandon",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "getFuturesAccountTransferOutLedger",
+                "x-sdk-method-description": "This endpoint can get futures account transfer out ledger",
+                "x-api-rate-limit": 20,
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"applyId\\\":\\\"670bf84c577f6c00017a1c48\\\",\\\"currency\\\":\\\"USDT\\\",\\\"recRemark\\\":\\\"\\\",\\\"recSystem\\\":\\\"KUCOIN\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"amount\\\":\\\"0.01\\\",\\\"reason\\\":\\\"\\\",\\\"offset\\\":1519769124134806,\\\"createdAt\\\":1728837708000,\\\"remark\\\":\\\"\\\"}]}}",
+                "x-request-example": "{\\\"currency\\\": \\\"XBT\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": [\\\"mock_a\\\", \\\"mock_b\\\"], \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

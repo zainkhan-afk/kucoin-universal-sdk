@@ -1,0 +1,792 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "spot",
+        "description": "spot_private",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/orderV2/spotMarket/tradeOrdersV2": {
+            "trace": {
+                "summary": "Get Order(V2)",
+                "deprecated": "false",
+                "description": "This topic will push all change events of your orders. Compared with v1, v2 adds an Order Status: \"new\", there is no difference in push speed",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "orderV2",
+                "x-topic": "/spotMarket/tradeOrdersV2",
+                "x-push_frequency": "real-time",
+                "x-response-example": "{\\\"topic\\\":\\\"/spotMarket/tradeOrdersV2\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"orderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"clientOid\\\":\\\"5c52e11203aa677f33e493fc\\\",\\\"orderId\\\":\\\"6720da3fa30a360007f5f832\\\",\\\"orderTime\\\":1730206271588,\\\"orderType\\\":\\\"market\\\",\\\"originSize\\\":\\\"0.00001\\\",\\\"side\\\":\\\"buy\\\",\\\"status\\\":\\\"new\\\",\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"ts\\\":1730206271616000000,\\\"type\\\":\\\"received\\\"}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_private_orderV2"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orderV1/spotMarket/tradeOrders": {
+            "trace": {
+                "summary": "Get Order(V1)",
+                "deprecated": "false",
+                "description": "This topic will push all change events of your orders.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "orderV1",
+                "x-topic": "/spotMarket/tradeOrders",
+                "x-push_frequency": "real-time",
+                "x-response-example": "{\\\"topic\\\":\\\"/spotMarket/tradeOrdersV2\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"orderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"canceledSize\\\":\\\"0\\\",\\\"clientOid\\\":\\\"5c52e11203aa677f33e493fb\\\",\\\"filledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"6720ecd9ec71f4000747731a\\\",\\\"orderTime\\\":1730211033305,\\\"orderType\\\":\\\"limit\\\",\\\"originSize\\\":\\\"0.00001\\\",\\\"price\\\":\\\"50000\\\",\\\"remainSize\\\":\\\"0.00001\\\",\\\"side\\\":\\\"buy\\\",\\\"size\\\":\\\"0.00001\\\",\\\"status\\\":\\\"open\\\",\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"ts\\\":1730211033335000000,\\\"type\\\":\\\"open\\\"}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_private_orderV1"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/account/account/balance": {
+            "trace": {
+                "summary": "Get Account Balance",
+                "deprecated": "false",
+                "description": "You will receive this message when an account balance changes. The message contains the details of the change.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "account",
+                "x-topic": "/account/balance",
+                "x-push_frequency": "real-time",
+                "x-response-example": "{\\\"topic\\\":\\\"/account/balance\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"account.balance\\\",\\\"id\\\":\\\"354689988084000\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"accountId\\\":\\\"548674591753\\\",\\\"currency\\\":\\\"USDT\\\",\\\"total\\\":\\\"21.133773386762\\\",\\\"available\\\":\\\"20.132773386762\\\",\\\"hold\\\":\\\"1.001\\\",\\\"availableChange\\\":\\\"-0.5005\\\",\\\"holdChange\\\":\\\"0.5005\\\",\\\"relationContext\\\":{\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"orderId\\\":\\\"6721d0632db25b0007071fdc\\\"},\\\"relationEvent\\\":\\\"trade.hold\\\",\\\"relationEventId\\\":\\\"354689988084000\\\",\\\"time\\\":\\\"1730269283892\\\"}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_private_account"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Spot_spot_private_orderV2": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string",
+                        "enum": [
+                            "private",
+                            "public"
+                        ],
+                        "description": "Channel type",
+                        "x-api-enum": [
+                            {
+                                "value": "private",
+                                "name": "private",
+                                "description": "private channel"
+                            },
+                            {
+                                "value": "public",
+                                "name": "public",
+                                "description": "public channel"
+                            }
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "canceledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of cancellations"
+                            },
+                            "clientOid": {
+                                "type": "string",
+                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            },
+                            "filledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of filled"
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "orderTime": {
+                                "type": "integer",
+                                "description": "Order time(millisecond)",
+                                "format": "int64"
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "enum": [
+                                    "limit",
+                                    "market"
+                                ],
+                                "description": "User-specified order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "limit",
+                                        "name": "limit",
+                                        "description": "limit"
+                                    },
+                                    {
+                                        "value": "market",
+                                        "name": "market",
+                                        "description": "market"
+                                    }
+                                ]
+                            },
+                            "originSize": {
+                                "type": "string",
+                                "description": "User-specified order size"
+                            },
+                            "price": {
+                                "type": "string",
+                                "description": "Price"
+                            },
+                            "remainFunds": {
+                                "type": "string",
+                                "description": "Remain funds"
+                            },
+                            "remainSize": {
+                                "type": "string",
+                                "description": "Remain size"
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "size": {
+                                "type": "string",
+                                "description": "User-specified order size"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "new",
+                                    "open",
+                                    "match",
+                                    "done"
+                                ],
+                                "description": "Order Status",
+                                "x-api-enum": [
+                                    {
+                                        "value": "new",
+                                        "name": "new",
+                                        "description": "the order enters the matching system"
+                                    },
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "when taker order executes with orders in the order book, the taker order status is “match”"
+                                    },
+                                    {
+                                        "value": "done",
+                                        "name": "done",
+                                        "description": "the order is fully executed successfully"
+                                    }
+                                ]
+                            },
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol",
+                                "example": [
+                                    "BTC-USDT",
+                                    "ETH-USDT",
+                                    "KCS-USDT"
+                                ]
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "description": "Push time(Nanosecond)",
+                                "format": "int64"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "update",
+                                    "filled",
+                                    "canceled",
+                                    "received"
+                                ],
+                                "description": "Order Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                    },
+                                    {
+                                        "value": "update",
+                                        "name": "update",
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                    },
+                                    {
+                                        "value": "filled",
+                                        "name": "filled",
+                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
+                                    },
+                                    {
+                                        "value": "canceled",
+                                        "name": "canceled",
+                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
+                                    },
+                                    {
+                                        "value": "received",
+                                        "name": "received",
+                                        "description": "The message sent when the order enters the matching system. When the order has just entered the matching system and has not yet done matching logic with the counterparty, a private message with the message type \"received\" and the order status \"new\" will be pushed."
+                                    }
+                                ]
+                            },
+                            "oldSize": {
+                                "type": "string",
+                                "description": "The size before order update"
+                            },
+                            "feeType": {
+                                "type": "string",
+                                "enum": [
+                                    "takerFee",
+                                    "makerFee"
+                                ],
+                                "description": "Actual Fee Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "takerFee",
+                                        "name": "takerFee",
+                                        "description": "takerFee"
+                                    },
+                                    {
+                                        "value": "makerFee",
+                                        "name": "makerFee",
+                                        "description": "makerFee"
+                                    }
+                                ]
+                            },
+                            "liquidity": {
+                                "type": "string",
+                                "enum": [
+                                    "taker",
+                                    "maker"
+                                ],
+                                "description": "Actual transaction order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "taker",
+                                        "name": "taker",
+                                        "description": "taker"
+                                    },
+                                    {
+                                        "value": "maker",
+                                        "name": "maker",
+                                        "description": "maker"
+                                    }
+                                ]
+                            },
+                            "matchPrice": {
+                                "type": "string",
+                                "description": "Match Price (when the type is \"match\")"
+                            },
+                            "matchSize": {
+                                "type": "string",
+                                "description": "Match Size (when the type is \"match\")"
+                            },
+                            "tradeId": {
+                                "type": "string",
+                                "description": "Trade id, it is generated by Matching engine."
+                            }
+                        },
+                        "required": [
+                            "clientOid",
+                            "orderId",
+                            "orderTime",
+                            "orderType",
+                            "originSize",
+                            "side",
+                            "status",
+                            "symbol",
+                            "ts",
+                            "type"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Spot_spot_private_orderV1": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string",
+                        "enum": [
+                            "private",
+                            "public"
+                        ],
+                        "description": "Channel type",
+                        "x-api-enum": [
+                            {
+                                "value": "private",
+                                "name": "private",
+                                "description": "private channel"
+                            },
+                            {
+                                "value": "public",
+                                "name": "public",
+                                "description": "public channel"
+                            }
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "canceledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of cancellations"
+                            },
+                            "clientOid": {
+                                "type": "string",
+                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            },
+                            "filledSize": {
+                                "type": "string"
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "orderTime": {
+                                "type": "integer",
+                                "description": "Order time(millisecond)",
+                                "format": "int64"
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "enum": [
+                                    "limit",
+                                    "market"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "limit",
+                                        "name": "limit",
+                                        "description": "limit"
+                                    },
+                                    {
+                                        "value": "market",
+                                        "name": "market",
+                                        "description": "market"
+                                    }
+                                ]
+                            },
+                            "originSize": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "type": "string",
+                                "description": "Specify price for currency"
+                            },
+                            "remainFunds": {
+                                "type": "string",
+                                "description": "Remain funds"
+                            },
+                            "remainSize": {
+                                "type": "string",
+                                "description": "Remain size"
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "size": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "new",
+                                    "open",
+                                    "match",
+                                    "done"
+                                ],
+                                "description": "Order Status",
+                                "x-api-enum": [
+                                    {
+                                        "value": "new",
+                                        "name": "new",
+                                        "description": "the order enters the matching system"
+                                    },
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "when taker order executes with orders in the order book, the taker order status is “match”"
+                                    },
+                                    {
+                                        "value": "done",
+                                        "name": "done",
+                                        "description": "the order is fully executed successfully"
+                                    }
+                                ]
+                            },
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol",
+                                "example": [
+                                    "BTC-USDT",
+                                    "ETH-USDT",
+                                    "KCS-USDT"
+                                ]
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "description": "Push time(Nanosecond)",
+                                "format": "int64"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "update",
+                                    "filled",
+                                    "canceled"
+                                ],
+                                "description": "Order Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                    },
+                                    {
+                                        "value": "update",
+                                        "name": "update",
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                    },
+                                    {
+                                        "value": "filled",
+                                        "name": "filled",
+                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
+                                    },
+                                    {
+                                        "value": "canceled",
+                                        "name": "canceled",
+                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
+                                    }
+                                ]
+                            },
+                            "oldSize": {
+                                "type": "string",
+                                "description": "The size before order update"
+                            },
+                            "feeType": {
+                                "type": "string",
+                                "enum": [
+                                    "takerFee",
+                                    "makerFee"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "takerFee",
+                                        "name": "takerFee",
+                                        "description": "takerFee"
+                                    },
+                                    {
+                                        "value": "makerFee",
+                                        "name": "makerFee",
+                                        "description": "makerFee"
+                                    }
+                                ]
+                            },
+                            "liquidity": {
+                                "type": "string",
+                                "enum": [
+                                    "taker",
+                                    "maker"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "taker",
+                                        "name": "taker",
+                                        "description": "taker"
+                                    },
+                                    {
+                                        "value": "maker",
+                                        "name": "maker",
+                                        "description": "maker"
+                                    }
+                                ]
+                            },
+                            "matchPrice": {
+                                "type": "string",
+                                "description": "Match Price (when the type is \"match\")"
+                            },
+                            "matchSize": {
+                                "type": "string",
+                                "description": "Match Size (when the type is \"match\")"
+                            },
+                            "tradeId": {
+                                "type": "string",
+                                "description": "Trade id, it is generated by Matching engine."
+                            }
+                        },
+                        "required": [
+                            "clientOid",
+                            "orderId",
+                            "orderTime",
+                            "orderType",
+                            "originSize",
+                            "side",
+                            "status",
+                            "symbol",
+                            "ts",
+                            "type"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Spot_spot_private_account": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string",
+                        "description": "Channel type",
+                        "enum": [
+                            "private",
+                            "public"
+                        ],
+                        "x-api-enum": [
+                            {
+                                "value": "private",
+                                "name": "private",
+                                "description": "private channel"
+                            },
+                            {
+                                "value": "public",
+                                "name": "public",
+                                "description": "public channel"
+                            }
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string",
+                                "description": "Account ID"
+                            },
+                            "available": {
+                                "type": "string",
+                                "description": "Funds available to withdraw or trade"
+                            },
+                            "availableChange": {
+                                "type": "string",
+                                "description": "The change of available Funds"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "description": "currency",
+                                "example": [
+                                    "BTC",
+                                    "ETH",
+                                    "KCS"
+                                ]
+                            },
+                            "hold": {
+                                "type": "string",
+                                "description": "Funds on hold (not available for use)"
+                            },
+                            "holdChange": {
+                                "type": "string",
+                                "description": "The change of hold funds"
+                            },
+                            "relationContext": {
+                                "type": "object",
+                                "properties": {
+                                    "symbol": {
+                                        "type": "string"
+                                    },
+                                    "orderId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "symbol",
+                                    "orderId"
+                                ],
+                                "description": "Relation context"
+                            },
+                            "relationEvent": {
+                                "type": "string",
+                                "description": "Relation event"
+                            },
+                            "relationEventId": {
+                                "type": "string",
+                                "description": "Relation event Id"
+                            },
+                            "time": {
+                                "type": "string"
+                            },
+                            "total": {
+                                "type": "string",
+                                "description": "Total balance = available + hold"
+                            }
+                        },
+                        "required": [
+                            "accountId",
+                            "available",
+                            "availableChange",
+                            "currency",
+                            "hold",
+                            "holdChange",
+                            "relationContext",
+                            "relationEvent",
+                            "relationEventId",
+                            "time",
+                            "total"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "id",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            }
+        }
+    }
+}

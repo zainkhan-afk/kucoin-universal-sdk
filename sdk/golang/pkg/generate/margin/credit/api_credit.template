@@ -1,0 +1,163 @@
+# API FUNCTION TEMPLATE
+
+
+func TestCreditModifyPurchaseReq(t *testing.T) {
+    // ModifyPurchase
+    // Modify Purchase
+    // /api/v3/lend/purchase/update
+
+    builder := credit.NewModifyPurchaseReqBuilder()
+    builder.SetCurrency(?).SetInterestRate(?).SetPurchaseOrderNo(?)
+    req := builder.Build()
+
+    resp, err := creditApi.ModifyPurchase(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditGetLoanMarketReq(t *testing.T) {
+    // GetLoanMarket
+    // Get Loan Market
+    // /api/v3/project/list
+
+    builder := credit.NewGetLoanMarketReqBuilder()
+    builder.SetCurrency(?)
+    req := builder.Build()
+
+    resp, err := creditApi.GetLoanMarket(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditGetLoanMarketInterestRateReq(t *testing.T) {
+    // GetLoanMarketInterestRate
+    // Get Loan Market Interest Rate
+    // /api/v3/project/marketInterestRate
+
+    builder := credit.NewGetLoanMarketInterestRateReqBuilder()
+    builder.SetCurrency(?)
+    req := builder.Build()
+
+    resp, err := creditApi.GetLoanMarketInterestRate(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditGetPurchaseOrdersReq(t *testing.T) {
+    // GetPurchaseOrders
+    // Get Purchase Orders
+    // /api/v3/purchase/orders
+
+    builder := credit.NewGetPurchaseOrdersReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetPurchaseOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := creditApi.GetPurchaseOrders(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditPurchaseReq(t *testing.T) {
+    // Purchase
+    // Purchase
+    // /api/v3/purchase
+
+    builder := credit.NewPurchaseReqBuilder()
+    builder.SetCurrency(?).SetSize(?).SetInterestRate(?)
+    req := builder.Build()
+
+    resp, err := creditApi.Purchase(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditGetRedeemOrdersReq(t *testing.T) {
+    // GetRedeemOrders
+    // Get Redeem Orders
+    // /api/v3/redeem/orders
+
+    builder := credit.NewGetRedeemOrdersReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetRedeemOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := creditApi.GetRedeemOrders(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditRedeemReq(t *testing.T) {
+    // Redeem
+    // Redeem
+    // /api/v3/redeem
+
+    builder := credit.NewRedeemReqBuilder()
+    builder.SetCurrency(?).SetSize(?).SetPurchaseOrderNo(?)
+    req := builder.Build()
+
+    resp, err := creditApi.Redeem(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

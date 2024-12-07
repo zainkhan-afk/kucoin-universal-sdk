@@ -1,0 +1,22 @@
+# API FUNCTION TEMPLATE
+
+
+func TestAffiliateGetAccountReq(t *testing.T) {
+    // GetAccount
+    // Get Account
+    // /api/v2/affiliate/inviter/statistics
+
+
+    resp, err := affiliateApi.GetAccount(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

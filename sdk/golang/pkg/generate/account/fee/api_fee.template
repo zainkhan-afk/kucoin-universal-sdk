@@ -1,0 +1,71 @@
+# API FUNCTION TEMPLATE
+
+
+func TestFeeGetBasicFeeReq(t *testing.T) {
+    // GetBasicFee
+    // Get Basic Fee - Spot/Margin
+    // /api/v1/base-fee
+
+    builder := fee.NewGetBasicFeeReqBuilder()
+    builder.SetCurrencyType(?)
+    req := builder.Build()
+
+    resp, err := feeApi.GetBasicFee(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFeeGetSpotActualFeeReq(t *testing.T) {
+    // GetSpotActualFee
+    // Get Actual Fee - Spot/Margin
+    // /api/v1/trade-fees
+
+    builder := fee.NewGetSpotActualFeeReqBuilder()
+    builder.SetSymbols(?)
+    req := builder.Build()
+
+    resp, err := feeApi.GetSpotActualFee(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFeeGetFuturesActualFeeReq(t *testing.T) {
+    // GetFuturesActualFee
+    // Get Actual Fee - Futures
+    // /api/v1/trade-fees
+
+    builder := fee.NewGetFuturesActualFeeReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := feeApi.GetFuturesActualFee(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

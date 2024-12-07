@@ -1,0 +1,991 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "margin",
+        "description": "debit",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v3/margin/borrow": {
+            "post": {
+                "summary": "Borrow",
+                "deprecated": false,
+                "description": "This API endpoint is used to initiate an application for cross or isolated margin borrowing.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderNo": {
+                                                    "type": "string",
+                                                    "description": "Borrow Order Id"
+                                                },
+                                                "actualSize": {
+                                                    "type": "string",
+                                                    "description": "Actual borrowed amount"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderNo",
+                                                "actualSize"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Debit",
+                "x-sdk-method-name": "borrow",
+                "x-sdk-method-description": "This API endpoint is used to initiate an application for cross or isolated margin borrowing.",
+                "x-api-rate-limit": 15,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "currency",
+                                        "example": [
+                                            "BTC",
+                                            "ETH",
+                                            "USDT"
+                                        ]
+                                    },
+                                    "size": {
+                                        "type": "number",
+                                        "description": "Borrow amount"
+                                    },
+                                    "timeInForce": {
+                                        "type": "string",
+                                        "enum": [
+                                            "IOC",
+                                            "FOK"
+                                        ],
+                                        "description": "timeInForce: IOC, FOK",
+                                        "x-api-enum": [
+                                            {
+                                                "value": "IOC",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "FOK",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    },
+                                    "symbol": {
+                                        "type": "string",
+                                        "description": "symbol, mandatory for isolated margin account",
+                                        "example": [
+                                            "BTC-USDT",
+                                            "ETH-USDT",
+                                            "KCS-USDT"
+                                        ]
+                                    },
+                                    "isIsolated": {
+                                        "type": "boolean",
+                                        "description": "true-isolated, false-cross; default is false",
+                                        "default": false
+                                    },
+                                    "isHf": {
+                                        "type": "boolean",
+                                        "description": "true: high frequency borrowing, false: low frequency borrowing; default false",
+                                        "default": false
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "size",
+                                    "timeInForce"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"USDT\",\n    \"size\": 10,\n    \"timeInForce\": \"FOK\",\n    \"isIsolated\": false,\n    \"isHf\": false\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderNo\\\":\\\"67187162c0d6990007717b15\\\",\\\"actualSize\\\":\\\"10\\\"}}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"size\\\": 10, \\\"timeInForce\\\": \\\"FOK\\\", \\\"isIsolated\\\": false, \\\"isHf\\\": false}"
+            },
+            "get": {
+                "summary": "Get Borrow History",
+                "deprecated": false,
+                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "isIsolated",
+                        "in": "query",
+                        "description": "true-isolated, false-cross; default is false",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "symbol, mandatory for isolated margin account",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC-USDT",
+                                "ETH-USDT",
+                                "KCS-USDT"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "orderNo",
+                        "in": "query",
+                        "description": "Borrow Order Id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "End time",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current query page, with a starting value of 1. Default:1\n",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of results per page. Default is 50, minimum is 10, maximum is 500",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "minimum": 10,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "current page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "page size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "total number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "total page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "orderNo": {
+                                                                "type": "string",
+                                                                "description": "Borrow Order Id"
+                                                            },
+                                                            "symbol": {
+                                                                "type": "string",
+                                                                "description": "Isolated Margin symbol; empty for cross margin",
+                                                                "example": [
+                                                                    "BTC-USDT",
+                                                                    "ETH-USDT",
+                                                                    "KCS-USDT"
+                                                                ]
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "currency"
+                                                            },
+                                                            "size": {
+                                                                "type": "string",
+                                                                "description": "Initiated borrow amount"
+                                                            },
+                                                            "actualSize": {
+                                                                "type": "string",
+                                                                "description": "Actual borrow amount"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "PENDING: Processing, SUCCESS: Successful, FAILED: Failed",
+                                                                "enum": [
+                                                                    "PENDING",
+                                                                    "SUCCESS",
+                                                                    "FAILED"
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "PENDING",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "SUCCESS",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "FAILED",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "createdTime": {
+                                                                "type": "integer",
+                                                                "description": "borrow time",
+                                                                "format": "int64"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "orderNo",
+                                                            "symbol",
+                                                            "currency",
+                                                            "size",
+                                                            "actualSize",
+                                                            "status",
+                                                            "createdTime"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "timestamp",
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Debit",
+                "x-sdk-method-name": "getBorrowHistory",
+                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "x-api-rate-limit": 15,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"timestamp\\\": 1729657580449,\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 2,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"orderNo\\\": \\\"67187162c0d6990007717b15\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"10\\\",\\n                \\\"actualSize\\\": \\\"10\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"createdTime\\\": 1729655138000\\n            },\\n            {\\n                \\\"orderNo\\\": \\\"67187155b088e70007149585\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"0.1\\\",\\n                \\\"actualSize\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"FAILED\\\",\\n                \\\"createdTime\\\": 1729655125000\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+            }
+        },
+        "/api/v3/margin/repay": {
+            "get": {
+                "summary": "Get Repay History",
+                "deprecated": false,
+                "description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "isIsolated",
+                        "in": "query",
+                        "description": "true-isolated, false-cross; default is false",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "symbol, mandatory for isolated margin account",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC-USDT",
+                                "ETH-USDT",
+                                "KCS-USDT"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "orderNo",
+                        "in": "query",
+                        "description": "Repay Order Id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "End time",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current query page, with a starting value of 1. Default:1\n",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of results per page. Default is 50, minimum is 10, maximum is 500",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "minimum": 10,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "current page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "page size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "total number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "total page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "orderNo": {
+                                                                "type": "string",
+                                                                "description": "Repay Order Id"
+                                                            },
+                                                            "symbol": {
+                                                                "type": "string",
+                                                                "description": "Isolated Margin symbol; empty for cross margin"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "currency"
+                                                            },
+                                                            "size": {
+                                                                "type": "string",
+                                                                "description": "Amount of initiated repay"
+                                                            },
+                                                            "principal": {
+                                                                "type": "string",
+                                                                "description": "Amount of principal paid"
+                                                            },
+                                                            "interest": {
+                                                                "type": "string",
+                                                                "description": "Amount of interest paid"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "PENDING: Processing, SUCCESS: Successful, FAILED: Failed",
+                                                                "enum": [
+                                                                    "PENDING",
+                                                                    "SUCCESS",
+                                                                    "FAILED"
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "PENDING",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "SUCCESS",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "FAILED",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "createdTime": {
+                                                                "type": "integer",
+                                                                "description": "Repayment time",
+                                                                "format": "int64"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "symbol",
+                                                            "orderNo",
+                                                            "currency",
+                                                            "size",
+                                                            "principal",
+                                                            "interest",
+                                                            "status",
+                                                            "createdTime"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "timestamp",
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Debit",
+                "x-sdk-method-name": "getRepayHistory",
+                "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
+                "x-api-rate-limit": 15,
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729663471891,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"orderNo\\\":\\\"671873361d5bd400075096ad\\\",\\\"symbol\\\":null,\\\"currency\\\":\\\"USDT\\\",\\\"size\\\":\\\"10\\\",\\\"principal\\\":\\\"9.99986518\\\",\\\"interest\\\":\\\"0.00013482\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"createdTime\\\":1729655606000}]}}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+            },
+            "post": {
+                "summary": "Repay",
+                "deprecated": false,
+                "description": "This API endpoint is used to initiate an application for cross or isolated margin repayment.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "orderNo": {
+                                                    "type": "string",
+                                                    "description": "Repay Order Id"
+                                                },
+                                                "actualSize": {
+                                                    "type": "string",
+                                                    "description": "Actual repay amount"
+                                                }
+                                            },
+                                            "required": [
+                                                "timestamp",
+                                                "orderNo",
+                                                "actualSize"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Debit",
+                "x-sdk-method-name": "repay",
+                "x-sdk-method-description": "This API endpoint is used to initiate an application for cross or isolated margin repayment.",
+                "x-api-rate-limit": 10,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "currency",
+                                        "example": [
+                                            "BTC",
+                                            "ETH",
+                                            "USDT"
+                                        ]
+                                    },
+                                    "size": {
+                                        "type": "number",
+                                        "description": "Borrow amount"
+                                    },
+                                    "symbol": {
+                                        "type": "string",
+                                        "description": "symbol, mandatory for isolated margin account",
+                                        "example": [
+                                            "BTC-USDT",
+                                            "ETH-USDT",
+                                            "KCS-USDT"
+                                        ]
+                                    },
+                                    "isIsolated": {
+                                        "type": "boolean",
+                                        "description": "true-isolated, false-cross; default is false",
+                                        "default": false
+                                    },
+                                    "isHf": {
+                                        "type": "boolean",
+                                        "description": "true: high frequency borrowing, false: low frequency borrowing; default false",
+                                        "default": false
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "size"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"USDT\",\n    \"size\": 10\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729655606816,\\\"orderNo\\\":\\\"671873361d5bd400075096ad\\\",\\\"actualSize\\\":\\\"10\\\"}}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"size\\\": 10}"
+            }
+        },
+        "/api/v3/margin/interest": {
+            "get": {
+                "summary": "Get Interest History",
+                "deprecated": false,
+                "description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "isIsolated",
+                        "in": "query",
+                        "description": "true-isolated, false-cross; default is false",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "symbol, mandatory for isolated margin account",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC-USDT",
+                                "ETH-USDT",
+                                "KCS-USDT"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "The start and end times are not restricted. If the start time is empty or less than 1680278400000, the default value is set to 1680278400000 (April 1, 2023, 00:00:00)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "End time",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current query page, with a starting value of 1. Default:1\n",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of results per page. Default is 50, minimum is 10, maximum is 500",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "minimum": 10,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "current page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "page size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "total number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "total page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "currency"
+                                                            },
+                                                            "dayRatio": {
+                                                                "type": "string",
+                                                                "description": "Daily interest rate"
+                                                            },
+                                                            "interestAmount": {
+                                                                "type": "string",
+                                                                "description": "Interest amount"
+                                                            },
+                                                            "createdTime": {
+                                                                "type": "integer",
+                                                                "description": "Interest Timestamp",
+                                                                "format": "int64"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "currency",
+                                                            "dayRatio",
+                                                            "interestAmount",
+                                                            "createdTime"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "timestamp",
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Debit",
+                "x-sdk-method-name": "getInterestHistory",
+                "x-sdk-method-description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
+                "x-api-rate-limit": 20,
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729665170701,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":3,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729663213375},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729659618802},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729656028077}]}}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+            }
+        },
+        "/api/v3/position/update-user-leverage": {
+            "post": {
+                "summary": "Modify Leverage",
+                "deprecated": false,
+                "description": "This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Debit",
+                "x-sdk-method-name": "modifyLeverage",
+                "x-sdk-method-description": "This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.",
+                "x-api-rate-limit": 5,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "symbol": {
+                                        "type": "string",
+                                        "description": "symbol, mandatory for isolated margin account",
+                                        "example": [
+                                            "BTC-USDT",
+                                            "ETH-USDT",
+                                            "KCS-USDT"
+                                        ]
+                                    },
+                                    "isIsolated": {
+                                        "type": "boolean",
+                                        "description": "true-isolated, false-cross; default is false",
+                                        "default": false
+                                    },
+                                    "leverage": {
+                                        "type": "string",
+                                        "description": "New leverage multiplier. Must be greater than 1 and up to two decimal places, and cannot be less than the user's current debt leverage or greater than the system's maximum leverage"
+                                    }
+                                },
+                                "required": [
+                                    "leverage"
+                                ]
+                            },
+                            "example": "{\n    \"leverage\": \"5\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
+                "x-request-example": "{\\\"leverage\\\": \\\"5\\\"}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

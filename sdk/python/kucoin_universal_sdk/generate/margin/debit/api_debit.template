@@ -1,0 +1,116 @@
+# API FUNCTION TEMPLATE
+
+
+def test_get_borrow_history_req(self):
+    """
+        get_borrow_history
+        Get Borrow History
+        /api/v3/margin/borrow
+    """
+
+    builder = GetBorrowHistoryReqBuilder()
+    builder.set_currency(?).set_is_isolated(?).set_symbol(?).set_order_no(?).set_start_time(?).set_end_time(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_borrow_history(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_borrow_req(self):
+    """
+        borrow
+        Borrow
+        /api/v3/margin/borrow
+    """
+
+    builder = BorrowReqBuilder()
+    builder.set_currency(?).set_size(?).set_time_in_force(?).set_symbol(?).set_is_isolated(?).set_is_hf(?)
+    req = builder.build()
+    try:
+        resp = self.api.borrow(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_interest_history_req(self):
+    """
+        get_interest_history
+        Get Interest History
+        /api/v3/margin/interest
+    """
+
+    builder = GetInterestHistoryReqBuilder()
+    builder.set_currency(?).set_is_isolated(?).set_symbol(?).set_start_time(?).set_end_time(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_interest_history(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_repay_history_req(self):
+    """
+        get_repay_history
+        Get Repay History
+        /api/v3/margin/repay
+    """
+
+    builder = GetRepayHistoryReqBuilder()
+    builder.set_currency(?).set_is_isolated(?).set_symbol(?).set_order_no(?).set_start_time(?).set_end_time(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_repay_history(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_repay_req(self):
+    """
+        repay
+        Repay
+        /api/v3/margin/repay
+    """
+
+    builder = RepayReqBuilder()
+    builder.set_currency(?).set_size(?).set_symbol(?).set_is_isolated(?).set_is_hf(?)
+    req = builder.build()
+    try:
+        resp = self.api.repay(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_modify_leverage_req(self):
+    """
+        modify_leverage
+        Modify Leverage
+        /api/v3/position/update-user-leverage
+    """
+
+    builder = ModifyLeverageReqBuilder()
+    builder.set_symbol(?).set_is_isolated(?).set_leverage(?)
+    req = builder.build()
+    try:
+        resp = self.api.modify_leverage(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e

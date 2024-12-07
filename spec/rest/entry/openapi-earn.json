@@ -1,0 +1,2264 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "earn",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v1/earn/orders": {
+            "post": {
+                "summary": "purchase",
+                "deprecated": false,
+                "description": "This endpoint allows subscribing earn product",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderId": {
+                                                    "type": "string",
+                                                    "description": "Holding ID"
+                                                },
+                                                "orderTxId": {
+                                                    "type": "string",
+                                                    "description": "Subscription order ID"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderId",
+                                                "orderTxId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Earn",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "purchase",
+                "x-sdk-method-description": "This endpoint allows subscribing earn product",
+                "x-api-rate-limit": 5,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "productId": {
+                                        "type": "string",
+                                        "description": "Product Id"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Subscription amount"
+                                    },
+                                    "accountType": {
+                                        "type": "string",
+                                        "description": "MAIN (funding account), TRADE (spot trading account)",
+                                        "enum": [
+                                            "MAIN",
+                                            "TRADE"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "MAIN",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "TRADE",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "productId",
+                                    "amount",
+                                    "accountType"
+                                ]
+                            },
+                            "example": "{\n    \"productId\": \"2611\",\n    \"amount\": \"1\",\n    \"accountType\": \"TRADE\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"2767291\\\",\\n        \\\"orderTxId\\\": \\\"6603694\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"productId\\\": \\\"2611\\\", \\\"amount\\\": \\\"1\\\", \\\"accountType\\\": \\\"TRADE\\\"}"
+            },
+            "delete": {
+                "summary": "Redeem",
+                "deprecated": false,
+                "description": "This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "query",
+                        "description": "Holding ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "Redemption amount",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fromAccountType",
+                        "in": "query",
+                        "description": "Account type: MAIN (funding account), TRADE (spot trading account). This parameter is valid only when orderId=ETH2",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "MAIN",
+                                "TRADE"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "MAIN",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "TRADE",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "confirmPunishRedeem",
+                        "in": "query",
+                        "description": "Confirmation field for early redemption penalty: 1 (confirm early redemption, and the current holding will be fully redeemed). This parameter is valid only for fixed-term products",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "1"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderTxId": {
+                                                    "type": "string",
+                                                    "description": "Redemption order ID"
+                                                },
+                                                "deliverTime": {
+                                                    "type": "integer",
+                                                    "description": "Expected deliver time (milliseconds)",
+                                                    "format": "int64"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Redemption status: SUCCESS (successful), PENDING (redemption pending)",
+                                                    "enum": [
+                                                        "SUCCESS",
+                                                        "PENDING"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "SUCCESS",
+                                                            "name": "",
+                                                            "description": ""
+                                                        },
+                                                        {
+                                                            "value": "PENDING",
+                                                            "name": "",
+                                                            "description": ""
+                                                        }
+                                                    ]
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "description": "Redemption amount"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderTxId",
+                                                "deliverTime",
+                                                "status",
+                                                "amount"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Earn",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "redeem",
+                "x-sdk-method-description": "This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderTxId\\\": \\\"6603700\\\",\\n        \\\"deliverTime\\\": 1729517805000,\\n        \\\"status\\\": \\\"PENDING\\\",\\n        \\\"amount\\\": \\\"1\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"orderId\\\": \\\"2767291\\\", \\\"amount\\\": \\\"example_string_default_value\\\", \\\"fromAccountType\\\": \\\"MAIN\\\", \\\"confirmPunishRedeem\\\": \\\"1\\\"}"
+            }
+        },
+        "/api/v1/earn/redeem-preview": {
+            "get": {
+                "summary": "Get Redeem Preview",
+                "deprecated": false,
+                "description": "This endpoint allows subscribing earn products",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "query",
+                        "description": "Holding ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fromAccountType",
+                        "in": "query",
+                        "description": "Account type: MAIN (funding account), TRADE (spot trading account). This parameter is valid only when orderId=ETH2",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "MAIN",
+                                "TRADE"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "MAIN",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "TRADE",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "currency",
+                                                    "example": [
+                                                        "BTC",
+                                                        "ETH",
+                                                        "KCS"
+                                                    ]
+                                                },
+                                                "redeemAmount": {
+                                                    "type": "string",
+                                                    "description": "Expected redemption amount"
+                                                },
+                                                "penaltyInterestAmount": {
+                                                    "type": "string",
+                                                    "description": "Penalty interest amount, incurred for early redemption of fixed-term products"
+                                                },
+                                                "redeemPeriod": {
+                                                    "type": "integer",
+                                                    "description": "Redemption waiting period (days)"
+                                                },
+                                                "deliverTime": {
+                                                    "type": "integer",
+                                                    "description": "Expected deliver time (milliseconds)",
+                                                    "format": "int64"
+                                                },
+                                                "manualRedeemable": {
+                                                    "type": "boolean",
+                                                    "description": "Whether manual redemption is possible"
+                                                },
+                                                "redeemAll": {
+                                                    "type": "boolean",
+                                                    "description": "Whether the entire holding must be redeemed, required for early redemption of fixed-term products"
+                                                }
+                                            },
+                                            "required": [
+                                                "currency",
+                                                "redeemAmount",
+                                                "penaltyInterestAmount",
+                                                "redeemPeriod",
+                                                "deliverTime",
+                                                "manualRedeemable",
+                                                "redeemAll"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Earn",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getRedeemPreview",
+                "x-sdk-method-description": "This endpoint allows subscribing earn products",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currency\\\": \\\"KCS\\\",\\n        \\\"redeemAmount\\\": \\\"1\\\",\\n        \\\"penaltyInterestAmount\\\": \\\"0\\\",\\n        \\\"redeemPeriod\\\": 3,\\n        \\\"deliverTime\\\": 1729518951000,\\n        \\\"manualRedeemable\\\": true,\\n        \\\"redeemAll\\\": false\\n    }\\n}",
+                "x-request-example": "{\\\"orderId\\\": \\\"2767291\\\", \\\"fromAccountType\\\": \\\"MAIN\\\"}"
+            }
+        },
+        "/api/v1/earn/saving/products": {
+            "get": {
+                "summary": "Get Savings Products",
+                "deprecated": false,
+                "description": "This endpoint can get available savings products. If no products are available, an empty list is returned.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "USDT",
+                                "KCS"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Product ID"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "description": "Product category: DEMAND (savings)",
+                                                        "enum": [
+                                                            "DEMAND"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DEMAND",
+                                                                "name": "DEMAND",
+                                                                "description": "savings"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Product subtype: TIME (fixed), DEMAND (demand)",
+                                                        "enum": [
+                                                            "TIME",
+                                                            "DEMAND"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "TIME",
+                                                                "name": "TIME",
+                                                                "description": "fixed"
+                                                            },
+                                                            {
+                                                                "value": "DEMAND",
+                                                                "name": "DEMAND",
+                                                                "description": "demand"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "precision": {
+                                                        "type": "integer",
+                                                        "description": "Maximum precision supported"
+                                                    },
+                                                    "productUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Products total subscribe amount"
+                                                    },
+                                                    "userUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Max user subscribe amount"
+                                                    },
+                                                    "userLowerLimit": {
+                                                        "type": "string",
+                                                        "description": "Min user subscribe amount"
+                                                    },
+                                                    "redeemPeriod": {
+                                                        "type": "integer",
+                                                        "description": "Redemption waiting period (days)"
+                                                    },
+                                                    "lockStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Product earliest interest start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "lockEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Product maturity time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription end time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "returnRate": {
+                                                        "type": "string",
+                                                        "description": "Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return"
+                                                    },
+                                                    "incomeCurrency": {
+                                                        "type": "string",
+                                                        "description": "Income currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "earlyRedeemSupported": {
+                                                        "type": "integer",
+                                                        "description": "Whether the fixed product supports early redemption: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "productRemainAmount": {
+                                                        "type": "string",
+                                                        "description": "Products remain subscribe amount"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)",
+                                                        "enum": [
+                                                            "ONGOING",
+                                                            "PENDING",
+                                                            "FULL",
+                                                            "INTERESTING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ONGOING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "PENDING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "FULL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "INTERESTING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "redeemType": {
+                                                        "type": "string",
+                                                        "description": "Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)",
+                                                        "enum": [
+                                                            "MANUAL",
+                                                            "TRANS_DEMAND",
+                                                            "AUTO"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "MANUAL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "TRANS_DEMAND",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AUTO",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "incomeReleaseType": {
+                                                        "type": "string",
+                                                        "description": "Income release type: DAILY (daily release), AFTER (release after product ends)",
+                                                        "enum": [
+                                                            "DAILY",
+                                                            "AFTER"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DAILY",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AFTER",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "interestDate": {
+                                                        "type": "integer",
+                                                        "description": "Most recent interest date(millisecond)",
+                                                        "format": "int64"
+                                                    },
+                                                    "duration": {
+                                                        "type": "integer",
+                                                        "description": "Product duration (days)"
+                                                    },
+                                                    "newUserOnly": {
+                                                        "type": "integer",
+                                                        "description": "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "newUserOnly",
+                                                    "duration",
+                                                    "interestDate",
+                                                    "incomeReleaseType",
+                                                    "redeemType",
+                                                    "status",
+                                                    "earlyRedeemSupported",
+                                                    "incomeCurrency",
+                                                    "returnRate",
+                                                    "applyEndTime",
+                                                    "applyStartTime",
+                                                    "lockEndTime",
+                                                    "lockStartTime",
+                                                    "redeemPeriod",
+                                                    "userLowerLimit",
+                                                    "userUpperLimit",
+                                                    "productRemainAmount",
+                                                    "productUpperLimit",
+                                                    "precision",
+                                                    "type",
+                                                    "id",
+                                                    "currency",
+                                                    "category"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getSavingsProducts",
+                "x-sdk-method-description": "This endpoint can get available savings products. If no products are available, an empty list is returned.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"2172\\\",\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"category\\\": \\\"DEMAND\\\",\\n            \\\"type\\\": \\\"DEMAND\\\",\\n            \\\"precision\\\": 8,\\n            \\\"productUpperLimit\\\": \\\"480\\\",\\n            \\\"productRemainAmount\\\": \\\"132.36153083\\\",\\n            \\\"userUpperLimit\\\": \\\"20\\\",\\n            \\\"userLowerLimit\\\": \\\"0.01\\\",\\n            \\\"redeemPeriod\\\": 0,\\n            \\\"lockStartTime\\\": 1644807600000,\\n            \\\"lockEndTime\\\": null,\\n            \\\"applyStartTime\\\": 1644807600000,\\n            \\\"applyEndTime\\\": null,\\n            \\\"returnRate\\\": \\\"0.00047208\\\",\\n            \\\"incomeCurrency\\\": \\\"BTC\\\",\\n            \\\"earlyRedeemSupported\\\": 0,\\n            \\\"status\\\": \\\"ONGOING\\\",\\n            \\\"redeemType\\\": \\\"MANUAL\\\",\\n            \\\"incomeReleaseType\\\": \\\"DAILY\\\",\\n            \\\"interestDate\\\": 1729267200000,\\n            \\\"duration\\\": 0,\\n            \\\"newUserOnly\\\": 0\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+            }
+        },
+        "/api/v1/earn/promotion/products": {
+            "get": {
+                "summary": "Get Promotion Products",
+                "deprecated": false,
+                "description": "This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "USDT",
+                                "KCS"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Product ID"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "description": "Product category: ACTIVITY",
+                                                        "enum": [
+                                                            "ACTIVITY"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ACTIVITY",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Product subtype: TIME (fixed), DEMAND (demand)",
+                                                        "enum": [
+                                                            "TIME",
+                                                            "DEMAND"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "TIME",
+                                                                "name": "TIME",
+                                                                "description": "fixed"
+                                                            },
+                                                            {
+                                                                "value": "DEMAND",
+                                                                "name": "DEMAND",
+                                                                "description": "demand"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "precision": {
+                                                        "type": "integer",
+                                                        "description": "Maximum precision supported"
+                                                    },
+                                                    "productUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Products total subscribe amount"
+                                                    },
+                                                    "userUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Max user subscribe amount"
+                                                    },
+                                                    "userLowerLimit": {
+                                                        "type": "string",
+                                                        "description": "Min user subscribe amount"
+                                                    },
+                                                    "redeemPeriod": {
+                                                        "type": "integer",
+                                                        "description": "Redemption waiting period (days)"
+                                                    },
+                                                    "lockStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Product earliest interest start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "lockEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Product earliest interest end time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription end time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "returnRate": {
+                                                        "type": "string",
+                                                        "description": "Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return"
+                                                    },
+                                                    "incomeCurrency": {
+                                                        "type": "string",
+                                                        "description": "Income currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "earlyRedeemSupported": {
+                                                        "type": "integer",
+                                                        "description": "Whether the fixed product supports early redemption: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "productRemainAmount": {
+                                                        "type": "string",
+                                                        "description": "Products remain subscribe amount"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)",
+                                                        "enum": [
+                                                            "ONGOING",
+                                                            "PENDING",
+                                                            "FULL",
+                                                            "INTERESTING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ONGOING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "PENDING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "FULL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "INTERESTING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "redeemType": {
+                                                        "type": "string",
+                                                        "description": "Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)",
+                                                        "enum": [
+                                                            "MANUAL",
+                                                            "TRANS_DEMAND",
+                                                            "AUTO"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "MANUAL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "TRANS_DEMAND",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AUTO",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "incomeReleaseType": {
+                                                        "type": "string",
+                                                        "description": "Income release type: DAILY (daily release), AFTER (release after product ends)",
+                                                        "enum": [
+                                                            "DAILY",
+                                                            "AFTER"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DAILY",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AFTER",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "interestDate": {
+                                                        "type": "integer",
+                                                        "description": "Most recent interest date(millisecond)",
+                                                        "format": "int64"
+                                                    },
+                                                    "duration": {
+                                                        "type": "integer",
+                                                        "description": "Product duration (days)"
+                                                    },
+                                                    "newUserOnly": {
+                                                        "type": "integer",
+                                                        "description": "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "currency",
+                                                    "category",
+                                                    "type",
+                                                    "precision",
+                                                    "productUpperLimit",
+                                                    "userUpperLimit",
+                                                    "userLowerLimit",
+                                                    "redeemPeriod",
+                                                    "lockStartTime",
+                                                    "applyStartTime",
+                                                    "returnRate",
+                                                    "incomeCurrency",
+                                                    "earlyRedeemSupported",
+                                                    "productRemainAmount",
+                                                    "status",
+                                                    "redeemType",
+                                                    "incomeReleaseType",
+                                                    "interestDate",
+                                                    "duration",
+                                                    "newUserOnly",
+                                                    "lockEndTime",
+                                                    "applyEndTime"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getPromotionProducts",
+                "x-sdk-method-description": "This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"2685\\\",\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"category\\\": \\\"ACTIVITY\\\",\\n            \\\"type\\\": \\\"TIME\\\",\\n            \\\"precision\\\": 8,\\n            \\\"productUpperLimit\\\": \\\"50\\\",\\n            \\\"userUpperLimit\\\": \\\"1\\\",\\n            \\\"userLowerLimit\\\": \\\"0.001\\\",\\n            \\\"redeemPeriod\\\": 0,\\n            \\\"lockStartTime\\\": 1702371601000,\\n            \\\"lockEndTime\\\": 1729858405000,\\n            \\\"applyStartTime\\\": 1702371600000,\\n            \\\"applyEndTime\\\": null,\\n            \\\"returnRate\\\": \\\"0.03\\\",\\n            \\\"incomeCurrency\\\": \\\"BTC\\\",\\n            \\\"earlyRedeemSupported\\\": 0,\\n            \\\"productRemainAmount\\\": \\\"49.78203998\\\",\\n            \\\"status\\\": \\\"ONGOING\\\",\\n            \\\"redeemType\\\": \\\"TRANS_DEMAND\\\",\\n            \\\"incomeReleaseType\\\": \\\"DAILY\\\",\\n            \\\"interestDate\\\": 1729253605000,\\n            \\\"duration\\\": 7,\\n            \\\"newUserOnly\\\": 1\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+            }
+        },
+        "/api/v1/earn/hold-assets": {
+            "get": {
+                "summary": "Get Account Holding",
+                "deprecated": false,
+                "description": "This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "Product ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "productCategory",
+                        "in": "query",
+                        "description": "Product category",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DEMAND",
+                                "ACTIVITY",
+                                "STAKING",
+                                "KCS_STAKING",
+                                "ETH2"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "DEMAND",
+                                    "name": "DEMAND",
+                                    "description": "Savings"
+                                },
+                                {
+                                    "value": "ACTIVITY",
+                                    "name": "ACTIVITY",
+                                    "description": "Activity"
+                                },
+                                {
+                                    "value": "STAKING",
+                                    "name": "STAKING",
+                                    "description": "Staking"
+                                },
+                                {
+                                    "value": "KCS_STAKING",
+                                    "name": "KCS_STAKING",
+                                    "description": "KCS Staking"
+                                },
+                                {
+                                    "value": "ETH2",
+                                    "name": "ETH2",
+                                    "description": "ETHStaking"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current request page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of results per request. Minimum is 10, maximum is 500.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15,
+                            "minimum": 10,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "total number"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "orderId": {
+                                                                "type": "string",
+                                                                "description": "Holding ID"
+                                                            },
+                                                            "productId": {
+                                                                "type": "string",
+                                                                "description": "Product ID"
+                                                            },
+                                                            "productCategory": {
+                                                                "type": "string",
+                                                                "description": "Product category"
+                                                            },
+                                                            "productType": {
+                                                                "type": "string",
+                                                                "description": "Product sub-type"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "currency",
+                                                                "example": [
+                                                                    "BTC",
+                                                                    "ETH",
+                                                                    "KCS"
+                                                                ]
+                                                            },
+                                                            "incomeCurrency": {
+                                                                "type": "string",
+                                                                "description": "Income currency",
+                                                                "example": [
+                                                                    "BTC",
+                                                                    "ETH",
+                                                                    "KCS"
+                                                                ]
+                                                            },
+                                                            "returnRate": {
+                                                                "type": "string",
+                                                                "description": "Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return"
+                                                            },
+                                                            "holdAmount": {
+                                                                "type": "string",
+                                                                "description": "Holding amount"
+                                                            },
+                                                            "redeemedAmount": {
+                                                                "type": "string",
+                                                                "description": "Redeemed amount"
+                                                            },
+                                                            "redeemingAmount": {
+                                                                "type": "string",
+                                                                "description": "Redeeming amount"
+                                                            },
+                                                            "lockStartTime": {
+                                                                "type": "integer",
+                                                                "description": "Product earliest interest start time, in milliseconds",
+                                                                "format": "int64"
+                                                            },
+                                                            "lockEndTime": {
+                                                                "type": "integer",
+                                                                "description": "Product maturity time, in milliseconds",
+                                                                "format": "int64"
+                                                            },
+                                                            "purchaseTime": {
+                                                                "type": "integer",
+                                                                "description": "Most recent subscription time, in milliseconds",
+                                                                "format": "int64"
+                                                            },
+                                                            "redeemPeriod": {
+                                                                "type": "integer",
+                                                                "description": "Redemption waiting period (days)"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "Status: LOCKED (holding), REDEEMING (redeeming)",
+                                                                "enum": [
+                                                                    "LOCKED",
+                                                                    "REDEEMING"
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "LOCKED",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "REDEEMING",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "earlyRedeemSupported": {
+                                                                "type": "integer",
+                                                                "description": "Whether the fixed product supports early redemption: 0 (no), 1 (yes)",
+                                                                "enum": [
+                                                                    0,
+                                                                    1
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": 0,
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": 1,
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "orderId",
+                                                            "productId",
+                                                            "productCategory",
+                                                            "productType",
+                                                            "currency",
+                                                            "incomeCurrency",
+                                                            "returnRate",
+                                                            "holdAmount",
+                                                            "redeemedAmount",
+                                                            "redeemingAmount",
+                                                            "lockStartTime",
+                                                            "purchaseTime",
+                                                            "redeemPeriod",
+                                                            "status",
+                                                            "earlyRedeemSupported"
+                                                        ]
+                                                    }
+                                                },
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "current page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "page size"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "total page"
+                                                }
+                                            },
+                                            "required": [
+                                                "totalNum",
+                                                "items",
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalPage"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getAccountHolding",
+                "x-sdk-method-description": "This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 15,\\n        \\\"items\\\": [\\n            {\\n                \\\"orderId\\\": \\\"2767291\\\",\\n                \\\"productId\\\": \\\"2611\\\",\\n                \\\"productCategory\\\": \\\"KCS_STAKING\\\",\\n                \\\"productType\\\": \\\"DEMAND\\\",\\n                \\\"currency\\\": \\\"KCS\\\",\\n                \\\"incomeCurrency\\\": \\\"KCS\\\",\\n                \\\"returnRate\\\": \\\"0.03471727\\\",\\n                \\\"holdAmount\\\": \\\"1\\\",\\n                \\\"redeemedAmount\\\": \\\"0\\\",\\n                \\\"redeemingAmount\\\": \\\"1\\\",\\n                \\\"lockStartTime\\\": 1701252000000,\\n                \\\"lockEndTime\\\": null,\\n                \\\"purchaseTime\\\": 1729257513000,\\n                \\\"redeemPeriod\\\": 3,\\n                \\\"status\\\": \\\"REDEEMING\\\",\\n                \\\"earlyRedeemSupported\\\": 0\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"KCS\\\", \\\"productId\\\": \\\"example_string_default_value\\\", \\\"productCategory\\\": \\\"DEMAND\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 10}"
+            }
+        },
+        "/api/v1/earn/staking/products": {
+            "get": {
+                "summary": "Get Staking Products",
+                "deprecated": false,
+                "description": "This endpoint can get available staking products. If no products are available, an empty list is returned.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "USDT",
+                                "KCS"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Product ID"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "description": "Product category: STAKING",
+                                                        "enum": [
+                                                            "STAKING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "STAKING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Product subtype: TIME (fixed), DEMAND (demand)",
+                                                        "enum": [
+                                                            "TIME",
+                                                            "DEMAND"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "TIME",
+                                                                "name": "TIME",
+                                                                "description": "fixed"
+                                                            },
+                                                            {
+                                                                "value": "DEMAND",
+                                                                "name": "DEMAND",
+                                                                "description": "demand"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "precision": {
+                                                        "type": "integer",
+                                                        "description": "Maximum precision supported"
+                                                    },
+                                                    "productUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Products total subscribe amount"
+                                                    },
+                                                    "userUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Max user subscribe amount"
+                                                    },
+                                                    "userLowerLimit": {
+                                                        "type": "string",
+                                                        "description": "Min user subscribe amount"
+                                                    },
+                                                    "redeemPeriod": {
+                                                        "type": "integer",
+                                                        "description": "Redemption waiting period (days)"
+                                                    },
+                                                    "lockStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Product earliest interest start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "lockEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Product maturity time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription end time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "returnRate": {
+                                                        "type": "string",
+                                                        "description": "Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return"
+                                                    },
+                                                    "incomeCurrency": {
+                                                        "type": "string",
+                                                        "description": "Income currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "earlyRedeemSupported": {
+                                                        "type": "integer",
+                                                        "description": "Whether the fixed product supports early redemption: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "productRemainAmount": {
+                                                        "type": "string",
+                                                        "description": "Products remain subscribe amount"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)",
+                                                        "enum": [
+                                                            "ONGOING",
+                                                            "PENDING",
+                                                            "FULL",
+                                                            "INTERESTING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ONGOING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "PENDING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "FULL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "INTERESTING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "redeemType": {
+                                                        "type": "string",
+                                                        "description": "Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)",
+                                                        "enum": [
+                                                            "MANUAL",
+                                                            "TRANS_DEMAND",
+                                                            "AUTO"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "MANUAL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "TRANS_DEMAND",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AUTO",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "incomeReleaseType": {
+                                                        "type": "string",
+                                                        "description": "Income release type: DAILY (daily release), AFTER (release after product ends)",
+                                                        "enum": [
+                                                            "DAILY",
+                                                            "AFTER"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DAILY",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AFTER",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "interestDate": {
+                                                        "type": "integer",
+                                                        "description": "Most recent interest date(millisecond)",
+                                                        "format": "int64"
+                                                    },
+                                                    "duration": {
+                                                        "type": "integer",
+                                                        "description": "Product duration (days)"
+                                                    },
+                                                    "newUserOnly": {
+                                                        "type": "integer",
+                                                        "description": "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "currency",
+                                                    "category",
+                                                    "type",
+                                                    "precision",
+                                                    "productUpperLimit",
+                                                    "userUpperLimit",
+                                                    "userLowerLimit",
+                                                    "redeemPeriod",
+                                                    "lockStartTime",
+                                                    "lockEndTime",
+                                                    "applyStartTime",
+                                                    "applyEndTime",
+                                                    "returnRate",
+                                                    "incomeCurrency",
+                                                    "earlyRedeemSupported",
+                                                    "productRemainAmount",
+                                                    "status",
+                                                    "redeemType",
+                                                    "incomeReleaseType",
+                                                    "interestDate",
+                                                    "duration",
+                                                    "newUserOnly"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getStakingProducts",
+                "x-sdk-method-description": "This endpoint can get available staking products. If no products are available, an empty list is returned.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"2535\\\",\\n            \\\"currency\\\": \\\"STX\\\",\\n            \\\"category\\\": \\\"STAKING\\\",\\n            \\\"type\\\": \\\"DEMAND\\\",\\n            \\\"precision\\\": 8,\\n            \\\"productUpperLimit\\\": \\\"1000000\\\",\\n            \\\"userUpperLimit\\\": \\\"10000\\\",\\n            \\\"userLowerLimit\\\": \\\"1\\\",\\n            \\\"redeemPeriod\\\": 14,\\n            \\\"lockStartTime\\\": 1688614514000,\\n            \\\"lockEndTime\\\": null,\\n            \\\"applyStartTime\\\": 1688614512000,\\n            \\\"applyEndTime\\\": null,\\n            \\\"returnRate\\\": \\\"0.045\\\",\\n            \\\"incomeCurrency\\\": \\\"BTC\\\",\\n            \\\"earlyRedeemSupported\\\": 0,\\n            \\\"productRemainAmount\\\": \\\"254032.90178701\\\",\\n            \\\"status\\\": \\\"ONGOING\\\",\\n            \\\"redeemType\\\": \\\"MANUAL\\\",\\n            \\\"incomeReleaseType\\\": \\\"DAILY\\\",\\n            \\\"interestDate\\\": 1729267200000,\\n            \\\"duration\\\": 0,\\n            \\\"newUserOnly\\\": 0\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+            }
+        },
+        "/api/v1/earn/kcs-staking/products": {
+            "get": {
+                "summary": "Get KCS Staking Products",
+                "deprecated": false,
+                "description": "This endpoint can get available KCS staking products. If no products are available, an empty list is returned.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "USDT",
+                                "KCS"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Product ID"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "description": "Product category: KCS_STAKING",
+                                                        "enum": [
+                                                            "KCS_STAKING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "KCS_STAKING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Product subtype: TIME (fixed), DEMAND (demand)",
+                                                        "enum": [
+                                                            "TIME",
+                                                            "DEMAND"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "TIME",
+                                                                "name": "TIME",
+                                                                "description": "fixed"
+                                                            },
+                                                            {
+                                                                "value": "DEMAND",
+                                                                "name": "DEMAND",
+                                                                "description": "demand"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "precision": {
+                                                        "type": "integer",
+                                                        "description": "Maximum precision supported"
+                                                    },
+                                                    "productUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Products total subscribe amount"
+                                                    },
+                                                    "userUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Max user subscribe amount"
+                                                    },
+                                                    "userLowerLimit": {
+                                                        "type": "string",
+                                                        "description": "Min user subscribe amount"
+                                                    },
+                                                    "redeemPeriod": {
+                                                        "type": "integer",
+                                                        "description": "Redemption waiting period (days)"
+                                                    },
+                                                    "lockStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Product earliest interest start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "lockEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Product maturity time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription end time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "returnRate": {
+                                                        "type": "string",
+                                                        "description": "Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return"
+                                                    },
+                                                    "incomeCurrency": {
+                                                        "type": "string",
+                                                        "description": "Income currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "earlyRedeemSupported": {
+                                                        "type": "integer",
+                                                        "description": "Whether the fixed product supports early redemption: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "productRemainAmount": {
+                                                        "type": "string",
+                                                        "description": "Products remain subscribe amount"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)",
+                                                        "enum": [
+                                                            "ONGOING",
+                                                            "PENDING",
+                                                            "FULL",
+                                                            "INTERESTING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ONGOING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "PENDING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "FULL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "INTERESTING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "redeemType": {
+                                                        "type": "string",
+                                                        "description": "Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)",
+                                                        "enum": [
+                                                            "MANUAL",
+                                                            "TRANS_DEMAND",
+                                                            "AUTO"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "MANUAL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "TRANS_DEMAND",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AUTO",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "incomeReleaseType": {
+                                                        "type": "string",
+                                                        "description": "Income release type: DAILY (daily release), AFTER (release after product ends)",
+                                                        "enum": [
+                                                            "DAILY",
+                                                            "AFTER"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DAILY",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AFTER",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "interestDate": {
+                                                        "type": "integer",
+                                                        "description": "Most recent interest date(millisecond)",
+                                                        "format": "int64"
+                                                    },
+                                                    "duration": {
+                                                        "type": "integer",
+                                                        "description": "Product duration (days)"
+                                                    },
+                                                    "newUserOnly": {
+                                                        "type": "integer",
+                                                        "description": "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "currency",
+                                                    "category",
+                                                    "type",
+                                                    "precision",
+                                                    "productUpperLimit",
+                                                    "userUpperLimit",
+                                                    "userLowerLimit",
+                                                    "redeemPeriod",
+                                                    "lockStartTime",
+                                                    "applyStartTime",
+                                                    "returnRate",
+                                                    "incomeCurrency",
+                                                    "earlyRedeemSupported",
+                                                    "productRemainAmount",
+                                                    "status",
+                                                    "redeemType",
+                                                    "incomeReleaseType",
+                                                    "interestDate",
+                                                    "duration",
+                                                    "newUserOnly"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getKcsStakingProducts",
+                "x-sdk-method-description": "This endpoint can get available KCS staking products. If no products are available, an empty list is returned.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"2611\\\",\\n            \\\"currency\\\": \\\"KCS\\\",\\n            \\\"category\\\": \\\"KCS_STAKING\\\",\\n            \\\"type\\\": \\\"DEMAND\\\",\\n            \\\"precision\\\": 8,\\n            \\\"productUpperLimit\\\": \\\"100000000\\\",\\n            \\\"userUpperLimit\\\": \\\"100000000\\\",\\n            \\\"userLowerLimit\\\": \\\"1\\\",\\n            \\\"redeemPeriod\\\": 3,\\n            \\\"lockStartTime\\\": 1701252000000,\\n            \\\"lockEndTime\\\": null,\\n            \\\"applyStartTime\\\": 1701252000000,\\n            \\\"applyEndTime\\\": null,\\n            \\\"returnRate\\\": \\\"0.03471727\\\",\\n            \\\"incomeCurrency\\\": \\\"KCS\\\",\\n            \\\"earlyRedeemSupported\\\": 0,\\n            \\\"productRemainAmount\\\": \\\"58065850.54998251\\\",\\n            \\\"status\\\": \\\"ONGOING\\\",\\n            \\\"redeemType\\\": \\\"MANUAL\\\",\\n            \\\"incomeReleaseType\\\": \\\"DAILY\\\",\\n            \\\"interestDate\\\": 1729267200000,\\n            \\\"duration\\\": 0,\\n            \\\"newUserOnly\\\": 0\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+            }
+        },
+        "/api/v1/earn/eth-staking/products": {
+            "get": {
+                "summary": "Get ETH Staking Products",
+                "deprecated": false,
+                "description": "This endpoint can get available ETH staking products. If no products are available, an empty list is returned.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "USDT",
+                                "KCS"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Product ID"
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "description": "Product category:  ETH2 (ETH Staking)",
+                                                        "enum": [
+                                                            "ETH2"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ETH2",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Product subtype: DEMAND (demand)",
+                                                        "enum": [
+                                                            "DEMAND"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DEMAND",
+                                                                "name": "DEMAND",
+                                                                "description": "demand"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "precision": {
+                                                        "type": "integer",
+                                                        "description": "Maximum precision supported"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "incomeCurrency": {
+                                                        "type": "string",
+                                                        "description": "Income currency",
+                                                        "example": [
+                                                            "BTC",
+                                                            "ETH",
+                                                            "USDT"
+                                                        ]
+                                                    },
+                                                    "returnRate": {
+                                                        "type": "string",
+                                                        "description": "Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return"
+                                                    },
+                                                    "userLowerLimit": {
+                                                        "type": "string",
+                                                        "description": "Min user subscribe amount"
+                                                    },
+                                                    "userUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Max user subscribe amount"
+                                                    },
+                                                    "productUpperLimit": {
+                                                        "type": "string",
+                                                        "description": "Products total subscribe amount"
+                                                    },
+                                                    "productRemainAmount": {
+                                                        "type": "string",
+                                                        "description": "Products remain subscribe amount"
+                                                    },
+                                                    "redeemPeriod": {
+                                                        "type": "integer",
+                                                        "description": "Redemption waiting period (days)"
+                                                    },
+                                                    "redeemType": {
+                                                        "type": "string",
+                                                        "description": "Redemption channel: MANUAL (manual redemption), TRANS_DEMAND (transfer to corresponding demand product upon maturity), AUTO (redeem to funding account upon maturity)",
+                                                        "enum": [
+                                                            "MANUAL",
+                                                            "TRANS_DEMAND",
+                                                            "AUTO"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "MANUAL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "TRANS_DEMAND",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AUTO",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "incomeReleaseType": {
+                                                        "type": "string",
+                                                        "description": "Income release type: DAILY (daily release), AFTER (release after product ends)",
+                                                        "enum": [
+                                                            "DAILY",
+                                                            "AFTER"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "DAILY",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "AFTER",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "applyStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "applyEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Subscription end time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "lockStartTime": {
+                                                        "type": "integer",
+                                                        "description": "Product earliest interest start time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "lockEndTime": {
+                                                        "type": "integer",
+                                                        "description": "Product maturity time, in milliseconds",
+                                                        "format": "int64"
+                                                    },
+                                                    "interestDate": {
+                                                        "type": "integer",
+                                                        "description": "Most recent interest date(millisecond)",
+                                                        "format": "int64"
+                                                    },
+                                                    "newUserOnly": {
+                                                        "type": "integer",
+                                                        "description": "Whether the product is exclusive for new users: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "earlyRedeemSupported": {
+                                                        "type": "integer",
+                                                        "description": "Whether the fixed product supports early redemption: 0 (no), 1 (yes)",
+                                                        "enum": [
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": 0,
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": 1,
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "duration": {
+                                                        "type": "integer",
+                                                        "description": "Product duration (days)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Product status: ONGOING(Subscription in progress), PENDING(Preheating Subscription), FULL(Subscribed), INTERESTING (Interest in progress)",
+                                                        "enum": [
+                                                            "ONGOING",
+                                                            "PENDING",
+                                                            "FULL",
+                                                            "INTERESTING"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "ONGOING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "PENDING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "FULL",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "INTERESTING",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "category",
+                                                    "type",
+                                                    "precision",
+                                                    "currency",
+                                                    "incomeCurrency",
+                                                    "returnRate",
+                                                    "userLowerLimit",
+                                                    "userUpperLimit",
+                                                    "productUpperLimit",
+                                                    "productRemainAmount",
+                                                    "redeemPeriod",
+                                                    "redeemType",
+                                                    "incomeReleaseType",
+                                                    "interestDate",
+                                                    "newUserOnly",
+                                                    "earlyRedeemSupported",
+                                                    "duration",
+                                                    "status"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Earn",
+                "x-sdk-service": "Earn",
+                "x-sdk-sub-service": "Earn",
+                "x-sdk-method-name": "getETHStakingProducts",
+                "x-sdk-method-description": "This endpoint can get available ETH staking products. If no products are available, an empty list is returned.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"ETH2\\\",\\n            \\\"category\\\": \\\"ETH2\\\",\\n            \\\"type\\\": \\\"DEMAND\\\",\\n            \\\"precision\\\": 8,\\n            \\\"currency\\\": \\\"ETH\\\",\\n            \\\"incomeCurrency\\\": \\\"ETH2\\\",\\n            \\\"returnRate\\\": \\\"0.028\\\",\\n            \\\"userLowerLimit\\\": \\\"0.01\\\",\\n            \\\"userUpperLimit\\\": \\\"8557.3597075\\\",\\n            \\\"productUpperLimit\\\": \\\"8557.3597075\\\",\\n            \\\"productRemainAmount\\\": \\\"8557.3597075\\\",\\n            \\\"redeemPeriod\\\": 5,\\n            \\\"redeemType\\\": \\\"MANUAL\\\",\\n            \\\"incomeReleaseType\\\": \\\"DAILY\\\",\\n            \\\"applyStartTime\\\": 1729255485000,\\n            \\\"applyEndTime\\\": null,\\n            \\\"lockStartTime\\\": 1729255485000,\\n            \\\"lockEndTime\\\": null,\\n            \\\"interestDate\\\": 1729267200000,\\n            \\\"newUserOnly\\\": 0,\\n            \\\"earlyRedeemSupported\\\": 0,\\n            \\\"duration\\\": 0,\\n            \\\"status\\\": \\\"ONGOING\\\"\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

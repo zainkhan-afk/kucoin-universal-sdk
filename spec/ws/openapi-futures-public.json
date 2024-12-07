@@ -1,0 +1,916 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "futures",
+        "description": "futures_public",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/tickerV2/contractMarket/tickerV2:_symbol_": {
+            "trace": {
+                "summary": "Get Ticker V2",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of BBO changes. After subscription, when there are changes in the order book（Not necessarily ask1/bid1 changes）, the system will push the real-time ticker symbol information to you.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "tickerV2",
+                "x-topic": "/contractMarket/tickerV2:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tickerV2:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"tickerV2\\\",\\\"sn\\\":1709284589209,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1709284589209,\\\"bestBidSize\\\":713,\\\"bestBidPrice\\\":\\\"88987.4\\\",\\\"bestAskPrice\\\":\\\"88987.5\\\",\\\"bestAskSize\\\":1037,\\\"ts\\\":1731665526461000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_tickerv2"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tickerV1/contractMarket/ticker:_symbol_": {
+            "trace": {
+                "summary": "Get Ticker(not recommended)",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of BBO changes.It is not recommended to use this topic any more. For real-time ticker information, please subscribe /contractMarket/tickerV2:{symbol}.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "tickerV1",
+                "x-topic": "/contractMarket/ticker:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/ticker:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"ticker\\\",\\\"sn\\\":1793133570931,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1793133570931,\\\"side\\\":\\\"sell\\\",\\\"size\\\":1,\\\"price\\\":\\\"90147.7\\\",\\\"bestBidSize\\\":2186,\\\"bestBidPrice\\\":\\\"90147.7\\\",\\\"bestAskPrice\\\":\\\"90147.8\\\",\\\"tradeId\\\":\\\"1793133570931\\\",\\\"bestAskSize\\\":275,\\\"ts\\\":1731679215637000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_tickerV1"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orderbookLevel5/contractMarket/level2Depth5:_symbol_": {
+            "trace": {
+                "summary": "Orderbook - Level5",
+                "deprecated": "false",
+                "description": "The system will return the 5 best ask/bid orders data, If there is no change in the market, data will not be pushed",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "orderbookLevel5",
+                "x-topic": "/contractMarket/level2Depth5:{symbol}",
+                "x-push_frequency": "100ms",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/level2Depth5:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"sn\\\":1731680019100,\\\"data\\\":{\\\"bids\\\":[[\\\"89720.9\\\",513],[\\\"89720.8\\\",12],[\\\"89718.6\\\",113],[\\\"89718.4\\\",19],[\\\"89718.3\\\",7]],\\\"sequence\\\":1709294294670,\\\"timestamp\\\":1731680019100,\\\"ts\\\":1731680019100,\\\"asks\\\":[[\\\"89721\\\",906],[\\\"89721.1\\\",203],[\\\"89721.4\\\",113],[\\\"89723.2\\\",113],[\\\"89725.4\\\",113]]}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_orderbookLevel5"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/execution/contractMarket/execution:_symbol_": {
+            "trace": {
+                "summary": "Match execution data.",
+                "deprecated": "false",
+                "description": "For each order executed, the system will send you the match messages in the format as following.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "execution",
+                "x-topic": "/contractMarket/execution:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/execution:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"match\\\",\\\"sn\\\":1794100537695,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1794100537695,\\\"side\\\":\\\"buy\\\",\\\"size\\\":2,\\\"price\\\":\\\"90503.9\\\",\\\"takerOrderId\\\":\\\"247822202957807616\\\",\\\"makerOrderId\\\":\\\"247822167163555840\\\",\\\"tradeId\\\":\\\"1794100537695\\\",\\\"ts\\\":1731898619520000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_matchExecution"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orderbookIncrement/contractMarket/level2:_symbol_": {
+            "trace": {
+                "summary": "Orderbook - Increment",
+                "deprecated": "false",
+                "description": "The system will return the increment change orderbook data(All depth), If there is no change in the market, data will not be pushed",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "orderbookIncrement",
+                "x-topic": "/contractMarket/level2:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/level2:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"sn\\\":1709400450243,\\\"data\\\":{\\\"sequence\\\":1709400450243,\\\"change\\\":\\\"90631.2,sell,2\\\",\\\"timestamp\\\":1731897467182}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_orderbookIncrement"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orderbookLevel50/contractMarket/level2Depth50:_symbol_": {
+            "trace": {
+                "summary": "Orderbook - Level50",
+                "deprecated": "false",
+                "description": "The depth50 market data.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "orderbookLevel50",
+                "x-topic": "/contractMarket/level2Depth50:{symbol}",
+                "x-push_frequency": "100ms",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/level2Depth50:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"sn\\\":1731680249700,\\\"data\\\":{\\\"bids\\\":[[\\\"89778.6\\\",1534],[\\\"89778.2\\\",54]],\\\"sequence\\\":1709294490099,\\\"timestamp\\\":1731680249700,\\\"ts\\\":1731680249700,\\\"asks\\\":[[\\\"89778.7\\\",854],[\\\"89779.2\\\",4]]}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_orderbookLevel50"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/klines/contractMarket/limitCandle:_symbol___type_": {
+            "trace": {
+                "summary": "Klines",
+                "deprecated": "false",
+                "description": "Subscribe to this topic to get K-Line data.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "klines",
+                "x-topic": "/contractMarket/limitCandle:{symbol}_{type}",
+                "x-push_frequency": "1s",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/limitCandle:XBTUSDTM_1min\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"candles\\\":[\\\"1731898200\\\",\\\"90638.6\\\",\\\"90638.6\\\",\\\"90638.6\\\",\\\"90638.6\\\",\\\"21.0\\\",\\\"21\\\"],\\\"time\\\":1731898208357},\\\"subject\\\":\\\"candle.stick\\\"}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_klines"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/instrument/contract/instrument:_symbol_": {
+            "trace": {
+                "summary": "instrument",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the mark Price, index Price or funding fee Rate",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "instrument",
+                "x-topic": "/contract/instrument:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/instrument:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"mark.index.price\\\",\\\"data\\\":{\\\"markPrice\\\":90445.02,\\\"indexPrice\\\":90445.02,\\\"granularity\\\":1000,\\\"timestamp\\\":1731899129000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_instrument"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/announcement/contract/announcement:_symbol_": {
+            "trace": {
+                "summary": "announcement",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get Funding Fee Settlement.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "announcement",
+                "x-topic": "/contract/announcement:{symbol}",
+                "x-push_frequency": "TODO",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/announcement\\\",\\\"subject\\\":\\\"funding.begin\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"fundingTime\\\":1551770400000,\\\"fundingRate\\\":-0.002966,\\\"timestamp\\\":1551770400000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_fundingFeeSettlement"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/symbolSnapshot/contractMarket/snapshot:_symbol_": {
+            "trace": {
+                "summary": "Symbol Snapshot",
+                "deprecated": "false",
+                "description": "Get symbol's snapshot.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "symbolSnapshot",
+                "x-topic": "/contractMarket/snapshot:{symbol}",
+                "x-push_frequency": "5000ms",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/snapshot:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"snapshot.24h\\\",\\\"id\\\":\\\"673ab3fff4088b0001664f41\\\",\\\"data\\\":{\\\"highPrice\\\":91512.8,\\\"lastPrice\\\":90326.7,\\\"lowPrice\\\":88747.8,\\\"price24HoursBefore\\\":89880.4,\\\"priceChg\\\":446.3,\\\"priceChgPct\\\":0.0049,\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"ts\\\":1731900415023929239,\\\"turnover\\\":526928331.0482177734,\\\"volume\\\":5834.46}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_symbolSnapshot"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Futures_futures_public_tickerv2": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "bestBidSize": {
+                                "type": "integer"
+                            },
+                            "bestBidPrice": {
+                                "type": "string"
+                            },
+                            "bestAskPrice": {
+                                "type": "string"
+                            },
+                            "bestAskSize": {
+                                "type": "integer"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "sequence",
+                            "bestBidSize",
+                            "bestBidPrice",
+                            "bestAskPrice",
+                            "bestAskSize",
+                            "ts"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_tickerV1": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "side": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "integer"
+                            },
+                            "price": {
+                                "type": "string"
+                            },
+                            "bestBidSize": {
+                                "type": "integer"
+                            },
+                            "bestBidPrice": {
+                                "type": "string"
+                            },
+                            "bestAskPrice": {
+                                "type": "string"
+                            },
+                            "tradeId": {
+                                "type": "string"
+                            },
+                            "bestAskSize": {
+                                "type": "integer"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "sequence",
+                            "side",
+                            "size",
+                            "price",
+                            "bestBidSize",
+                            "bestBidPrice",
+                            "bestAskPrice",
+                            "tradeId",
+                            "bestAskSize",
+                            "ts"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_orderbookLevel5": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "bids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "AnyType"
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                }
+                            },
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "asks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "AnyType"
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                }
+                            }
+                        },
+                        "required": [
+                            "bids",
+                            "sequence",
+                            "timestamp",
+                            "ts",
+                            "asks"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_matchExecution": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "side": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "integer"
+                            },
+                            "price": {
+                                "type": "string"
+                            },
+                            "takerOrderId": {
+                                "type": "string"
+                            },
+                            "makerOrderId": {
+                                "type": "string"
+                            },
+                            "tradeId": {
+                                "type": "string"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "sequence",
+                            "side",
+                            "size",
+                            "price",
+                            "takerOrderId",
+                            "makerOrderId",
+                            "tradeId",
+                            "ts"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_orderbookIncrement": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "change": {
+                                "type": "string"
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "sequence",
+                            "change",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_orderbookLevel50": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "bids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "AnyType"
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                }
+                            },
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "asks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "AnyType"
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                }
+                            }
+                        },
+                        "required": [
+                            "bids",
+                            "sequence",
+                            "timestamp",
+                            "ts",
+                            "asks"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_klines": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                            },
+                            "candles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Start time, open price, close price, high price, low price, Transaction volume(This value is incorrect, please do not use it, we will fix it in subsequent versions), Transaction amount"
+                            },
+                            "time": {
+                                "type": "integer",
+                                "description": "timestamp(ms)",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "candles",
+                            "time"
+                        ]
+                    },
+                    "subject": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "data",
+                    "subject"
+                ]
+            },
+            "Futures_futures_public_instrument": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "enum": [
+                            "mark.index.price",
+                            "funding.rate"
+                        ],
+                        "x-api-enum": [
+                            {
+                                "value": "mark.index.price",
+                                "name": "",
+                                "description": ""
+                            },
+                            {
+                                "value": "funding.rate",
+                                "name": "",
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "granularity": {
+                                "type": "integer",
+                                "description": "Granularity (predicted funding rate: 1-min granularity: 60000; Funding rate: 8-hours granularity: 28800000. )"
+                            },
+                            "fundingRate": {
+                                "type": "number"
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "markPrice": {
+                                "type": "number"
+                            },
+                            "indexPrice": {
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "granularity",
+                            "timestamp"
+                        ]
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "topic",
+                    "subject",
+                    "data",
+                    "type"
+                ]
+            },
+            "Futures_futures_public_fundingFeeSettlement": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "description": "Symbol",
+                                "type": "string"
+                            },
+                            "fundingTime": {
+                                "type": "integer",
+                                "description": "Funding time",
+                                "format": "int64"
+                            },
+                            "fundingRate": {
+                                "description": "Funding rate",
+                                "type": "number"
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "fundingTime",
+                            "fundingRate",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "topic",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Futures_futures_public_symbolSnapshot": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "highPrice": {
+                                "type": "number"
+                            },
+                            "lastPrice": {
+                                "type": "number"
+                            },
+                            "lowPrice": {
+                                "type": "number"
+                            },
+                            "price24HoursBefore": {
+                                "type": "number"
+                            },
+                            "priceChg": {
+                                "type": "number"
+                            },
+                            "priceChgPct": {
+                                "type": "number"
+                            },
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "turnover": {
+                                "type": "number"
+                            },
+                            "volume": {
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "highPrice",
+                            "lastPrice",
+                            "lowPrice",
+                            "price24HoursBefore",
+                            "priceChg",
+                            "priceChgPct",
+                            "symbol",
+                            "ts",
+                            "turnover",
+                            "volume"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "id",
+                    "data"
+                ]
+            }
+        }
+    }
+}

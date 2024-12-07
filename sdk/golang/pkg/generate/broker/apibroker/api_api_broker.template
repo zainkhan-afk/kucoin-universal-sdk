@@ -1,0 +1,25 @@
+# API FUNCTION TEMPLATE
+
+
+func TestAPIBrokerGetRebaseReq(t *testing.T) {
+    // GetRebase
+    // Get Broker Rebate
+    // /api/v1/broker/api/rebase/download
+
+    builder := apibroker.NewGetRebaseReqBuilder()
+    builder.SetBegin(?).SetEnd(?).SetTradeType(?)
+    req := builder.Build()
+
+    resp, err := apibrokerApi.GetRebase(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

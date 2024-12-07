@@ -1,0 +1,1761 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "futures",
+        "description": "futures_private",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/order/contractMarket/tradeOrders:_symbol_": {
+            "trace": {
+                "summary": "Order change pushes.",
+                "deprecated": "false",
+                "description": "Push order changes for the specified symbol",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "order",
+                "x-topic": "/contractMarket/tradeOrders:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tradeOrders:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"symbolOrderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"side\\\":\\\"buy\\\",\\\"canceledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"247899236673269761\\\",\\\"liquidity\\\":\\\"maker\\\",\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"type\\\":\\\"open\\\",\\\"orderTime\\\":1731916985768138917,\\\"size\\\":\\\"1\\\",\\\"filledSize\\\":\\\"0\\\",\\\"price\\\":\\\"91670\\\",\\\"remainSize\\\":\\\"1\\\",\\\"status\\\":\\\"open\\\",\\\"ts\\\":1731916985789000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_orders"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/balance/contractAccount/wallet": {
+            "trace": {
+                "summary": "the balance change push",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of balance change",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "balance",
+                "x-topic": "/contractAccount/wallet",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractAccount/wallet\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"walletBalance.change\\\",\\\"id\\\":\\\"673b0bb925b4bc0001fadfef\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"crossPosMargin\\\":\\\"0\\\",\\\"isolatedOrderMargin\\\":\\\"18.1188\\\",\\\"holdBalance\\\":\\\"0\\\",\\\"equity\\\":\\\"81.273621258\\\",\\\"version\\\":\\\"1337\\\",\\\"availableBalance\\\":\\\"26.144281178\\\",\\\"isolatedPosMargin\\\":\\\"36.80984008\\\",\\\"walletBalance\\\":\\\"81.072921258\\\",\\\"isolatedFundingFeeMargin\\\":\\\"0\\\",\\\"crossUnPnl\\\":\\\"0\\\",\\\"totalCrossMargin\\\":\\\"26.144281178\\\",\\\"currency\\\":\\\"USDT\\\",\\\"isolatedUnPnl\\\":\\\"0.2007\\\",\\\"crossOrderMargin\\\":\\\"0\\\",\\\"timestamp\\\":\\\"1731916996764\\\"}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_balance"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/position/contract/position:_symbol_": {
+            "trace": {
+                "summary": "the position change events push",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of position change event of a symbol",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "position",
+                "x-topic": "/contract/position:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/position:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"maintMarginReq\\\":0.005,\\\"riskLimit\\\":500000,\\\"realLeverage\\\":4.9685590767,\\\"crossMode\\\":false,\\\"delevPercentage\\\":0.10,\\\"openingTimestamp\\\":1731916913097,\\\"autoDeposit\\\":true,\\\"currentTimestamp\\\":1731924561514,\\\"currentQty\\\":1,\\\"currentCost\\\":91.5306,\\\"currentComm\\\":0.09179284,\\\"unrealisedCost\\\":91.6945,\\\"realisedCost\\\":-0.07210716,\\\"isOpen\\\":true,\\\"markPrice\\\":91839.79,\\\"markValue\\\":91.83979,\\\"posCost\\\":91.6945,\\\"posCross\\\":0,\\\"posInit\\\":18.3389,\\\"posComm\\\":0.06602004,\\\"posLoss\\\":0,\\\"posMargin\\\":18.40492004,\\\"posFunding\\\":0,\\\"posMaint\\\":0.5634627025,\\\"maintMargin\\\":18.55021004,\\\"avgEntryPrice\\\":91694.5,\\\"liquidationPrice\\\":73853.0426625,\\\"bankruptPrice\\\":73355.6,\\\"settleCurrency\\\":\\\"USDT\\\",\\\"changeReason\\\":\\\"positionChange\\\",\\\"riskLimitLevel\\\":2,\\\"realisedGrossCost\\\":-0.1639,\\\"realisedGrossPnl\\\":0.1639,\\\"realisedPnl\\\":0.07210716,\\\"unrealisedPnl\\\":0.14529,\\\"unrealisedPnlPcnt\\\":0.0016,\\\"unrealisedRoePcnt\\\":0.0079,\\\"leverage\\\":4.9685590767,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"positionSide\\\":\\\"BOTH\\\"},\\\"subject\\\":\\\"position.change\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\"}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_position"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stopOrders/contractMarket/advancedOrders": {
+            "trace": {
+                "summary": "stop order change pushes.",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of stop order changes.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "stopOrders",
+                "x-topic": "/contractMarket/advancedOrders",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/advancedOrders\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"createdAt\\\":1730194206837,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"orderId\\\":\\\"240673378116083712\\\",\\\"orderPrice\\\":\\\"0.1\\\",\\\"orderType\\\":\\\"stop\\\",\\\"side\\\":\\\"buy\\\",\\\"size\\\":1,\\\"stop\\\":\\\"down\\\",\\\"stopPrice\\\":\\\"1000\\\",\\\"stopPriceType\\\":\\\"TP\\\",\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"ts\\\":1730194206843133000,\\\"type\\\":\\\"open\\\"},\\\"subject\\\":\\\"stopOrder\\\",\\\"id\\\":\\\"6720ab1ea52a9b0001734392\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_stopOrders"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/marginMode/contract/marginMode": {
+            "trace": {
+                "summary": "the margin mode change",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of margin mode change event of a symbol",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "marginMode",
+                "x-topic": "/contract/marginMode",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/marginMode\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"ETHUSDTM\\\":\\\"ISOLATED\\\"},\\\"subject\\\":\\\"user.config\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_marginMode"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crossLeverage/contract/crossLeverage": {
+            "trace": {
+                "summary": "the leverage change push",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of leverage change of contracts that are in cross margin mode",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "crossLeverage",
+                "x-topic": "/contract/crossLeverage",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/crossLeverage\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"ETHUSDTM\\\":{\\\"leverage\\\":\\\"8\\\"}},\\\"subject\\\":\\\"user.config\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_crossLeverage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/allOrder/contractMarket/tradeOrders": {
+            "trace": {
+                "summary": "All Order change pushes.",
+                "deprecated": "false",
+                "description": "Push order changes for all symbol",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "allOrder",
+                "x-topic": "/contractMarket/tradeOrders",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tradeOrders:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"symbolOrderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"side\\\":\\\"buy\\\",\\\"canceledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"247899236673269761\\\",\\\"liquidity\\\":\\\"maker\\\",\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"type\\\":\\\"open\\\",\\\"orderTime\\\":1731916985768138917,\\\"size\\\":\\\"1\\\",\\\"filledSize\\\":\\\"0\\\",\\\"price\\\":\\\"91670\\\",\\\"remainSize\\\":\\\"1\\\",\\\"status\\\":\\\"open\\\",\\\"ts\\\":1731916985789000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_allOrders"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/allPosition/contract/positionAll": {
+            "trace": {
+                "summary": "All symbol position change events push",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the realtime push of position change event of all symbol",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "allPosition",
+                "x-topic": "/contract/positionAll",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/position:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"maintMarginReq\\\":0.005,\\\"riskLimit\\\":500000,\\\"realLeverage\\\":4.9685590767,\\\"crossMode\\\":false,\\\"delevPercentage\\\":0.10,\\\"openingTimestamp\\\":1731916913097,\\\"autoDeposit\\\":true,\\\"currentTimestamp\\\":1731924561514,\\\"currentQty\\\":1,\\\"currentCost\\\":91.5306,\\\"currentComm\\\":0.09179284,\\\"unrealisedCost\\\":91.6945,\\\"realisedCost\\\":-0.07210716,\\\"isOpen\\\":true,\\\"markPrice\\\":91839.79,\\\"markValue\\\":91.83979,\\\"posCost\\\":91.6945,\\\"posCross\\\":0,\\\"posInit\\\":18.3389,\\\"posComm\\\":0.06602004,\\\"posLoss\\\":0,\\\"posMargin\\\":18.40492004,\\\"posFunding\\\":0,\\\"posMaint\\\":0.5634627025,\\\"maintMargin\\\":18.55021004,\\\"avgEntryPrice\\\":91694.5,\\\"liquidationPrice\\\":73853.0426625,\\\"bankruptPrice\\\":73355.6,\\\"settleCurrency\\\":\\\"USDT\\\",\\\"changeReason\\\":\\\"positionChange\\\",\\\"riskLimitLevel\\\":2,\\\"realisedGrossCost\\\":-0.1639,\\\"realisedGrossPnl\\\":0.1639,\\\"realisedPnl\\\":0.07210716,\\\"unrealisedPnl\\\":0.14529,\\\"unrealisedPnlPcnt\\\":0.0016,\\\"unrealisedRoePcnt\\\":0.0079,\\\"leverage\\\":4.9685590767,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"positionSide\\\":\\\"BOTH\\\"},\\\"subject\\\":\\\"position.change\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\"}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_allPosition"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Futures_futures_private_orders": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "enum": [
+                            "orderChange",
+                            "symbolOrderChange"
+                        ],
+                        "x-api-enum": [
+                            {
+                                "value": "orderChange",
+                                "name": "orderChange",
+                                "description": "orderChange"
+                            },
+                            {
+                                "value": "symbolOrderChange",
+                                "name": "symbolOrderChange",
+                                "description": "symbolOrderChange"
+                            }
+                        ]
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) "
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "enum": [
+                                    "limit",
+                                    "market"
+                                ],
+                                "description": "User-specified order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "limit",
+                                        "name": "limit",
+                                        "description": "limit"
+                                    },
+                                    {
+                                        "value": "market",
+                                        "name": "market",
+                                        "description": "market"
+                                    }
+                                ]
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "canceledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of cancellations"
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "enum": [
+                                    "ISOLATED",
+                                    "CROSS"
+                                ],
+                                "description": "Margin Mode",
+                                "x-api-enum": [
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "Isolated Margin"
+                                    },
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "Cross Margin"
+                                    }
+                                ]
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "Order Type",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "update",
+                                    "filled",
+                                    "canceled"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                    },
+                                    {
+                                        "value": "update",
+                                        "name": "update",
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                    },
+                                    {
+                                        "value": "filled",
+                                        "name": "filled",
+                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
+                                    },
+                                    {
+                                        "value": "canceled",
+                                        "name": "canceled",
+                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
+                                    }
+                                ]
+                            },
+                            "orderTime": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Order time(Nanosecond)"
+                            },
+                            "size": {
+                                "type": "string",
+                                "description": "User-specified order size"
+                            },
+                            "filledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of filled"
+                            },
+                            "price": {
+                                "type": "string",
+                                "description": "Price"
+                            },
+                            "remainSize": {
+                                "type": "string",
+                                "description": "Remain size"
+                            },
+                            "status": {
+                                "type": "string",
+                                "description": "Order Status",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "done"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "when taker order executes with orders in the order book, the taker order status is “match”"
+                                    },
+                                    {
+                                        "value": "done",
+                                        "name": "done",
+                                        "description": "the order is fully executed successfully"
+                                    }
+                                ]
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Push time(Nanosecond)"
+                            },
+                            "liquidity": {
+                                "type": "string",
+                                "enum": [
+                                    "taker",
+                                    "maker"
+                                ],
+                                "description": "Actual transaction order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "taker",
+                                        "name": "taker",
+                                        "description": "taker"
+                                    },
+                                    {
+                                        "value": "maker",
+                                        "name": "maker",
+                                        "description": "maker"
+                                    }
+                                ]
+                            },
+                            "feeType": {
+                                "type": "string",
+                                "enum": [
+                                    "takerFee",
+                                    "makerFee"
+                                ],
+                                "description": "Actual Fee Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "takerFee",
+                                        "name": "takerFee",
+                                        "description": "takerFee"
+                                    },
+                                    {
+                                        "value": "makerFee",
+                                        "name": "makerFee",
+                                        "description": "makerFee"
+                                    }
+                                ]
+                            },
+                            "matchPrice": {
+                                "type": "string",
+                                "description": "Match Price(when the type is \"match\")"
+                            },
+                            "matchSize": {
+                                "type": "string",
+                                "description": "Match Size (when the type is \"match\")"
+                            },
+                            "tradeId": {
+                                "type": "string",
+                                "description": "Trade id, it is generated by Matching engine."
+                            },
+                            "oldSize": {
+                                "type": "string",
+                                "description": "The size before order update"
+                            },
+                            "clientOid": {
+                                "type": "string",
+                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "orderType",
+                            "side",
+                            "canceledSize",
+                            "orderId",
+                            "marginMode",
+                            "type",
+                            "orderTime",
+                            "size",
+                            "filledSize",
+                            "price",
+                            "remainSize",
+                            "status",
+                            "ts"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Futures_futures_private_balance": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "crossPosMargin": {
+                                "type": "string",
+                                "description": "Margin of the cross margin position"
+                            },
+                            "isolatedOrderMargin": {
+                                "type": "string",
+                                "description": "Margin of the isolated margin order"
+                            },
+                            "holdBalance": {
+                                "type": "string",
+                                "description": "Frozen Balance"
+                            },
+                            "equity": {
+                                "type": "string",
+                                "description": "Equity"
+                            },
+                            "version": {
+                                "type": "string",
+                                "description": "Version. When holding a cross margin position, the available balance may change with fluctuations in the mark price, leading to discrepancies in the available balance for the same version number."
+                            },
+                            "availableBalance": {
+                                "type": "string",
+                                "description": "Available Balance"
+                            },
+                            "isolatedPosMargin": {
+                                "type": "string",
+                                "description": "Margin of the isolated margin position, including isolated margin funding fees"
+                            },
+                            "walletBalance": {
+                                "type": "string",
+                                "description": "Wallet Balance"
+                            },
+                            "isolatedFundingFeeMargin": {
+                                "type": "string",
+                                "description": "Isolated margin funding fee"
+                            },
+                            "crossUnPnl": {
+                                "type": "string",
+                                "description": "Unrealized PNL in cross margin mode"
+                            },
+                            "totalCrossMargin": {
+                                "type": "string",
+                                "description": "Total margin under cross margin mode"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "description": "Currency Symbol"
+                            },
+                            "isolatedUnPnl": {
+                                "type": "string",
+                                "description": " Unrealized PNL in isolated margin mode"
+                            },
+                            "crossOrderMargin": {
+                                "type": "string",
+                                "description": "Margin of the cross margin order"
+                            },
+                            "timestamp": {
+                                "type": "string",
+                                "description": "Last modified time"
+                            }
+                        },
+                        "required": [
+                            "crossPosMargin",
+                            "isolatedOrderMargin",
+                            "holdBalance",
+                            "equity",
+                            "version",
+                            "availableBalance",
+                            "isolatedPosMargin",
+                            "walletBalance",
+                            "isolatedFundingFeeMargin",
+                            "crossUnPnl",
+                            "totalCrossMargin",
+                            "currency",
+                            "isolatedUnPnl",
+                            "crossOrderMargin",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "id",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Futures_futures_private_position": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "description": "Deprecated, will detele later"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) ",
+                                "example": [
+                                    "XBTUSDTM",
+                                    "XBTUSDM",
+                                    "ETHUSDTM"
+                                ]
+                            },
+                            "crossMode": {
+                                "type": "boolean",
+                                "description": "Whether it is cross margin."
+                            },
+                            "delevPercentage": {
+                                "type": "number",
+                                "description": "ADL ranking percentile\n"
+                            },
+                            "openingTimestamp": {
+                                "type": "integer",
+                                "description": "Open time\n",
+                                "format": "int64"
+                            },
+                            "currentTimestamp": {
+                                "type": "integer",
+                                "description": "Current timestamp\n",
+                                "format": "int64"
+                            },
+                            "currentQty": {
+                                "type": "integer",
+                                "description": "Current postion quantity\n"
+                            },
+                            "currentCost": {
+                                "type": "number",
+                                "description": "Current postion value\n"
+                            },
+                            "currentComm": {
+                                "type": "number",
+                                "description": "Current commission\n"
+                            },
+                            "unrealisedCost": {
+                                "type": "number",
+                                "description": "Unrealised value\n"
+                            },
+                            "realisedGrossCost": {
+                                "type": "number",
+                                "description": "Accumulated realised gross profit value\n"
+                            },
+                            "realisedCost": {
+                                "type": "number",
+                                "description": "Current realised position value\n"
+                            },
+                            "isOpen": {
+                                "type": "boolean",
+                                "description": "Opened position or not\n"
+                            },
+                            "markPrice": {
+                                "type": "number",
+                                "description": "Mark price\n"
+                            },
+                            "markValue": {
+                                "type": "number",
+                                "description": "Mark Value\n"
+                            },
+                            "posCost": {
+                                "type": "number",
+                                "description": "Position value\n"
+                            },
+                            "posInit": {
+                                "type": "number",
+                                "description": "Inital margin Cross = opening value/cross leverage; isolated = accumulation of initial margin for each transaction\n"
+                            },
+                            "posMargin": {
+                                "type": "number",
+                                "description": "Bankruptcy cost Cross = mark value * imr; Isolated = position margin (accumulation of initial margin, additional margin, generated funding fees, etc.)\n"
+                            },
+                            "realisedGrossPnl": {
+                                "type": "number",
+                                "description": "Accumulated realised gross profit value\n"
+                            },
+                            "realisedPnl": {
+                                "type": "number",
+                                "description": "Realised profit and loss\n"
+                            },
+                            "unrealisedPnl": {
+                                "type": "number",
+                                "description": "Unrealised profit and loss\n"
+                            },
+                            "unrealisedPnlPcnt": {
+                                "type": "number",
+                                "description": "Profit-loss ratio of the position\n"
+                            },
+                            "unrealisedRoePcnt": {
+                                "type": "number",
+                                "description": "Rate of return on investment\n"
+                            },
+                            "avgEntryPrice": {
+                                "type": "number",
+                                "description": "Average entry price\n"
+                            },
+                            "liquidationPrice": {
+                                "type": "number",
+                                "description": "Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.\n"
+                            },
+                            "bankruptPrice": {
+                                "type": "number",
+                                "description": "Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.\n"
+                            },
+                            "settleCurrency": {
+                                "type": "string",
+                                "description": "Currency used to clear and settle the trades\n"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "description": "Margin Mode: CROSS，ISOLATED\n",
+                                "enum": [
+                                    "CROSS",
+                                    "ISOLATED"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "cross margin"
+                                    },
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "isolated margin"
+                                    }
+                                ]
+                            },
+                            "positionSide": {
+                                "type": "string",
+                                "description": "Position Side\n",
+                                "enum": [
+                                    "BOTH"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "BOTH",
+                                        "name": "BOTH",
+                                        "description": "One-way position"
+                                    }
+                                ]
+                            },
+                            "leverage": {
+                                "type": "number",
+                                "description": "Leverage"
+                            },
+                            "autoDeposit": {
+                                "type": "boolean",
+                                "description": "Auto deposit margin or not **Only applicable to Isolated Margin**\n"
+                            },
+                            "maintMarginReq": {
+                                "type": "number",
+                                "description": "Maintenance margin requirement **Only applicable to Isolated Margin**\n"
+                            },
+                            "riskLimit": {
+                                "type": "integer",
+                                "description": "Risk limit **Only applicable to Isolated Margin**\n"
+                            },
+                            "realLeverage": {
+                                "type": "number",
+                                "description": "Leverage of the order **Only applicable to Isolated Margin**\n"
+                            },
+                            "posCross": {
+                                "type": "number",
+                                "description": "added margin **Only applicable to Isolated Margin**\n"
+                            },
+                            "posComm": {
+                                "type": "number",
+                                "description": "Bankruptcy cost **Only applicable to Isolated Margin**\n"
+                            },
+                            "posLoss": {
+                                "type": "number",
+                                "description": "Funding fees paid out **Only applicable to Isolated Margin**\n"
+                            },
+                            "posFunding": {
+                                "type": "number",
+                                "description": "The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin**\n"
+                            },
+                            "posMaint": {
+                                "type": "number",
+                                "description": "Maintenance margin **Only applicable to Isolated Margin**\n"
+                            },
+                            "maintMargin": {
+                                "type": "number",
+                                "description": "Position margin **Only applicable to Isolated Margin**\n"
+                            },
+                            "fundingTime": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Funding time"
+                            },
+                            "qty": {
+                                "type": "integer",
+                                "description": "Position size"
+                            },
+                            "fundingRate": {
+                                "type": "number",
+                                "description": "Funding rate"
+                            },
+                            "fundingFee": {
+                                "type": "number",
+                                "description": "Funding fees"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Funding Fee Settlement Time (nanosecond)"
+                            },
+                            "success": {
+                                "type": "boolean",
+                                "description": "Adjustment isolated margin risk limit level successful or not"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "description": "Adjustment isolated margin risk limit level failure reason"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "crossMode",
+                            "delevPercentage",
+                            "openingTimestamp",
+                            "currentTimestamp",
+                            "currentQty",
+                            "currentCost",
+                            "currentComm",
+                            "unrealisedCost",
+                            "realisedGrossCost",
+                            "realisedCost",
+                            "isOpen",
+                            "markPrice",
+                            "markValue",
+                            "posCost",
+                            "posInit",
+                            "posMargin",
+                            "realisedGrossPnl",
+                            "realisedPnl",
+                            "unrealisedPnl",
+                            "unrealisedPnlPcnt",
+                            "unrealisedRoePcnt",
+                            "avgEntryPrice",
+                            "liquidationPrice",
+                            "bankruptPrice",
+                            "settleCurrency",
+                            "marginMode",
+                            "positionSide",
+                            "leverage"
+                        ]
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "userId",
+                    "topic",
+                    "subject",
+                    "data",
+                    "type",
+                    "channelType"
+                ]
+            },
+            "Futures_futures_private_stopOrders": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "enum": [
+                                    "ISOLATED",
+                                    "CROSS"
+                                ],
+                                "description": "Margin Mode",
+                                "x-api-enum": [
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "Isolated Margin"
+                                    },
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "Cross Margin"
+                                    }
+                                ]
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "orderPrice": {
+                                "type": "string",
+                                "description": "Order price"
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "description": "User-specified order type",
+                                "enum": [
+                                    "stop"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "stop",
+                                        "name": "stop",
+                                        "description": "Stop order"
+                                    }
+                                ]
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "size": {
+                                "type": "integer",
+                                "description": "User-specified order size"
+                            },
+                            "stop": {
+                                "type": "string",
+                                "description": "Either 'down' or 'up'",
+                                "enum": [
+                                    "down",
+                                    "up"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "down",
+                                        "name": "down",
+                                        "description": "Triggers when the price reaches or goes below the stopPrice"
+                                    },
+                                    {
+                                        "value": "up",
+                                        "name": "up",
+                                        "description": "Triggers when the price reaches or goes above the stopPrice"
+                                    }
+                                ]
+                            },
+                            "stopPrice": {
+                                "type": "string",
+                                "description": "Stop Price"
+                            },
+                            "stopPriceType": {
+                                "type": "string"
+                            },
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) "
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "Order Type",
+                                "enum": [
+                                    "open",
+                                    "triggered",
+                                    "cancel"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "triggered",
+                                        "name": "triggered",
+                                        "description": "when the stop order has been triggered"
+                                    },
+                                    {
+                                        "value": "cancel",
+                                        "name": "cancel",
+                                        "description": "when the order has been canceled"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "marginMode",
+                            "orderId",
+                            "orderPrice",
+                            "orderType",
+                            "side",
+                            "size",
+                            "stop",
+                            "stopPrice",
+                            "stopPriceType",
+                            "symbol",
+                            "ts",
+                            "type"
+                        ]
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "data",
+                    "subject",
+                    "id",
+                    "userId",
+                    "channelType"
+                ]
+            },
+            "Futures_futures_private_marginMode": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "SYMBOL": {
+                                "type": "string",
+                                "description": "The SYMBOL is the key with value \n\"CROSS\" or \"ISOLATED\""
+                            }
+                        },
+                        "required": [
+                            "SYMBOL"
+                        ]
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "data",
+                    "subject",
+                    "userId",
+                    "channelType"
+                ]
+            },
+            "Futures_futures_private_crossLeverage": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {},
+                        "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                                "leverage": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "leverage"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Futures_futures_private_allOrders": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "enum": [
+                            "orderChange",
+                            "symbolOrderChange"
+                        ],
+                        "x-api-enum": [
+                            {
+                                "value": "orderChange",
+                                "name": "orderChange",
+                                "description": "orderChange"
+                            },
+                            {
+                                "value": "symbolOrderChange",
+                                "name": "symbolOrderChange",
+                                "description": "symbolOrderChange"
+                            }
+                        ]
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) "
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "enum": [
+                                    "limit",
+                                    "market"
+                                ],
+                                "description": "User-specified order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "limit",
+                                        "name": "limit",
+                                        "description": "limit"
+                                    },
+                                    {
+                                        "value": "market",
+                                        "name": "market",
+                                        "description": "market"
+                                    }
+                                ]
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "canceledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of cancellations"
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "enum": [
+                                    "ISOLATED",
+                                    "CROSS"
+                                ],
+                                "description": "Margin Mode",
+                                "x-api-enum": [
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "Isolated Margin"
+                                    },
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "Cross Margin"
+                                    }
+                                ]
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "Order Type",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "update",
+                                    "filled",
+                                    "canceled"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                    },
+                                    {
+                                        "value": "update",
+                                        "name": "update",
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                    },
+                                    {
+                                        "value": "filled",
+                                        "name": "filled",
+                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
+                                    },
+                                    {
+                                        "value": "canceled",
+                                        "name": "canceled",
+                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
+                                    }
+                                ]
+                            },
+                            "orderTime": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Order time(Nanosecond)"
+                            },
+                            "size": {
+                                "type": "string",
+                                "description": "User-specified order size"
+                            },
+                            "filledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of filled"
+                            },
+                            "price": {
+                                "type": "string",
+                                "description": "Price"
+                            },
+                            "remainSize": {
+                                "type": "string",
+                                "description": "Remain size"
+                            },
+                            "status": {
+                                "type": "string",
+                                "description": "Order Status",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "done"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "when taker order executes with orders in the order book, the taker order status is “match”"
+                                    },
+                                    {
+                                        "value": "done",
+                                        "name": "done",
+                                        "description": "the order is fully executed successfully"
+                                    }
+                                ]
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Push time(Nanosecond)"
+                            },
+                            "liquidity": {
+                                "type": "string",
+                                "enum": [
+                                    "taker",
+                                    "maker"
+                                ],
+                                "description": "Actual transaction order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "taker",
+                                        "name": "taker",
+                                        "description": "taker"
+                                    },
+                                    {
+                                        "value": "maker",
+                                        "name": "maker",
+                                        "description": "maker"
+                                    }
+                                ]
+                            },
+                            "feeType": {
+                                "type": "string",
+                                "enum": [
+                                    "takerFee",
+                                    "makerFee"
+                                ],
+                                "description": "Actual Fee Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "takerFee",
+                                        "name": "takerFee",
+                                        "description": "takerFee"
+                                    },
+                                    {
+                                        "value": "makerFee",
+                                        "name": "makerFee",
+                                        "description": "makerFee"
+                                    }
+                                ]
+                            },
+                            "matchPrice": {
+                                "type": "string",
+                                "description": "Match Price(when the type is \"match\")"
+                            },
+                            "matchSize": {
+                                "type": "string",
+                                "description": "Match Size (when the type is \"match\")"
+                            },
+                            "tradeId": {
+                                "type": "string",
+                                "description": "Trade id, it is generated by Matching engine."
+                            },
+                            "oldSize": {
+                                "type": "string",
+                                "description": "The size before order update"
+                            },
+                            "clientOid": {
+                                "type": "string",
+                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "orderType",
+                            "side",
+                            "canceledSize",
+                            "orderId",
+                            "marginMode",
+                            "type",
+                            "orderTime",
+                            "size",
+                            "filledSize",
+                            "price",
+                            "remainSize",
+                            "status",
+                            "ts"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Futures_futures_private_allPosition": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "description": "Deprecated, will detele later"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) ",
+                                "example": [
+                                    "XBTUSDTM",
+                                    "XBTUSDM",
+                                    "ETHUSDTM"
+                                ]
+                            },
+                            "crossMode": {
+                                "type": "boolean",
+                                "description": "Whether it is cross margin."
+                            },
+                            "delevPercentage": {
+                                "type": "number",
+                                "description": "ADL ranking percentile\n"
+                            },
+                            "openingTimestamp": {
+                                "type": "integer",
+                                "description": "Open time\n",
+                                "format": "int64"
+                            },
+                            "currentTimestamp": {
+                                "type": "integer",
+                                "description": "Current timestamp\n",
+                                "format": "int64"
+                            },
+                            "currentQty": {
+                                "type": "integer",
+                                "description": "Current postion quantity\n"
+                            },
+                            "currentCost": {
+                                "type": "number",
+                                "description": "Current postion value\n"
+                            },
+                            "currentComm": {
+                                "type": "number",
+                                "description": "Current commission\n"
+                            },
+                            "unrealisedCost": {
+                                "type": "number",
+                                "description": "Unrealised value\n"
+                            },
+                            "realisedGrossCost": {
+                                "type": "number",
+                                "description": "Accumulated realised gross profit value\n"
+                            },
+                            "realisedCost": {
+                                "type": "number",
+                                "description": "Current realised position value\n"
+                            },
+                            "isOpen": {
+                                "type": "boolean",
+                                "description": "Opened position or not\n"
+                            },
+                            "markPrice": {
+                                "type": "number",
+                                "description": "Mark price\n"
+                            },
+                            "markValue": {
+                                "type": "number",
+                                "description": "Mark Value\n"
+                            },
+                            "posCost": {
+                                "type": "number",
+                                "description": "Position value\n"
+                            },
+                            "posInit": {
+                                "type": "number",
+                                "description": "Inital margin Cross = opening value/cross leverage; isolated = accumulation of initial margin for each transaction\n"
+                            },
+                            "posMargin": {
+                                "type": "number",
+                                "description": "Bankruptcy cost Cross = mark value * imr; Isolated = position margin (accumulation of initial margin, additional margin, generated funding fees, etc.)\n"
+                            },
+                            "realisedGrossPnl": {
+                                "type": "number",
+                                "description": "Accumulated realised gross profit value\n"
+                            },
+                            "realisedPnl": {
+                                "type": "number",
+                                "description": "Realised profit and loss\n"
+                            },
+                            "unrealisedPnl": {
+                                "type": "number",
+                                "description": "Unrealised profit and loss\n"
+                            },
+                            "unrealisedPnlPcnt": {
+                                "type": "number",
+                                "description": "Profit-loss ratio of the position\n"
+                            },
+                            "unrealisedRoePcnt": {
+                                "type": "number",
+                                "description": "Rate of return on investment\n"
+                            },
+                            "avgEntryPrice": {
+                                "type": "number",
+                                "description": "Average entry price\n"
+                            },
+                            "liquidationPrice": {
+                                "type": "number",
+                                "description": "Liquidation price For Cross Margin, you can refer to the liquidationPrice, and the liquidation is based on the risk rate.\n"
+                            },
+                            "bankruptPrice": {
+                                "type": "number",
+                                "description": "Bankruptcy price For Cross Margin, you can refer to the bankruptPrice, and the liquidation is based on the risk rate.\n"
+                            },
+                            "settleCurrency": {
+                                "type": "string",
+                                "description": "Currency used to clear and settle the trades\n"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "description": "Margin Mode: CROSS，ISOLATED\n",
+                                "enum": [
+                                    "CROSS",
+                                    "ISOLATED"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "cross margin"
+                                    },
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "isolated margin"
+                                    }
+                                ]
+                            },
+                            "positionSide": {
+                                "type": "string",
+                                "description": "Position Side\n",
+                                "enum": [
+                                    "BOTH"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "BOTH",
+                                        "name": "BOTH",
+                                        "description": "One-way position"
+                                    }
+                                ]
+                            },
+                            "leverage": {
+                                "type": "number",
+                                "description": "Leverage"
+                            },
+                            "autoDeposit": {
+                                "type": "boolean",
+                                "description": "Auto deposit margin or not **Only applicable to Isolated Margin**\n"
+                            },
+                            "maintMarginReq": {
+                                "type": "number",
+                                "description": "Maintenance margin requirement **Only applicable to Isolated Margin**\n"
+                            },
+                            "riskLimit": {
+                                "type": "integer",
+                                "description": "Risk limit **Only applicable to Isolated Margin**\n"
+                            },
+                            "realLeverage": {
+                                "type": "number",
+                                "description": "Leverage of the order **Only applicable to Isolated Margin**\n"
+                            },
+                            "posCross": {
+                                "type": "number",
+                                "description": "added margin **Only applicable to Isolated Margin**\n"
+                            },
+                            "posComm": {
+                                "type": "number",
+                                "description": "Bankruptcy cost **Only applicable to Isolated Margin**\n"
+                            },
+                            "posLoss": {
+                                "type": "number",
+                                "description": "Funding fees paid out **Only applicable to Isolated Margin**\n"
+                            },
+                            "posFunding": {
+                                "type": "number",
+                                "description": "The current remaining unsettled funding fee for the position **Only applicable to Isolated Margin**\n"
+                            },
+                            "posMaint": {
+                                "type": "number",
+                                "description": "Maintenance margin **Only applicable to Isolated Margin**\n"
+                            },
+                            "maintMargin": {
+                                "type": "number",
+                                "description": "Position margin **Only applicable to Isolated Margin**\n"
+                            },
+                            "fundingTime": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Funding time"
+                            },
+                            "qty": {
+                                "type": "integer",
+                                "description": "Position size"
+                            },
+                            "fundingRate": {
+                                "type": "number",
+                                "description": "Funding rate"
+                            },
+                            "fundingFee": {
+                                "type": "number",
+                                "description": "Funding fees"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Funding Fee Settlement Time (nanosecond)"
+                            },
+                            "success": {
+                                "type": "boolean",
+                                "description": "Adjustment isolated margin risk limit level successful or not"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "description": "Adjustment isolated margin risk limit level failure reason"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "crossMode",
+                            "delevPercentage",
+                            "openingTimestamp",
+                            "currentTimestamp",
+                            "currentQty",
+                            "currentCost",
+                            "currentComm",
+                            "unrealisedCost",
+                            "realisedGrossCost",
+                            "realisedCost",
+                            "isOpen",
+                            "markPrice",
+                            "markValue",
+                            "posCost",
+                            "posInit",
+                            "posMargin",
+                            "realisedGrossPnl",
+                            "realisedPnl",
+                            "unrealisedPnl",
+                            "unrealisedPnlPcnt",
+                            "unrealisedRoePcnt",
+                            "avgEntryPrice",
+                            "liquidationPrice",
+                            "bankruptPrice",
+                            "settleCurrency",
+                            "marginMode",
+                            "positionSide",
+                            "leverage"
+                        ]
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "userId",
+                    "topic",
+                    "subject",
+                    "data",
+                    "type",
+                    "channelType"
+                ]
+            }
+        }
+    }
+}

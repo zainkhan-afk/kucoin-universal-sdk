@@ -1,0 +1,170 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "affiliate",
+        "description": "affiliate",
+        "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+        "/api/v2/affiliate/inviter/statistics": {
+            "get": {
+                "summary": "Get Account",
+                "deprecated": false,
+                "description": "This endpoint allows getting affiliate user rebate information.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "parentUid": {
+                                                    "type": "string",
+                                                    "description": "Master account UID"
+                                                },
+                                                "orders": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "orderId": {
+                                                                "type": "string",
+                                                                "description": "Loan Orders ID"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "Loan Currency"
+                                                            },
+                                                            "principal": {
+                                                                "type": "string",
+                                                                "description": "Principal to Be Repaid"
+                                                            },
+                                                            "interest": {
+                                                                "type": "string",
+                                                                "description": "Interest to Be Repaid"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "orderId",
+                                                            "currency",
+                                                            "principal",
+                                                            "interest"
+                                                        ]
+                                                    },
+                                                    "description": "Loan Orders"
+                                                },
+                                                "ltv": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "transferLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Restricted Transfers to Funding Account"
+                                                        },
+                                                        "onlyClosePosLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Reduce Only (Restricted Open Positions)"
+                                                        },
+                                                        "delayedLiquidationLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Delayed Liquidation"
+                                                        },
+                                                        "instantLiquidationLtv": {
+                                                            "type": "string",
+                                                            "description": "LTV of Instant Liquidation"
+                                                        },
+                                                        "currentLtv": {
+                                                            "type": "string",
+                                                            "description": "Current LTV"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "transferLtv",
+                                                        "onlyClosePosLtv",
+                                                        "delayedLiquidationLtv",
+                                                        "instantLiquidationLtv",
+                                                        "currentLtv"
+                                                    ],
+                                                    "description": "Loan-to-Value Ratio\n"
+                                                },
+                                                "totalMarginAmount": {
+                                                    "type": "string",
+                                                    "description": "Total Margin Amount (USDT)"
+                                                },
+                                                "transferMarginAmount": {
+                                                    "type": "string",
+                                                    "description": "Total Maintenance Margin for Restricted Transfers (USDT)"
+                                                },
+                                                "margins": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "marginCcy": {
+                                                                "type": "string",
+                                                                "description": "Margin Currency"
+                                                            },
+                                                            "marginQty": {
+                                                                "type": "string",
+                                                                "description": "Maintenance Quantity (Calculated with Margin Coefficient)"
+                                                            },
+                                                            "marginFactor": {
+                                                                "type": "string",
+                                                                "description": "Margin Coefficient return real time margin discount rate to USDT"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "marginCcy",
+                                                            "marginQty",
+                                                            "marginFactor"
+                                                        ]
+                                                    },
+                                                    "description": "Margins"
+                                                }
+                                            },
+                                            "required": [
+                                                "parentUid",
+                                                "orders",
+                                                "ltv",
+                                                "totalMarginAmount",
+                                                "transferMarginAmount",
+                                                "margins"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Affiliate",
+                "x-sdk-sub-service": "Affiliate",
+                "x-sdk-method-name": "getAccount",
+                "x-sdk-method-description": "This endpoint allows getting affiliate user rebate information.",
+                "x-api-rate-limit": 30,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"parentUid\\\": \\\"1000000\\\",\\n        \\\"orders\\\": [\\n            {\\n                \\\"orderId\\\": \\\"1668458892612980737\\\",\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"principal\\\": \\\"100\\\",\\n                \\\"interest\\\": \\\"0\\\"\\n            }\\n        ],\\n        \\\"ltv\\\": {\\n            \\\"transferLtv\\\": \\\"0.6000\\\",\\n            \\\"onlyClosePosLtv\\\": \\\"0.7500\\\",\\n            \\\"delayedLiquidationLtv\\\": \\\"0.9000\\\",\\n            \\\"instantLiquidationLtv\\\": \\\"0.9500\\\",\\n            \\\"currentLtv\\\": \\\"0.0854\\\"\\n        },\\n        \\\"totalMarginAmount\\\": \\\"1170.36181573\\\",\\n        \\\"transferMarginAmount\\\": \\\"166.66666666\\\",\\n        \\\"margins\\\": [\\n            {\\n                \\\"marginCcy\\\": \\\"USDT\\\",\\n                \\\"marginQty\\\": \\\"1170.36181573\\\",\\n                \\\"marginFactor\\\": \\\"1.000000000000000000\\\"\\n            }\\n        ]\\n    }\\n}"
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

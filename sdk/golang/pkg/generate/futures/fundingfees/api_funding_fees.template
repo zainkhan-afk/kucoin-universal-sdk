@@ -1,0 +1,71 @@
+# API FUNCTION TEMPLATE
+
+
+func TestFundingFeesGetPublicFundingHistoryReq(t *testing.T) {
+    // GetPublicFundingHistory
+    // Get Public Funding History
+    // /api/v1/contract/funding-rates
+
+    builder := fundingfees.NewGetPublicFundingHistoryReqBuilder()
+    builder.SetSymbol(?).SetFrom(?).SetTo(?)
+    req := builder.Build()
+
+    resp, err := fundingfeesApi.GetPublicFundingHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFundingFeesGetPrivateFundingHistoryReq(t *testing.T) {
+    // GetPrivateFundingHistory
+    // Get Private Funding History
+    // /api/v1/funding-history
+
+    builder := fundingfees.NewGetPrivateFundingHistoryReqBuilder()
+    builder.SetSymbol(?).SetFrom(?).SetTo(?).SetReverse(?).SetOffset(?).SetForward(?).SetMaxCount(?)
+    req := builder.Build()
+
+    resp, err := fundingfeesApi.GetPrivateFundingHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFundingFeesGetCurrentFundingRateReq(t *testing.T) {
+    // GetCurrentFundingRate
+    // Get Current Funding Rate
+    // /api/v1/funding-rate/{symbol}/current
+
+    builder := fundingfees.NewGetCurrentFundingRateReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := fundingfeesApi.GetCurrentFundingRate(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
