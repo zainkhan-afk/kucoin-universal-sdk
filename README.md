@@ -239,6 +239,12 @@ We welcome contributions from the community! Please check out our [Contribution 
 
 This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
 
+### Third-Party Licenses
+
+This project uses the following dependency licensed under the **Apache License 2.0**:
+- **OpenAPI Generator**: For generating SDK code from OpenAPI specifications.
+
+You must comply with the terms of the Apache License 2.0 when using or distributing this dependency. For more information, refer to the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## 📧 Contact Support
 
