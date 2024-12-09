@@ -233,14 +233,7 @@ Before you begin, ensure the following dependencies are installed:
 
 ## 🤝 Contribution Guidelines
 
-We welcome contributions from the community to improve this SDK.
-
-### Steps to Contribute:
-1. Fork the repository.  
-2. Create a new branch (`git checkout -b feature/your-feature`).  
-3. Commit your changes (`git commit -m 'Add your feature'`).  
-4. Push the branch (`git push origin feature/your-feature`).  
-5. Open a pull request.  
+We welcome contributions from the community! Please check out our [Contribution Guidelines](CONTRIBUTING.md) for details on how to get involved.
 
 ## 📝 License
 
