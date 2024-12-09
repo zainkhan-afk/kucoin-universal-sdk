@@ -1,6 +1,6 @@
 IMAGE_NAME=sdk-tools
 IMAGE_TAG=1.0
-VERSION := 0.1
+VERSION := $(shell cat VERSION)
 DATE := $(shell date +%Y-%m-%d)
 
 RED=\033[0;31m

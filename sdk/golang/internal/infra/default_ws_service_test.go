@@ -74,7 +74,7 @@ func assertTopicPrefix(t *testing.T, wsService *DefaultWsService, count int) {
 func TestDefaultWsService_Subscribe_Timeout(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Millisecond * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -88,7 +88,7 @@ func TestDefaultWsService_Subscribe_Timeout(t *testing.T) {
 func TestDefaultWsService_Subscribe_Ok(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -101,7 +101,7 @@ func TestDefaultWsService_Subscribe_Ok(t *testing.T) {
 func TestDefaultWsService_Subscribe_Multiple(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -124,7 +124,7 @@ func TestDefaultWsService_Subscribe_Multiple(t *testing.T) {
 func TestDefaultWsService_Subscribe_Multiple2(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -147,7 +147,7 @@ func TestDefaultWsService_Subscribe_Multiple2(t *testing.T) {
 func TestDefaultWsService_Subscribe_SameTopic(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -164,7 +164,7 @@ func TestDefaultWsService_Subscribe_SameTopic(t *testing.T) {
 func TestDefaultWsService_Subscribe_SameTopic2(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -185,7 +185,7 @@ func TestDefaultWsService_Subscribe_SameTopic2(t *testing.T) {
 func TestDefaultWsService_Subscribe_SameTopic3(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -209,7 +209,7 @@ func TestDefaultWsService_Subscribe_SameTopic3(t *testing.T) {
 func TestDefaultWsService_Unsubscribe(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -233,7 +233,7 @@ func TestDefaultWsService_Unsubscribe(t *testing.T) {
 func TestDefaultWsService_Unsubscribe2(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -252,7 +252,7 @@ func TestDefaultWsService_Unsubscribe2(t *testing.T) {
 func TestDefaultWsService_Unsubscribe3(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{}
 	wsService.Start()
 	defer wsService.Stop()
@@ -281,7 +281,7 @@ func TestDefaultWsService_CB(t *testing.T) {
 	readMsg := make(chan *types.WsMessage, 10)
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{readMsg: readMsg}
 	wsService.Start()
 	defer wsService.Stop()
@@ -316,7 +316,7 @@ func TestDefaultWsService_CB_2(t *testing.T) {
 	readMsg := make(chan *types.WsMessage, 10)
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	wsService.client = &websocketClientMock{readMsg: readMsg}
 	wsService.Start()
 	defer wsService.Stop()
@@ -365,7 +365,7 @@ func TestDefaultWsService_CB_2(t *testing.T) {
 func TestDefaultWsService_ReSubscribe(t *testing.T) {
 	websocketOption := types.NewWebSocketClientOptionBuilder().WithWriteTimeout(time.Second * 10).Build()
 	clientOption := types.NewClientOptionBuilder().WithWebSocketClientOption(websocketOption).Build()
-	wsService, _ := NewDefaultWsService(clientOption, "", true).(*DefaultWsService)
+	wsService, _ := NewDefaultWsService(clientOption, "", true, "").(*DefaultWsService)
 	mock := &websocketClientMock{}
 	mock.resubMsg = make(chan struct{}, 1)
 	wsService.client = mock

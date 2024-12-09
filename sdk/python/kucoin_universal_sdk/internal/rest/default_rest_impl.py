@@ -7,6 +7,7 @@ from kucoin_universal_sdk.generate.service.futures_api import FuturesService, Fu
 from kucoin_universal_sdk.generate.service.margin_api import MarginService, MarginServiceImpl
 from kucoin_universal_sdk.generate.service.spot_api import SpotService, SpotServiceImpl
 from kucoin_universal_sdk.generate.service.viplending_api import VIPLendingService, VIPLendingServiceImpl
+from kucoin_universal_sdk.generate.version import sdk_version
 from kucoin_universal_sdk.internal.infra.default_transport import DefaultTransport
 from kucoin_universal_sdk.model.client_option import ClientOption
 
@@ -16,7 +17,7 @@ class DefaultKucoinRestAPIImpl(KucoinRestService):
         if options is None or options.transport_option is None:
             raise Exception("no transport option provided")
 
-        transport = DefaultTransport(options)
+        transport = DefaultTransport(options, sdk_version)
 
         self.account_service = AccountServiceImpl(transport)
         self.affiliate_service = AffiliateServiceImpl(transport)

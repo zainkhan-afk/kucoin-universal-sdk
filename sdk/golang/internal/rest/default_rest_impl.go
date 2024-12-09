@@ -3,6 +3,7 @@ package rest
 import (
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/internal/infra"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
+	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/service"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
 )
@@ -23,7 +24,9 @@ func NewKuCoinDefaultRestImpl(op *types.ClientOption) *KuCoinDefaultRestImpl {
 		logger.GetLogger().Warnf("no transport option provided")
 		return nil
 	}
-	transport := infra.NewDefaultTransport(op)
+
+	logger.GetLogger().Infof("sdk version: %s", generate.SdkVersion)
+	transport := infra.NewDefaultTransport(op, generate.SdkVersion)
 
 	return &KuCoinDefaultRestImpl{
 		accountService:    service.NewAccountService(transport),

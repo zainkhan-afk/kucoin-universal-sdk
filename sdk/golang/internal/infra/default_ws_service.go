@@ -3,7 +3,6 @@ package infra
 import (
 	"context"
 	"fmt"
-
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/internal/interfaces"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/internal/util"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
@@ -19,8 +18,8 @@ type DefaultWsService struct {
 	private      bool
 }
 
-func NewDefaultWsService(option *types.ClientOption, domain string, private bool) interfaces.WebSocketService {
-	tokenTransport := NewDefaultTransport(option)
+func NewDefaultWsService(option *types.ClientOption, domain string, private bool, sdkVersion string) interfaces.WebSocketService {
+	tokenTransport := NewDefaultTransport(option, sdkVersion)
 	wsOption := option.WebSocketClientOption
 
 	client := NewWebSocketClient(NewDefaultWsTokenProvider(tokenTransport, domain, private), wsOption)

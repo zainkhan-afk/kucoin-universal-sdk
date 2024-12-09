@@ -18,12 +18,13 @@ from ..interfaces.response import Response
 from ..interfaces.transport import Transport
 
 class DefaultTransport(Transport):
-    def __init__(self, client_option: ClientOption):
+    def __init__(self, client_option: ClientOption, sdk_version: str):
         transport_option = client_option.transport_option
         if transport_option is None:
             transport_option = TransportOption()
             client_option.transport_option = transport_option
         self.client_option = client_option
+        self.sdk_version = sdk_version
 
         self.transport_option = transport_option
         self.signer = KcSigner(client_option.key, client_option.secret, client_option.passphrase,
@@ -56,7 +57,7 @@ class DefaultTransport(Transport):
 
     def process_headers(self, body: bytes, raw_url: str, request: requests.PreparedRequest, method: str, broker: bool):
         request.headers["Content-Type"] = "application/json"
-        request.headers["User-Agent"] = "Kucoin-Universal-Python-SDK/1.0"
+        request.headers["User-Agent"] = f"Kucoin-Universal-Python-SDK/{self.sdk_version}"
 
         b = BytesIO()
         b.write(method.encode())
