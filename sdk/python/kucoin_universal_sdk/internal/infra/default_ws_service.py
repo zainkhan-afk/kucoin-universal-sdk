@@ -1,6 +1,7 @@
 import logging
 import threading
 import uuid
+import queue
 from typing import List
 
 from kucoin_universal_sdk.model.client_option import ClientOption
@@ -14,7 +15,6 @@ from ..infra.default_ws_client import WebSocketClient, WriteMsg
 from ..infra.default_ws_token_provider import DefaultWsTokenProvider
 from ..interfaces.websocket import WebSocketService, WebSocketMessageCallback
 from ..util.sub import SubInfo
-
 
 class DefaultWsService(WebSocketService):
     def __init__(self, client_option: ClientOption, domain: DomainType, private: bool):
@@ -30,18 +30,22 @@ class DefaultWsService(WebSocketService):
     def recovery(self):
         def recovery_loop():
             while not self.stop_event.is_set():
-                self.client.reconnected_event.wait()
+                event_triggered = self.client.reconnected_event.wait(timeout=1)
                 if self.stop_event.is_set():
                     return
-                logging.info("WebSocket client reconnected, resubscribe...")
+                if event_triggered:
+                    logging.info("WebSocket client reconnected, resubscribe...")
 
-                old_topic_manager = self.topic_manager
-                self.topic_manager = TopicManager()
-                old_topic_manager.range(lambda _, value: self._resubscribe(value))
+                    old_topic_manager = self.topic_manager
+                    self.topic_manager = TopicManager()
+                    old_topic_manager.range(lambda _, value: self._resubscribe(value))
 
-                self.client.reconnected_event.clear()
+                    self.client.reconnected_event.clear()
+            logging.info("Recovery loop exiting...")
 
-        threading.Thread(target=recovery_loop, daemon=True).start()
+        self.recovery_thread = threading.Thread(target=recovery_loop, daemon=True)
+        self.recovery_thread.start()
+
 
     def _resubscribe(self, callback_manager: CallbackManager):
         sub_info_list = callback_manager.get_sub_info()
@@ -72,7 +76,7 @@ class DefaultWsService(WebSocketService):
         def message_loop():
             while not self.stop_event.is_set():
                 try:
-                    msg: WsMessage = self.client.read().get()
+                    msg: WsMessage = self.client.read().get(timeout=1)
                     if msg is None:
                         break
                     if msg.type != WsMessageType.MESSAGE.value:
@@ -80,12 +84,12 @@ class DefaultWsService(WebSocketService):
 
                     callback_manager = self.topic_manager.get_callback_manager(msg.topic)
                     if callback_manager is None:
-                        logging.error(f"Cannot find callback manager, topic: {msg.topic}")
+                        logging.error(f"Cannot find callback manager, id: {msg.id}, topic: {msg.topic}")
                         continue
 
                     cb = callback_manager.get(msg.topic)
                     if cb is None:
-                        logging.error(f"Cannot find callback for topic: {msg.topic}")
+                        logging.error(f"Cannot find callback for id: {msg.id}, topic: {msg.topic}")
                         continue
 
                     try:
@@ -93,16 +97,21 @@ class DefaultWsService(WebSocketService):
                     except Exception as e:
                         logging.error(f"Exception in callback: {e}")
                         self.notify_event(WebSocketEvent.EVENT_CALLBACK_ERROR, str(e))
+                except queue.Empty:
+                    continue
                 except Exception as e:
                     logging.error(f"Error in message loop: {e}")
                     break
 
-        threading.Thread(target=message_loop, daemon=True).start()
+        self.message_thread = threading.Thread(target=message_loop, daemon=True)
+        self.message_thread.start()
 
     def stop(self):
         self.stop_event.set()
         logging.info("Closing WebSocket client")
         self.client.stop()
+        self.recovery_thread.join()
+        self.message_thread.join()
 
     def subscribe(self, prefix: str, args: List[str], callback: WebSocketMessageCallback) -> str:
         try:

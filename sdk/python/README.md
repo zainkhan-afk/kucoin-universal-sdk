@@ -4,11 +4,12 @@ Welcome to the **Python** implementation of the KuCoin Universal SDK. This SDK i
 For an overview of the project and SDKs in other languages, refer to the [Main README](https://github.com/kucoin/kucoin-universal-sdk).
 
 ## 📦 Installation
+**Note:** This SDK is currently in the **Alpha phase**. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK. 
 
-Install the Python SDK using pip:
+Install the Python SDK using `pip`:
 
-```shell
-# TODO release later 
+```bash
+pip install kucoin-universal-sdk==0.1.0a1
 ```
 
 ## 📖 Getting Started

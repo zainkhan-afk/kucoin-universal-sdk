@@ -96,7 +96,7 @@ public class GolangSdkGenerator extends AbstractGoCodegen implements NameService
                 throw new RuntimeException("unsupported mode");
         }
 
-        supportingFiles.add(new SupportingFile("version.mustache", "version"));
+        supportingFiles.add(new SupportingFile("version.mustache", "version.go"));
 
         templateDir = "golang-sdk";
 

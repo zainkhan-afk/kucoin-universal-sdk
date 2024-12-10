@@ -3,6 +3,7 @@ package ws
 import (
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/internal/infra"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/common/logger"
+	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/futures/futuresprivate"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/futures/futurespublic"
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/generate/margin/marginprivate"
@@ -28,26 +29,26 @@ func NewKuCoinDefaultWsImpl(op *types.ClientOption) *KuCoinDefaultWsImpl {
 }
 
 func (impl *KuCoinDefaultWsImpl) NewSpotPublicWS() spotpublic.SpotPublicWS {
-	return spotpublic.NewSpotPublicWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, false))
+	return spotpublic.NewSpotPublicWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, false, generate.SdkVersion))
 }
 
 func (impl *KuCoinDefaultWsImpl) NewSpotPrivateWS() spotprivate.SpotPrivateWS {
-	return spotprivate.NewSpotPrivateWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, true))
+	return spotprivate.NewSpotPrivateWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, true, generate.SdkVersion))
 }
 
 func (impl *KuCoinDefaultWsImpl) NewFuturesPublicWS() futurespublic.FuturesPublicWS {
-	return futurespublic.NewFuturesPublicWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeFutures, false))
+	return futurespublic.NewFuturesPublicWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeFutures, false, generate.SdkVersion))
 }
 
 func (impl *KuCoinDefaultWsImpl) NewFuturesPrivateWS() futuresprivate.FuturesPrivateWS {
-	return futuresprivate.NewFuturesPrivateWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeFutures, true))
+	return futuresprivate.NewFuturesPrivateWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeFutures, true, generate.SdkVersion))
 }
 
 func (impl *KuCoinDefaultWsImpl) NewMarginPublicWS() marginpublic.MarginPublicWS {
-	return marginpublic.NewMarginPublicWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, false))
+	return marginpublic.NewMarginPublicWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, false, generate.SdkVersion))
 
 }
 
 func (impl *KuCoinDefaultWsImpl) NewMarginPrivateWS() marginprivate.MarginPrivateWS {
-	return marginprivate.NewMarginPrivateWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, true))
+	return marginprivate.NewMarginPrivateWSImp(infra.NewDefaultWsService(impl.option, types.DomainTypeSpot, true, generate.SdkVersion))
 }

@@ -25,11 +25,12 @@ import (
 type DefaultTransport struct {
 	clientOption    *types.ClientOption
 	transportOption *types.TransportOption
+	sdkVersion      string
 	singer          *KcSigner
 	httpClient      *http.Client
 }
 
-func NewDefaultTransport(clientOption *types.ClientOption) *DefaultTransport {
+func NewDefaultTransport(clientOption *types.ClientOption, sdkVersion string) *DefaultTransport {
 	option := clientOption.TransportOption
 	if option == nil {
 		option = types.NewTransportOption()
@@ -42,6 +43,7 @@ func NewDefaultTransport(clientOption *types.ClientOption) *DefaultTransport {
 	t := &DefaultTransport{
 		clientOption:    clientOption,
 		transportOption: option,
+		sdkVersion:      sdkVersion,
 		singer: NewKcSigner(clientOption.Key, clientOption.Secret, clientOption.Passphrase,
 			clientOption.BrokerName, clientOption.BrokerPartner, clientOption.BrokerKey),
 	}
@@ -151,7 +153,7 @@ func (t *DefaultTransport) processPathVariable(path string, request interface{})
 
 func (t *DefaultTransport) processHeaders(method string, broker bool, rawPath string, body []byte, r *http.Request) {
 	r.Header.Set("Content-Type", "application/json")
-	r.Header.Set("User-Agent", "Kucoin-Universal-Go-SDK/1.0")
+	r.Header.Set("User-Agent", "Kucoin-Universal-Go-SDK/"+t.sdkVersion)
 	var b bytes.Buffer
 	b.WriteString(method)
 	b.WriteString(rawPath)

@@ -14,7 +14,6 @@ from kucoin_universal_sdk.model.websocket_option import WebSocketClientOption
 from kucoin_universal_sdk.model.websocket_option import WebSocketEvent
 from ..interfaces.websocket import WsTokenProvider, WsToken
 
-
 class WriteMsg:
     def __init__(self, msg: WsMessage, timeout: float):
         self.msg = msg
@@ -49,6 +48,8 @@ class WebSocketClient:
         self.metric = {'ping_success': 0, 'ping_err': 0}
         self.keep_alive_thread = None
         self.write_thread = None
+        self.ws_thread = None
+        self.reconnect_thread = None
         self.welcome_received = threading.Event()
 
     def start(self):
@@ -97,8 +98,9 @@ class WebSocketClient:
                 on_close=self.on_close,
                 on_open=self.on_open,
             )
-            self.ws_thread = threading.Thread(target=self.conn.run_forever, daemon=True)
-            self.ws_thread.start()
+            if not self.ws_thread or not self.ws_thread.is_alive():
+                self.ws_thread = threading.Thread(target=self.conn.run_forever, daemon=True)
+                self.ws_thread.start()
             if not self.welcome_received.wait(timeout=5):
                 self.close()
                 self.disconnect_event.set()
@@ -192,18 +194,22 @@ class WebSocketClient:
     def keep_alive(self):
         interval = self.token_info.ping_interval / 1000.0
         timeout = self.token_info.ping_timeout / 1000.0
+        check_interval = 1
+        elapsed_time = 0
         while not self.shutdown.is_set() and not self.close_event.is_set():
-            time.sleep(interval)
-            ping_msg = self.new_ping_message()
-            try:
-                self.write(ping_msg, timeout=timeout)
-                self.metric['ping_success'] += 1
-            except TimeoutError:
-                logging.error("Heartbeat ping timeout")
-                self.metric['ping_err'] += 1
-            except Exception as e:
-                logging.error(f"Exception in keep_alive: {e}")
-                self.metric['ping_err'] += 1
+            if elapsed_time >= interval:
+                ping_msg = self.new_ping_message()
+                try:
+                    self.write(ping_msg, timeout=timeout)
+                    self.metric['ping_success'] += 1
+                except TimeoutError:
+                    logging.error("Heartbeat ping timeout")
+                    self.metric['ping_err'] += 1
+                except Exception as e:
+                    logging.error(f"Exception in keep_alive: {e}")
+                    self.metric['ping_err'] += 1
+            time.sleep(check_interval)
+            elapsed_time += check_interval
 
     def on_error(self, ws, error):
         logging.error(f"WebSocket error: {error}")
@@ -258,8 +264,8 @@ class WebSocketClient:
                     self.notify_event(WebSocketEvent.EVENT_CLIENT_FAIL, "")
                     logging.error("Failed to reconnect after all attempts.")
 
-        reconnect_thread = threading.Thread(target=reconnect_loop)
-        reconnect_thread.start()
+        self.reconnect_thread = threading.Thread(target=reconnect_loop)
+        self.reconnect_thread.start()
 
     def _clear_message_queues(self):
         while not self.read_msg.empty():
@@ -286,6 +292,10 @@ class WebSocketClient:
                 self.close_event.set()
                 logging.info("WebSocket connection closed.")
         self.token_provider.close()
+        self.write_thread.join()
+        self.keep_alive_thread.join()
+        self.ws_thread.join()
+        self.reconnect_thread.join()
         self.notify_event(WebSocketEvent.EVENT_DISCONNECTED, "")
         logging.info("WebSocket client closed.")
 

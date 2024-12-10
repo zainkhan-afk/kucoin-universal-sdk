@@ -33,20 +33,19 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 ## 🛠️ Installation
 
 ### Latest Version: `0.1.0-alpha`
-**<span style="color:red;">Note:</span>** This SDK is currently in the **Alpha phase**. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK. 
+**Note:** This SDK is currently in the **Alpha phase**. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK. 
 
 ### Python Installation
 
 ```bash
-# TODO release later 
+pip install kucoin-universal-sdk==0.1.0a1
 ```
 
 ### Golang Installation
 
 ```bash
-# TODO release later 
+go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.0-alpha
 ```
-
 
 ## 📖 Getting Started
 
@@ -239,6 +238,12 @@ We welcome contributions from the community! Please check out our [Contribution 
 
 This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
 
+### Third-Party Licenses
+
+This project uses the following dependency licensed under the **Apache License 2.0**:
+- **OpenAPI Generator**: For generating SDK code from OpenAPI specifications.
+
+You must comply with the terms of the Apache License 2.0 when using or distributing this dependency. For more information, refer to the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## 📧 Contact Support
 

@@ -4,7 +4,6 @@ import tracemalloc
 import unittest
 from time import sleep
 import logging
-
 import psutil
 
 from kucoin_universal_sdk.api.client import DefaultClient

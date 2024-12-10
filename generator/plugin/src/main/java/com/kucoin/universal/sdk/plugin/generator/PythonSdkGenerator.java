@@ -110,7 +110,7 @@ public class PythonSdkGenerator extends AbstractPythonCodegen implements NameSer
                 throw new RuntimeException("unsupported mode");
         }
 
-        supportingFiles.add(new SupportingFile("version.mustache", "version"));
+        supportingFiles.add(new SupportingFile("version.mustache", "version.py"));
         supportingFiles.add(new SupportingFile("module.mustache", "__init__.py"));
         supportingFiles.add(new SupportingFile("module.mustache", String.format("./%s/__init__.py", service)));
 

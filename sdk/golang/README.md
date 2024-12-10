@@ -5,11 +5,12 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 
 ## 📦 Installation
+**Note:** This SDK is currently in the **Alpha phase**. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK. 
 
 Install the Golang SDK using `go get`:
 
-```shell
-# TODO release later 
+```bash
+go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.0-alpha
 ```
 
 ## 📖 Getting Started
