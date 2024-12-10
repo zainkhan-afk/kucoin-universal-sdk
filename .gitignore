@@ -7,3 +7,5 @@ __pycache__
 logs
 *.egg-info
 test.log
+build/
+dist/
