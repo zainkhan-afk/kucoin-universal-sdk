@@ -11,6 +11,7 @@ Install the Golang SDK using `go get`:
 
 ```bash
 go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.0-alpha
+go mod tidy
 ```
 
 ## 📖 Getting Started
