@@ -27,9 +27,9 @@ def rest_example():
     )
 
     #  Retrieve API secret information from environment variables
-    key = os.getenv("API_KEY")
-    secret = os.getenv("API_SECRET")
-    passphrase = os.getenv("API_PASSPHRASE")
+    key = os.getenv("API_KEY", "")
+    secret = os.getenv("API_SECRET", "")
+    passphrase = os.getenv("API_PASSPHRASE", "")
 
     # Optional: Retrieve broker secret information from environment variables; applicable for broker API only
     broker_name = os.getenv("BROKER_NAME")

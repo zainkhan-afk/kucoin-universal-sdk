@@ -7,13 +7,13 @@ from typing_extensions import Self
 from kucoin_universal_sdk.model.common import RestResponse
 from kucoin_universal_sdk.model.constants import DomainType
 from .default_transport import DefaultTransport
-from ..interfaces.websocket import WsToken
+from ..interfaces.websocket import WsToken, WsTokenProvider
 
 PATH_PRIVATE = "/api/v1/bullet-private"
 PATH_PUBLIC = "/api/v1/bullet-public"
 
 
-class DefaultWsTokenProvider:
+class DefaultWsTokenProvider(WsTokenProvider):
     def __init__(self, transport: DefaultTransport, domain: DomainType, private: bool):
         self.transport = transport
         self.domain = domain

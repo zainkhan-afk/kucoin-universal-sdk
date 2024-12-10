@@ -17,8 +17,8 @@ from ..interfaces.websocket import WebSocketService, WebSocketMessageCallback
 from ..util.sub import SubInfo
 
 class DefaultWsService(WebSocketService):
-    def __init__(self, client_option: ClientOption, domain: DomainType, private: bool):
-        self.token_transport = DefaultTransport(client_option)
+    def __init__(self, client_option: ClientOption, domain: DomainType, private: bool, sdk_version:str):
+        self.token_transport = DefaultTransport(client_option, sdk_version)
         ws_option = client_option.websocket_client_option
 
         self.client = WebSocketClient(DefaultWsTokenProvider(self.token_transport, domain, private), ws_option)

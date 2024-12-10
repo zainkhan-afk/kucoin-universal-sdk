@@ -72,9 +72,9 @@ def example():
     )
 
     #  Retrieve API secret information from environment variables
-    key = os.getenv("API_KEY")
-    secret = os.getenv("API_SECRET")
-    passphrase = os.getenv("API_PASSPHRASE")
+    key = os.getenv("API_KEY", "")
+    secret = os.getenv("API_SECRET", "")
+    passphrase = os.getenv("API_PASSPHRASE", "")
 
     # Set specific options, others will fall back to default values
     http_transport_option = (
