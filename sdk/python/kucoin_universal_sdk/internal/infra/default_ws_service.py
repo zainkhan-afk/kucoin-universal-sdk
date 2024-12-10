@@ -80,12 +80,12 @@ class DefaultWsService(WebSocketService):
 
                     callback_manager = self.topic_manager.get_callback_manager(msg.topic)
                     if callback_manager is None:
-                        logging.error(f"Cannot find callback manager, topic: {msg.topic}")
+                        logging.error(f"Cannot find callback manager, id: {msg.id}, topic: {msg.topic}")
                         continue
 
                     cb = callback_manager.get(msg.topic)
                     if cb is None:
-                        logging.error(f"Cannot find callback for topic: {msg.topic}")
+                        logging.error(f"Cannot find callback for id: {msg.id}, topic: {msg.topic}")
                         continue
 
                     try:

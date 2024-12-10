@@ -14,7 +14,6 @@ from kucoin_universal_sdk.model.websocket_option import WebSocketClientOption
 from kucoin_universal_sdk.model.websocket_option import WebSocketEvent
 from ..interfaces.websocket import WsTokenProvider, WsToken
 
-
 class WriteMsg:
     def __init__(self, msg: WsMessage, timeout: float):
         self.msg = msg
@@ -47,6 +46,7 @@ class WebSocketClient:
         self.ack_event: Dict[str, WriteMsg] = {}
         self.ack_event_lock = threading.Lock()
         self.metric = {'ping_success': 0, 'ping_err': 0}
+        self.ws_thread = None
         self.keep_alive_thread = None
         self.write_thread = None
         self.welcome_received = threading.Event()
@@ -97,8 +97,9 @@ class WebSocketClient:
                 on_close=self.on_close,
                 on_open=self.on_open,
             )
-            self.ws_thread = threading.Thread(target=self.conn.run_forever, daemon=True)
-            self.ws_thread.start()
+            if not self.ws_thread or not self.ws_thread.is_alive():
+                self.ws_thread = threading.Thread(target=self.conn.run_forever, daemon=True)
+                self.ws_thread.start()
             if not self.welcome_received.wait(timeout=5):
                 self.close()
                 self.disconnect_event.set()
