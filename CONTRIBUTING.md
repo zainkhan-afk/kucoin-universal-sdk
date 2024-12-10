@@ -48,3 +48,23 @@ feat(api): add support for custom headers
 Added the ability to set custom HTTP headers for API requests. Closes #123.
 ```
 
+## **Version Updates**
+
+When making changes to the version of the SDK, ensure the following files are updated consistently:
+
+1. **VERSION File**
+   - Update the version string to reflect the new version (e.g., `1.0.1` or `1.0.0-alpha`).
+   
+2. **Python's `setup.py`**
+   - Modify the `version` field in `setup.py` to match the updated version:
+     ```python
+     version="1.0.1",
+     ```
+
+3. **README File**
+   - Update any references to the version number in installation instructions or examples, such as:
+     ```bash
+     pip install kucoin-universal-sdk==1.0.1
+     ```
+
+Ensure all version updates are consistent across these files before committing changes.
