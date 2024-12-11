@@ -1,4 +1,4 @@
-# Python SDK Documentation
+# Go SDK Documentation
 Welcome to the **Go** implementation of the KuCoin Universal SDK. This SDK is built based on KuCoin API specifications to provide a comprehensive and optimized interface for interacting with the KuCoin platform.
 
 For an overview of the project and SDKs in other languages, refer to the [Main README](https://github.com/kucoin/kucoin-universal-sdk).
