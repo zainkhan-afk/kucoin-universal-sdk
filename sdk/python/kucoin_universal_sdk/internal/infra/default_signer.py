@@ -17,7 +17,7 @@ class KcSigner:
         self.api_passphrase = api_passphrase or ""
         if api_passphrase and api_secret:
             self.api_passphrase = self.sign(api_passphrase.encode('utf-8'), api_secret.encode('utf-8'))
-        if api_key or api_secret or api_passphrase:
+        if not all([api_key, api_secret, api_passphrase]):
             logging.warning("API token is empty. Access is restricted to public interfaces only.")
         self.broker_name = broker_name
         self.broker_partner = broker_partner
