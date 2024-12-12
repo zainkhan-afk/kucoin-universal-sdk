@@ -2,19 +2,24 @@ import base64
 import hashlib
 import hmac
 import time
+import logging
 
 """
 KcSigner contains information about `apiKey`, `apiSecret`, `apiPassPhrase`, and `apiKeyVersion`
 and provides methods to sign and generate headers for API requests.
 """
 
-
 class KcSigner:
     def __init__(self, api_key: str, api_secret: str, api_passphrase: str, broker_name: str = "",
                  broker_partner: str = "", broker_key: str = ""):
         self.api_key = api_key
         self.api_secret = api_secret
-        self.api_passphrase = self.sign(api_passphrase.encode('utf-8'), api_secret.encode('utf-8'))
+        if api_passphrase and api_secret:
+            self.api_passphrase = self.sign(api_passphrase.encode('utf-8'), api_secret.encode('utf-8'))
+        else:
+            self.api_passphrase = api_passphrase
+        if api_key or api_secret or api_passphrase:
+            logging.warning("API token is empty. Access is restricted to public interfaces only.")
         self.broker_name = broker_name
         self.broker_partner = broker_partner
         self.broker_key = broker_key

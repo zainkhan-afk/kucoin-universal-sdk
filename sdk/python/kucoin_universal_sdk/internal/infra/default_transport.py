@@ -137,7 +137,7 @@ class DefaultTransport(Transport):
             data=req_body,
         )
         prepared_req = req.prepare()
-        self.process_headers(req_body.encode() if req_body else b"", raw_url, prepared_req, method, broker)
+        self.process_headers(req_body.encode() if req_body is not None else b"", raw_url, prepared_req, method, broker)
 
         return prepared_req
 
