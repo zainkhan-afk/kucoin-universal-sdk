@@ -1,3 +1,14 @@
+"""
+DISCLAIMER:
+This strategy is provided for educational and illustrative purposes only. It is not intended to be used as financial
+or investment advice. Trading cryptocurrencies involves significant risk, and you should carefully consider your
+investment objectives, level of experience, and risk appetite. Past performance of any trading strategy is not
+indicative of future results.
+
+The authors and contributors of this example are not responsible for any financial losses or damages that may occur
+from using this code. Use it at your own discretion and consult with a professional financial advisor if necessary.
+"""
+
 import logging
 import os
 import time
@@ -22,17 +33,6 @@ from kucoin_universal_sdk.model.client_option import ClientOptionBuilder
 from kucoin_universal_sdk.model.constants import GLOBAL_API_ENDPOINT, GLOBAL_FUTURES_API_ENDPOINT, \
     GLOBAL_BROKER_API_ENDPOINT
 from kucoin_universal_sdk.model.transport_option import TransportOptionBuilder
-
-"""
-DISCLAIMER:
-This strategy is provided for educational and illustrative purposes only. It is not intended to be used as financial 
-or investment advice. Trading cryptocurrencies involves significant risk, and you should carefully consider your 
-investment objectives, level of experience, and risk appetite. Past performance of any trading strategy is not 
-indicative of future results.
-
-The authors and contributors of this example are not responsible for any financial losses or damages that may occur 
-from using this code. Use it at your own discretion and consult with a professional financial advisor if necessary.
-"""
 
 
 class Action(Enum):
