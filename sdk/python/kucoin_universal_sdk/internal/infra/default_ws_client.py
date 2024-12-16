@@ -198,6 +198,7 @@ class WebSocketClient:
         elapsed_time = 0
         while not self.shutdown.is_set() and not self.close_event.is_set():
             if elapsed_time >= interval:
+                elapsed_time = 0
                 ping_msg = self.new_ping_message()
                 try:
                     self.write(ping_msg, timeout=timeout)

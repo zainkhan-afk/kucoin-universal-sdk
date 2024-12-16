@@ -138,10 +138,13 @@ class DefaultWsService(WebSocketService):
                 data: WriteMsg = self.client.write(sub_event, self.option.write_timeout)
                 event_triggered = data.event.wait(timeout=data.timeout)
                 if event_triggered:
-                    logging.info(f"ACK/Error received for message ID {data.msg.id}")
+                    logging.info(f"ACK received for message ID {data.msg.id}")
                 else:
                     logging.warning(f"Timeout for message ID {data.msg.id}")
                     raise TimeoutError(f"Timeout for message ID {data.msg.id}")
+                if data.exception is not None:
+                    logging.error(f"ERROR received for message ID {data.msg.id}")
+                    raise data.exception
                 return sub_id
             except Exception as err:
                 raise
