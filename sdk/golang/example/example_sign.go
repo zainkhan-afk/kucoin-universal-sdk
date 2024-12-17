@@ -146,7 +146,7 @@ func addLimitOrder(signer *KcSigner, client *http.Client) {
 	fmt.Println("Response:", string(body))
 }
 
-func sign_example() {
+func SignExample() {
 	apiKey := os.Getenv("API_KEY")
 	apiSecret := os.Getenv("API_SECRET")
 	passphrase := os.Getenv("API_PASSPHRASE")
