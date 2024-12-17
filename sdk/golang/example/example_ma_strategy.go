@@ -37,6 +37,10 @@ const (
 )
 
 // A simple moving average crossover strategy example.
+// Strategy Logic:
+//  1. Calculates two moving averages: short-term and long-term.
+//  2. If the short-term moving average crosses above the long-term average, it signals a "buy".
+//  3. If the short-term moving average crosses below the long-term average, it signals a "sell".
 func simpleMovingAverageStrategy(api market.MarketAPI, symbol string, shortWindow, longWindow int, endTime int64) Action {
 	startTime := endTime - int64(longWindow*60)
 	log.Printf("Query kline data start Time: %s, end Time: %s", time.Unix(startTime, 0), time.Unix(endTime, 0))
