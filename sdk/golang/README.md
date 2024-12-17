@@ -10,7 +10,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 Install the Golang SDK using `go get`:
 
 ```bash
-go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.0-alpha
+go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.1-alpha
 go mod tidy
 ```
 

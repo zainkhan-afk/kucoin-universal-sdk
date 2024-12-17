@@ -9,7 +9,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 Install the Python SDK using `pip`:
 
 ```bash
-pip install kucoin-universal-sdk==0.1.0a2
+pip install kucoin-universal-sdk==0.1.1a
 ```
 
 ## 📖 Getting Started
