@@ -11,7 +11,7 @@ type FuturesPublicWS interface {
 
 	// Announcement announcement
 	// Subscribe this topic to get Funding Fee Settlement.
-	// push frequency: TODO
+	// push frequency: Settlement is made every 8 hours, real-time push
 	Announcement(symbol string, callback AnnouncementEventCallback) (id string, err error)
 
 	// Execution Match execution data.
@@ -21,7 +21,7 @@ type FuturesPublicWS interface {
 
 	// Instrument instrument
 	// Subscribe this topic to get the mark Price, index Price or funding fee Rate
-	// push frequency: realtime
+	// push frequency: mark.index.price 1s, funding.rate 1min
 	Instrument(symbol string, callback InstrumentEventCallback) (id string, err error)
 
 	// Klines Klines

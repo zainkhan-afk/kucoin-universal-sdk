@@ -221,7 +221,7 @@ class AccountAPI(ABC):
     @abstractmethod
     def get_apikey_info(self, **kwargs: Any) -> GetApikeyInfoResp:
         """
-        summary: Get API Key Information
+        summary: Get API Key Info
         description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
         +---------------------+------------+
         | Extra API Info      | Value      |

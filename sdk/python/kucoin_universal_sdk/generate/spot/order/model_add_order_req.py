@@ -26,8 +26,8 @@ class AddOrderReq(BaseModel):
         size (str): Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
         time_in_force (TimeInForceEnum): [Time in force](doc://link/pages/338146) is a special strategy used during trading
         post_only (bool): passive order labels, this is disabled when the order timing strategy is IOC or FOK
-        hidden (bool): Hidden or not (not shown in order book)
-        iceberg (bool): Whether or not only visible portions of orders are shown in iceberg orders
+        hidden (bool): [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+        iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
         visible_size (str): Maximum visible quantity in iceberg orders
         tags (str): Order tag, length cannot exceed 20 characters (ASCII)
         cancel_after (int): Cancel after n seconds，the order timing strategy is GTT
@@ -121,11 +121,14 @@ class AddOrderReq(BaseModel):
         "passive order labels, this is disabled when the order timing strategy is IOC or FOK",
         alias="postOnly")
     hidden: Optional[bool] = Field(
-        default=False, description="Hidden or not (not shown in order book)")
+        default=False,
+        description=
+        "[Hidden order](doc://link/pages/338146) or not (not shown in order book)"
+    )
     iceberg: Optional[bool] = Field(
         default=False,
         description=
-        "Whether or not only visible portions of orders are shown in iceberg orders"
+        "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)"
     )
     visible_size: Optional[str] = Field(
         default=None,
@@ -296,14 +299,14 @@ class AddOrderReqBuilder:
 
     def set_hidden(self, value: bool) -> AddOrderReqBuilder:
         """
-        Hidden or not (not shown in order book)
+        [Hidden order](doc://link/pages/338146) or not (not shown in order book)
         """
         self.obj['hidden'] = value
         return self
 
     def set_iceberg(self, value: bool) -> AddOrderReqBuilder:
         """
-        Whether or not only visible portions of orders are shown in iceberg orders
+        Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
         """
         self.obj['iceberg'] = value
         return self

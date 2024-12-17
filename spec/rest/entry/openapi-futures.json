@@ -2787,71 +2787,6 @@
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"234125150956625920\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}"
             },
-            "delete": {
-                "summary": "Cancel All Orders",
-                "deprecated": false,
-                "description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "cancelledOrderIds": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    },
-                                                    "description": "Unique ID of the cancelled order"
-                                                }
-                                            },
-                                            "required": [
-                                                "cancelledOrderIds"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Futures",
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "Order",
-                "x-sdk-method-name": "cancelAllOrders",
-                "x-sdk-method-description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
-                "x-api-rate-limit": 30,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
-            },
             "get": {
                 "summary": "Get Order List",
                 "deprecated": false,
@@ -3244,6 +3179,71 @@
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"230181737576050688\\\",\\n                \\\"symbol\\\": \\\"PEOPLEUSDTM\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"price\\\": \\\"0.05\\\",\\n                \\\"size\\\": 10,\\n                \\\"value\\\": \\\"5\\\",\\n                \\\"dealValue\\\": \\\"0\\\",\\n                \\\"dealSize\\\": 0,\\n                \\\"stp\\\": \\\"\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"stopPriceType\\\": \\\"\\\",\\n                \\\"stopTriggered\\\": false,\\n                \\\"stopPrice\\\": null,\\n                \\\"timeInForce\\\": \\\"GTC\\\",\\n                \\\"postOnly\\\": false,\\n                \\\"hidden\\\": false,\\n                \\\"iceberg\\\": false,\\n                \\\"leverage\\\": \\\"1\\\",\\n                \\\"forceHold\\\": false,\\n                \\\"closeOrder\\\": false,\\n                \\\"visibleSize\\\": 0,\\n                \\\"clientOid\\\": \\\"5a80bd847f1811ef8a7faa665a37b3d7\\\",\\n                \\\"remark\\\": null,\\n                \\\"tags\\\": \\\"\\\",\\n                \\\"isActive\\\": true,\\n                \\\"cancelExist\\\": false,\\n                \\\"createdAt\\\": 1727692804813,\\n                \\\"updatedAt\\\": 1727692804813,\\n                \\\"endAt\\\": null,\\n                \\\"orderTime\\\": 1727692804808418000,\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\",\\n                \\\"avgDealPrice\\\": \\\"0\\\",\\n                \\\"filledSize\\\": 0,\\n                \\\"filledValue\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"open\\\",\\n                \\\"reduceOnly\\\": false\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"status\\\": \\\"done\\\", \\\"symbol\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 123456, \\\"pageSize\\\": 123456}"
+            },
+            "delete": {
+                "summary": "Cancel All Orders - V1",
+                "deprecated": true,
+                "description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cancelledOrderIds": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Unique ID of the cancelled order"
+                                                }
+                                            },
+                                            "required": [
+                                                "cancelledOrderIds"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "abandon",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Order",
+                "x-sdk-method-name": "cancelAllOrdersV1",
+                "x-sdk-method-description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
+                "x-api-rate-limit": 30,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
             }
         },
         "/api/v1/fills": {
@@ -5310,6 +5310,73 @@
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"orderId\\\": \\\"250445104152670209\\\",\\n            \\\"clientOid\\\": null,\\n            \\\"code\\\": \\\"200\\\",\\n            \\\"msg\\\": \\\"success\\\"\\n        },\\n        {\\n            \\\"orderId\\\": \\\"250445181751463936\\\",\\n            \\\"clientOid\\\": null,\\n            \\\"code\\\": \\\"200\\\",\\n            \\\"msg\\\": \\\"success\\\"\\n        }\\n    ]\\n}\\n",
                 "x-request-example": "{\\\"orderIdsList\\\": [\\\"250445104152670209\\\", \\\"250445181751463936\\\"]}"
+            }
+        },
+        "/api/v3/orders": {
+            "delete": {
+                "summary": "Cancel All Orders",
+                "deprecated": false,
+                "description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cancelledOrderIds": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Unique ID of the cancelled order"
+                                                }
+                                            },
+                                            "required": [
+                                                "cancelledOrderIds"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Order",
+                "x-sdk-method-name": "cancelAllOrdersV3",
+                "x-sdk-method-description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
+                "x-api-rate-limit": 30,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
             }
         },
         "/api/v1/stopOrders": {

@@ -22,7 +22,7 @@ class FuturesPublicWS(ABC):
         """
         summary: announcement
         description: Subscribe this topic to get Funding Fee Settlement.
-        push frequency: TODO
+        push frequency: Settlement is made every 8 hours, real-time push
         """
         pass
 
@@ -41,7 +41,7 @@ class FuturesPublicWS(ABC):
         """
         summary: instrument
         description: Subscribe this topic to get the mark Price, index Price or funding fee Rate
-        push frequency: realtime
+        push frequency: mark.index.price 1s, funding.rate 1min
         """
         pass
 

@@ -61,7 +61,7 @@ type OrderAPI interface {
 	// +---------------------+---------+
 	CancelOrderByClientOid(req *CancelOrderByClientOidReq, ctx context.Context) (*CancelOrderByClientOidResp, error)
 
-	// CancelAllOrders Cancel All Orders
+	// CancelAllOrdersV1 Cancel All Orders - V1
 	// Description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
@@ -72,7 +72,8 @@ type OrderAPI interface {
 	// | API-RATE-LIMIT-POOL | FUTURES |
 	// | API-RATE-LIMIT      | 30      |
 	// +---------------------+---------+
-	CancelAllOrders(req *CancelAllOrdersReq, ctx context.Context) (*CancelAllOrdersResp, error)
+	// Deprecated
+	CancelAllOrdersV1(req *CancelAllOrdersV1Req, ctx context.Context) (*CancelAllOrdersV1Resp, error)
 
 	// GetOrderList Get Order List
 	// Description: List your current orders.
@@ -229,6 +230,19 @@ type OrderAPI interface {
 	// | API-RATE-LIMIT      | 6       |
 	// +---------------------+---------+
 	GetStopOrderList(req *GetStopOrderListReq, ctx context.Context) (*GetStopOrderListResp, error)
+
+	// CancelAllOrdersV3 Cancel All Orders
+	// Description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 30      |
+	// +---------------------+---------+
+	CancelAllOrdersV3(req *CancelAllOrdersV3Req, ctx context.Context) (*CancelAllOrdersV3Resp, error)
 }
 
 type OrderAPIImpl struct {
@@ -263,8 +277,8 @@ func (impl *OrderAPIImpl) CancelOrderByClientOid(req *CancelOrderByClientOidReq,
 	return resp, err
 }
 
-func (impl *OrderAPIImpl) CancelAllOrders(req *CancelAllOrdersReq, ctx context.Context) (*CancelAllOrdersResp, error) {
-	resp := &CancelAllOrdersResp{}
+func (impl *OrderAPIImpl) CancelAllOrdersV1(req *CancelAllOrdersV1Req, ctx context.Context) (*CancelAllOrdersV1Resp, error) {
+	resp := &CancelAllOrdersV1Resp{}
 	err := impl.transport.Call(ctx, "futures", false, "Delete", "/api/v1/orders", req, resp, false)
 	return resp, err
 }
@@ -338,5 +352,11 @@ func (impl *OrderAPIImpl) CancelAllStopOrders(req *CancelAllStopOrdersReq, ctx c
 func (impl *OrderAPIImpl) GetStopOrderList(req *GetStopOrderListReq, ctx context.Context) (*GetStopOrderListResp, error) {
 	resp := &GetStopOrderListResp{}
 	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/stopOrders", req, resp, false)
+	return resp, err
+}
+
+func (impl *OrderAPIImpl) CancelAllOrdersV3(req *CancelAllOrdersV3Req, ctx context.Context) (*CancelAllOrdersV3Resp, error) {
+	resp := &CancelAllOrdersV3Resp{}
+	err := impl.transport.Call(ctx, "futures", false, "Delete", "/api/v3/orders", req, resp, false)
 	return resp, err
 }

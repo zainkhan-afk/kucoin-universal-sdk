@@ -19,7 +19,7 @@ class ModifySubAccountApiResp(BaseModel, Response):
     Attributes:
         sub_name (str): Sub-account name
         api_key (str): API Key
-        permission (str): Permissions
+        permission (str): [Permissions](doc://link/pages/338144)
         ip_whitelist (str): IP whitelist
     """
 
@@ -31,7 +31,8 @@ class ModifySubAccountApiResp(BaseModel, Response):
     api_key: Optional[str] = Field(default=None,
                                    description="API Key",
                                    alias="apiKey")
-    permission: Optional[str] = Field(default=None, description="Permissions")
+    permission: Optional[str] = Field(
+        default=None, description="[Permissions](doc://link/pages/338144)")
     ip_whitelist: Optional[str] = Field(default=None,
                                         description="IP whitelist",
                                         alias="ipWhitelist")

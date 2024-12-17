@@ -24,9 +24,9 @@ type AddStopOrderReq struct {
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// passive order labels, this is disabled when the order timing strategy is IOC or FOK if **type** is limit.
 	PostOnly *bool `json:"postOnly,omitempty"`
-	// Hidden or not (not shown in order book) when **type** is limit
+	// [Hidden order](doc://link/pages/338146) or not (not shown in order book)
 	Hidden *bool `json:"hidden,omitempty"`
-	// Whether or not only visible portions of orders are shown in iceberg orders when **type** is limit.
+	// Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
 	Iceberg *bool `json:"iceberg,omitempty"`
 	// When **type** is limit, this is Maximum visible quantity in iceberg orders.
 	VisibleSize *string `json:"visibleSize,omitempty"`
@@ -164,13 +164,13 @@ func (builder *AddStopOrderReqBuilder) SetPostOnly(value bool) *AddStopOrderReqB
 	return builder
 }
 
-// Hidden or not (not shown in order book) when **type** is limit
+// [Hidden order](doc://link/pages/338146) or not (not shown in order book)
 func (builder *AddStopOrderReqBuilder) SetHidden(value bool) *AddStopOrderReqBuilder {
 	builder.obj.Hidden = &value
 	return builder
 }
 
-// Whether or not only visible portions of orders are shown in iceberg orders when **type** is limit.
+// Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
 func (builder *AddStopOrderReqBuilder) SetIceberg(value bool) *AddStopOrderReqBuilder {
 	builder.obj.Iceberg = &value
 	return builder

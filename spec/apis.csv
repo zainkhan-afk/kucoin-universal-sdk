@@ -10,7 +10,7 @@ account,account,/api/v1/accounts/{accountId},get,Get Account Detail - Spot
 account,account,/api/v3/margin/accounts,get,Get Account - Cross Margin
 account,account,/api/v3/isolated/accounts,get,Get Account - Isolated Margin
 account,account,/api/v1/account-overview,get,Get Account - Futures
-account,account,/api/v1/user/api-key,get,Get API Key Information
+account,account,/api/v1/user/api-key,get,Get API Key Info
 account,account,/api/v1/margin/account,get,Get Account Detail - Margin
 account,account,/api/v1/isolated/accounts,get,Get Account List - Isolated Margin - V1
 account,account,/api/v1/isolated/account/{symbol},get,Get Account Detail - Isolated Margin - V1
@@ -176,13 +176,14 @@ futures,order,/api/v1/orders/test,post,Add Order Test
 futures,order,/api/v1/orders/{orderId},delete,Cancel Order By OrderId
 futures,order,/api/v1/orders/client-order/{clientOid},delete,Cancel Order By ClientOid
 futures,order,/api/v1/orders/multi-cancel,delete,Batch Cancel Orders
-futures,order,/api/v1/orders,delete,Cancel All Orders
+futures,order,/api/v3/orders,delete,Cancel All Orders
 futures,order,/api/v1/stopOrders,delete,Cancel All Stop orders
 futures,order,/api/v1/orders,get,Get Order List
 futures,order,/api/v1/orders/{order-id},get,Get Order By OrderId
 futures,order,/api/v1/orders/byClientOid,get,Get Order By ClientOid
 futures,order,/api/v1/recentDoneOrders,get,Get Recent Closed Orders
 futures,order,/api/v1/stopOrders,get,Get Stop Order List
+futures,order,/api/v1/orders,delete,Cancel All Orders - V1
 futures,positions,/api/v2/getMaxOpenSize,get,Get Max Open Size
 futures,positions,/api/v1/contracts/risk-limit/{symbol},get,Get Isolated Margin Risk Limit
 futures,positions,/api/v1/position,get,Get Position Details

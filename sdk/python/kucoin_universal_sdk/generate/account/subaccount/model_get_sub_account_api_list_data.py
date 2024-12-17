@@ -15,26 +15,40 @@ class GetSubAccountApiListData(BaseModel):
     GetSubAccountApiListData
 
     Attributes:
-        sub_name (str): 
-        remark (str): 
-        api_key (str): 
-        api_version (int): 
-        permission (str): 
-        ip_whitelist (str): 
-        created_at (int): 
-        uid (int): 
-        is_master (bool): 
+        sub_name (str): Sub Name
+        remark (str): Remarks
+        api_key (str): API Key
+        api_version (int): API Version
+        permission (str): [Permissions](doc://link/pages/338144)
+        ip_whitelist (str): IP whitelist
+        created_at (int): Apikey create time
+        uid (int): Sub-account UID
+        is_master (bool): Whether it is the master account.
     """
 
-    sub_name: Optional[str] = Field(default=None, alias="subName")
-    remark: Optional[str] = None
-    api_key: Optional[str] = Field(default=None, alias="apiKey")
-    api_version: Optional[int] = Field(default=None, alias="apiVersion")
-    permission: Optional[str] = None
-    ip_whitelist: Optional[str] = Field(default=None, alias="ipWhitelist")
-    created_at: Optional[int] = Field(default=None, alias="createdAt")
-    uid: Optional[int] = None
-    is_master: Optional[bool] = Field(default=None, alias="isMaster")
+    sub_name: Optional[str] = Field(default=None,
+                                    description="Sub Name",
+                                    alias="subName")
+    remark: Optional[str] = Field(default=None, description="Remarks")
+    api_key: Optional[str] = Field(default=None,
+                                   description="API Key",
+                                   alias="apiKey")
+    api_version: Optional[int] = Field(default=None,
+                                       description="API Version",
+                                       alias="apiVersion")
+    permission: Optional[str] = Field(
+        default=None, description="[Permissions](doc://link/pages/338144)")
+    ip_whitelist: Optional[str] = Field(default=None,
+                                        description="IP whitelist",
+                                        alias="ipWhitelist")
+    created_at: Optional[int] = Field(default=None,
+                                      description="Apikey create time",
+                                      alias="createdAt")
+    uid: Optional[int] = Field(default=None, description="Sub-account UID")
+    is_master: Optional[bool] = Field(
+        default=None,
+        description="Whether it is the master account.",
+        alias="isMaster")
 
     __properties: ClassVar[List[str]] = [
         "subName", "remark", "apiKey", "apiVersion", "permission",

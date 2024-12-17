@@ -14,7 +14,7 @@ type OrderEvent struct {
 	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070)
 	Symbol string `json:"symbol,omitempty"`
 	// User-specified order type
-	OrderType string `json:"orderType,omitempty"`
+	OrderType *string `json:"orderType,omitempty"`
 	// buy or sell
 	Side string `json:"side,omitempty"`
 	// Cumulative number of cancellations
@@ -39,7 +39,7 @@ type OrderEvent struct {
 	Status string `json:"status,omitempty"`
 	// Push time(Nanosecond)
 	Ts int64 `json:"ts,omitempty"`
-	// Actual transaction order type
+	// Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType**
 	Liquidity *string `json:"liquidity,omitempty"`
 	// Actual Fee Type
 	FeeType *string `json:"feeType,omitempty"`
@@ -53,14 +53,15 @@ type OrderEvent struct {
 	OldSize *string `json:"oldSize,omitempty"`
 	// Client Order Id，The ClientOid field is a unique ID created by the user
 	ClientOid *string `json:"clientOid,omitempty"`
+	// normal order or liquid order
+	TradeType string `json:"tradeType,omitempty"`
 }
 
 // NewOrderEvent instantiates a new OrderEvent object
 // This constructor will assign default values to properties that have it defined
-func NewOrderEvent(symbol string, orderType string, side string, canceledSize string, orderId string, marginMode string, Type_ string, orderTime int64, size string, filledSize string, price string, remainSize string, status string, ts int64) *OrderEvent {
+func NewOrderEvent(symbol string, side string, canceledSize string, orderId string, marginMode string, Type_ string, orderTime int64, size string, filledSize string, price string, remainSize string, status string, ts int64, tradeType string) *OrderEvent {
 	this := OrderEvent{}
 	this.Symbol = symbol
-	this.OrderType = orderType
 	this.Side = side
 	this.CanceledSize = canceledSize
 	this.OrderId = orderId
@@ -73,6 +74,7 @@ func NewOrderEvent(symbol string, orderType string, side string, canceledSize st
 	this.RemainSize = remainSize
 	this.Status = status
 	this.Ts = ts
+	this.TradeType = tradeType
 	return &this
 }
 
@@ -106,6 +108,7 @@ func (o *OrderEvent) ToMap() map[string]interface{} {
 	toSerialize["tradeId"] = o.TradeId
 	toSerialize["oldSize"] = o.OldSize
 	toSerialize["clientOid"] = o.ClientOid
+	toSerialize["tradeType"] = o.TradeType
 	return toSerialize
 }
 

@@ -13,7 +13,8 @@ from kucoin_universal_sdk.generate.futures.order.model_batch_add_orders_req impo
 from kucoin_universal_sdk.generate.futures.order.model_batch_cancel_orders_client_oids_list import \
     BatchCancelOrdersClientOidsListBuilder
 from kucoin_universal_sdk.generate.futures.order.model_batch_cancel_orders_req import BatchCancelOrdersReqBuilder
-from kucoin_universal_sdk.generate.futures.order.model_cancel_all_orders_req import CancelAllOrdersReqBuilder
+from kucoin_universal_sdk.generate.futures.order.model_cancel_all_orders_v1_req import CancelAllOrdersV1ReqBuilder
+from kucoin_universal_sdk.generate.futures.order.model_cancel_all_orders_v3_req import CancelAllOrdersV3ReqBuilder
 from kucoin_universal_sdk.generate.futures.order.model_cancel_all_stop_orders_req import CancelAllStopOrdersReqBuilder
 from kucoin_universal_sdk.generate.futures.order.model_cancel_order_by_client_oid_req import \
     CancelOrderByClientOidReqBuilder
@@ -144,18 +145,18 @@ class FuturesApiTest(unittest.TestCase):
             print("error: ", e)
             raise e
 
-    def test_cancel_all_orders_req(self):
+    def test_cancel_all_orders_v1_req(self):
         """
             cancel_all_orders
             Cancel All Orders
             /api/v1/orders
         """
 
-        builder = CancelAllOrdersReqBuilder()
+        builder = CancelAllOrdersV1ReqBuilder()
         builder.set_symbol("XBTUSDTM")
         req = builder.build()
         try:
-            resp = self.api.cancel_all_orders(req)
+            resp = self.api.cancel_all_orders_v1(req)
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())
@@ -412,6 +413,25 @@ class FuturesApiTest(unittest.TestCase):
         req = builder.build()
         try:
             resp = self.api.get_stop_order_list(req)
+            print("code: ", resp.common_response.code)
+            print("msg: ", resp.common_response.message)
+            print("data: ", resp.to_json())
+        except Exception as e:
+            print("error: ", e)
+            raise e
+
+    def test_cancel_all_orders_v3_req(self):
+        """
+            cancel_all_orders
+            Cancel All Orders
+            /api/v1/orders
+        """
+
+        builder = CancelAllOrdersV3ReqBuilder()
+        builder.set_symbol("XBTUSDTM")
+        req = builder.build()
+        try:
+            resp = self.api.cancel_all_orders_v3(req)
             print("code: ", resp.common_response.code)
             print("msg: ", resp.common_response.message)
             print("data: ", resp.to_json())

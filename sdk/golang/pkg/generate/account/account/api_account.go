@@ -142,7 +142,7 @@ type AccountAPI interface {
 	// +---------------------+---------+
 	GetFuturesLedger(req *GetFuturesLedgerReq, ctx context.Context) (*GetFuturesLedgerResp, error)
 
-	// GetApikeyInfo Get API Key Information
+	// GetApikeyInfo Get API Key Info
 	// Description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |

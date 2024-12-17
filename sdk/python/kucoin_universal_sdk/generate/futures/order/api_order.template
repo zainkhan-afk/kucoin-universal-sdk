@@ -77,18 +77,18 @@ def test_cancel_order_by_client_oid_req(self):
         print("error: ", e)
         raise e
 
-def test_cancel_all_orders_req(self):
+def test_cancel_all_orders_v1_req(self):
     """
-        cancel_all_orders
-        Cancel All Orders
+        cancel_all_orders_v1
+        Cancel All Orders - V1
         /api/v1/orders
     """
 
-    builder = CancelAllOrdersReqBuilder()
+    builder = CancelAllOrdersV1ReqBuilder()
     builder.set_symbol(?)
     req = builder.build()
     try:
-        resp = self.api.cancel_all_orders(req)
+        resp = self.api.cancel_all_orders_v1(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -317,6 +317,25 @@ def test_get_stop_order_list_req(self):
     req = builder.build()
     try:
         resp = self.api.get_stop_order_list(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_cancel_all_orders_v3_req(self):
+    """
+        cancel_all_orders_v3
+        Cancel All Orders
+        /api/v3/orders
+    """
+
+    builder = CancelAllOrdersV3ReqBuilder()
+    builder.set_symbol(?)
+    req = builder.build()
+    try:
+        resp = self.api.cancel_all_orders_v3(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
