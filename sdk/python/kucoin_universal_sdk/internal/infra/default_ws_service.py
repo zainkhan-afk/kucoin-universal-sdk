@@ -143,8 +143,7 @@ class DefaultWsService(WebSocketService):
                     logging.warning(f"Timeout for message ID {data.msg.id}")
                     raise TimeoutError(f"Timeout for message ID {data.msg.id}")
                 if data.exception is not None:
-                    logging.error(f"ERROR received for message ID {data.msg.id}")
-                    raise data.exception
+                    logging.error(f"ERROR received for message ID {data.msg.id}: {data.exception}")
                 return sub_id
             except Exception as err:
                 raise
