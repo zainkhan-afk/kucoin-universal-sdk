@@ -119,7 +119,7 @@ For other languages, refer to the [Examples](#-examples) section.
 
 ## 📚 Documentation 
 
-- Official Documentation: [KuCoin API Docs](https://www.kucoin.com/docs)  
+- Official Documentation: [KuCoin API Docs](https://www.kucoin.com/docs-new/doc-338144)  
 - **[Python Documentation](sdk/python/README.md)**
 - **[Go Documentation](sdk/golang/README.md)**
 
