@@ -194,18 +194,23 @@ class WebSocketClient:
     def keep_alive(self):
         interval = self.token_info.ping_interval / 1000.0
         timeout = self.token_info.ping_timeout / 1000.0
+        check_shutdown_interval = 1
+        sum = 0
         while not self.shutdown.is_set() and not self.close_event.is_set():
-            time.sleep(interval)
-            ping_msg = self.new_ping_message()
-            try:
-                self.write(ping_msg, timeout=timeout)
-                self.metric['ping_success'] += 1
-            except TimeoutError:
-                logging.error("Heartbeat ping timeout")
-                self.metric['ping_err'] += 1
-            except Exception as e:
-                logging.error(f"Exception in keep_alive: {e}")
-                self.metric['ping_err'] += 1
+            if sum >= interval:
+                sum = 0
+                ping_msg = self.new_ping_message()
+                try:
+                    self.write(ping_msg, timeout=timeout)
+                    self.metric['ping_success'] += 1
+                except TimeoutError:
+                    logging.error("Heartbeat ping timeout")
+                    self.metric['ping_err'] += 1
+                except Exception as e:
+                    logging.error(f"Exception in keep_alive: {e}")
+                    self.metric['ping_err'] += 1
+            time.sleep(check_shutdown_interval)
+            sum += check_shutdown_interval
 
     def on_error(self, ws, error):
         logging.error(f"WebSocket error: {error}")
@@ -287,6 +292,7 @@ class WebSocketClient:
                 self.conn = None
                 self.close_event.set()
                 logging.info("WebSocket connection closed.")
+        logging.info("Waiting all threads close...")
         self.token_provider.close()
         self.write_thread.join()
         self.keep_alive_thread.join()
