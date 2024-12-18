@@ -6,7 +6,7 @@ package subaccount
 type ModifySubAccountApiReq struct {
 	// Password(Must contain 7-32 characters. Cannot contain any spaces.)
 	Passphrase string `json:"passphrase,omitempty"`
-	// Permissions(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+	// [Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
 	Permission *string `json:"permission,omitempty"`
 	// IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`
@@ -68,7 +68,7 @@ func (builder *ModifySubAccountApiReqBuilder) SetPassphrase(value string) *Modif
 	return builder
 }
 
-// Permissions(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+// [Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
 func (builder *ModifySubAccountApiReqBuilder) SetPermission(value string) *ModifySubAccountApiReqBuilder {
 	builder.obj.Permission = &value
 	return builder

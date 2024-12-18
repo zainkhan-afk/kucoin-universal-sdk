@@ -215,7 +215,7 @@
                 "x-sdk-private": false,
                 "x-sdk-method-name": "instrument",
                 "x-topic": "/contract/instrument:{symbol}",
-                "x-push_frequency": "realtime",
+                "x-push_frequency": "mark.index.price 1s, funding.rate 1min",
                 "x-response-example": "{\\\"topic\\\":\\\"/contract/instrument:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"mark.index.price\\\",\\\"data\\\":{\\\"markPrice\\\":90445.02,\\\"indexPrice\\\":90445.02,\\\"granularity\\\":1000,\\\"timestamp\\\":1731899129000}}",
                 "responses": {
                     "200": {
@@ -243,7 +243,7 @@
                 "x-sdk-private": false,
                 "x-sdk-method-name": "announcement",
                 "x-topic": "/contract/announcement:{symbol}",
-                "x-push_frequency": "TODO",
+                "x-push_frequency": "Settlement is made every 8 hours, real-time push",
                 "x-response-example": "{\\\"topic\\\":\\\"/contract/announcement\\\",\\\"subject\\\":\\\"funding.begin\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"fundingTime\\\":1551770400000,\\\"fundingRate\\\":-0.002966,\\\"timestamp\\\":1551770400000}}",
                 "responses": {
                     "200": {

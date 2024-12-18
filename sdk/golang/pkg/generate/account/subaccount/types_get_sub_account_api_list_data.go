@@ -4,15 +4,24 @@ package subaccount
 
 // GetSubAccountApiListData struct for GetSubAccountApiListData
 type GetSubAccountApiListData struct {
-	SubName     *string `json:"subName,omitempty"`
-	Remark      *string `json:"remark,omitempty"`
-	ApiKey      *string `json:"apiKey,omitempty"`
-	ApiVersion  *int32  `json:"apiVersion,omitempty"`
-	Permission  *string `json:"permission,omitempty"`
+	// Sub Name
+	SubName *string `json:"subName,omitempty"`
+	// Remarks
+	Remark *string `json:"remark,omitempty"`
+	// API Key
+	ApiKey *string `json:"apiKey,omitempty"`
+	// API Version
+	ApiVersion *int32 `json:"apiVersion,omitempty"`
+	// [Permissions](doc://link/pages/338144)
+	Permission *string `json:"permission,omitempty"`
+	// IP whitelist
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`
-	CreatedAt   *int64  `json:"createdAt,omitempty"`
-	Uid         *int32  `json:"uid,omitempty"`
-	IsMaster    *bool   `json:"isMaster,omitempty"`
+	// Apikey create time
+	CreatedAt *int64 `json:"createdAt,omitempty"`
+	// Sub-account UID
+	Uid *int32 `json:"uid,omitempty"`
+	// Whether it is the master account.
+	IsMaster *bool `json:"isMaster,omitempty"`
 }
 
 // NewGetSubAccountApiListData instantiates a new GetSubAccountApiListData object

@@ -26,8 +26,8 @@ class BatchAddOrdersSyncOrderList(BaseModel):
         stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
         cancel_after (int): Cancel after n seconds，the order timing strategy is GTT
         post_only (bool): passive order labels, this is disabled when the order timing strategy is IOC or FOK
-        hidden (bool): Hidden or not (not shown in order book)
-        iceberg (bool): Whether or not only visible portions of orders are shown in iceberg orders
+        hidden (bool): [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+        iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
         visible_size (str): Maximum visible quantity in iceberg orders
         tags (str): Order tag, length cannot exceed 20 characters (ASCII)
         remark (str): Order placement remarks, length cannot exceed 20 characters (ASCII)
@@ -115,11 +115,14 @@ class BatchAddOrdersSyncOrderList(BaseModel):
         "passive order labels, this is disabled when the order timing strategy is IOC or FOK",
         alias="postOnly")
     hidden: Optional[bool] = Field(
-        default=False, description="Hidden or not (not shown in order book)")
+        default=False,
+        description=
+        "[Hidden order](doc://link/pages/338146) or not (not shown in order book)"
+    )
     iceberg: Optional[bool] = Field(
         default=False,
         description=
-        "Whether or not only visible portions of orders are shown in iceberg orders"
+        "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)"
     )
     visible_size: Optional[str] = Field(
         default=None,
@@ -301,14 +304,14 @@ class BatchAddOrdersSyncOrderListBuilder:
 
     def set_hidden(self, value: bool) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Hidden or not (not shown in order book)
+        [Hidden order](doc://link/pages/338146) or not (not shown in order book)
         """
         self.obj['hidden'] = value
         return self
 
     def set_iceberg(self, value: bool) -> BatchAddOrdersSyncOrderListBuilder:
         """
-        Whether or not only visible portions of orders are shown in iceberg orders
+        Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
         """
         self.obj['iceberg'] = value
         return self

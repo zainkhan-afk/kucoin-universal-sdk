@@ -1795,7 +1795,7 @@
         },
         "/api/v1/user/api-key": {
             "get": {
-                "summary": "Get API Key Information",
+                "summary": "Get API Key Info",
                 "deprecated": false,
                 "description": "Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user's api key are applicable.",
                 "tags": [],
@@ -1828,7 +1828,7 @@
                                                 },
                                                 "permission": {
                                                     "type": "string",
-                                                    "description": "Permissions,  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
+                                                    "description": "[Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "string",
@@ -1841,7 +1841,7 @@
                                                 },
                                                 "uid": {
                                                     "type": "integer",
-                                                    "description": "Sub-account UID"
+                                                    "description": "Account UID"
                                                 },
                                                 "isMaster": {
                                                     "type": "boolean",

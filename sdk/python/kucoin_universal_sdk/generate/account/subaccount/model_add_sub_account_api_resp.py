@@ -23,7 +23,7 @@ class AddSubAccountApiResp(BaseModel, Response):
         api_secret (str): API Secret Key 
         api_version (int): API Version
         passphrase (str): Password
-        permission (str): Permissions
+        permission (str): [Permissions](doc://link/pages/338144)
         ip_whitelist (str): IP whitelist
         created_at (int): Time of the event
     """
@@ -44,7 +44,8 @@ class AddSubAccountApiResp(BaseModel, Response):
                                        description="API Version",
                                        alias="apiVersion")
     passphrase: Optional[str] = Field(default=None, description="Password")
-    permission: Optional[str] = Field(default=None, description="Permissions")
+    permission: Optional[str] = Field(
+        default=None, description="[Permissions](doc://link/pages/338144)")
     ip_whitelist: Optional[str] = Field(default=None,
                                         description="IP whitelist",
                                         alias="ipWhitelist")

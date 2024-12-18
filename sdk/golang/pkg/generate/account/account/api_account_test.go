@@ -279,14 +279,14 @@ func TestAccountGetFuturesLedgerRespModel(t *testing.T) {
 
 func TestAccountGetApikeyInfoReqModel(t *testing.T) {
 	// GetApikeyInfo
-	// Get API Key Information
+	// Get API Key Info
 	// /api/v1/user/api-key
 
 }
 
 func TestAccountGetApikeyInfoRespModel(t *testing.T) {
 	// GetApikeyInfo
-	// Get API Key Information
+	// Get API Key Info
 	// /api/v1/user/api-key
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"remark\": \"account1\",\n        \"apiKey\": \"6705f5c311545b000157d3eb\",\n        \"apiVersion\": 3,\n        \"permission\": \"General,Futures,Spot,Earn,InnerTransfer,Transfer,Margin\",\n        \"ipWhitelist\": \"203.**.154,103.**.34\",\n        \"createdAt\": 1728443843000,\n        \"uid\": 165111215,\n        \"isMaster\": true\n    }\n}"

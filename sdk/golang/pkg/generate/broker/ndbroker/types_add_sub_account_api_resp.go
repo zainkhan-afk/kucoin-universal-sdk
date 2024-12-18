@@ -20,7 +20,7 @@ type AddSubAccountApiResp struct {
 	SecretKey string `json:"secretKey,omitempty"`
 	// apiVersion
 	ApiVersion int32 `json:"apiVersion,omitempty"`
-	// Permission group list
+	// [Permissions](doc://link/pages/338144) group list
 	Permissions []string `json:"permissions,omitempty"`
 	// IP whitelist list
 	IpWhitelist []string `json:"ipWhitelist,omitempty"`

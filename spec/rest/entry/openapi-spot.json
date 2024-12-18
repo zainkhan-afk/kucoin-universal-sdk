@@ -6128,12 +6128,12 @@
                                                 },
                                                 "hidden": {
                                                     "type": "boolean",
-                                                    "description": "Hidden or not (not shown in order book)",
+                                                    "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
                                                     "default": false
                                                 },
                                                 "iceberg": {
                                                     "type": "boolean",
-                                                    "description": "Whether or not only visible portions of orders are shown in iceberg orders",
+                                                    "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
                                                     "default": false
                                                 },
                                                 "visibleSize": {
@@ -6427,12 +6427,12 @@
                                                 },
                                                 "hidden": {
                                                     "type": "boolean",
-                                                    "description": "Hidden or not (not shown in order book)",
+                                                    "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
                                                     "default": false
                                                 },
                                                 "iceberg": {
                                                     "type": "boolean",
-                                                    "description": "Whether or not only visible portions of orders are shown in iceberg orders",
+                                                    "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
                                                     "default": false
                                                 },
                                                 "visibleSize": {
@@ -6732,12 +6732,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "Hidden or not (not shown in order book)",
+                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in iceberg orders",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -7947,12 +7947,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "Hidden or not (not shown in order book)",
+                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in iceberg orders",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -9145,12 +9145,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "Hidden or not (not shown in order book) when **type** is limit",
+                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in iceberg orders when **type** is limit.",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -11811,12 +11811,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "Hidden or not (not shown in order book)",
+                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in iceberg orders",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
                                         "default": false
                                     },
                                     "visibleSize": {

@@ -1130,32 +1130,41 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "subName": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "Sub Name"
                                                     },
                                                     "remark": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "Remarks"
                                                     },
                                                     "apiKey": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "API Key"
                                                     },
                                                     "apiVersion": {
-                                                        "type": "integer"
+                                                        "type": "integer",
+                                                        "description": "API Version"
                                                     },
                                                     "permission": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "[Permissions](doc://link/pages/338144)"
                                                     },
                                                     "ipWhitelist": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "IP whitelist"
                                                     },
                                                     "createdAt": {
                                                         "type": "integer",
-                                                        "format": "int64"
+                                                        "format": "int64",
+                                                        "description": "Apikey create time"
                                                     },
                                                     "uid": {
-                                                        "type": "integer"
+                                                        "type": "integer",
+                                                        "description": "Sub-account UID"
                                                     },
                                                     "isMaster": {
-                                                        "type": "boolean"
+                                                        "type": "boolean",
+                                                        "description": "Whether it is the master account."
                                                     }
                                                 }
                                             }
@@ -1314,7 +1323,7 @@
                                                 },
                                                 "permission": {
                                                     "type": "string",
-                                                    "description": "Permissions"
+                                                    "description": "[Permissions](doc://link/pages/338144)"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "string",
@@ -1374,7 +1383,7 @@
                                     },
                                     "permission": {
                                         "type": "string",
-                                        "description": "Permissions(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "description": "[Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
                                         "default": "General",
                                         "example": [
                                             "General, Trade"
@@ -1476,7 +1485,7 @@
                                                 },
                                                 "permission": {
                                                     "type": "string",
-                                                    "description": "Permissions"
+                                                    "description": "[Permissions](doc://link/pages/338144)"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "string",
@@ -1522,7 +1531,7 @@
                                     },
                                     "permission": {
                                         "type": "string",
-                                        "description": "Permissions(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "description": "[Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
                                         "default": "General",
                                         "example": [
                                             "General,Trade"

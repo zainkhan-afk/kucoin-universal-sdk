@@ -12,9 +12,9 @@ from kucoin_universal_sdk.internal.interfaces.response import Response
 from kucoin_universal_sdk.model.common import RestResponse
 
 
-class CancelAllOrdersResp(BaseModel, Response):
+class CancelAllOrdersV1Resp(BaseModel, Response):
     """
-    CancelAllOrdersResp
+    CancelAllOrdersV1Resp
 
     Attributes:
         cancelled_order_ids (list[str]): Unique ID of the cancelled order
@@ -42,7 +42,7 @@ class CancelAllOrdersResp(BaseModel, Response):
         return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[CancelAllOrdersResp]:
+    def from_json(cls, json_str: str) -> Optional[CancelAllOrdersV1Resp]:
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -55,7 +55,7 @@ class CancelAllOrdersResp(BaseModel, Response):
     @classmethod
     def from_dict(
             cls, obj: Optional[Dict[str,
-                                    Any]]) -> Optional[CancelAllOrdersResp]:
+                                    Any]]) -> Optional[CancelAllOrdersV1Resp]:
         if obj is None:
             return None
 

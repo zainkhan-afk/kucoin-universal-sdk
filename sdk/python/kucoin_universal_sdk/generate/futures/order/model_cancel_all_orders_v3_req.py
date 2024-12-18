@@ -10,9 +10,9 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 
 
-class CancelAllOrdersReq(BaseModel):
+class CancelAllOrdersV3Req(BaseModel):
     """
-    CancelAllOrdersReq
+    CancelAllOrdersV3Req
 
     Attributes:
         symbol (str): Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
@@ -39,7 +39,7 @@ class CancelAllOrdersReq(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_none=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[CancelAllOrdersReq]:
+    def from_json(cls, json_str: str) -> Optional[CancelAllOrdersV3Req]:
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -52,7 +52,7 @@ class CancelAllOrdersReq(BaseModel):
     @classmethod
     def from_dict(
             cls, obj: Optional[Dict[str,
-                                    Any]]) -> Optional[CancelAllOrdersReq]:
+                                    Any]]) -> Optional[CancelAllOrdersV3Req]:
         if obj is None:
             return None
 
@@ -63,17 +63,17 @@ class CancelAllOrdersReq(BaseModel):
         return _obj
 
 
-class CancelAllOrdersReqBuilder:
+class CancelAllOrdersV3ReqBuilder:
 
     def __init__(self):
         self.obj = {}
 
-    def set_symbol(self, value: str) -> CancelAllOrdersReqBuilder:
+    def set_symbol(self, value: str) -> CancelAllOrdersV3ReqBuilder:
         """
         Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
         """
         self.obj['symbol'] = value
         return self
 
-    def build(self) -> CancelAllOrdersReq:
-        return CancelAllOrdersReq(**self.obj)
+    def build(self) -> CancelAllOrdersV3Req:
+        return CancelAllOrdersV3Req(**self.obj)

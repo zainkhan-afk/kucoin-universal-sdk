@@ -9,8 +9,10 @@ from .model_batch_add_orders_req import BatchAddOrdersReq
 from .model_batch_add_orders_resp import BatchAddOrdersResp
 from .model_batch_cancel_orders_req import BatchCancelOrdersReq
 from .model_batch_cancel_orders_resp import BatchCancelOrdersResp
-from .model_cancel_all_orders_req import CancelAllOrdersReq
-from .model_cancel_all_orders_resp import CancelAllOrdersResp
+from .model_cancel_all_orders_v1_req import CancelAllOrdersV1Req
+from .model_cancel_all_orders_v1_resp import CancelAllOrdersV1Resp
+from .model_cancel_all_orders_v3_req import CancelAllOrdersV3Req
+from .model_cancel_all_orders_v3_resp import CancelAllOrdersV3Resp
 from .model_cancel_all_stop_orders_req import CancelAllStopOrdersReq
 from .model_cancel_all_stop_orders_resp import CancelAllStopOrdersResp
 from .model_cancel_order_by_client_oid_req import CancelOrderByClientOidReq
@@ -33,6 +35,7 @@ from .model_get_stop_order_list_req import GetStopOrderListReq
 from .model_get_stop_order_list_resp import GetStopOrderListResp
 from .model_get_trade_history_req import GetTradeHistoryReq
 from .model_get_trade_history_resp import GetTradeHistoryResp
+from typing_extensions import deprecated
 from kucoin_universal_sdk.model.common import RestResponse
 
 
@@ -114,24 +117,24 @@ class OrderAPITest(unittest.TestCase):
         common_response = RestResponse.from_json(data)
         resp = CancelOrderByClientOidResp.from_dict(common_response.data)
 
-    def test_cancel_all_orders_req_model(self):
+    def test_cancel_all_orders_v1_req_model(self):
         """
-       cancel_all_orders
-       Cancel All Orders
+       cancel_all_orders_v1
+       Cancel All Orders - V1
        /api/v1/orders
        """
         data = "{\"symbol\": \"XBTUSDTM\"}"
-        req = CancelAllOrdersReq.from_json(data)
+        req = CancelAllOrdersV1Req.from_json(data)
 
-    def test_cancel_all_orders_resp_model(self):
+    def test_cancel_all_orders_v1_resp_model(self):
         """
-        cancel_all_orders
-        Cancel All Orders
+        cancel_all_orders_v1
+        Cancel All Orders - V1
         /api/v1/orders
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}"
         common_response = RestResponse.from_json(data)
-        resp = CancelAllOrdersResp.from_dict(common_response.data)
+        resp = CancelAllOrdersV1Resp.from_dict(common_response.data)
 
     def test_get_order_list_req_model(self):
         """
@@ -360,3 +363,22 @@ class OrderAPITest(unittest.TestCase):
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"230181737576050688\",\n                \"symbol\": \"PEOPLEUSDTM\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.05\",\n                \"size\": 10,\n                \"value\": \"5\",\n                \"dealValue\": \"0\",\n                \"dealSize\": 0,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPriceType\": \"\",\n                \"stopTriggered\": false,\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"leverage\": \"1\",\n                \"forceHold\": false,\n                \"closeOrder\": false,\n                \"visibleSize\": 0,\n                \"clientOid\": \"5a80bd847f1811ef8a7faa665a37b3d7\",\n                \"remark\": null,\n                \"tags\": \"\",\n                \"isActive\": true,\n                \"cancelExist\": false,\n                \"createdAt\": 1727692804813,\n                \"updatedAt\": 1727692804813,\n                \"endAt\": null,\n                \"orderTime\": 1727692804808418000,\n                \"settleCurrency\": \"USDT\",\n                \"marginMode\": \"ISOLATED\",\n                \"avgDealPrice\": \"0\",\n                \"filledSize\": 0,\n                \"filledValue\": \"0\",\n                \"status\": \"open\",\n                \"reduceOnly\": false\n            }\n        ]\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetStopOrderListResp.from_dict(common_response.data)
+
+    def test_cancel_all_orders_v3_req_model(self):
+        """
+       cancel_all_orders_v3
+       Cancel All Orders
+       /api/v3/orders
+       """
+        data = "{\"symbol\": \"XBTUSDTM\"}"
+        req = CancelAllOrdersV3Req.from_json(data)
+
+    def test_cancel_all_orders_v3_resp_model(self):
+        """
+        cancel_all_orders_v3
+        Cancel All Orders
+        /api/v3/orders
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = CancelAllOrdersV3Resp.from_dict(common_response.data)

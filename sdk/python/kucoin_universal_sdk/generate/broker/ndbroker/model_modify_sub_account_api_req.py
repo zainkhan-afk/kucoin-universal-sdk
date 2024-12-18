@@ -18,7 +18,7 @@ class ModifySubAccountApiReq(BaseModel):
     Attributes:
         uid (str): Subaccount UID
         ip_whitelist (list[str]): IP whitelist list, supports up to 20 IPs
-        permissions (list[PermissionsEnum]): Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) 
+        permissions (list[PermissionsEnum]): [Permissions](doc://link/pages/338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) 
         label (str): apikey remarks (length 4~32) 
         api_key (str): Subaccount apiKey
     """
@@ -42,7 +42,7 @@ class ModifySubAccountApiReq(BaseModel):
     permissions: Optional[List[PermissionsEnum]] = Field(
         default=None,
         description=
-        "Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) "
+        "[Permissions](doc://link/pages/338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) "
     )
     label: Optional[str] = Field(default=None,
                                  description="apikey remarks (length 4~32) ")
@@ -121,7 +121,7 @@ class ModifySubAccountApiReqBuilder:
         self, value: list[ModifySubAccountApiReq.PermissionsEnum]
     ) -> ModifySubAccountApiReqBuilder:
         """
-        Permission group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) 
+        [Permissions](doc://link/pages/338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". ) 
         """
         self.obj['permissions'] = value
         return self

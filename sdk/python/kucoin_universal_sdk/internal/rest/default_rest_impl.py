@@ -1,3 +1,5 @@
+import logging
+
 from kucoin_universal_sdk.api.api_rest import KucoinRestService
 from kucoin_universal_sdk.generate.service.account_api import AccountService, AccountServiceImpl
 from kucoin_universal_sdk.generate.service.affiliate_api import AffiliateService, AffiliateServiceImpl
@@ -16,6 +18,8 @@ class DefaultKucoinRestAPIImpl(KucoinRestService):
     def __init__(self, options: ClientOption):
         if options is None or options.transport_option is None:
             raise Exception("no transport option provided")
+
+        logging.info(f"sdk version: {sdk_version}")
 
         transport = DefaultTransport(options, sdk_version)
 

@@ -22,7 +22,7 @@ class AddSubAccountApiResp(BaseModel, Response):
         api_key (str): apiKey
         secret_key (str): secretKey
         api_version (int): apiVersion
-        permissions (list[str]): Permission group list
+        permissions (list[str]): [Permissions](doc://link/pages/338144) group list
         ip_whitelist (list[str]): IP whitelist list
         created_at (int): Creation time, unix timestamp (milliseconds)
     """
@@ -41,7 +41,8 @@ class AddSubAccountApiResp(BaseModel, Response):
                                        description="apiVersion",
                                        alias="apiVersion")
     permissions: Optional[List[str]] = Field(
-        default=None, description="Permission group list")
+        default=None,
+        description="[Permissions](doc://link/pages/338144) group list")
     ip_whitelist: Optional[List[str]] = Field(default=None,
                                               description="IP whitelist list",
                                               alias="ipWhitelist")

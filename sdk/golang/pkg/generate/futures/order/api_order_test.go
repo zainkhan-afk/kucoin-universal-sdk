@@ -119,21 +119,21 @@ func TestOrderCancelOrderByClientOidRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelAllOrdersReqModel(t *testing.T) {
-	// CancelAllOrders
-	// Cancel All Orders
+func TestOrderCancelAllOrdersV1ReqModel(t *testing.T) {
+	// CancelAllOrdersV1
+	// Cancel All Orders - V1
 	// /api/v1/orders
 
 	data := "{\"symbol\": \"XBTUSDTM\"}"
-	req := &CancelAllOrdersReq{}
+	req := &CancelAllOrdersV1Req{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelAllOrdersRespModel(t *testing.T) {
-	// CancelAllOrders
-	// Cancel All Orders
+func TestOrderCancelAllOrdersV1RespModel(t *testing.T) {
+	// CancelAllOrdersV1
+	// Cancel All Orders - V1
 	// /api/v1/orders
 
 	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}"
@@ -141,7 +141,7 @@ func TestOrderCancelAllOrdersRespModel(t *testing.T) {
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &CancelAllOrdersResp{}
+	resp := &CancelAllOrdersV1Resp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -478,6 +478,34 @@ func TestOrderGetStopOrderListRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetStopOrderListResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelAllOrdersV3ReqModel(t *testing.T) {
+	// CancelAllOrdersV3
+	// Cancel All Orders
+	// /api/v3/orders
+
+	data := "{\"symbol\": \"XBTUSDTM\"}"
+	req := &CancelAllOrdersV3Req{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelAllOrdersV3RespModel(t *testing.T) {
+	// CancelAllOrdersV3
+	// Cancel All Orders
+	// /api/v3/orders
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"235919172150824960\",\n            \"235919172150824961\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &CancelAllOrdersV3Resp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

@@ -6,35 +6,35 @@ import (
 	"github.com/Kucoin/kucoin-universal-sdk/sdk/golang/pkg/types"
 )
 
-// CancelAllOrdersResp struct for CancelAllOrdersResp
-type CancelAllOrdersResp struct {
+// CancelAllOrdersV3Resp struct for CancelAllOrdersV3Resp
+type CancelAllOrdersV3Resp struct {
 	// common response
 	CommonResponse *types.RestResponse
 	// Unique ID of the cancelled order
 	CancelledOrderIds []string `json:"cancelledOrderIds,omitempty"`
 }
 
-// NewCancelAllOrdersResp instantiates a new CancelAllOrdersResp object
+// NewCancelAllOrdersV3Resp instantiates a new CancelAllOrdersV3Resp object
 // This constructor will assign default values to properties that have it defined
-func NewCancelAllOrdersResp(cancelledOrderIds []string) *CancelAllOrdersResp {
-	this := CancelAllOrdersResp{}
+func NewCancelAllOrdersV3Resp(cancelledOrderIds []string) *CancelAllOrdersV3Resp {
+	this := CancelAllOrdersV3Resp{}
 	this.CancelledOrderIds = cancelledOrderIds
 	return &this
 }
 
-// NewCancelAllOrdersRespWithDefaults instantiates a new CancelAllOrdersResp object
+// NewCancelAllOrdersV3RespWithDefaults instantiates a new CancelAllOrdersV3Resp object
 // This constructor will only assign default values to properties that have it defined,
-func NewCancelAllOrdersRespWithDefaults() *CancelAllOrdersResp {
-	this := CancelAllOrdersResp{}
+func NewCancelAllOrdersV3RespWithDefaults() *CancelAllOrdersV3Resp {
+	this := CancelAllOrdersV3Resp{}
 	return &this
 }
 
-func (o *CancelAllOrdersResp) ToMap() map[string]interface{} {
+func (o *CancelAllOrdersV3Resp) ToMap() map[string]interface{} {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cancelledOrderIds"] = o.CancelledOrderIds
 	return toSerialize
 }
 
-func (o *CancelAllOrdersResp) SetCommonResponse(response *types.RestResponse) {
+func (o *CancelAllOrdersV3Resp) SetCommonResponse(response *types.RestResponse) {
 	o.CommonResponse = response
 }

@@ -13,8 +13,10 @@ from .model_batch_add_orders_req import BatchAddOrdersReq
 from .model_batch_add_orders_resp import BatchAddOrdersResp
 from .model_batch_cancel_orders_req import BatchCancelOrdersReq
 from .model_batch_cancel_orders_resp import BatchCancelOrdersResp
-from .model_cancel_all_orders_req import CancelAllOrdersReq
-from .model_cancel_all_orders_resp import CancelAllOrdersResp
+from .model_cancel_all_orders_v1_req import CancelAllOrdersV1Req
+from .model_cancel_all_orders_v1_resp import CancelAllOrdersV1Resp
+from .model_cancel_all_orders_v3_req import CancelAllOrdersV3Req
+from .model_cancel_all_orders_v3_resp import CancelAllOrdersV3Resp
 from .model_cancel_all_stop_orders_req import CancelAllStopOrdersReq
 from .model_cancel_all_stop_orders_resp import CancelAllStopOrdersResp
 from .model_cancel_order_by_client_oid_req import CancelOrderByClientOidReq
@@ -37,6 +39,7 @@ from .model_get_stop_order_list_req import GetStopOrderListReq
 from .model_get_stop_order_list_resp import GetStopOrderListResp
 from .model_get_trade_history_req import GetTradeHistoryReq
 from .model_get_trade_history_resp import GetTradeHistoryResp
+from typing_extensions import deprecated
 
 
 class OrderAPI(ABC):
@@ -115,10 +118,11 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def cancel_all_orders(self, req: CancelAllOrdersReq,
-                          **kwargs: Any) -> CancelAllOrdersResp:
+    @deprecated('')
+    def cancel_all_orders_v1(self, req: CancelAllOrdersV1Req,
+                             **kwargs: Any) -> CancelAllOrdersV1Resp:
         """
-        summary: Cancel All Orders
+        summary: Cancel All Orders - V1
         description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
         +---------------------+---------+
         | Extra API Info      | Value   |
@@ -347,6 +351,24 @@ class OrderAPI(ABC):
         """
         pass
 
+    @abstractmethod
+    def cancel_all_orders_v3(self, req: CancelAllOrdersV3Req,
+                             **kwargs: Any) -> CancelAllOrdersV3Resp:
+        """
+        summary: Cancel All Orders
+        description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 30      |
+        +---------------------+---------+
+        """
+        pass
+
 
 class OrderAPIImpl(OrderAPI):
 
@@ -378,11 +400,11 @@ class OrderAPIImpl(OrderAPI):
                                    req, CancelOrderByClientOidResp(), False,
                                    **kwargs)
 
-    def cancel_all_orders(self, req: CancelAllOrdersReq,
-                          **kwargs: Any) -> CancelAllOrdersResp:
-        return self.transport.call("futures", False,
-                                   "DELETE", "/api/v1/orders", req,
-                                   CancelAllOrdersResp(), False, **kwargs)
+    def cancel_all_orders_v1(self, req: CancelAllOrdersV1Req,
+                             **kwargs: Any) -> CancelAllOrdersV1Resp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v1/orders", req,
+                                   CancelAllOrdersV1Resp(), False, **kwargs)
 
     def get_order_list(self, req: GetOrderListReq,
                        **kwargs: Any) -> GetOrderListResp:
@@ -454,3 +476,9 @@ class OrderAPIImpl(OrderAPI):
         return self.transport.call("futures", False, "GET",
                                    "/api/v1/stopOrders", req,
                                    GetStopOrderListResp(), False, **kwargs)
+
+    def cancel_all_orders_v3(self, req: CancelAllOrdersV3Req,
+                             **kwargs: Any) -> CancelAllOrdersV3Resp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v3/orders", req,
+                                   CancelAllOrdersV3Resp(), False, **kwargs)

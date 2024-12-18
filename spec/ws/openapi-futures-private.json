@@ -439,7 +439,7 @@
                                     "taker",
                                     "maker"
                                 ],
-                                "description": "Actual transaction order type",
+                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
                                 "x-api-enum": [
                                     {
                                         "value": "taker",
@@ -492,11 +492,30 @@
                             "clientOid": {
                                 "type": "string",
                                 "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            },
+                            "tradeType": {
+                                "type": "string",
+                                "description": "normal order or liquid order",
+                                "enum": [
+                                    "trade",
+                                    "liquid"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "trade",
+                                        "name": "trade",
+                                        "description": "Normal trade order"
+                                    },
+                                    {
+                                        "value": "liquid",
+                                        "name": "liquid",
+                                        "description": "Liquid order, except type=update, all other types will be pushed"
+                                    }
+                                ]
                             }
                         },
                         "required": [
                             "symbol",
-                            "orderType",
                             "side",
                             "canceledSize",
                             "orderId",
@@ -508,7 +527,8 @@
                             "price",
                             "remainSize",
                             "status",
-                            "ts"
+                            "ts",
+                            "tradeType"
                         ]
                     }
                 },
@@ -1390,7 +1410,7 @@
                                     "taker",
                                     "maker"
                                 ],
-                                "description": "Actual transaction order type",
+                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
                                 "x-api-enum": [
                                     {
                                         "value": "taker",
@@ -1443,11 +1463,30 @@
                             "clientOid": {
                                 "type": "string",
                                 "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            },
+                            "tradeType": {
+                                "type": "string",
+                                "description": "normal order or liquid order",
+                                "enum": [
+                                    "trade",
+                                    "liquid"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "trade",
+                                        "name": "trade",
+                                        "description": "Normal trade order"
+                                    },
+                                    {
+                                        "value": "liquid",
+                                        "name": "liquid",
+                                        "description": "Liquid order, except type=update, all other types will be pushed"
+                                    }
+                                ]
                             }
                         },
                         "required": [
                             "symbol",
-                            "orderType",
                             "side",
                             "canceledSize",
                             "orderId",
@@ -1459,7 +1498,8 @@
                             "price",
                             "remainSize",
                             "status",
-                            "ts"
+                            "ts",
+                            "tradeType"
                         ]
                     }
                 },

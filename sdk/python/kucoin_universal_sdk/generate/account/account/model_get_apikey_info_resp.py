@@ -20,10 +20,10 @@ class GetApikeyInfoResp(BaseModel, Response):
         remark (str): Remarks
         api_key (str): Apikey
         api_version (int): API Version
-        permission (str): Permissions,  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
+        permission (str): [Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
         ip_whitelist (str): IP whitelist  
         created_at (int): Apikey create time
-        uid (int): Sub-account UID
+        uid (int): Account UID
         is_master (bool): Whether it is the master account.
         sub_name (str): Sub Name, There is no such param for the master account
     """
@@ -40,7 +40,7 @@ class GetApikeyInfoResp(BaseModel, Response):
     permission: Optional[str] = Field(
         default=None,
         description=
-        "Permissions,  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
+        "[Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
     )
     ip_whitelist: Optional[str] = Field(default=None,
                                         description="IP whitelist  ",
@@ -48,7 +48,7 @@ class GetApikeyInfoResp(BaseModel, Response):
     created_at: Optional[int] = Field(default=None,
                                       description="Apikey create time",
                                       alias="createdAt")
-    uid: Optional[int] = Field(default=None, description="Sub-account UID")
+    uid: Optional[int] = Field(default=None, description="Account UID")
     is_master: Optional[bool] = Field(
         default=None,
         description="Whether it is the master account.",

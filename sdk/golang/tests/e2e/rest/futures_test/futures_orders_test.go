@@ -131,16 +131,16 @@ func TestOrderCancelOrderByClientOidReq(t *testing.T) {
 	fmt.Println("data:", string(data))
 }
 
-func TestOrderCancelAllOrdersReq(t *testing.T) {
+func TestOrderCancelAllOrdersV1Req(t *testing.T) {
 	// CancelAllOrders
 	// Cancel All Orders
 	// /api/v1/orders
 
-	builder := order.NewCancelAllOrdersReqBuilder()
+	builder := order.NewCancelAllOrdersV1ReqBuilder()
 	builder.SetSymbol("XBTUSDTM")
 	req := builder.Build()
 
-	resp, err := orderApi.CancelAllOrders(req, context.TODO())
+	resp, err := orderApi.CancelAllOrdersV1(req, context.TODO())
 	if err != nil {
 		panic(err)
 	}
@@ -416,6 +416,28 @@ func TestOrderGetStopOrderListReq(t *testing.T) {
 	req := builder.Build()
 
 	resp, err := orderApi.GetStopOrderList(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestOrderCancelAllOrdersV3Req(t *testing.T) {
+	// CancelAllOrders
+	// Cancel All Orders
+	// /api/v1/orders
+
+	builder := order.NewCancelAllOrdersV3ReqBuilder()
+	builder.SetSymbol("XBTUSDTM")
+	req := builder.Build()
+
+	resp, err := orderApi.CancelAllOrdersV3(req, context.TODO())
 	if err != nil {
 		panic(err)
 	}

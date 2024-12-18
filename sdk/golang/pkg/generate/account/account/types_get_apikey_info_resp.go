@@ -16,13 +16,13 @@ type GetApikeyInfoResp struct {
 	ApiKey string `json:"apiKey,omitempty"`
 	// API Version
 	ApiVersion int32 `json:"apiVersion,omitempty"`
-	// Permissions,  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
+	// [Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
 	Permission string `json:"permission,omitempty"`
 	// IP whitelist
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`
 	// Apikey create time
 	CreatedAt int64 `json:"createdAt,omitempty"`
-	// Sub-account UID
+	// Account UID
 	Uid int32 `json:"uid,omitempty"`
 	// Whether it is the master account.
 	IsMaster bool `json:"isMaster,omitempty"`
