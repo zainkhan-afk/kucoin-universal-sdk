@@ -1,10 +1,12 @@
 import json
+import re
 import sys
 from json import JSONDecodeError
 
 specRoot = "../../spec/"
 metaPath = f"{specRoot}/original/meta.json"
-docPath = 'https://www.kucoin.com/docs-new/api-'
+apiPath = 'https://www.kucoin.com/docs-new/api-'
+docPath = 'https://www.kucoin.com/docs-new/doc-'
 
 
 class Collection:
@@ -12,6 +14,7 @@ class Collection:
     def __init__(self):
         self.path_var = set()
         self.title = ""
+        self.doc_id = set()
 
     def generate_collection(self, subdir, title):
         self.title = title
@@ -29,6 +32,8 @@ class Collection:
             with open(file_path, "r") as file:
                 file_content = file.read()
             meta_data = json.loads(file_content)
+
+            self.doc_id = set(meta_data['doc_id'])
             if 'apiCollection' not in meta_data:
                 raise RuntimeError("incomplete meta data")
 
@@ -205,6 +210,32 @@ class Collection:
 
         return markdown_table
 
+
+    def gen_doc_api_url(self, id, doc :bool):
+        if doc:
+            return f'{docPath}{id}'
+        return f'{apiPath}{id}'
+
+
+    def escape_markdown(self, markdown):
+        markdown = markdown.replace('\n', '<br>')
+        markdown = markdown.replace('|', '\\|')
+        return  markdown
+
+    def escape_url(self, markdown):
+        pattern = r"apidog://link/pages/(\d+)"
+        match = re.search(pattern, markdown)
+        if match:
+            number = match.group(1)
+            url = ''
+            if self.doc_id.__contains__(number):
+                url = self.gen_doc_api_url(number, True)
+            else:
+                url = self.gen_doc_api_url(number, False)
+            markdown = re.sub(pattern, url, markdown)
+        return markdown
+
+
     def generate_markdown_schema(self, parent, order, schema) -> dict:
 
         markdown_sections = []
@@ -227,6 +258,9 @@ class Collection:
                 if ref:
                     description = f'Refer to the schema section of {name}'
 
+                description = self.escape_url(description)
+                description = self.escape_markdown(description)
+
                 prop.append({
                     'name': name,
                     'type': value['type'],
@@ -241,7 +275,7 @@ class Collection:
         return markdown_sections
 
     def gen_markdown(self, api):
-        api_doc_addr = f'{docPath}{api["id"]}'
+        api_doc_addr = self.gen_doc_api_url(api['id'], False)
         api_doc = api['description']
 
         request = api['requestBody']
@@ -277,7 +311,7 @@ class Collection:
             api_doc += '---\n'
 
         api_doc = f'# API Description\n\nFor the complete API documentation, please refer to [doc]({api_doc_addr})\n\n' + api_doc
-        api_doc += f'# API Schema\n\n'
+        api_doc += f'\n# API Schema\n\n'
         api_doc += f'## Request Schema\n\n'
         gen_inner(request, "Request")
         api_doc += f'## Response Schema\n\n'
