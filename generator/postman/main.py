@@ -1,4 +1,5 @@
 import collection
+import env
 
 if __name__ == '__main__':
   rest_collection = collection.Collection()
@@ -6,3 +7,7 @@ if __name__ == '__main__':
 
   res_collection = collection.Collection()
   res_collection.generate_collection("Abandoned Endpoints", "Kucoin REST API(Abandoned)")
+
+  env = env.Env()
+  env.generate()
+

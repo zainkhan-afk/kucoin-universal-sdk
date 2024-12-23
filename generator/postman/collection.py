@@ -3,10 +3,7 @@ import re
 import sys
 from json import JSONDecodeError
 
-specRoot = "../../spec/"
-metaPath = f"{specRoot}/original/meta.json"
-apiPath = 'https://www.kucoin.com/docs-new/api-'
-docPath = 'https://www.kucoin.com/docs-new/doc-'
+from costant import docPath, apiPath, metaPath, outputPath
 
 
 class Collection:
@@ -25,7 +22,7 @@ class Collection:
 
         collection = self.gen_postman(collection_data)
 
-        self.write(f"{specRoot}postman/collection-{subdir}.json", collection)
+        self.write(f"{outputPath}/collection-{subdir}.json", collection)
 
     def parse(self, file_path, subdir):
         try:
@@ -56,7 +53,7 @@ class Collection:
             with open(out_path, 'w', encoding='utf-8') as file:
                 json.dump(postman, file, ensure_ascii=False, indent=4)
         except Exception as e:
-            print(f"An error occurred when generate ws specification file: {e}")
+            print(f"An error occurred when generate postman specification file: {e}")
             sys.exit(1)
 
     def gen_api(self, item):
@@ -210,17 +207,15 @@ class Collection:
 
         return markdown_table
 
-
-    def gen_doc_api_url(self, id, doc :bool):
+    def gen_doc_api_url(self, id, doc: bool):
         if doc:
             return f'{docPath}{id}'
         return f'{apiPath}{id}'
 
-
     def escape_markdown(self, markdown):
         markdown = markdown.replace('\n', '<br>')
         markdown = markdown.replace('|', '\\|')
-        return  markdown
+        return markdown
 
     def escape_url(self, markdown):
         pattern = r"apidog://link/pages/(\d+)"
@@ -234,7 +229,6 @@ class Collection:
                 url = self.gen_doc_api_url(number, False)
             markdown = re.sub(pattern, url, markdown)
         return markdown
-
 
     def generate_markdown_schema(self, parent, order, schema) -> dict:
 
