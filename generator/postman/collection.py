@@ -3,7 +3,8 @@ import re
 import sys
 from json import JSONDecodeError
 
-from costant import docPath, apiPath, metaPath, outputPath
+import script
+from costant import docPath, apiPath, metaPath, outputPath, brokerFolderName
 
 
 class Collection:
@@ -82,7 +83,7 @@ class Collection:
                 query.append({
                     'key': p['name'],
                     'value': p['example'] if 'example' in p else None,
-                    'description': p['description']
+                    'description': self.escape_url(p['description'])
                 })
 
         # update path
@@ -218,10 +219,10 @@ class Collection:
         return markdown
 
     def escape_url(self, markdown):
-        pattern = r"apidog://link/pages/(\d+)"
+        pattern = r"apidog://link/(pages|endpoint)/(\d+)"
         match = re.search(pattern, markdown)
         if match:
-            number = match.group(1)
+            number = match.group(2)
             url = ''
             if self.doc_id.__contains__(number):
                 url = self.gen_doc_api_url(number, True)
@@ -325,8 +326,32 @@ class Collection:
                     postman_obj = {
                         'name': item['name'],
                         'item': self.gen_data(item),
-                        "description": ''
+                        "description": '',
                     }
+
+                    if item['name'] == brokerFolderName:
+                        postman_obj["event"] = [
+                            {
+                                "listen": "prerequest",
+                                "script": {
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "exec": [
+                                        script.get_script(True)
+                                    ]
+                                }
+                            },
+                            {
+                                "listen": "test",
+                                "script": {
+                                    "type": "text/javascript",
+                                    "packages": {},
+                                    "exec": [
+                                        ""
+                                    ]
+                                }
+                            }
+                        ]
                 else:
                     postman_obj = self.gen_api(item)
 
@@ -349,9 +374,30 @@ class Collection:
                 "name": self.title,
                 "description": f"For the complete API documentation, please refer to https://www.kucoin.com/docs-new",
                 "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-                "_exporter_id": "13641088"
             },
             "item": postman_data,
-            "variable": variables
+            "variable": variables,
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "packages": {},
+                        "exec": [
+                            script.get_script(False)
+                        ]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "packages": {},
+                        "exec": [
+                            ""
+                        ]
+                    }
+                }
+            ],
         }
         return postman
