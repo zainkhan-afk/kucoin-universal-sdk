@@ -194,11 +194,11 @@ class WebSocketClient:
     def keep_alive(self):
         interval = self.token_info.ping_interval / 1000.0
         timeout = self.token_info.ping_timeout / 1000.0
-        check_shutdown_interval = 1
-        sum = 0
+        last_ping_time = time.time()
+        
         while not self.shutdown.is_set() and not self.close_event.is_set():
-            if sum >= interval:
-                sum = 0
+            current_time = time.time()
+            if current_time - last_ping_time >= interval:
                 ping_msg = self.new_ping_message()
                 try:
                     self.write(ping_msg, timeout=timeout)
@@ -209,8 +209,9 @@ class WebSocketClient:
                 except Exception as e:
                     logging.error(f"Exception in keep_alive: {e}")
                     self.metric['ping_err'] += 1
-            time.sleep(check_shutdown_interval)
-            sum += check_shutdown_interval
+                last_ping_time = current_time
+            
+            time.sleep(1)
 
     def on_error(self, ws, error):
         logging.error(f"WebSocket error: {error}")
@@ -224,10 +225,10 @@ class WebSocketClient:
     def reconnect(self):
         def reconnect_loop():
             while True:
-                if self.reconnect_close_event.is_set():
+                if self.reconnect_close_event.wait(timeout=1):
                     return
 
-                if self.disconnect_event.is_set():
+                if self.disconnect_event.wait(timeout=1):
                     if self.shutdown.is_set():
                         continue
 
