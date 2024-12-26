@@ -48,6 +48,9 @@ go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.1-alpha
 go mod tidy
 ```
 
+### Postman Installation  
+Visit the [KuCoin API Collection on Postman](https://www.postman.com/kucoin-api/kucoin-api/overview)
+
 ## 📖 Getting Started
 
 Here's a quick example to get you started with the SDK in **Python**.
@@ -122,6 +125,7 @@ For other languages, refer to the [Examples](#-examples) section.
 - Official Documentation: [KuCoin API Docs](https://www.kucoin.com/docs-new)  
 - **[Python Documentation](sdk/python/README.md)**
 - **[Go Documentation](sdk/golang/README.md)**
+- **[Postman Documentation](sdk/postman/README.md)**
 
 ## 📂 Examples
 Find usage examples for your desired language by selecting the corresponding link below:
@@ -130,6 +134,7 @@ Find usage examples for your desired language by selecting the corresponding lin
 |----------|--------------------------------------------|
 | Python   | [sdk/python/examples/](sdk/python/example/)|
 | Go       | [sdk/go/examples/](sdk/golang/example/) |
+
 
 ## 🏗️ Technical Design
 
@@ -181,18 +186,8 @@ The following table describes the key components of the project directory:
 | `README.md`             | Main documentation file.                                                   |
 | `generate.mk`           | Additional Makefile specifically for code generation tasks.                |
 | `generator/`            | Directory containing the code generation logic.                            |
-| `generator/plugin/`     | Custom plugins for generating SDKs.                                        |
-| `generator/preprocessor/`| Scripts or tools for preprocessing API specifications.                    |
 | `sdk/`                  | Directory for generated SDKs organized by language.                        |
-| `sdk/golang/`           | Generated SDK for Golang.                                                  |
-| `sdk/python/`           | Generated SDK for Python.                                                  |
 | `spec/`                 | Directory containing API specification files.                              |
-| `spec/apis.csv`         | List of all APIs.                                                          |
-| `spec/original/`        | Original unprocessed API specifications.                                   |
-| `spec/rest/`            | REST API specifications.                                                   |
-| `spec/ws/`              | WebSocket API specifications.                                              |
-| `spec/ws.csv`           | List of WebSocket-specific APIs.     
-
 
 ## ⚙️ Build and Test Guide
 
