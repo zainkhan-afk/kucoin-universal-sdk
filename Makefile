@@ -74,6 +74,10 @@ define generate-code
 	@echo "$(GREEN)lang: $(lang), done!$(NC)"
 endef
 
+define generate-postman
+	@make -f generate.mk generate-postman
+endef
+
 
 SUBDIRS := $(shell find ./sdk -mindepth 1 -maxdepth 1 -type d)
 .PHONY: test $(SUBDIRS)
@@ -86,8 +90,13 @@ $(SUBDIRS):
 
 .PHONY: generate
 generate: setup-logs
+	$(call generate-postman)
 	$(call generate-code,golang,/pkg/generate)
 	$(call generate-code,python,/kucoin_universal_sdk/generate)
+
+.PHONY: gen-postman
+gen-postman: preprocessor
+	$(call generate-postman)
 
 .PHONY: fastgen
 fastgen: build-tools preprocessor
