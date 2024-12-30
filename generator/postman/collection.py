@@ -224,7 +224,7 @@ class Collection:
         if match:
             number = match.group(2)
             url = ''
-            if self.doc_id.__contains__(number):
+            if int(number) in self.doc_id:
                 url = self.gen_doc_api_url(number, True)
             else:
                 url = self.gen_doc_api_url(number, False)

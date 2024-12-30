@@ -6025,7 +6025,7 @@
                                                 },
                                                 "timeInForce": {
                                                     "type": "string",
-                                                    "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                                    "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                                     "enum": [
                                                         "GTC",
                                                         "GTT",
@@ -6086,7 +6086,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                                     "enum": [
                                                         "DC",
                                                         "CO",
@@ -6128,12 +6128,12 @@
                                                 },
                                                 "hidden": {
                                                     "type": "boolean",
-                                                    "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
+                                                    "description": "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)",
                                                     "default": false
                                                 },
                                                 "iceberg": {
                                                     "type": "boolean",
-                                                    "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
+                                                    "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)",
                                                     "default": false
                                                 },
                                                 "visibleSize": {
@@ -6324,7 +6324,7 @@
                                                 },
                                                 "timeInForce": {
                                                     "type": "string",
-                                                    "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                                    "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                                     "enum": [
                                                         "GTC",
                                                         "GTT",
@@ -6385,7 +6385,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                                     "enum": [
                                                         "DC",
                                                         "CO",
@@ -6427,12 +6427,12 @@
                                                 },
                                                 "hidden": {
                                                     "type": "boolean",
-                                                    "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
+                                                    "description": "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)",
                                                     "default": false
                                                 },
                                                 "iceberg": {
                                                     "type": "boolean",
-                                                    "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
+                                                    "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)",
                                                     "default": false
                                                 },
                                                 "visibleSize": {
@@ -6654,7 +6654,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -6694,7 +6694,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                        "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                         "enum": [
                                             "GTC",
                                             "GTT",
@@ -6732,12 +6732,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
+                                        "description": "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -7223,7 +7223,7 @@
                                                 },
                                                 "fee": {
                                                     "type": "string",
-                                                    "description": "[Handling fees](doc://link/pages/5327739)"
+                                                    "description": "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)"
                                                 },
                                                 "feeCurrency": {
                                                     "type": "string",
@@ -7231,7 +7231,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/5176570)",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)",
                                                     "enum": [
                                                         "DC",
                                                         "CO",
@@ -7869,7 +7869,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -7909,7 +7909,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                        "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                         "enum": [
                                             "GTC",
                                             "GTT",
@@ -7947,12 +7947,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
+                                        "description": "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -8416,7 +8416,7 @@
                                                     },
                                                     "fee": {
                                                         "type": "string",
-                                                        "description": "[Handling fees](doc://link/pages/5327739)"
+                                                        "description": "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)"
                                                     },
                                                     "feeCurrency": {
                                                         "type": "string",
@@ -8424,7 +8424,7 @@
                                                     },
                                                     "stp": {
                                                         "type": "string",
-                                                        "description": "[Self Trade Prevention](doc://link/pages/5176570)",
+                                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)",
                                                         "enum": [
                                                             "DC",
                                                             "CO",
@@ -9067,7 +9067,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -9107,7 +9107,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading. Required for limit orders.",
+                                        "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading. Required for limit orders.",
                                         "enum": [
                                             "GTC",
                                             "GTT",
@@ -9145,12 +9145,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
+                                        "description": "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -9406,7 +9406,7 @@
                                                             },
                                                             "fee": {
                                                                 "type": "string",
-                                                                "description": "[Handling fees](doc://link/pages/5327739)"
+                                                                "description": "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)"
                                                             },
                                                             "feeCurrency": {
                                                                 "type": "string",
@@ -9414,7 +9414,7 @@
                                                             },
                                                             "stp": {
                                                                 "type": "string",
-                                                                "description": "[Self Trade Prevention](doc://link/pages/5176570)",
+                                                                "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)",
                                                                 "enum": [
                                                                     "DC",
                                                                     "CO",
@@ -10400,7 +10400,7 @@
                                                             },
                                                             "fee": {
                                                                 "type": "string",
-                                                                "description": "[Handling fees](doc://link/pages/5327739)"
+                                                                "description": "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)"
                                                             },
                                                             "feeRate": {
                                                                 "type": "string",
@@ -10907,7 +10907,7 @@
                                                 },
                                                 "fee": {
                                                     "type": "string",
-                                                    "description": "[Handling fees](doc://link/pages/5327739)"
+                                                    "description": "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)"
                                                 },
                                                 "feeCurrency": {
                                                     "type": "string",
@@ -10915,7 +10915,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/5176570)",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)",
                                                     "enum": [
                                                         "DC",
                                                         "CO",
@@ -11733,7 +11733,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -11773,7 +11773,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                        "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                         "enum": [
                                             "GTC",
                                             "GTT",
@@ -11811,12 +11811,12 @@
                                     },
                                     "hidden": {
                                         "type": "boolean",
-                                        "description": "[Hidden order](doc://link/pages/338146) or not (not shown in order book)",
+                                        "description": "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)",
                                         "default": false
                                     },
                                     "iceberg": {
                                         "type": "boolean",
-                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)",
+                                        "description": "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)",
                                         "default": false
                                     },
                                     "visibleSize": {
@@ -13050,7 +13050,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -13090,7 +13090,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                        "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                         "enum": [
                                             "GTC",
                                             "GTT",
@@ -13890,7 +13890,7 @@
                                                             },
                                                             "fee": {
                                                                 "type": "string",
-                                                                "description": "[Handling fees](doc://link/pages/5327739)"
+                                                                "description": "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)"
                                                             },
                                                             "feeRate": {
                                                                 "type": "string",
@@ -14290,7 +14290,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                                     "enum": [
                                                         "DC",
                                                         "CO",
@@ -14330,7 +14330,7 @@
                                                 },
                                                 "timeInForce": {
                                                     "type": "string",
-                                                    "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                                    "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                                     "enum": [
                                                         "GTC",
                                                         "GTT",
@@ -14572,7 +14572,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -14612,7 +14612,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+                                        "description": "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
                                         "enum": [
                                             "GTC",
                                             "GTT",

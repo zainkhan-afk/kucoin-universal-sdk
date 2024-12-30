@@ -1828,7 +1828,7 @@
                                                 },
                                                 "permission": {
                                                     "type": "string",
-                                                    "description": "[Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "string",

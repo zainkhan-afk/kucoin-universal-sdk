@@ -616,7 +616,7 @@
                                                                 }
                                                             ]
                                                         },
-                                                        "description": "[Permissions](doc://link/pages/338144) group list"
+                                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list"
                                                     },
                                                     "ipWhitelist": {
                                                         "type": "array",
@@ -772,7 +772,7 @@
                                                     "items": {
                                                         "type": "string"
                                                     },
-                                                    "description": "[Permissions](doc://link/pages/338144) group list"
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "array",
@@ -1697,7 +1697,7 @@
                                                     "items": {
                                                         "type": "string"
                                                     },
-                                                    "description": "[Permissions](doc://link/pages/338144) group list"
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "array",
@@ -1786,7 +1786,7 @@
                                                 }
                                             ]
                                         },
-                                        "description": "[Permissions](doc://link/pages/338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )\n"
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144) group list(Only General、Spot、Futures permissions can be set, such as \"General, Trade\". )\n"
                                     },
                                     "label": {
                                         "type": "string",

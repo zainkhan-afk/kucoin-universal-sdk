@@ -100,7 +100,7 @@
                                     },
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM"
                                         ]
@@ -207,7 +207,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
                                         "enum": [
                                             "CN",
                                             "CO",
@@ -265,7 +265,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC",
+                                        "description": "Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC",
                                         "enum": [
                                             "GTC",
                                             "IOC"
@@ -494,7 +494,7 @@
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "type": {
                                                                 "type": "string",
@@ -963,7 +963,7 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "tradeId": {
                                                                 "type": "string",
@@ -1273,7 +1273,7 @@
                                                     },
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "code": {
                                                         "type": "string"
@@ -1351,7 +1351,7 @@
                                         },
                                         "symbol": {
                                             "type": "string",
-                                            "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) ",
+                                            "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) ",
                                             "example": [
                                                 "XBTUSDTM"
                                             ]
@@ -1458,7 +1458,7 @@
                                         },
                                         "stp": {
                                             "type": "string",
-                                            "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
+                                            "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
                                             "enum": [
                                                 "CN",
                                                 "CO",
@@ -1516,7 +1516,7 @@
                                         },
                                         "timeInForce": {
                                             "type": "string",
-                                            "description": "Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC",
+                                            "description": "Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC",
                                             "enum": [
                                                 "GTC",
                                                 "IOC"
@@ -1615,7 +1615,7 @@
                                                 "properties": {
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "tradeId": {
                                                         "type": "string",
@@ -1983,7 +1983,7 @@
                                     },
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM"
                                         ]
@@ -2066,7 +2066,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
                                         "enum": [
                                             "CN",
                                             "CO",
@@ -2124,7 +2124,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC",
+                                        "description": "Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC",
                                         "enum": [
                                             "GTC",
                                             "IOC"
@@ -2372,7 +2372,7 @@
                                     },
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM"
                                         ]
@@ -2479,7 +2479,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
+                                        "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
                                         "enum": [
                                             "CN",
                                             "CO",
@@ -2537,7 +2537,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC",
+                                        "description": "Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC",
                                         "enum": [
                                             "GTC",
                                             "IOC"
@@ -2824,7 +2824,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "clientOid": {
                                                     "type": "string"
@@ -3129,7 +3129,7 @@
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "type": {
                                                                 "type": "string",
@@ -3392,7 +3392,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "type": {
                                                     "type": "string",
@@ -3456,7 +3456,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
                                                     "enum": [
                                                         "",
                                                         "CN",
@@ -3764,7 +3764,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "type": {
                                                     "type": "string",
@@ -3828,7 +3828,7 @@
                                                 },
                                                 "stp": {
                                                     "type": "string",
-                                                    "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
+                                                    "description": "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.",
                                                     "enum": [
                                                         "",
                                                         "CN",
@@ -4139,7 +4139,7 @@
                                                     },
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "type": {
                                                         "type": "string",

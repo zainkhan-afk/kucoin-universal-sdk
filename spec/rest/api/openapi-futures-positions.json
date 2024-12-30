@@ -63,7 +63,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "maxBuyOpenSize": {
                                                     "type": "integer",
@@ -139,7 +139,7 @@
                                                 "properties": {
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "level": {
                                                         "type": "integer",
@@ -238,7 +238,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                                     "example": [
                                                         "XBTUSDTM",
                                                         "XBTUSDM",
@@ -550,7 +550,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "level": {
                                         "type": "integer",
@@ -614,7 +614,7 @@
                                                     },
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                                         "example": [
                                                             "XBTUSDTM",
                                                             "XBTUSDM",
@@ -980,7 +980,7 @@
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "settleCurrency": {
                                                                 "type": "string",
@@ -1156,7 +1156,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "withdrawAmount": {
                                         "type": "string",
@@ -1203,7 +1203,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "autoDeposit": {
                                                     "type": "boolean",
@@ -1416,7 +1416,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "margin": {
                                         "type": "number",
@@ -1530,7 +1530,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "marginMode": {
                                                     "type": "string",
@@ -1615,7 +1615,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "leverage": {
                                                     "type": "string",
@@ -1712,7 +1712,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "leverage": {
                                         "type": "string",
@@ -1755,7 +1755,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "marginMode": {
                                                     "type": "string",
@@ -1811,7 +1811,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM",
                                             "XBTUSDCM",

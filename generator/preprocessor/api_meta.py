@@ -1,10 +1,16 @@
 import codecs
 import json
-import random
+import re
 import sys
+
+apiPath = 'https://www.kucoin.com/docs-new/api-'
+docPath = 'https://www.kucoin.com/docs-new/doc-'
 
 
 class ApiMetaUtil:
+
+    doc_id = []
+
     @staticmethod
     def collect_api(collection, result: list):
         if type(collection) is list:
@@ -65,6 +71,7 @@ class ApiMetaUtil:
                 file_content = file.read()
             json_content = json.loads(file_content)
 
+            ApiMetaUtil.doc_id = json_content['doc_id']
             api_list = list()
 
             for collection in json_content['apiCollection']:
@@ -78,12 +85,31 @@ class ApiMetaUtil:
             sys.exit(1)
 
     @staticmethod
+    def gen_doc_api_url(id, doc: bool):
+        if doc:
+            return f'{docPath}{id}'
+        return f'{apiPath}{id}'
+
+    @staticmethod
+    def escape_url(desc, doc_id):
+        pattern = r"apidog://link/(pages|endpoint)/(\d+)"
+        match = re.search(pattern, desc)
+        if match:
+            number = match.group(2)
+            url = ''
+            if int(number) in doc_id:
+                url = ApiMetaUtil.gen_doc_api_url(number, True)
+            else:
+                url = ApiMetaUtil.gen_doc_api_url(number, False)
+            desc = re.sub(pattern, url, desc)
+        return desc
+
+    @staticmethod
     def update_doc_desc(schema):
         if schema and isinstance(schema, dict) and 'properties' in schema:
             for p in schema['properties'].values():
                 if isinstance(p, dict) and 'description' in p:
-                    p['description'] = p['description'].replace('apidog://link', 'doc://link')
-
+                    p['description'] = ApiMetaUtil.escape_url(p['description'], ApiMetaUtil.doc_id)
 
     @staticmethod
     def update_tuple(schema):
@@ -100,7 +126,6 @@ class ApiMetaUtil:
                         schema['items'] = {
                             'type': 'AnyType'
                         }
-
 
     @staticmethod
     def update_response_schema_required(schema):
@@ -256,7 +281,6 @@ class ApiMetaUtil:
                     if name not in req_example:
                         req_example[name] = ApiMetaUtil.gen_default_value_for_example(query_para)
 
-
                     path_operation['parameters'].append(result)
 
         # requestBody
@@ -279,7 +303,8 @@ class ApiMetaUtil:
             }
             try:
                 example_raw = body_data['example']
-                filtered_data = "\n".join(line for line in example_raw.splitlines() if not line.strip().startswith("//"))
+                filtered_data = "\n".join(
+                    line for line in example_raw.splitlines() if not line.strip().startswith("//"))
 
                 j = json.loads(filtered_data)
                 if len(req_example) == 0 and isinstance(j, list):

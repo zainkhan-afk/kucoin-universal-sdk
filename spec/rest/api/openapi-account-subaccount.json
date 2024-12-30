@@ -1147,7 +1147,7 @@
                                                     },
                                                     "permission": {
                                                         "type": "string",
-                                                        "description": "[Permissions](doc://link/pages/338144)"
+                                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)"
                                                     },
                                                     "ipWhitelist": {
                                                         "type": "string",
@@ -1323,7 +1323,7 @@
                                                 },
                                                 "permission": {
                                                     "type": "string",
-                                                    "description": "[Permissions](doc://link/pages/338144)"
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "string",
@@ -1383,7 +1383,7 @@
                                     },
                                     "permission": {
                                         "type": "string",
-                                        "description": "[Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
                                         "default": "General",
                                         "example": [
                                             "General, Trade"
@@ -1485,7 +1485,7 @@
                                                 },
                                                 "permission": {
                                                     "type": "string",
-                                                    "description": "[Permissions](doc://link/pages/338144)"
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)"
                                                 },
                                                 "ipWhitelist": {
                                                     "type": "string",
@@ -1531,7 +1531,7 @@
                                     },
                                     "permission": {
                                         "type": "string",
-                                        "description": "[Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
                                         "default": "General",
                                         "example": [
                                             "General,Trade"

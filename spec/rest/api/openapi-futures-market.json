@@ -968,7 +968,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "side": {
                                                     "type": "string",
@@ -1226,7 +1226,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "bids": {
                                                     "type": "array",
@@ -1335,7 +1335,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "bids": {
                                                     "type": "array",
@@ -1503,7 +1503,7 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "granularity": {
                                                                 "type": "integer",
@@ -1665,7 +1665,7 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "granularity": {
                                                                 "type": "integer",
@@ -2005,7 +2005,7 @@
                                                         "properties": {
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "granularity": {
                                                                 "type": "integer",
@@ -2248,7 +2248,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "granularity": {
                                                     "type": "integer",
