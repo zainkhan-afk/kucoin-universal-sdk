@@ -32,19 +32,18 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 
 ## 🛠️ Installation
 
-### Latest Version: `0.1.1-alpha`
-**Note:** This SDK is currently in the **Alpha phase**. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK. 
+### Latest Version: `1.0.0`
 
 ### Python Installation
 
 ```bash
-pip install kucoin-universal-sdk==0.1.1a1
+pip install kucoin-universal-sdk
 ```
 
 ### Golang Installation
 
 ```bash
-go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.1-alpha
+go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang
 go mod tidy
 ```
 
