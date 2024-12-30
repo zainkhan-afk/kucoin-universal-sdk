@@ -34,6 +34,7 @@ class ApiMetaUtil:
 
             api_name = api['name']
             api_data = api['api']
+            api_doc = ApiMetaUtil.gen_doc_api_url(api_data['id'], False)
             if 'customApiFields' not in api_data:
                 raise Exception("customApiFields not found in meta json")
 
@@ -41,7 +42,9 @@ class ApiMetaUtil:
             if len(api_fields) == 0:
                 raise Exception("illegal customApiFields" + api_name)
 
-            x_fields = {}
+            x_fields = {
+                'x-api-doc' : api_doc,
+            }
             for k in api_fields:
                 x_fields[f'x-{k}'] = api_fields[k]
 

@@ -153,6 +153,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470189",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Public",
@@ -225,6 +226,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470190",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Public",
@@ -316,6 +318,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470191",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Public",
@@ -384,6 +387,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470192",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Public",
@@ -458,6 +462,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470193",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Public",
@@ -571,6 +576,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470194",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Public",

@@ -90,6 +90,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470251",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -187,6 +188,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470263",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -486,6 +488,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470252",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -532,6 +535,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470264",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -863,6 +867,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470253",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1092,6 +1097,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470254",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1138,6 +1144,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470256",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1398,6 +1405,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470257",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1483,6 +1491,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470258",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1568,6 +1577,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470259",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1637,6 +1647,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470260",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1694,6 +1705,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470261",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1793,6 +1805,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470262",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1883,6 +1896,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470255",
                 "x-abandon": "abandon",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",

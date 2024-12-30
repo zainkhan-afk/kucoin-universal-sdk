@@ -91,6 +91,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470281",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -199,6 +200,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470282",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -332,6 +334,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470283",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -400,6 +403,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470290",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -554,6 +558,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470284",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -616,6 +621,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470289",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -710,6 +716,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470291",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -996,6 +1003,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470285",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -1216,6 +1224,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470286",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -1381,6 +1390,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470287",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -1543,6 +1553,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470288",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -1634,6 +1645,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470292",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
@@ -1756,6 +1768,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470293",
                 "x-abandon": "normal",
                 "x-domain": "Broker",
                 "x-api-channel": "Private",
