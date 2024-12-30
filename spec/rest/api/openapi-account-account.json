@@ -361,7 +361,7 @@
                 "x-sdk-method-name": "getSpotLedger",
                 "x-sdk-method-description": "This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"265329987780896\\\",\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"amount\\\": \\\"0.01\\\",\\n                \\\"fee\\\": \\\"0\\\",\\n                \\\"balance\\\": \\\"0\\\",\\n                \\\"accountType\\\": \\\"TRADE\\\",\\n                \\\"bizType\\\": \\\"\\u5b50\\u8d26\\u53f7\\u8f6c\\u8d26\\\",\\n                \\\"direction\\\": \\\"out\\\",\\n                \\\"createdAt\\\": 1728658481484,\\n                \\\"context\\\": \\\"\\\"\\n            }\\n        ]\\n    }\\n}",
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"265329987780896\\\",\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"amount\\\": \\\"0.01\\\",\\n                \\\"fee\\\": \\\"0\\\",\\n                \\\"balance\\\": \\\"0\\\",\\n                \\\"accountType\\\": \\\"TRADE\\\",\\n                \\\"bizType\\\": \\\"SUB_TRANSFER\\\",\\n                \\\"direction\\\": \\\"out\\\",\\n                \\\"createdAt\\\": 1728658481484,\\n                \\\"context\\\": \\\"\\\"\\n            }\\n        ]\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
             }
         },
@@ -1795,7 +1795,7 @@
         },
         "/api/v1/user/api-key": {
             "get": {
-                "summary": "Get API Key Info",
+                "summary": "Get Apikey Info",
                 "deprecated": false,
                 "description": "Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user's api key are applicable.",
                 "tags": [],

@@ -727,7 +727,13 @@
                                     },
                                     "toAddress": {
                                         "type": "string",
-                                        "description": "Withdrawal address"
+                                        "description": "Withdrawal address",
+                                        "example": [
+                                            "0x023****2355",
+                                            "1572**401",
+                                            "a431***1e@gmail.com",
+                                            "55-12341234"
+                                        ]
                                     },
                                     "withdrawType": {
                                         "type": "string",

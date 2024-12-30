@@ -70,7 +70,7 @@ type OrderAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
 	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 30      |
+	// | API-RATE-LIMIT      | 200     |
 	// +---------------------+---------+
 	// Deprecated
 	CancelAllOrdersV1(req *CancelAllOrdersV1Req, ctx context.Context) (*CancelAllOrdersV1Resp, error)

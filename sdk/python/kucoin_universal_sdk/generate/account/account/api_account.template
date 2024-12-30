@@ -188,7 +188,7 @@ def test_get_futures_ledger_req(self):
 def test_get_apikey_info_req(self):
     """
         get_apikey_info
-        Get API Key Info
+        Get Apikey Info
         /api/v1/user/api-key
     """
 

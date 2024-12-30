@@ -10267,7 +10267,7 @@
                     {
                         "name": "limit",
                         "in": "query",
-                        "description": "Default100，Max100",
+                        "description": "Default20，Max100",
                         "required": false,
                         "schema": {
                             "type": "integer",

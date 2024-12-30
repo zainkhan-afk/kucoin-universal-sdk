@@ -9,7 +9,7 @@
     "paths": {
         "/api/v3/deposit-addresses": {
             "get": {
-                "summary": "Get Deposit Addresses(V3)",
+                "summary": "Get Deposit Address(V3)",
                 "deprecated": false,
                 "description": "Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.",
                 "tags": [],

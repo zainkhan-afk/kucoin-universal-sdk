@@ -138,7 +138,7 @@ class DepositAPI(ABC):
     def get_deposit_address_v3(self, req: GetDepositAddressV3Req,
                                **kwargs: Any) -> GetDepositAddressV3Resp:
         """
-        summary: Get Deposit Addresses(V3)
+        summary: Get Deposit Address(V3)
         description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
         +---------------------+------------+
         | Extra API Info      | Value      |

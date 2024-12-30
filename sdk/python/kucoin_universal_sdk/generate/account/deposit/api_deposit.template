@@ -118,7 +118,7 @@ def test_add_deposit_address_v3_req(self):
 def test_get_deposit_address_v3_req(self):
     """
         get_deposit_address_v3
-        Get Deposit Addresses(V3)
+        Get Deposit Address(V3)
         /api/v3/deposit-addresses
     """
 

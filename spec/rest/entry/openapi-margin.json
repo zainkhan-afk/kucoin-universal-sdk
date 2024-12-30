@@ -5451,7 +5451,7 @@
                                     },
                                     "stp": {
                                         "type": "string",
-                                        "description": "[Self Trade Prevention](doc://link/pages/5176570) is divided into four strategies: CN, CO, CB , and DC",
+                                        "description": "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC",
                                         "enum": [
                                             "DC",
                                             "CO",
@@ -5491,7 +5491,7 @@
                                     },
                                     "timeInForce": {
                                         "type": "string",
-                                        "description": "[Time in force](doc://link/pages/5176570) is a special strategy used during trading",
+                                        "description": "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
                                         "enum": [
                                             "GTC",
                                             "GTT",

@@ -10,7 +10,7 @@ account,account,/api/v1/accounts/{accountId},get,Get Account Detail - Spot
 account,account,/api/v3/margin/accounts,get,Get Account - Cross Margin
 account,account,/api/v3/isolated/accounts,get,Get Account - Isolated Margin
 account,account,/api/v1/account-overview,get,Get Account - Futures
-account,account,/api/v1/user/api-key,get,Get API Key Info
+account,account,/api/v1/user/api-key,get,Get Apikey Info
 account,account,/api/v1/margin/account,get,Get Account Detail - Margin
 account,account,/api/v1/isolated/accounts,get,Get Account List - Isolated Margin - V1
 account,account,/api/v1/isolated/account/{symbol},get,Get Account Detail - Isolated Margin - V1
@@ -27,7 +27,7 @@ account,subaccount,/api/v1/sub/api-key,post,Add SubAccount API
 account,subaccount,/api/v1/sub/api-key/update,post,Modify SubAccount API
 account,subaccount,/api/v1/sub/user,get,Get SubAccount List - Summary Info(V1)
 account,subaccount,/api/v1/sub-accounts,get,Get SubAccount List - Spot Balance(V1)
-account,deposit,/api/v3/deposit-addresses,get,Get Deposit Addresses(V3)
+account,deposit,/api/v3/deposit-addresses,get,Get Deposit Address(V3)
 account,deposit,/api/v1/deposits,get,Get Deposit History
 account,deposit,/api/v3/deposit-address/create,post,Add Deposit Address(V3)
 account,deposit,/api/v2/deposit-addresses,get,Get Deposit Addresses(V2)

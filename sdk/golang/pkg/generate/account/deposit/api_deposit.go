@@ -91,7 +91,7 @@ type DepositAPI interface {
 	// +---------------------+------------+
 	AddDepositAddressV3(req *AddDepositAddressV3Req, ctx context.Context) (*AddDepositAddressV3Resp, error)
 
-	// GetDepositAddressV3 Get Deposit Addresses(V3)
+	// GetDepositAddressV3 Get Deposit Address(V3)
 	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
