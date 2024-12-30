@@ -3863,7 +3863,7 @@
                     {
                         "name": "market",
                         "in": "query",
-                        "description": "[The trading market](apidog://link/endpoint/222921786)",
+                        "description": "[The trading market](https://www.kucoin.com/docs-new/api-222921786)",
                         "required": false,
                         "schema": {
                             "type": "string",

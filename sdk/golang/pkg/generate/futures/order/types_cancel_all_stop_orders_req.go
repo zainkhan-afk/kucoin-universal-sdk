@@ -4,7 +4,7 @@ package order
 
 // CancelAllStopOrdersReq struct for CancelAllStopOrdersReq
 type CancelAllStopOrdersReq struct {
-	// Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewCancelAllStopOrdersReqBuilder() *CancelAllStopOrdersReqBuilder {
 	return &CancelAllStopOrdersReqBuilder{obj: NewCancelAllStopOrdersReqWithDefaults()}
 }
 
-// Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Cancel all limit orders for a specific contract only,  If not specified, all the limit orders will be deleted, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *CancelAllStopOrdersReqBuilder) SetSymbol(value string) *CancelAllStopOrdersReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

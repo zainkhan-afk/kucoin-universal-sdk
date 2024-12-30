@@ -19,15 +19,15 @@ class BatchAddOrdersOrderList(BaseModel):
         client_oid (str): Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters. 
         symbol (str): symbol
         type (TypeEnum): Specify if the order is an 'limit' order or 'market' order. 
-        time_in_force (TimeInForceEnum): [Time in force](doc://link/pages/338146) is a special strategy used during trading
+        time_in_force (TimeInForceEnum): [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
         side (SideEnum): Specify if the order is to 'buy' or 'sell'
         price (str): Specify price for order
         size (str): Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
         cancel_after (int): Cancel after n seconds，the order timing strategy is GTT
         post_only (bool): passive order labels, this is disabled when the order timing strategy is IOC or FOK
-        hidden (bool): [Hidden order](doc://link/pages/338146) or not (not shown in order book)
-        iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
+        hidden (bool): [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
+        iceberg (bool): Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
         visible_size (str): Maximum visible quantity in iceberg orders
         tags (str): Order tag, length cannot exceed 20 characters (ASCII)
         remark (str): Order placement remarks, length cannot exceed 20 characters (ASCII)
@@ -89,7 +89,7 @@ class BatchAddOrdersOrderList(BaseModel):
     time_in_force: Optional[TimeInForceEnum] = Field(
         default=TimeInForceEnum.GTC,
         description=
-        "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+        "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
         alias="timeInForce")
     side: Optional[SideEnum] = Field(
         default=None, description="Specify if the order is to 'buy' or 'sell'")
@@ -103,7 +103,7 @@ class BatchAddOrdersOrderList(BaseModel):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC"
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC"
     )
     cancel_after: Optional[int] = Field(
         default=None,
@@ -117,12 +117,12 @@ class BatchAddOrdersOrderList(BaseModel):
     hidden: Optional[bool] = Field(
         default=False,
         description=
-        "[Hidden order](doc://link/pages/338146) or not (not shown in order book)"
+        "[Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)"
     )
     iceberg: Optional[bool] = Field(
         default=False,
         description=
-        "Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)"
+        "Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)"
     )
     visible_size: Optional[str] = Field(
         default=None,
@@ -250,7 +250,7 @@ class BatchAddOrdersOrderListBuilder:
         self, value: BatchAddOrdersOrderList.TimeInForceEnum
     ) -> BatchAddOrdersOrderListBuilder:
         """
-        [Time in force](doc://link/pages/338146) is a special strategy used during trading
+        [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
         """
         self.obj['timeInForce'] = value
         return self
@@ -282,7 +282,7 @@ class BatchAddOrdersOrderListBuilder:
         self, value: BatchAddOrdersOrderList.StpEnum
     ) -> BatchAddOrdersOrderListBuilder:
         """
-        [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+        [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
         """
         self.obj['stp'] = value
         return self
@@ -303,14 +303,14 @@ class BatchAddOrdersOrderListBuilder:
 
     def set_hidden(self, value: bool) -> BatchAddOrdersOrderListBuilder:
         """
-        [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+        [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
         """
         self.obj['hidden'] = value
         return self
 
     def set_iceberg(self, value: bool) -> BatchAddOrdersOrderListBuilder:
         """
-        Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
+        Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
         """
         self.obj['iceberg'] = value
         return self

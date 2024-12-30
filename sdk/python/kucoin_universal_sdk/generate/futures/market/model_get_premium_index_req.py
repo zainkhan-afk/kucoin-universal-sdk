@@ -16,7 +16,7 @@ class GetPremiumIndexReq(BaseModel):
     GetPremiumIndexReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
         start_at (int): Start time (milisecond)
         end_at (int): End time (milisecond)
         reverse (bool): This parameter functions to judge whether the lookup is reverse. True means “yes”. False means no. This parameter is set as True by default.
@@ -28,7 +28,7 @@ class GetPremiumIndexReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
     )
     start_at: Optional[int] = Field(default=None,
                                     description="Start time (milisecond)",
@@ -121,7 +121,7 @@ class GetPremiumIndexReqBuilder:
 
     def set_symbol(self, value: str) -> GetPremiumIndexReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

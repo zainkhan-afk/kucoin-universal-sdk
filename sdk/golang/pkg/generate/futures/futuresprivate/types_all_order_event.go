@@ -11,7 +11,7 @@ import (
 type AllOrderEvent struct {
 	// common response
 	CommonResponse *types.WsMessage
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
 	Symbol string `json:"symbol,omitempty"`
 	// User-specified order type
 	OrderType *string `json:"orderType,omitempty"`
@@ -39,7 +39,7 @@ type AllOrderEvent struct {
 	Status string `json:"status,omitempty"`
 	// Push time(Nanosecond)
 	Ts int64 `json:"ts,omitempty"`
-	// Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType**
+	// Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType**
 	Liquidity *string `json:"liquidity,omitempty"`
 	// Actual Fee Type
 	FeeType *string `json:"feeType,omitempty"`

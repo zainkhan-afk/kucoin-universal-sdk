@@ -19,7 +19,7 @@ class GetPositionDetailsResp(BaseModel, Response):
 
     Attributes:
         id (str): Position ID 
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         cross_mode (bool): Whether it is cross margin.
         delev_percentage (float): ADL ranking percentile 
         opening_timestamp (int): Open time 
@@ -86,7 +86,7 @@ class GetPositionDetailsResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     cross_mode: Optional[bool] = Field(
         default=None,

@@ -4,7 +4,7 @@ package market
 
 // GetKlinesReq struct for GetKlinesReq
 type GetKlinesReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Type of candlestick patterns(minute)
 	Granularity *int64 `json:"granularity,omitempty" url:"granularity,omitempty"`
@@ -45,7 +45,7 @@ func NewGetKlinesReqBuilder() *GetKlinesReqBuilder {
 	return &GetKlinesReqBuilder{obj: NewGetKlinesReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetKlinesReqBuilder) SetSymbol(value string) *GetKlinesReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

@@ -18841,7 +18841,7 @@
                         "type": "text/javascript",
                         "packages": {},
                         "exec": [
-                            "\nfunction extractPathVariable(str) {\n    const regex = /^\\{\\{(.+?)\\}\\}$/;\n    const match = str.match(regex);\n    if (match) {\n        return match[1];\n    }\n    return null;\n}\n\nfunction hasAnyFieldEmpty(obj) {\n    for (const key in obj) {\n        if (obj[key] === \"\" || obj[key] === null || obj[key] === undefined) {\n            return true;\n        }\n    }\n    return false;\n}\n\nfunction sign(text, secret) {\n    const hash = CryptoJS.HmacSHA256(text, secret);\n    return CryptoJS.enc.Base64.stringify(hash)\n}\n\nfunction auth(apiKey, method, url, data) {\n    if (hasAnyFieldEmpty(apiKey)) {\n        console.warn('The API key-related (or broker-related) information is not configured. Please check the fields in the environment variables.')\n        return {'User-Agent': `Kucoin-Universal-Postman-SDK/`}\n    }\n\n\n    const timestamp = Date.now();\n    const text = timestamp + method.toUpperCase() + url + data;\n    const signature = sign(text, apiKey.secret);\n    const brokerText = timestamp + apiKey.partner + apiKey.key;\n    const brokerSignature = sign(brokerText, apiKey.brokerKey);\n    return {\n        'KC-API-KEY': apiKey.key,\n        'KC-API-SIGN': signature,\n        'KC-API-TIMESTAMP': timestamp.toString(),\n        'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),\n        'Content-Type': 'application/json',\n        'User-Agent': `Kucoin-Universal-Postman-SDK/`,\n        'KC-API-KEY-VERSION': 2,\n        'KC-API-PARTNER': apiKey.partner,\n        'KC-BROKER-NAME': apiKey.brokerName,\n        'KC-API-PARTNER-VERIFY': 'true',\n        'KC-API-PARTNER-SIGN': brokerSignature,\n    };\n}\n\nlet key = pm.environment.get('API_KEY')\nlet secret = pm.environment.get('API_SECRET')\nlet passphrase = pm.environment.get('API_PASSPHRASE')\n\nlet brokerName = pm.environment.get('BROKER_NAME')\nlet partner = pm.environment.get('BROKER_PARTNER')\nlet brokerKey = pm.environment.get('BROKER_KEY')\n\nlet url = pm.request.url.getPathWithQuery()\nlet method = pm.request.method\nlet body = pm.request.body ? pm.request.body.toString() : ''\n\nfor (const index in pm.request.url.path) {\n    path = pm.request.url.path[index]\n    pathVar = extractPathVariable(path)\n    if (pathVar != null) {\n        let collectionVariable = pm.collectionVariables.get(pathVar);\n        if (collectionVariable != null) {\n            url = url.replace(path, collectionVariable)\n        } else {\n            console.warn('no path variable set: ' + path)\n        }\n    }\n}\n\nheader = auth({\n    key: key, passphrase: passphrase, secret: secret, brokerName: brokerName, partner: partner, brokerKey: brokerKey\n}, method, url, body)\n\nfor (const [headerName, headerValue] of Object.entries(header)) {\n    pm.request.headers.add({ key: headerName, value: headerValue })\n}"
+                            "\nfunction extractPathVariable(str) {\n    const regex = /^\\{\\{(.+?)\\}\\}$/;\n    const match = str.match(regex);\n    if (match) {\n        return match[1];\n    }\n    return null;\n}\n\nfunction hasAnyFieldEmpty(obj) {\n    for (const key in obj) {\n        if (obj[key] === \"\" || obj[key] === null || obj[key] === undefined) {\n            return true;\n        }\n    }\n    return false;\n}\n\nfunction sign(text, secret) {\n    const hash = CryptoJS.HmacSHA256(text, secret);\n    return CryptoJS.enc.Base64.stringify(hash)\n}\n\nfunction auth(apiKey, method, url, data) {\n    if (hasAnyFieldEmpty(apiKey)) {\n        console.warn('The API key-related (or broker-related) information is not configured. Please check the fields in the environment variables.')\n        return {'User-Agent': `Kucoin-Universal-Postman-SDK/v1.0.0`}\n    }\n\n\n    const timestamp = Date.now();\n    const text = timestamp + method.toUpperCase() + url + data;\n    const signature = sign(text, apiKey.secret);\n    const brokerText = timestamp + apiKey.partner + apiKey.key;\n    const brokerSignature = sign(brokerText, apiKey.brokerKey);\n    return {\n        'KC-API-KEY': apiKey.key,\n        'KC-API-SIGN': signature,\n        'KC-API-TIMESTAMP': timestamp.toString(),\n        'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),\n        'Content-Type': 'application/json',\n        'User-Agent': `Kucoin-Universal-Postman-SDK/v1.0.0`,\n        'KC-API-KEY-VERSION': 2,\n        'KC-API-PARTNER': apiKey.partner,\n        'KC-BROKER-NAME': apiKey.brokerName,\n        'KC-API-PARTNER-VERIFY': 'true',\n        'KC-API-PARTNER-SIGN': brokerSignature,\n    };\n}\n\nlet key = pm.environment.get('API_KEY')\nlet secret = pm.environment.get('API_SECRET')\nlet passphrase = pm.environment.get('API_PASSPHRASE')\n\nlet brokerName = pm.environment.get('BROKER_NAME')\nlet partner = pm.environment.get('BROKER_PARTNER')\nlet brokerKey = pm.environment.get('BROKER_KEY')\n\nlet url = pm.request.url.getPathWithQuery()\nlet method = pm.request.method\nlet body = pm.request.body ? pm.request.body.toString() : ''\n\nfor (const index in pm.request.url.path) {\n    path = pm.request.url.path[index]\n    pathVar = extractPathVariable(path)\n    if (pathVar != null) {\n        let collectionVariable = pm.collectionVariables.get(pathVar);\n        if (collectionVariable != null) {\n            url = url.replace(path, collectionVariable)\n        } else {\n            console.warn('no path variable set: ' + path)\n        }\n    }\n}\n\nheader = auth({\n    key: key, passphrase: passphrase, secret: secret, brokerName: brokerName, partner: partner, brokerKey: brokerKey\n}, method, url, body)\n\nfor (const [headerName, headerValue] of Object.entries(header)) {\n    pm.request.headers.add({ key: headerName, value: headerValue })\n}"
                         ]
                     }
                 },
@@ -18864,23 +18864,7 @@
             "value": ""
         },
         {
-            "key": "subUserId",
-            "value": ""
-        },
-        {
-            "key": "size",
-            "value": ""
-        },
-        {
-            "key": "accountId",
-            "value": ""
-        },
-        {
-            "key": "withdrawalId",
-            "value": ""
-        },
-        {
-            "key": "currency",
+            "key": "orderId",
             "value": ""
         },
         {
@@ -18888,11 +18872,27 @@
             "value": ""
         },
         {
-            "key": "orderId",
+            "key": "currency",
+            "value": ""
+        },
+        {
+            "key": "withdrawalId",
             "value": ""
         },
         {
             "key": "order-id",
+            "value": ""
+        },
+        {
+            "key": "accountId",
+            "value": ""
+        },
+        {
+            "key": "size",
+            "value": ""
+        },
+        {
+            "key": "subUserId",
             "value": ""
         }
     ],
@@ -18903,7 +18903,7 @@
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
-                    "function extractPathVariable(str) {\n    const regex = /^\\{\\{(.+?)\\}\\}$/;\n    const match = str.match(regex);\n    if (match) {\n        return match[1];\n    }\n    return null;\n}\n\nfunction hasAnyFieldEmpty(obj) {\n    for (const key in obj) {\n        if (obj[key] === \"\" || obj[key] === null || obj[key] === undefined) {\n            return true;\n        }\n    }\n    return false;\n}\n\nfunction sign(text, secret) {\n    const hash = CryptoJS.HmacSHA256(text, secret);\n    return CryptoJS.enc.Base64.stringify(hash)\n}\n\nfunction auth(apiKey, method, url, data) {\n    if (hasAnyFieldEmpty(apiKey)) {\n        console.warn('The API key-related information is not configured; only the public channel API is accessible.')\n        return {'User-Agent': `Kucoin-Universal-Postman-SDK/`}\n    }\n\n    const timestamp = Date.now();\n    const text = timestamp + method.toUpperCase() + url + data;\n    const signature = sign(text, apiKey.secret);\n    return {\n        'KC-API-KEY': apiKey.key,\n        'KC-API-SIGN': signature,\n        'KC-API-TIMESTAMP': timestamp.toString(),\n        'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),\n        'Content-Type': 'application/json',\n        'User-Agent': `Kucoin-Universal-Postman-SDK/`,\n        'KC-API-KEY-VERSION': 2,\n    };\n}\n\nlet key = pm.environment.get('API_KEY')\nlet secret = pm.environment.get('API_SECRET')\nlet passphrase = pm.environment.get('API_PASSPHRASE')\n\nlet url = pm.request.url.getPathWithQuery()\nlet method = pm.request.method\nlet body = pm.request.body ? pm.request.body.toString() : ''\n\nfor (const index in pm.request.url.path) {\n    path = pm.request.url.path[index]\n    pathVar = extractPathVariable(path)\n    if (pathVar != null) {\n        let collectionVariable = pm.collectionVariables.get(pathVar);\n        if (collectionVariable != null) {\n            url = url.replace(path, collectionVariable)\n        } else {\n            console.warn('no path variable set: ' + path)\n        }\n    }\n}\n\nheader = auth({ key: key, passphrase: passphrase, secret: secret }, method, url, body)\n\nfor (const [headerName, headerValue] of Object.entries(header)) {\n    pm.request.headers.add({ key: headerName, value: headerValue })\n}"
+                    "function extractPathVariable(str) {\n    const regex = /^\\{\\{(.+?)\\}\\}$/;\n    const match = str.match(regex);\n    if (match) {\n        return match[1];\n    }\n    return null;\n}\n\nfunction hasAnyFieldEmpty(obj) {\n    for (const key in obj) {\n        if (obj[key] === \"\" || obj[key] === null || obj[key] === undefined) {\n            return true;\n        }\n    }\n    return false;\n}\n\nfunction sign(text, secret) {\n    const hash = CryptoJS.HmacSHA256(text, secret);\n    return CryptoJS.enc.Base64.stringify(hash)\n}\n\nfunction auth(apiKey, method, url, data) {\n    if (hasAnyFieldEmpty(apiKey)) {\n        console.warn('The API key-related information is not configured; only the public channel API is accessible.')\n        return {'User-Agent': `Kucoin-Universal-Postman-SDK/v1.0.0`}\n    }\n\n    const timestamp = Date.now();\n    const text = timestamp + method.toUpperCase() + url + data;\n    const signature = sign(text, apiKey.secret);\n    return {\n        'KC-API-KEY': apiKey.key,\n        'KC-API-SIGN': signature,\n        'KC-API-TIMESTAMP': timestamp.toString(),\n        'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),\n        'Content-Type': 'application/json',\n        'User-Agent': `Kucoin-Universal-Postman-SDK/v1.0.0`,\n        'KC-API-KEY-VERSION': 2,\n    };\n}\n\nlet key = pm.environment.get('API_KEY')\nlet secret = pm.environment.get('API_SECRET')\nlet passphrase = pm.environment.get('API_PASSPHRASE')\n\nlet url = pm.request.url.getPathWithQuery()\nlet method = pm.request.method\nlet body = pm.request.body ? pm.request.body.toString() : ''\n\nfor (const index in pm.request.url.path) {\n    path = pm.request.url.path[index]\n    pathVar = extractPathVariable(path)\n    if (pathVar != null) {\n        let collectionVariable = pm.collectionVariables.get(pathVar);\n        if (collectionVariable != null) {\n            url = url.replace(path, collectionVariable)\n        } else {\n            console.warn('no path variable set: ' + path)\n        }\n    }\n}\n\nheader = auth({ key: key, passphrase: passphrase, secret: secret }, method, url, body)\n\nfor (const [headerName, headerValue] of Object.entries(header)) {\n    pm.request.headers.add({ key: headerName, value: headerValue })\n}"
                 ]
             }
         },

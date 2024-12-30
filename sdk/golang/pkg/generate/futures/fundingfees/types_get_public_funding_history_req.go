@@ -4,7 +4,7 @@ package fundingfees
 
 // GetPublicFundingHistoryReq struct for GetPublicFundingHistoryReq
 type GetPublicFundingHistoryReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Begin time (milisecond)
 	From *int64 `json:"from,omitempty" url:"from,omitempty"`
@@ -42,7 +42,7 @@ func NewGetPublicFundingHistoryReqBuilder() *GetPublicFundingHistoryReqBuilder {
 	return &GetPublicFundingHistoryReqBuilder{obj: NewGetPublicFundingHistoryReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPublicFundingHistoryReqBuilder) SetSymbol(value string) *GetPublicFundingHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

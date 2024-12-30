@@ -15,12 +15,13 @@ class GetAllSymbolsReq(BaseModel):
     GetAllSymbolsReq
 
     Attributes:
-        market (str): [The trading market](apidog://link/endpoint/222921786)
+        market (str): [The trading market](https://www.kucoin.com/docs-new/api-222921786)
     """
 
     market: Optional[str] = Field(
         default=None,
-        description="[The trading market](apidog://link/endpoint/222921786)")
+        description=
+        "[The trading market](https://www.kucoin.com/docs-new/api-222921786)")
 
     __properties: ClassVar[List[str]] = ["market"]
 
@@ -67,7 +68,7 @@ class GetAllSymbolsReqBuilder:
 
     def set_market(self, value: str) -> GetAllSymbolsReqBuilder:
         """
-        [The trading market](apidog://link/endpoint/222921786)
+        [The trading market](https://www.kucoin.com/docs-new/api-222921786)
         """
         self.obj['market'] = value
         return self

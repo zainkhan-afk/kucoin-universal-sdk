@@ -18,7 +18,7 @@ class GetMarginModeResp(BaseModel, Response):
     GetMarginModeResp
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         margin_mode (MarginModeEnum): Margin mode: ISOLATED (isolated), CROSS (cross margin).
     """
 
@@ -36,7 +36,7 @@ class GetMarginModeResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     margin_mode: Optional[MarginModeEnum] = Field(
         default=None,

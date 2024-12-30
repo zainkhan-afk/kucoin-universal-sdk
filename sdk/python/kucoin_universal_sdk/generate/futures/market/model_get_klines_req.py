@@ -16,7 +16,7 @@ class GetKlinesReq(BaseModel):
     GetKlinesReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
         granularity (GranularityEnum): Type of candlestick patterns(minute)
         from_ (int): Start time (milisecond)
         to (int): End time (milisecond)
@@ -52,7 +52,7 @@ class GetKlinesReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) "
     )
     granularity: Optional[GranularityEnum] = Field(
         default=None, description="Type of candlestick patterns(minute)")
@@ -112,7 +112,7 @@ class GetKlinesReqBuilder:
 
     def set_symbol(self, value: str) -> GetKlinesReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol, indexSymbol, premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

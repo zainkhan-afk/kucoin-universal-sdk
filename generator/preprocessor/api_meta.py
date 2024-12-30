@@ -223,7 +223,7 @@ class ApiMetaUtil:
                     result = {
                         'name': path_para['name'],
                         'in': 'path',
-                        'description': path_para['description'],
+                        'description': ApiMetaUtil.escape_url(path_para['description'], ApiMetaUtil.doc_id),
                         'required': path_para['required'],
                         'schema': {
                             'type': path_para['type'],
@@ -253,7 +253,7 @@ class ApiMetaUtil:
                     result = {
                         'name': query_para['name'],
                         'in': 'query',
-                        'description': query_para['description'],
+                        'description':  ApiMetaUtil.escape_url(query_para['description'], ApiMetaUtil.doc_id),
                         'required': query_para['required'],
                         'schema': schema,
                     }

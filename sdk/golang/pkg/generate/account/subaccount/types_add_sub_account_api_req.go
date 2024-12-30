@@ -8,7 +8,7 @@ type AddSubAccountApiReq struct {
 	Passphrase string `json:"passphrase,omitempty"`
 	// Remarks(1~24 characters)
 	Remark string `json:"remark,omitempty"`
-	// [Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+	// [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
 	Permission *string `json:"permission,omitempty"`
 	// IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`
@@ -74,7 +74,7 @@ func (builder *AddSubAccountApiReqBuilder) SetRemark(value string) *AddSubAccoun
 	return builder
 }
 
-// [Permissions](doc://link/pages/338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
+// [Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")
 func (builder *AddSubAccountApiReqBuilder) SetPermission(value string) *AddSubAccountApiReqBuilder {
 	builder.obj.Permission = &value
 	return builder

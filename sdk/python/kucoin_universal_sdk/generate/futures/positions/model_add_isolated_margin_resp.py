@@ -18,7 +18,7 @@ class AddIsolatedMarginResp(BaseModel, Response):
 
     Attributes:
         id (str): Position ID
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         auto_deposit (bool): Auto deposit margin or not
         maint_margin_req (float): Maintenance margin requirement  
         risk_limit (int): Risk limit 
@@ -62,7 +62,7 @@ class AddIsolatedMarginResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     auto_deposit: Optional[bool] = Field(
         default=None,

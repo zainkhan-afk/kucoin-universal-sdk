@@ -28,9 +28,9 @@ class GetOrderByClientOidResp(BaseModel, Response):
         funds (str): Order Funds
         deal_size (str): Number of filled transactions
         deal_funds (str): Funds of filled transactions
-        fee (str): [Handling fees](doc://link/pages/5327739)
+        fee (str): [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
         fee_currency (str): currency used to calculate trading fee
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/5176570)
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)
         time_in_force (TimeInForceEnum): Time in force
         post_only (bool): Whether its a postOnly order.
         hidden (bool): Whether its a hidden order.
@@ -122,14 +122,17 @@ class GetOrderByClientOidResp(BaseModel, Response):
         description="Funds of filled transactions",
         alias="dealFunds")
     fee: Optional[str] = Field(
-        default=None, description="[Handling fees](doc://link/pages/5327739)")
+        default=None,
+        description=
+        "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)")
     fee_currency: Optional[str] = Field(
         default=None,
         description="currency used to calculate trading fee",
         alias="feeCurrency")
     stp: Optional[StpEnum] = Field(
         default=None,
-        description="[Self Trade Prevention](doc://link/pages/5176570)")
+        description=
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)")
     time_in_force: Optional[TimeInForceEnum] = Field(
         default=None, description="Time in force", alias="timeInForce")
     post_only: Optional[bool] = Field(

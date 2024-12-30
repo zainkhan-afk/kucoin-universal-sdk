@@ -17,7 +17,7 @@ class GetStopOrderListReq(BaseModel):
     GetStopOrderListReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         side (SideEnum): buy or sell
         type (TypeEnum): limit, market
         start_at (int): Start time (milisecond)
@@ -47,7 +47,7 @@ class GetStopOrderListReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     side: Optional[SideEnum] = Field(default=None, description="buy or sell")
     type: Optional[TypeEnum] = Field(default=None, description="limit, market")
@@ -130,7 +130,7 @@ class GetStopOrderListReqBuilder:
 
     def set_symbol(self, value: str) -> GetStopOrderListReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

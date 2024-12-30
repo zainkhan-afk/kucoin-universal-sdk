@@ -25,7 +25,7 @@ type GetTradeHistoryItems struct {
 	Size string `json:"size,omitempty"`
 	// Order Funds
 	Funds string `json:"funds,omitempty"`
-	// [Handling fees](doc://link/pages/5327739)
+	// [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
 	Fee string `json:"fee,omitempty"`
 	// Fee rate
 	FeeRate string `json:"feeRate,omitempty"`

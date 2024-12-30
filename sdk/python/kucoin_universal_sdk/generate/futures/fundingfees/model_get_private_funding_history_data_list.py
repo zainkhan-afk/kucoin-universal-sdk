@@ -17,7 +17,7 @@ class GetPrivateFundingHistoryDataList(BaseModel):
 
     Attributes:
         id (int): id
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         time_point (int): Time point (milisecond) 
         funding_rate (float): Funding rate 
         mark_price (float): Mark price 
@@ -42,7 +42,7 @@ class GetPrivateFundingHistoryDataList(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     time_point: Optional[int] = Field(default=None,
                                       description="Time point (milisecond) ",

@@ -16,7 +16,7 @@ class GetStopOrderListItems(BaseModel):
 
     Attributes:
         id (str): Order ID
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         type (str): Order type, market order or limit order 
         side (str): Transaction side
         price (str): Order price
@@ -59,7 +59,7 @@ class GetStopOrderListItems(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     type: Optional[str] = Field(
         default=None, description="Order type, market order or limit order ")

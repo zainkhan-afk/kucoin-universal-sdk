@@ -8,7 +8,7 @@ type BatchAddOrdersData struct {
 	OrderId string `json:"orderId,omitempty"`
 	// Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
 	ClientOid string `json:"clientOid,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	Code   string `json:"code,omitempty"`
 	Msg    string `json:"msg,omitempty"`

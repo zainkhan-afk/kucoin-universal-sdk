@@ -14,13 +14,13 @@ type BatchAddOrdersOldOrderList struct {
 	Type *string `json:"type,omitempty"`
 	// Order placement remarks, length cannot exceed 20 characters (ASCII)
 	Remark *string `json:"remark,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 	Stp *string `json:"stp,omitempty"`
 	// Specify price for order  When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error.
 	Price string `json:"price,omitempty"`
 	// Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 	Size string `json:"size,omitempty"`
-	// [Time in force](doc://link/pages/338146) is a special strategy used during trading
+	// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// passive order labels, this is disabled when the order timing strategy is IOC or FOK
 	PostOnly *bool `json:"postOnly,omitempty"`
@@ -143,7 +143,7 @@ func (builder *BatchAddOrdersOldOrderListBuilder) SetRemark(value string) *Batch
 	return builder
 }
 
-// [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 func (builder *BatchAddOrdersOldOrderListBuilder) SetStp(value string) *BatchAddOrdersOldOrderListBuilder {
 	builder.obj.Stp = &value
 	return builder
@@ -161,7 +161,7 @@ func (builder *BatchAddOrdersOldOrderListBuilder) SetSize(value string) *BatchAd
 	return builder
 }
 
-// [Time in force](doc://link/pages/338146) is a special strategy used during trading
+// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 func (builder *BatchAddOrdersOldOrderListBuilder) SetTimeInForce(value string) *BatchAddOrdersOldOrderListBuilder {
 	builder.obj.TimeInForce = &value
 	return builder

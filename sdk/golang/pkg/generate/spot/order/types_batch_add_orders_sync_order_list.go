@@ -10,7 +10,7 @@ type BatchAddOrdersSyncOrderList struct {
 	Symbol string `json:"symbol,omitempty"`
 	// Specify if the order is an 'limit' order or 'market' order.
 	Type string `json:"type,omitempty"`
-	// [Time in force](doc://link/pages/338146) is a special strategy used during trading
+	// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// Specify if the order is to 'buy' or 'sell'
 	Side string `json:"side,omitempty"`
@@ -18,15 +18,15 @@ type BatchAddOrdersSyncOrderList struct {
 	Price string `json:"price,omitempty"`
 	// Specify quantity for order  When **type** is limit, select one out of two: size or funds, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 	Size *string `json:"size,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 	Stp *string `json:"stp,omitempty"`
 	// Cancel after n seconds，the order timing strategy is GTT
 	CancelAfter *int64 `json:"cancelAfter,omitempty"`
 	// passive order labels, this is disabled when the order timing strategy is IOC or FOK
 	PostOnly *bool `json:"postOnly,omitempty"`
-	// [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+	// [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
 	Hidden *bool `json:"hidden,omitempty"`
-	// Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
+	// Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
 	Iceberg *bool `json:"iceberg,omitempty"`
 	// Maximum visible quantity in iceberg orders
 	VisibleSize *string `json:"visibleSize,omitempty"`
@@ -119,7 +119,7 @@ func (builder *BatchAddOrdersSyncOrderListBuilder) SetType(value string) *BatchA
 	return builder
 }
 
-// [Time in force](doc://link/pages/338146) is a special strategy used during trading
+// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 func (builder *BatchAddOrdersSyncOrderListBuilder) SetTimeInForce(value string) *BatchAddOrdersSyncOrderListBuilder {
 	builder.obj.TimeInForce = &value
 	return builder
@@ -143,7 +143,7 @@ func (builder *BatchAddOrdersSyncOrderListBuilder) SetSize(value string) *BatchA
 	return builder
 }
 
-// [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 func (builder *BatchAddOrdersSyncOrderListBuilder) SetStp(value string) *BatchAddOrdersSyncOrderListBuilder {
 	builder.obj.Stp = &value
 	return builder
@@ -161,13 +161,13 @@ func (builder *BatchAddOrdersSyncOrderListBuilder) SetPostOnly(value bool) *Batc
 	return builder
 }
 
-// [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+// [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
 func (builder *BatchAddOrdersSyncOrderListBuilder) SetHidden(value bool) *BatchAddOrdersSyncOrderListBuilder {
 	builder.obj.Hidden = &value
 	return builder
 }
 
-// Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
+// Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
 func (builder *BatchAddOrdersSyncOrderListBuilder) SetIceberg(value bool) *BatchAddOrdersSyncOrderListBuilder {
 	builder.obj.Iceberg = &value
 	return builder

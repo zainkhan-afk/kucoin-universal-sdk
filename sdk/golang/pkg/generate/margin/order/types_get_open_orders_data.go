@@ -27,7 +27,7 @@ type GetOpenOrdersData struct {
 	Fee string `json:"fee,omitempty"`
 	// currency used to calculate trading fee
 	FeeCurrency string `json:"feeCurrency,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB , and DC
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC
 	Stp           *string `json:"stp,omitempty"`
 	Stop          *string `json:"stop,omitempty"`
 	StopTriggered bool    `json:"stopTriggered,omitempty"`

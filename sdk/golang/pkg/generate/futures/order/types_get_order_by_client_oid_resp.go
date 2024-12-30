@@ -12,7 +12,7 @@ type GetOrderByClientOidResp struct {
 	CommonResponse *types.RestResponse
 	// Order ID
 	Id string `json:"id,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Order type, market order or limit order
 	Type string `json:"type,omitempty"`
@@ -28,7 +28,7 @@ type GetOrderByClientOidResp struct {
 	DealValue string `json:"dealValue,omitempty"`
 	// Executed quantity
 	DealSize int32 `json:"dealSize,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
 	Stp string `json:"stp,omitempty"`
 	// Stop order type (stop limit or stop market)
 	Stop string `json:"stop,omitempty"`

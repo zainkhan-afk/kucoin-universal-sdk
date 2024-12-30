@@ -6,7 +6,7 @@ package order
 type GetOrderListItems struct {
 	// Order ID
 	Id string `json:"id,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Order type, market order or limit order
 	Type string `json:"type,omitempty"`

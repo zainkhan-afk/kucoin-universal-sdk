@@ -18,7 +18,7 @@ class AllPositionEvent(BaseModel):
     AllPositionEvent
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) 
         cross_mode (bool): Whether it is cross margin.
         delev_percentage (float): ADL ranking percentile 
         opening_timestamp (int): Open time 
@@ -87,7 +87,7 @@ class AllPositionEvent(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
     )
     cross_mode: Optional[bool] = Field(
         default=None,

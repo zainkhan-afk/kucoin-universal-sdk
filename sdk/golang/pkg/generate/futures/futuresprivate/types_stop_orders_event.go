@@ -29,7 +29,7 @@ type StopOrdersEvent struct {
 	// Stop Price
 	StopPrice     string `json:"stopPrice,omitempty"`
 	StopPriceType string `json:"stopPriceType,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
 	Symbol string `json:"symbol,omitempty"`
 	Ts     int64  `json:"ts,omitempty"`
 	// Order Type

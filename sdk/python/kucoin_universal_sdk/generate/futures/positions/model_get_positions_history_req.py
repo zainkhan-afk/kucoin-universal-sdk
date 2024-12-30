@@ -16,7 +16,7 @@ class GetPositionsHistoryReq(BaseModel):
     GetPositionsHistoryReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         from_ (int): Closing start time(ms) 
         to (int): Closing end time(ms) 
         limit (int): Number of requests per page, max 200, default 10 
@@ -26,7 +26,7 @@ class GetPositionsHistoryReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     from_: Optional[int] = Field(default=None,
                                  description="Closing start time(ms) ",
@@ -100,7 +100,7 @@ class GetPositionsHistoryReqBuilder:
 
     def set_symbol(self, value: str) -> GetPositionsHistoryReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

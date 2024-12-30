@@ -6,7 +6,7 @@ package fundingfees
 type GetPrivateFundingHistoryDataList struct {
 	// id
 	Id int64 `json:"id,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Time point (milisecond)
 	TimePoint int64 `json:"timePoint,omitempty"`
