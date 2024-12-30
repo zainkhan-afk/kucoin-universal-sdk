@@ -41,6 +41,7 @@ class MarketAPI(ABC):
         """
         summary: Get Private Token - Spot/Margin
         description: This interface can obtain the token required for websocket to establish a Spot/Margin private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token
+        documentation: https://www.kucoin.com/docs-new/api-3470295
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -58,6 +59,7 @@ class MarketAPI(ABC):
         """
         summary: Get Public Token - Spot/Margin
         description: This interface can obtain the token required for websocket to establish a Spot/Margin connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
+        documentation: https://www.kucoin.com/docs-new/api-3470294
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -75,6 +77,7 @@ class MarketAPI(ABC):
         """
         summary: Get All Tickers
         description: Request market tickers for all the trading pairs in the market (including 24h volume), takes a snapshot every 2 seconds.  On the rare occasion that we will change the currency name, if you still want the changed symbol name, you can use the symbolName field instead of the symbol field via “Get all tickers” endpoint.
+        documentation: https://www.kucoin.com/docs-new/api-3470167
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -92,6 +95,7 @@ class MarketAPI(ABC):
         """
         summary: Get Klines
         description: Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 1500 pieces of data. To obtain more data, please page the data by time.
+        documentation: https://www.kucoin.com/docs-new/api-3470163
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -110,6 +114,7 @@ class MarketAPI(ABC):
         """
         summary: Get Trade History
         description: Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.
+        documentation: https://www.kucoin.com/docs-new/api-3470162
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -127,6 +132,7 @@ class MarketAPI(ABC):
         """
         summary: Get Ticker
         description: Request via this endpoint to get Level 1 Market Data. The returned value includes the best bid price and size, the best ask price and size as well as the last traded price and the last traded size.
+        documentation: https://www.kucoin.com/docs-new/api-3470160
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -145,6 +151,7 @@ class MarketAPI(ABC):
         """
         summary: Get Part OrderBook
         description: Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.
+        documentation: https://www.kucoin.com/docs-new/api-3470165
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -163,6 +170,7 @@ class MarketAPI(ABC):
         """
         summary: Get 24hr Stats
         description: Request via this endpoint to get the statistics of the specified ticker in the last 24 hours.
+        documentation: https://www.kucoin.com/docs-new/api-3470161
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -180,6 +188,7 @@ class MarketAPI(ABC):
         """
         summary: Get Market List
         description: Request via this endpoint to get the transaction currency for the entire trading market.
+        documentation: https://www.kucoin.com/docs-new/api-3470166
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -198,6 +207,7 @@ class MarketAPI(ABC):
         """
         summary: Get Fiat Price
         description: Request via this endpoint to get the fiat price of the currencies for the available trading pairs.
+        documentation: https://www.kucoin.com/docs-new/api-3470153
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -215,6 +225,7 @@ class MarketAPI(ABC):
         """
         summary: Get Service Status
         description: Get the service status
+        documentation: https://www.kucoin.com/docs-new/api-3470158
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -232,6 +243,7 @@ class MarketAPI(ABC):
         """
         summary: Get Server Time
         description: Get the server time.
+        documentation: https://www.kucoin.com/docs-new/api-3470156
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -250,6 +262,7 @@ class MarketAPI(ABC):
         """
         summary: Get All Symbols
         description: Request via this endpoint to get a list of available currency pairs for trading. If you want to get the market information of the trading symbol, please use Get All Tickers.
+        documentation: https://www.kucoin.com/docs-new/api-3470154
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -267,6 +280,7 @@ class MarketAPI(ABC):
         """
         summary: Get Symbol 
         description: Request via this endpoint to get detail currency pairs for trading. If you want to get the market information of the trading symbol, please use Get All Tickers.
+        documentation: https://www.kucoin.com/docs-new/api-3470159
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -285,6 +299,7 @@ class MarketAPI(ABC):
         """
         summary: Get Announcements
         description: This interface can obtain the latest news announcements, and the default page search is for announcements within a month.
+        documentation: https://www.kucoin.com/docs-new/api-3470157
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -303,6 +318,7 @@ class MarketAPI(ABC):
         """
         summary: Get Currency
         description: Request via this endpoint to get the currency details of a specified currency
+        documentation: https://www.kucoin.com/docs-new/api-3470155
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -320,6 +336,7 @@ class MarketAPI(ABC):
         """
         summary: Get All Currencies
         description: Request via this endpoint to get the currency list.Not all currencies currently can be used for trading.
+        documentation: https://www.kucoin.com/docs-new/api-3470152
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -338,6 +355,7 @@ class MarketAPI(ABC):
         """
         summary: Get Full OrderBook
         description: Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
+        documentation: https://www.kucoin.com/docs-new/api-3470164
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

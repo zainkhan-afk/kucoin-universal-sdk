@@ -11,6 +11,7 @@ type VIPLendingAPI interface {
 
 	// GetAccounts Get Accounts
 	// Description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470278
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -24,6 +25,7 @@ type VIPLendingAPI interface {
 
 	// GetAccountDetail Get Account Detail
 	// Description: The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470277
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+

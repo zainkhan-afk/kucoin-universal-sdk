@@ -11,6 +11,7 @@ type RiskLimitAPI interface {
 
 	// GetMarginRiskLimit Get Margin Risk Limit
 	// Description: Request via this endpoint to get the Configure and Risk limit info of the margin.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470219
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

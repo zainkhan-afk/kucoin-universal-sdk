@@ -22,6 +22,7 @@ class MarketAPI(ABC):
         """
         summary: Get Symbols - Isolated Margin
         description: This endpoint allows querying the configuration of isolated margin symbol.
+        documentation: https://www.kucoin.com/docs-new/api-3470194
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -39,6 +40,7 @@ class MarketAPI(ABC):
         """
         summary: Get Margin Config
         description: Request via this endpoint to get the configure info of the cross margin.
+        documentation: https://www.kucoin.com/docs-new/api-3470190
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -57,6 +59,7 @@ class MarketAPI(ABC):
         """
         summary: Get Mark Price Detail
         description: This endpoint returns the current Mark price for specified margin trading pairs.
+        documentation: https://www.kucoin.com/docs-new/api-3470193
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -75,6 +78,7 @@ class MarketAPI(ABC):
         """
         summary: Get ETF Info
         description: This interface returns leveraged token information
+        documentation: https://www.kucoin.com/docs-new/api-3470191
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -93,6 +97,7 @@ class MarketAPI(ABC):
         """
         summary: Get Symbols - Cross Margin
         description: This endpoint allows querying the configuration of cross margin symbol.
+        documentation: https://www.kucoin.com/docs-new/api-3470189
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -110,6 +115,7 @@ class MarketAPI(ABC):
         """
         summary: Get Mark Price List
         description: This endpoint returns the current Mark price for all margin trading pairs.
+        documentation: https://www.kucoin.com/docs-new/api-3470192
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+

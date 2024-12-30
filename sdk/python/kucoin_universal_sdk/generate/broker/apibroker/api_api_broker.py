@@ -14,6 +14,7 @@ class APIBrokerAPI(ABC):
         """
         summary: Get Broker Rebate
         description: This interface supports downloading Broker rebate orders
+        documentation: https://www.kucoin.com/docs-new/api-3470280
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+

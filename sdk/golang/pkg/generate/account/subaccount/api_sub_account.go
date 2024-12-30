@@ -11,6 +11,7 @@ type SubAccountAPI interface {
 
 	// GetFuturesSubAccountListV2 Get SubAccount List - Futures Balance(V2)
 	// Description: This endpoint can be used to get Futures sub-account information.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470134
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type SubAccountAPI interface {
 
 	// GetSpotSubAccountListV1 Get SubAccount List - Spot Balance(V1)
 	// Description: This endpoint returns the account info of all sub-users.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470299
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -38,6 +40,7 @@ type SubAccountAPI interface {
 
 	// GetSpotSubAccountDetail Get SubAccount Detail - Balance
 	// Description: This endpoint returns the account info of a sub-user specified by the subUserId.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470132
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -51,6 +54,7 @@ type SubAccountAPI interface {
 
 	// DeleteSubAccountApi Delete SubAccount API
 	// Description: This endpoint can be used to delete sub-account APIs.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470137
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -64,6 +68,7 @@ type SubAccountAPI interface {
 
 	// GetSubAccountApiList Get SubAccount API List
 	// Description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)
+	// Documentation: https://www.kucoin.com/docs-new/api-3470136
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -77,6 +82,7 @@ type SubAccountAPI interface {
 
 	// AddSubAccountApi Add SubAccount API
 	// Description: This endpoint can be used to create APIs for sub-accounts.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470138
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -90,6 +96,7 @@ type SubAccountAPI interface {
 
 	// ModifySubAccountApi Modify SubAccount API
 	// Description: This endpoint can be used to modify sub-account APIs.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470139
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -103,6 +110,7 @@ type SubAccountAPI interface {
 
 	// GetSpotSubAccountsSummaryV1 Get SubAccount List - Summary Info(V1)
 	// Description: You can get the user info of all sub-account via this interface It is recommended to use the GET /api/v2/sub/user interface for paging query
+	// Documentation: https://www.kucoin.com/docs-new/api-3470298
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -117,6 +125,7 @@ type SubAccountAPI interface {
 
 	// GetSpotSubAccountListV2 Get SubAccount List - Spot Balance(V2)
 	// Description: This endpoint can be used to get paginated Spot sub-account information. Pagination is required.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470133
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -130,6 +139,7 @@ type SubAccountAPI interface {
 
 	// AddSubAccount Add SubAccount
 	// Description: This endpoint can be used to create sub-accounts.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470135
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -143,6 +153,7 @@ type SubAccountAPI interface {
 
 	// GetSpotSubAccountsSummaryV2 Get SubAccount List - Summary Info
 	// Description: This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470131
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -156,6 +167,7 @@ type SubAccountAPI interface {
 
 	// AddSubAccountFuturesPermission Add SubAccount Futures Permission
 	// Description: This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470332
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -169,6 +181,7 @@ type SubAccountAPI interface {
 
 	// AddSubAccountMarginPermission Add SubAccount Margin Permission
 	// Description: This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470331
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+

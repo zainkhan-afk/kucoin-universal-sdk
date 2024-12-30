@@ -362,7 +362,7 @@ class Collection:
     def gen_postman(self, postman_data):
 
         variables = []
-        for var in self.path_var:
+        for var in sorted(self.path_var):
             variables.append({
                 "key": var,
                 "value": "",

@@ -11,6 +11,7 @@ type AccountAPI interface {
 
 	// GetFuturesAccount Get Account - Futures
 	// Description: Request via this endpoint to get the info of the futures account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470129
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type AccountAPI interface {
 
 	// GetSpotAccountDetail Get Account Detail - Spot
 	// Description: get Information for a single spot account. Use this endpoint when you know the accountId.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470126
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -37,6 +39,7 @@ type AccountAPI interface {
 
 	// GetSpotAccountList Get Account List - Spot
 	// Description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470125
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -50,6 +53,7 @@ type AccountAPI interface {
 
 	// GetSpotLedger Get Account Ledgers - Spot/Margin
 	// Description: This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470121
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -63,6 +67,7 @@ type AccountAPI interface {
 
 	// GetSpotHFLedger Get Account Ledgers - Trade_hf
 	// Description: This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470122
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -76,6 +81,7 @@ type AccountAPI interface {
 
 	// GetSpotAccountType Get Account Type - Spot
 	// Description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470120
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -89,6 +95,7 @@ type AccountAPI interface {
 
 	// GetIsolatedMarginAccountDetailV1 Get Account Detail - Isolated Margin - V1
 	// Description: Request via this endpoint to get the info of the isolated margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470315
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -103,6 +110,7 @@ type AccountAPI interface {
 
 	// GetIsolatedMarginAccountListV1 Get Account List - Isolated Margin - V1
 	// Description: Request via this endpoint to get the info list of the isolated margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470314
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -117,6 +125,7 @@ type AccountAPI interface {
 
 	// GetMarginAccountDetail Get Account Detail - Margin
 	// Description: Request via this endpoint to get the info of the margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470311
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -131,6 +140,7 @@ type AccountAPI interface {
 
 	// GetFuturesLedger Get Account Ledgers - Futures
 	// Description: This interface can query the ledger records of the futures business line
+	// Documentation: https://www.kucoin.com/docs-new/api-3470124
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -144,6 +154,7 @@ type AccountAPI interface {
 
 	// GetApikeyInfo Get Apikey Info
 	// Description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470130
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -157,6 +168,7 @@ type AccountAPI interface {
 
 	// GetAccountInfo Get Account Summary Info
 	// Description: This endpoint can be used to obtain account summary information.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470119
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -170,6 +182,7 @@ type AccountAPI interface {
 
 	// GetMarginHFLedger Get Account Ledgers - Margin_hf
 	// Description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470123
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -183,6 +196,7 @@ type AccountAPI interface {
 
 	// GetIsolatedMarginAccount Get Account - Isolated Margin
 	// Description: Request via this endpoint to get the info of the isolated margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470128
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -196,6 +210,7 @@ type AccountAPI interface {
 
 	// GetCrossMarginAccount Get Account - Cross Margin
 	// Description: Request via this endpoint to get the info of the cross margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470127
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

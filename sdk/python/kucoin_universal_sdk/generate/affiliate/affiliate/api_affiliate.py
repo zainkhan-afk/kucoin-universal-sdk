@@ -13,6 +13,7 @@ class AffiliateAPI(ABC):
         """
         summary: Get Account
         description: This endpoint allows getting affiliate user rebate information.
+        documentation: https://www.kucoin.com/docs-new/api-3470279
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
