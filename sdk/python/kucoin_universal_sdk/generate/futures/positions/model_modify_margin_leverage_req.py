@@ -15,14 +15,14 @@ class ModifyMarginLeverageReq(BaseModel):
     ModifyMarginLeverageReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         leverage (str): Leverage multiple
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     leverage: Optional[str] = Field(default=None,
                                     description="Leverage multiple")
@@ -77,7 +77,7 @@ class ModifyMarginLeverageReqBuilder:
 
     def set_symbol(self, value: str) -> ModifyMarginLeverageReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

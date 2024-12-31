@@ -4,7 +4,7 @@ package market
 
 // GetPremiumIndexReq struct for GetPremiumIndexReq
 type GetPremiumIndexReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Start time (milisecond)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
@@ -66,7 +66,7 @@ func NewGetPremiumIndexReqBuilder() *GetPremiumIndexReqBuilder {
 	return &GetPremiumIndexReqBuilder{obj: NewGetPremiumIndexReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: premiumsSymbol1M, premiumsSymbol8H](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPremiumIndexReqBuilder) SetSymbol(value string) *GetPremiumIndexReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

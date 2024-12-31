@@ -11,6 +11,7 @@ type FundingFeesAPI interface {
 
 	// GetPublicFundingHistory Get Public Funding History
 	// Description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract
+	// Documentation: https://www.kucoin.com/docs-new/api-3470266
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type FundingFeesAPI interface {
 
 	// GetPrivateFundingHistory Get Private Funding History
 	// Description: Submit request to get the funding history.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470267
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type FundingFeesAPI interface {
 
 	// GetCurrentFundingRate Get Current Funding Rate
 	// Description: get Current Funding Rate
+	// Documentation: https://www.kucoin.com/docs-new/api-3470265
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

@@ -4,7 +4,7 @@ package order
 
 // CancelOrderByClientOidReq struct for CancelOrderByClientOidReq
 type CancelOrderByClientOidReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// client order id
 	ClientOid *string `json:"clientOid,omitempty" path:"clientOid" url:"-"`
@@ -39,7 +39,7 @@ func NewCancelOrderByClientOidReqBuilder() *CancelOrderByClientOidReqBuilder {
 	return &CancelOrderByClientOidReqBuilder{obj: NewCancelOrderByClientOidReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *CancelOrderByClientOidReqBuilder) SetSymbol(value string) *CancelOrderByClientOidReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

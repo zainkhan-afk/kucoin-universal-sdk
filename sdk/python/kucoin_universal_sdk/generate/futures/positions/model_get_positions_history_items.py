@@ -18,7 +18,7 @@ class GetPositionsHistoryItems(BaseModel):
     Attributes:
         close_id (str): Close ID 
         user_id (str): User ID
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         settle_currency (str): Currency used to settle trades 
         leverage (str): Leverage applied to the order 
         type (str): Type of closure 
@@ -52,7 +52,7 @@ class GetPositionsHistoryItems(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     settle_currency: Optional[str] = Field(
         default=None,

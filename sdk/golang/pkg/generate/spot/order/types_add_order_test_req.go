@@ -14,19 +14,19 @@ type AddOrderTestReq struct {
 	Type string `json:"type,omitempty"`
 	// Order placement remarks, length cannot exceed 20 characters (ASCII)
 	Remark *string `json:"remark,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 	Stp *string `json:"stp,omitempty"`
 	// Specify price for order  When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error.
 	Price *string `json:"price,omitempty"`
 	// Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
 	Size *string `json:"size,omitempty"`
-	// [Time in force](doc://link/pages/338146) is a special strategy used during trading
+	// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// passive order labels, this is disabled when the order timing strategy is IOC or FOK
 	PostOnly *bool `json:"postOnly,omitempty"`
-	// [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+	// [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
 	Hidden *bool `json:"hidden,omitempty"`
-	// Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
+	// Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
 	Iceberg *bool `json:"iceberg,omitempty"`
 	// Maximum visible quantity in iceberg orders
 	VisibleSize *string `json:"visibleSize,omitempty"`
@@ -130,7 +130,7 @@ func (builder *AddOrderTestReqBuilder) SetRemark(value string) *AddOrderTestReqB
 	return builder
 }
 
-// [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
 func (builder *AddOrderTestReqBuilder) SetStp(value string) *AddOrderTestReqBuilder {
 	builder.obj.Stp = &value
 	return builder
@@ -148,7 +148,7 @@ func (builder *AddOrderTestReqBuilder) SetSize(value string) *AddOrderTestReqBui
 	return builder
 }
 
-// [Time in force](doc://link/pages/338146) is a special strategy used during trading
+// [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
 func (builder *AddOrderTestReqBuilder) SetTimeInForce(value string) *AddOrderTestReqBuilder {
 	builder.obj.TimeInForce = &value
 	return builder
@@ -160,13 +160,13 @@ func (builder *AddOrderTestReqBuilder) SetPostOnly(value bool) *AddOrderTestReqB
 	return builder
 }
 
-// [Hidden order](doc://link/pages/338146) or not (not shown in order book)
+// [Hidden order](https://www.kucoin.com/docs-new/doc-338146) or not (not shown in order book)
 func (builder *AddOrderTestReqBuilder) SetHidden(value bool) *AddOrderTestReqBuilder {
 	builder.obj.Hidden = &value
 	return builder
 }
 
-// Whether or not only visible portions of orders are shown in [Iceberg orders](doc://link/pages/338146)
+// Whether or not only visible portions of orders are shown in [Iceberg orders](https://www.kucoin.com/docs-new/doc-338146)
 func (builder *AddOrderTestReqBuilder) SetIceberg(value bool) *AddOrderTestReqBuilder {
 	builder.obj.Iceberg = &value
 	return builder

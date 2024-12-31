@@ -28,7 +28,7 @@ class StopOrdersEvent(BaseModel):
         stop (StopEnum): Either 'down' or 'up'
         stop_price (str): Stop Price
         stop_price_type (str): 
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) 
         ts (int): 
         type (TypeEnum): Order Type
     """
@@ -107,7 +107,7 @@ class StopOrdersEvent(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
     )
     ts: Optional[int] = None
     type: Optional[TypeEnum] = Field(default=None, description="Order Type")

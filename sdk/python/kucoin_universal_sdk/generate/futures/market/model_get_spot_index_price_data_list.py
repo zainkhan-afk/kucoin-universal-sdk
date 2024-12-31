@@ -16,7 +16,7 @@ class GetSpotIndexPriceDataList(BaseModel):
     GetSpotIndexPriceDataList
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) 
         granularity (int): Granularity (milisecond)
         time_point (int): Timestamp (milisecond)
         value (float): Index Value
@@ -26,7 +26,7 @@ class GetSpotIndexPriceDataList(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     granularity: Optional[int] = Field(default=None,
                                        description="Granularity (milisecond)")

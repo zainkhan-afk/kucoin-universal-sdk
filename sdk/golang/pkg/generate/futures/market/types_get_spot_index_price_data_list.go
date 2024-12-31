@@ -4,7 +4,7 @@ package market
 
 // GetSpotIndexPriceDataList struct for GetSpotIndexPriceDataList
 type GetSpotIndexPriceDataList struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Granularity (milisecond)
 	Granularity int32 `json:"granularity,omitempty"`

@@ -25,6 +25,7 @@ class DebitAPI(ABC):
         """
         summary: Get Borrow History
         description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+        documentation: https://www.kucoin.com/docs-new/api-3470207
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -42,6 +43,7 @@ class DebitAPI(ABC):
         """
         summary: Borrow
         description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
+        documentation: https://www.kucoin.com/docs-new/api-3470206
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -60,6 +62,7 @@ class DebitAPI(ABC):
         """
         summary: Get Interest History
         description: Request via this endpoint to get the interest records of the cross/isolated margin lending.
+        documentation: https://www.kucoin.com/docs-new/api-3470209
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -78,6 +81,7 @@ class DebitAPI(ABC):
         """
         summary: Get Repay History
         description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+        documentation: https://www.kucoin.com/docs-new/api-3470208
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -95,6 +99,7 @@ class DebitAPI(ABC):
         """
         summary: Repay
         description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
+        documentation: https://www.kucoin.com/docs-new/api-3470210
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -113,6 +118,7 @@ class DebitAPI(ABC):
         """
         summary: Modify Leverage
         description: This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.
+        documentation: https://www.kucoin.com/docs-new/api-3470211
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

@@ -28,7 +28,7 @@ class GetOpenOrdersData(BaseModel):
         deal_funds (str): Funds of filled transactions
         fee (str): trading fee
         fee_currency (str): currency used to calculate trading fee
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB , and DC
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC
         stop (str): 
         stop_triggered (bool): 
         stop_price (str): 
@@ -128,7 +128,7 @@ class GetOpenOrdersData(BaseModel):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB , and DC"
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC"
     )
     stop: Optional[str] = None
     stop_triggered: Optional[bool] = Field(default=None, alias="stopTriggered")

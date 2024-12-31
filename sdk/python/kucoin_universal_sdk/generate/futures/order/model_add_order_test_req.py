@@ -18,7 +18,7 @@ class AddOrderTestReq(BaseModel):
     Attributes:
         client_oid (str): Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-)
         side (SideEnum): specify if the order is to 'buy' or 'sell'
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         leverage (int): Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.
         type (TypeEnum): specify if the order is an 'limit' order or 'market' order
         remark (str): remark for the order, length cannot exceed 100 utf8 characters
@@ -28,11 +28,11 @@ class AddOrderTestReq(BaseModel):
         reduce_only (bool): A mark to reduce the position size only. Set to false by default. Need to set the position size when reduceOnly is true. If set to true, only the orders reducing the position size will be executed. If the reduce-only order size exceeds the position size, the extra size will be canceled.
         close_order (bool): A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically.
         force_hold (bool): A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
         margin_mode (MarginModeEnum): Margin mode: ISOLATED, CROSS, default: ISOLATED
         price (str): Required for type is 'limit' order, indicating the operating price
         size (int): **Choose one of size, qty, valueQty**, Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
-        time_in_force (TimeInForceEnum): Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC
+        time_in_force (TimeInForceEnum): Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC
         post_only (bool): Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
         hidden (bool): Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly.
         iceberg (bool): Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly.
@@ -118,7 +118,7 @@ class AddOrderTestReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     leverage: Optional[int] = Field(
         default=None,
@@ -165,7 +165,7 @@ class AddOrderTestReq(BaseModel):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment."
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment."
     )
     margin_mode: Optional[MarginModeEnum] = Field(
         default=MarginModeEnum.ISOLATED,
@@ -183,7 +183,7 @@ class AddOrderTestReq(BaseModel):
     time_in_force: Optional[TimeInForceEnum] = Field(
         default=TimeInForceEnum.GOOD_TILL_CANCELED,
         description=
-        "Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC",
+        "Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC",
         alias="timeInForce")
     post_only: Optional[bool] = Field(
         default=False,
@@ -334,7 +334,7 @@ class AddOrderTestReqBuilder:
 
     def set_symbol(self, value: str) -> AddOrderTestReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self
@@ -409,7 +409,7 @@ class AddOrderTestReqBuilder:
     def set_stp(self,
                 value: AddOrderTestReq.StpEnum) -> AddOrderTestReqBuilder:
         """
-        [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+        [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
         """
         self.obj['stp'] = value
         return self
@@ -441,7 +441,7 @@ class AddOrderTestReqBuilder:
             self,
             value: AddOrderTestReq.TimeInForceEnum) -> AddOrderTestReqBuilder:
         """
-        Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC
+        Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC
         """
         self.obj['timeInForce'] = value
         return self

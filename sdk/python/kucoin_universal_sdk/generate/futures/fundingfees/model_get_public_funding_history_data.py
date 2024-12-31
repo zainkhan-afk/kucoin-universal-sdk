@@ -15,7 +15,7 @@ class GetPublicFundingHistoryData(BaseModel):
     GetPublicFundingHistoryData
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         funding_rate (float): Funding rate
         timepoint (int): Time point (milisecond)  
     """
@@ -23,7 +23,7 @@ class GetPublicFundingHistoryData(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     funding_rate: Optional[float] = Field(default=None,
                                           description="Funding rate",

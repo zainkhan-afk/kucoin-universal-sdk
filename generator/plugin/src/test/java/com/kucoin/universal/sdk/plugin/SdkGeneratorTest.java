@@ -7,7 +7,7 @@ import org.openapitools.codegen.config.CodegenConfigurator;
 
 public class SdkGeneratorTest {
 
-    private static final String SDK_NAME = "golang-sdk";
+    private static final String SDK_NAME = "python-sdk";
     private static final String SPEC_NAME = "../../spec/rest/api/openapi-account-fee.json";
     private static final String SPEC_ENTRY_NAME = "../../spec/rest/entry/openapi-account.json";
     private static final String WS_SPEC_NAME = "../../spec/ws/openapi-futures-private.json";

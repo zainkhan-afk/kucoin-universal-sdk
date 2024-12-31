@@ -11,6 +11,7 @@ type MarketAPI interface {
 
 	// GetAllTickers Get All Tickers
 	// Description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470223
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type MarketAPI interface {
 
 	// GetPrivateToken Get Private Token - Futures
 	// Description: This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token
+	// Documentation: https://www.kucoin.com/docs-new/api-3470296
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type MarketAPI interface {
 
 	// GetPublicToken Get Public Token - Futures
 	// Description: This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
+	// Documentation: https://www.kucoin.com/docs-new/api-3470297
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -50,6 +53,7 @@ type MarketAPI interface {
 
 	// GetAllSymbols Get All Symbols
 	// Description: Get detailed information of all contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470220
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -63,6 +67,7 @@ type MarketAPI interface {
 
 	// GetSymbol Get Symbol
 	// Description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470221
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -76,6 +81,7 @@ type MarketAPI interface {
 
 	// GetSpotIndexPrice Get Spot Index Price
 	// Description: Get Spot Index Price
+	// Documentation: https://www.kucoin.com/docs-new/api-3470231
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -89,6 +95,7 @@ type MarketAPI interface {
 
 	// GetInterestRateIndex Get Interest Rate Index
 	// Description: Get interest rate Index.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470226
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -102,6 +109,7 @@ type MarketAPI interface {
 
 	// GetKlines Get Klines
 	// Description: Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470234
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -115,6 +123,7 @@ type MarketAPI interface {
 
 	// GetPartOrderBook Get Part OrderBook
 	// Description: Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470225
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -128,6 +137,7 @@ type MarketAPI interface {
 
 	// GetFullOrderBook Get Full OrderBook
 	// Description: Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470224
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -141,6 +151,7 @@ type MarketAPI interface {
 
 	// GetMarkPrice Get Mark Price
 	// Description: Get current mark price
+	// Documentation: https://www.kucoin.com/docs-new/api-3470233
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -154,6 +165,7 @@ type MarketAPI interface {
 
 	// GetPremiumIndex Get Premium Index
 	// Description: Submit request to get premium index.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470227
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -167,6 +179,7 @@ type MarketAPI interface {
 
 	// GetServiceStatus Get Service Status
 	// Description: Get the service status.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470230
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -180,6 +193,7 @@ type MarketAPI interface {
 
 	// GetTicker Get Ticker
 	// Description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470222
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -193,6 +207,7 @@ type MarketAPI interface {
 
 	// GetServerTime Get Server Time
 	// Description: Get the API server time. This is the Unix timestamp.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470229
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -206,6 +221,7 @@ type MarketAPI interface {
 
 	// GetTradeHistory Get Trade History
 	// Description: Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470232
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -219,6 +235,7 @@ type MarketAPI interface {
 
 	// Get24hrStats Get 24hr Stats
 	// Description: Get the statistics of the platform futures trading volume in the last 24 hours.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470228
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

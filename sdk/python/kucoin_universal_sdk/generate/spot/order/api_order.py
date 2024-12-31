@@ -108,6 +108,7 @@ class OrderAPI(ABC):
         """
         summary: Get Trade History - Old
         description: Request via this endpoint to get the recent fills. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470350
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -126,6 +127,7 @@ class OrderAPI(ABC):
         """
         summary: Get Trade History
         description: This endpoint can be used to obtain a list of the latest Spot transaction details.  The returned data is sorted in descending order according to the latest update time of the order.
+        documentation: https://www.kucoin.com/docs-new/api-3470180
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -144,6 +146,7 @@ class OrderAPI(ABC):
         """
         summary: Get Open Orders
         description: This interface is to obtain all Spot active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470178
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -162,6 +165,7 @@ class OrderAPI(ABC):
         """
         summary: Get Symbols With Open Order
         description: This interface can query all spot symbol that has active orders
+        documentation: https://www.kucoin.com/docs-new/api-3470177
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -180,6 +184,7 @@ class OrderAPI(ABC):
         """
         summary: Modify Order
         description: This interface can modify the price and quantity of the order according to orderId or clientOid.  The implementation of this interface is: cancel the order and place a new order on the same trading pair, and return the modification result to the client synchronously  When the quantity of the new order updated by the user is less than the filled quantity of this order, the order will be considered as completed, and the order will be cancelled, and no new order will be placed
+        documentation: https://www.kucoin.com/docs-new/api-3470171
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -197,6 +202,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel All Orders
         description: This endpoint can cancel all spot orders for all symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470176
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -215,6 +221,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Partial Order
         description: This interface can cancel the specified quantity of the order according to the orderId. The order execution order is: price first, time first, this interface will not change the queue order
+        documentation: https://www.kucoin.com/docs-new/api-3470183
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -234,6 +241,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Order By ClientOid
         description: This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470184
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -252,6 +260,7 @@ class OrderAPI(ABC):
         """
         summary: Get Order By ClientOid
         description: This endpoint can be used to obtain information for a single Spot order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470182
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -269,6 +278,7 @@ class OrderAPI(ABC):
         """
         summary: Set DCP
         description: Set Disconnection Protect(Deadman Swich)Through this interface, Call this interface to automatically cancel all orders of the set trading pair after the specified time. If this interface is not called again for renewal or cancellation before the set time, the system will help the user to cancel the order of the corresponding trading pair. Otherwise it will not.
+        documentation: https://www.kucoin.com/docs-new/api-3470173
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -286,6 +296,7 @@ class OrderAPI(ABC):
         """
         summary: Get DCP
         description: Get Disconnection Protect(Deadman Swich)Through this interface, you can query the settings of automatic order cancellation
+        documentation: https://www.kucoin.com/docs-new/api-3470172
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -305,6 +316,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel All Orders By Symbol
         description: This endpoint can cancel all spot orders for specific symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470175
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -323,6 +335,7 @@ class OrderAPI(ABC):
         """
         summary: Get Closed Orders
         description: This interface is to obtain all Spot closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470179
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -341,6 +354,7 @@ class OrderAPI(ABC):
         """
         summary: Batch Add Orders
         description: This endpoint supports sequential batch order placement from a single endpoint. A maximum of 5orders can be placed simultaneously. The order types must be limit orders of the same trading pair
+        documentation: https://www.kucoin.com/docs-new/api-3470168
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -359,6 +373,7 @@ class OrderAPI(ABC):
         """
         summary: Batch Add Orders Sync
         description: This endpoint supports sequential batch order placement from a single endpoint. A maximum of 5orders can be placed simultaneously. The order types must be limit orders of the same trading pair
+        documentation: https://www.kucoin.com/docs-new/api-3470169
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -377,6 +392,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Order By OrderId
         description: This endpoint can be used to cancel a spot order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470174
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -395,6 +411,7 @@ class OrderAPI(ABC):
         """
         summary: Get Order By OrderId
         description: This endpoint can be used to obtain information for a single Spot order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470181
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -412,6 +429,7 @@ class OrderAPI(ABC):
         """
         summary: Add Order
         description: Place order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+        documentation: https://www.kucoin.com/docs-new/api-3470188
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -431,6 +449,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Order By ClientOid Sync
         description: This endpoint can be used to cancel a spot order by orderId.
+        documentation: https://www.kucoin.com/docs-new/api-3470186
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -450,6 +469,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Order By OrderId Sync
         description: This endpoint can be used to cancel a spot order by orderId.
+        documentation: https://www.kucoin.com/docs-new/api-3470185
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -468,6 +488,7 @@ class OrderAPI(ABC):
         """
         summary: Add Order Sync
         description: Place order to the spot trading system  The difference between this interface and \&quot;Add order\&quot; is that this interface will synchronously return the order information after the order matching is completed.  For higher latency requirements, please select the \&quot;Add order\&quot; interface. If there is a requirement for returning data integrity, please select this interface
+        documentation: https://www.kucoin.com/docs-new/api-3470170
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -486,6 +507,7 @@ class OrderAPI(ABC):
         """
         summary: Add Order Test
         description: Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.
+        documentation: https://www.kucoin.com/docs-new/api-3470187
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -506,6 +528,7 @@ class OrderAPI(ABC):
         """
         summary: Get Recent Trade History - Old
         description: Request via this endpoint to get a list of 1000 fills in the last 24 hours. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470351
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -526,6 +549,7 @@ class OrderAPI(ABC):
         """
         summary: Get Recent Orders List - Old
         description: Request via this endpoint to get your current order list. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470347
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -545,6 +569,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Order By ClientOid - Old
         description: This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470344
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -565,6 +590,7 @@ class OrderAPI(ABC):
         """
         summary: Get Order By ClientOid - Old
         description: Request via this interface to check the information of a single active order via clientOid. The system will prompt that the order does not exists if the order does not exist or has been settled.
+        documentation: https://www.kucoin.com/docs-new/api-3470349
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -584,6 +610,7 @@ class OrderAPI(ABC):
         """
         summary: Batch Cancel Order - Old
         description: Request via this endpoint to cancel all open orders. The response is a list of ids of the canceled orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470345
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -603,6 +630,7 @@ class OrderAPI(ABC):
         """
         summary: Get Orders List - Old
         description: Request via this endpoint to get your current order list. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470346
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -622,6 +650,7 @@ class OrderAPI(ABC):
         """
         summary: Batch Add Orders - Old
         description: Request via this endpoint to place 5 orders at the same time. The order type must be a limit order of the same symbol.
+        documentation: https://www.kucoin.com/docs-new/api-3470342
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -642,6 +671,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Order By OrderId - Old
         description: This endpoint can be used to cancel a spot order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470343
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -661,6 +691,7 @@ class OrderAPI(ABC):
         """
         summary: Get Order By OrderId - Old
         description: Request via this endpoint to get a single order info by order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470348
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -680,6 +711,7 @@ class OrderAPI(ABC):
         """
         summary: Add Order - Old
         description: Place order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+        documentation: https://www.kucoin.com/docs-new/api-3470333
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -699,6 +731,7 @@ class OrderAPI(ABC):
         """
         summary: Add Order Test - Old
         description: Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.
+        documentation: https://www.kucoin.com/docs-new/api-3470341
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -717,6 +750,7 @@ class OrderAPI(ABC):
         """
         summary: Batch Cancel Stop Orders
         description: This endpoint can be used to cancel a spot stop orders by batch.
+        documentation: https://www.kucoin.com/docs-new/api-3470337
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -737,6 +771,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Stop Order By ClientOid
         description: This endpoint can be used to cancel a spot  stop order by clientOid. 
+        documentation: https://www.kucoin.com/docs-new/api-3470336
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -755,6 +790,7 @@ class OrderAPI(ABC):
         """
         summary: Get Stop Orders List
         description: This interface is to obtain all Spot active stop order lists
+        documentation: https://www.kucoin.com/docs-new/api-3470338
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -775,6 +811,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel Stop Order By OrderId
         description: This endpoint can be used to cancel a spot stop order by orderId. 
+        documentation: https://www.kucoin.com/docs-new/api-3470335
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -793,6 +830,7 @@ class OrderAPI(ABC):
         """
         summary: Get Stop Order By OrderId
         description: This interface is to obtain Spot stop order details by orderId
+        documentation: https://www.kucoin.com/docs-new/api-3470339
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -812,6 +850,7 @@ class OrderAPI(ABC):
         """
         summary: Add Stop Order
         description: Place stop order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+        documentation: https://www.kucoin.com/docs-new/api-3470334
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -831,6 +870,7 @@ class OrderAPI(ABC):
         """
         summary: Get Stop Order By ClientOid
         description: This interface is to obtain Spot stop order details by orderId
+        documentation: https://www.kucoin.com/docs-new/api-3470340
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -851,6 +891,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel OCO Order By ClientOid
         description: Request via this interface to cancel a stop order via the clientOid.  You will receive cancelledOrderIds field once the system has received the cancellation request. The cancellation request will be processed by the matching engine in sequence. To know if the request is processed (successfully or not), you may check the order status or the update message from the pushes.
+        documentation: https://www.kucoin.com/docs-new/api-3470355
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -871,6 +912,7 @@ class OrderAPI(ABC):
         """
         summary: Get OCO Order By ClientOid
         description: Request via this interface to get a oco order information via the client order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470358
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -891,6 +933,7 @@ class OrderAPI(ABC):
         """
         summary: Get OCO Order Detail By OrderId
         description: Request via this interface to get a oco order detail via the order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470359
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -911,6 +954,7 @@ class OrderAPI(ABC):
         """
         summary: Cancel OCO Order By OrderId
         description: This endpoint can be used to cancel a spot order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470354
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -930,6 +974,7 @@ class OrderAPI(ABC):
         """
         summary: Get OCO Order By OrderId
         description: Request via this interface to get a oco order information via the order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470357
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -949,6 +994,7 @@ class OrderAPI(ABC):
         """
         summary: Add OCO Order
         description: Place OCO order to the Spot trading system
+        documentation: https://www.kucoin.com/docs-new/api-3470353
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -968,6 +1014,7 @@ class OrderAPI(ABC):
         """
         summary: Batch Cancel OCO Order
         description: This interface can batch cancel OCO orders through orderIds.  You will receive cancelledOrderIds field once the system has received the cancellation request. The cancellation request will be processed by the matching engine in sequence. To know if the request is processed (successfully or not), you may check the order status or the update message from the pushes.
+        documentation: https://www.kucoin.com/docs-new/api-3470356
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -987,6 +1034,7 @@ class OrderAPI(ABC):
         """
         summary: Get OCO Order List
         description: Request via this endpoint to get your current OCO order list. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        documentation: https://www.kucoin.com/docs-new/api-3470360
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

@@ -39,6 +39,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get Deposit List
         description: This endpoint can obtain the deposit records of each sub-account under the ND Broker.
+        documentation: https://www.kucoin.com/docs-new/api-3470285
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -57,6 +58,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Delete SubAccount API
         description: This interface supports deleting Broker’s sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470289
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -75,6 +77,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get SubAccount API
         description: This interface supports querying the Broker’s sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470284
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -93,6 +96,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Add SubAccount API
         description: This interface supports the creation of Broker sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470291
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -111,6 +115,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get SubAccount
         description: This interface supports querying sub-accounts created by Broker
+        documentation: https://www.kucoin.com/docs-new/api-3470283
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -129,6 +134,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Add SubAccount
         description: This endpoint supports Broker users to create sub-accounts
+        documentation: https://www.kucoin.com/docs-new/api-3470290
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -147,6 +153,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Modify SubAccount API
         description: This interface supports modify the Broker’s sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470292
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -165,6 +172,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get Broker Info
         description: This endpoint supports querying the basic information of the current Broker
+        documentation: https://www.kucoin.com/docs-new/api-3470282
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -182,6 +190,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get Broker Rebate
         description: This interface supports downloading Broker rebate orders
+        documentation: https://www.kucoin.com/docs-new/api-3470281
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -199,6 +208,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Transfer
         description: This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.
+        documentation: https://www.kucoin.com/docs-new/api-3470293
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -217,6 +227,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get Deposit Detail
         description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)
+        documentation: https://www.kucoin.com/docs-new/api-3470288
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -235,6 +246,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get Transfer History
         description: This endpoint supports querying transfer records of the broker itself and its created sub-accounts.
+        documentation: https://www.kucoin.com/docs-new/api-3470286
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -253,6 +265,7 @@ class NDBrokerAPI(ABC):
         """
         summary: Get Withdraw Detail
         description: This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).
+        documentation: https://www.kucoin.com/docs-new/api-3470287
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

@@ -18,7 +18,7 @@ class OrderEvent(BaseModel):
     OrderEvent
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) 
         order_type (OrderTypeEnum): User-specified order type
         side (SideEnum): buy or sell
         canceled_size (str): Cumulative number of cancellations
@@ -32,7 +32,7 @@ class OrderEvent(BaseModel):
         remain_size (str): Remain size
         status (StatusEnum): Order Status
         ts (int): Push time(Nanosecond)
-        liquidity (LiquidityEnum): Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** 
+        liquidity (LiquidityEnum): Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** 
         fee_type (FeeTypeEnum): Actual Fee Type
         match_price (str): Match Price(when the type is \"match\")
         match_size (str): Match Size (when the type is \"match\")
@@ -127,7 +127,7 @@ class OrderEvent(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
     )
     order_type: Optional[OrderTypeEnum] = Field(
         default=None,
@@ -166,7 +166,7 @@ class OrderEvent(BaseModel):
     liquidity: Optional[LiquidityEnum] = Field(
         default=None,
         description=
-        "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** "
+        "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** "
     )
     fee_type: Optional[FeeTypeEnum] = Field(default=None,
                                             description="Actual Fee Type",

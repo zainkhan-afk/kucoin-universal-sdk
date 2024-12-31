@@ -20,6 +20,7 @@ class FundingFeesAPI(ABC):
         """
         summary: Get Public Funding History
         description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract
+        documentation: https://www.kucoin.com/docs-new/api-3470266
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -39,6 +40,7 @@ class FundingFeesAPI(ABC):
         """
         summary: Get Private Funding History
         description: Submit request to get the funding history.
+        documentation: https://www.kucoin.com/docs-new/api-3470267
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -57,6 +59,7 @@ class FundingFeesAPI(ABC):
         """
         summary: Get Current Funding Rate
         description: get Current Funding Rate
+        documentation: https://www.kucoin.com/docs-new/api-3470265
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

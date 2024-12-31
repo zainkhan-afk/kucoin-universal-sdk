@@ -15,6 +15,7 @@ class RiskLimitAPI(ABC):
         """
         summary: Get Margin Risk Limit
         description: Request via this endpoint to get the Configure and Risk limit info of the margin.
+        documentation: https://www.kucoin.com/docs-new/api-3470219
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

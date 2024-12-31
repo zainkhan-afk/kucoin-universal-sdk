@@ -7,6 +7,12 @@ RED=\033[0;31m
 GREEN=\033[0;32m
 NC=\033[0m
 
+define generate-postman-func
+	docker run --rm -v "${PWD}:/local" -w /local/generator/postman -e SDK_VERSION=$(VERSION) python:3.9.20-alpine3.20 \
+		python main.py
+
+	@echo "$(GREEN)lang: postman, done!$(NC)"
+endef
 
 define generate-api
 	@echo "$(GREEN)lang: $(2). generate api for $(service)...$(NC)"
@@ -79,7 +85,10 @@ REST_FILES := $(wildcard ./spec/rest/api/*.json)
 ENTRY_FILES := $(wildcard ./spec/rest/entry/*.json)
 WS_FILES := $(wildcard ./spec/ws/*.json)
 
-.PHONY: generate $(REST_FILES) $(ENTRY_FILES) $(WS_FILES) force
+.PHONY: generate $(REST_FILES) $(ENTRY_FILES) $(WS_FILES) generate-postman force
+
+generate-postman:
+	$(call generate-postman-func)
 
 generate: $(patsubst ./spec/rest/api/%.json,generate-rest-%, $(REST_FILES)) $(patsubst ./spec/rest/entry/%.json,generate-entry-%, $(ENTRY_FILES)) $(patsubst ./spec/ws/%.json,generate-ws-%, $(WS_FILES))
 

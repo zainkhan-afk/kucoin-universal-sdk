@@ -16,7 +16,7 @@ type GetApikeyInfoResp struct {
 	ApiKey string `json:"apiKey,omitempty"`
 	// API Version
 	ApiVersion int32 `json:"apiVersion,omitempty"`
-	// [Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
+	// [Permissions](https://www.kucoin.com/docs-new/doc-338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
 	Permission string `json:"permission,omitempty"`
 	// IP whitelist
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`

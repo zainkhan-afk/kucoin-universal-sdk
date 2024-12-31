@@ -28,6 +28,7 @@ class WithdrawalAPI(ABC):
         """
         summary: Get Withdrawal History - Old
         description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        documentation: https://www.kucoin.com/docs-new/api-3470308
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -46,6 +47,7 @@ class WithdrawalAPI(ABC):
         """
         summary: Get Withdrawal History
         description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        documentation: https://www.kucoin.com/docs-new/api-3470145
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -65,6 +67,7 @@ class WithdrawalAPI(ABC):
         """
         summary: Withdraw - V1
         description: Use this interface to withdraw the specified currency
+        documentation: https://www.kucoin.com/docs-new/api-3470310
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -83,6 +86,7 @@ class WithdrawalAPI(ABC):
         """
         summary: Get Withdrawal Quotas
         description: This interface can obtain the withdrawal quotas information of this currency.
+        documentation: https://www.kucoin.com/docs-new/api-3470143
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -101,6 +105,7 @@ class WithdrawalAPI(ABC):
         """
         summary: Cancel Withdrawal
         description: This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.
+        documentation: https://www.kucoin.com/docs-new/api-3470144
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -119,6 +124,7 @@ class WithdrawalAPI(ABC):
         """
         summary: Withdraw(V3)
         description: Use this interface to withdraw the specified currency
+        documentation: https://www.kucoin.com/docs-new/api-3470146
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+

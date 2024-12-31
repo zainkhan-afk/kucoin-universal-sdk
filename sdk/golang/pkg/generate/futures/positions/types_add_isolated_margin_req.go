@@ -4,7 +4,7 @@ package positions
 
 // AddIsolatedMarginReq struct for AddIsolatedMarginReq
 type AddIsolatedMarginReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Margin amount (min. margin amount≥0.00001667XBT）
 	Margin float32 `json:"margin,omitempty"`
@@ -45,7 +45,7 @@ func NewAddIsolatedMarginReqBuilder() *AddIsolatedMarginReqBuilder {
 	return &AddIsolatedMarginReqBuilder{obj: NewAddIsolatedMarginReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *AddIsolatedMarginReqBuilder) SetSymbol(value string) *AddIsolatedMarginReqBuilder {
 	builder.obj.Symbol = value
 	return builder

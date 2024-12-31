@@ -4,7 +4,7 @@ package market
 
 // GetAllSymbolsReq struct for GetAllSymbolsReq
 type GetAllSymbolsReq struct {
-	// [The trading market](apidog://link/endpoint/222921786)
+	// [The trading market](https://www.kucoin.com/docs-new/api-222921786)
 	Market *string `json:"market,omitempty" url:"market,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func NewGetAllSymbolsReqBuilder() *GetAllSymbolsReqBuilder {
 	return &GetAllSymbolsReqBuilder{obj: NewGetAllSymbolsReqWithDefaults()}
 }
 
-// [The trading market](apidog://link/endpoint/222921786)
+// [The trading market](https://www.kucoin.com/docs-new/api-222921786)
 func (builder *GetAllSymbolsReqBuilder) SetMarket(value string) *GetAllSymbolsReqBuilder {
 	builder.obj.Market = &value
 	return builder

@@ -11,6 +11,7 @@ type DepositAPI interface {
 
 	// GetDepositAddressV1 Get Deposit Addresses - V1
 	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470305
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -25,6 +26,7 @@ type DepositAPI interface {
 
 	// AddDepositAddressV1 Add Deposit Address - V1
 	// Description: Request via this endpoint to create a deposit address for a currency you intend to deposit.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470309
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -39,6 +41,7 @@ type DepositAPI interface {
 
 	// GetDepositHistory Get Deposit History
 	// Description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470141
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -52,6 +55,7 @@ type DepositAPI interface {
 
 	// GetDepositHistoryOld Get Deposit History - Old
 	// Description: Request via this endpoint to get the V1 historical deposits list on KuCoin. The return value is the data after Pagination, sorted in descending order according to time.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470306
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -66,6 +70,7 @@ type DepositAPI interface {
 
 	// GetDepositAddressV2 Get Deposit Addresses(V2)
 	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470300
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -80,6 +85,7 @@ type DepositAPI interface {
 
 	// AddDepositAddressV3 Add Deposit Address(V3)
 	// Description: Request via this endpoint to create a deposit address for a currency you intend to deposit.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470142
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -91,8 +97,9 @@ type DepositAPI interface {
 	// +---------------------+------------+
 	AddDepositAddressV3(req *AddDepositAddressV3Req, ctx context.Context) (*AddDepositAddressV3Resp, error)
 
-	// GetDepositAddressV3 Get Deposit Addresses(V3)
+	// GetDepositAddressV3 Get Deposit Address(V3)
 	// Description: Get all deposit addresses for the currency you intend to deposit. If the returned data is empty, you may need to Add Deposit Address first.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470140
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+

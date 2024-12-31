@@ -20,7 +20,7 @@ class GetApikeyInfoResp(BaseModel, Response):
         remark (str): Remarks
         api_key (str): Apikey
         api_version (int): API Version
-        permission (str): [Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
+        permission (str): [Permissions](https://www.kucoin.com/docs-new/doc-338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn
         ip_whitelist (str): IP whitelist  
         created_at (int): Apikey create time
         uid (int): Account UID
@@ -40,7 +40,7 @@ class GetApikeyInfoResp(BaseModel, Response):
     permission: Optional[str] = Field(
         default=None,
         description=
-        "[Permissions](doc://link/pages/338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
+        "[Permissions](https://www.kucoin.com/docs-new/doc-338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
     )
     ip_whitelist: Optional[str] = Field(default=None,
                                         description="IP whitelist  ",

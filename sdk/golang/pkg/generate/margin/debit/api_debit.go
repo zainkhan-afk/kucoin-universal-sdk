@@ -11,6 +11,7 @@ type DebitAPI interface {
 
 	// GetBorrowHistory Get Borrow History
 	// Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+	// Documentation: https://www.kucoin.com/docs-new/api-3470207
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type DebitAPI interface {
 
 	// Borrow Borrow
 	// Description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470206
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type DebitAPI interface {
 
 	// GetInterestHistory Get Interest History
 	// Description: Request via this endpoint to get the interest records of the cross/isolated margin lending.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470209
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -50,6 +53,7 @@ type DebitAPI interface {
 
 	// GetRepayHistory Get Repay History
 	// Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+	// Documentation: https://www.kucoin.com/docs-new/api-3470208
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -63,6 +67,7 @@ type DebitAPI interface {
 
 	// Repay Repay
 	// Description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470210
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -76,6 +81,7 @@ type DebitAPI interface {
 
 	// ModifyLeverage Modify Leverage
 	// Description: This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470211
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

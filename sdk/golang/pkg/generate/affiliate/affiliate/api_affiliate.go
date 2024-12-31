@@ -11,6 +11,7 @@ type AffiliateAPI interface {
 
 	// GetAccount Get Account
 	// Description: This endpoint allows getting affiliate user rebate information.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470279
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+

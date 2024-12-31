@@ -11,6 +11,7 @@ type FeeAPI interface {
 
 	// GetBasicFee Get Basic Fee - Spot/Margin
 	// Description: This interface is for the spot/margin basic fee rate of users
+	// Documentation: https://www.kucoin.com/docs-new/api-3470149
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type FeeAPI interface {
 
 	// GetSpotActualFee Get Actual Fee - Spot/Margin
 	// Description: This interface is for the actual fee rate of the trading pair. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470150
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type FeeAPI interface {
 
 	// GetFuturesActualFee Get Actual Fee - Futures
 	// Description: This interface is for the actual futures fee rate of the trading pair. The fee rate of your sub-account is the same as that of the master account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470151
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

@@ -8,12 +8,12 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 
 ## 📦 Installation
-**Note:** This SDK is currently in the **Alpha phase**. We are actively iterating and improving its features, stability, and documentation. Feedback and contributions are highly encouraged to help us refine the SDK. 
 
+### Latest Version: `1.0.0`
 Install the Golang SDK using `go get`:
 
 ```bash
-go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang@v0.1.1-alpha
+go get github.com/Kucoin/kucoin-universal-sdk/sdk/golang
 go mod tidy
 ```
 

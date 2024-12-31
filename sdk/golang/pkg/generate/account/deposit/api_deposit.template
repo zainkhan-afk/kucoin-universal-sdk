@@ -141,7 +141,7 @@ func TestDepositAddDepositAddressV3Req(t *testing.T) {
 
 func TestDepositGetDepositAddressV3Req(t *testing.T) {
     // GetDepositAddressV3
-    // Get Deposit Addresses(V3)
+    // Get Deposit Address(V3)
     // /api/v3/deposit-addresses
 
     builder := deposit.NewGetDepositAddressV3ReqBuilder()

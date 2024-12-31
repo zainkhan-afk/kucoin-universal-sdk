@@ -11,6 +11,7 @@ type OrderAPI interface {
 
 	// GetTradeHistory Get Trade History
 	// Description: Get a list of recent fills. If you need to get your recent trade history with low latency, please query endpoint Get List of Orders Completed in 24h. The requested data is not real-time.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470248
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type OrderAPI interface {
 
 	// GetOpenOrderValue Get Open Order Value
 	// Description: You can query this endpoint to get the the total number and value of the all your active orders.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470250
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type OrderAPI interface {
 
 	// GetOrderByClientOid Get Order By ClientOid
 	// Description: Get a single order by client order id (including a stop order).
+	// Documentation: https://www.kucoin.com/docs-new/api-3470352
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -50,6 +53,7 @@ type OrderAPI interface {
 
 	// CancelOrderByClientOid Cancel Order By ClientOid
 	// Description: Cancel order by client defined orderId.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470240
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -63,6 +67,7 @@ type OrderAPI interface {
 
 	// CancelAllOrdersV1 Cancel All Orders - V1
 	// Description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470362
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -70,13 +75,14 @@ type OrderAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
 	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 30      |
+	// | API-RATE-LIMIT      | 200     |
 	// +---------------------+---------+
 	// Deprecated
 	CancelAllOrdersV1(req *CancelAllOrdersV1Req, ctx context.Context) (*CancelAllOrdersV1Resp, error)
 
 	// GetOrderList Get Order List
 	// Description: List your current orders.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470244
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -90,6 +96,7 @@ type OrderAPI interface {
 
 	// BatchCancelOrders Batch Cancel Orders
 	// Description: Cancel a bach of orders by client defined orderId or system generated orderId
+	// Documentation: https://www.kucoin.com/docs-new/api-3470241
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -103,6 +110,7 @@ type OrderAPI interface {
 
 	// BatchAddOrders Batch Add Orders
 	// Description: Place multiple order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified. You can place up to 20 orders at one time, including limit orders, market orders, and stop orders  Please be noted that the system would hold the fees from the orders entered the orderbook in advance.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470236
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -116,6 +124,7 @@ type OrderAPI interface {
 
 	// CancelOrderById Cancel Order By OrderId
 	// Description: Cancel order by system generated orderId.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470239
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -129,6 +138,7 @@ type OrderAPI interface {
 
 	// GetOrderByOrderId Get Order By OrderId
 	// Description: Get a single order by order id (including a stop order).
+	// Documentation: https://www.kucoin.com/docs-new/api-3470245
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -142,6 +152,7 @@ type OrderAPI interface {
 
 	// AddOrder Add Order
 	// Description: Place order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470235
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -155,6 +166,7 @@ type OrderAPI interface {
 
 	// AddOrderTest Add Order Test
 	// Description: Place order to the futures trading system just for validation
+	// Documentation: https://www.kucoin.com/docs-new/api-3470238
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -168,6 +180,7 @@ type OrderAPI interface {
 
 	// GetRecentClosedOrders Get Recent Closed Orders
 	// Description: Get a list of recent 1000 closed orders in the last 24 hours.  If you need to get your recent traded order history with low latency, you may query this endpoint.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470246
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -181,6 +194,7 @@ type OrderAPI interface {
 
 	// GetRecentTradeHistory Get Recent Trade History
 	// Description: Get a list of recent 1000 fills in the last 24 hours. If you need to get your recent traded order history with low latency, you may query this endpoint.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470249
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -194,6 +208,7 @@ type OrderAPI interface {
 
 	// AddTPSLOrder Add Take Profit And Stop Loss Order
 	// Description: Place take profit and stop loss order supports both take-profit and stop-loss functions, and other functions are exactly the same as the place order interface.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470237
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -207,6 +222,7 @@ type OrderAPI interface {
 
 	// CancelAllStopOrders Cancel All Stop orders
 	// Description: Cancel all untriggered stop orders. The response is a list of orderIDs of the canceled stop orders. To cancel triggered stop orders, please use &#39;Cancel Multiple Futures Limit orders&#39;.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470243
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -220,6 +236,7 @@ type OrderAPI interface {
 
 	// GetStopOrderList Get Stop Order List
 	// Description: Get the un-triggered stop orders list. Stop orders that have been triggered can be queried through the general order interface
+	// Documentation: https://www.kucoin.com/docs-new/api-3470247
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -233,6 +250,7 @@ type OrderAPI interface {
 
 	// CancelAllOrdersV3 Cancel All Orders
 	// Description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470242
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

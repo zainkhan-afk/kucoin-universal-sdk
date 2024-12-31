@@ -11,6 +11,7 @@ type MarketAPI interface {
 
 	// GetIsolatedMarginSymbols Get Symbols - Isolated Margin
 	// Description: This endpoint allows querying the configuration of isolated margin symbol.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470194
 	// +---------------------+--------+
 	// | Extra API Info      | Value  |
 	// +---------------------+--------+
@@ -24,6 +25,7 @@ type MarketAPI interface {
 
 	// GetMarginConfig Get Margin Config
 	// Description: Request via this endpoint to get the configure info of the cross margin.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470190
 	// +---------------------+--------+
 	// | Extra API Info      | Value  |
 	// +---------------------+--------+
@@ -37,6 +39,7 @@ type MarketAPI interface {
 
 	// GetMarkPriceDetail Get Mark Price Detail
 	// Description: This endpoint returns the current Mark price for specified margin trading pairs.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470193
 	// +---------------------+--------+
 	// | Extra API Info      | Value  |
 	// +---------------------+--------+
@@ -50,6 +53,7 @@ type MarketAPI interface {
 
 	// GetETFInfo Get ETF Info
 	// Description: This interface returns leveraged token information
+	// Documentation: https://www.kucoin.com/docs-new/api-3470191
 	// +---------------------+--------+
 	// | Extra API Info      | Value  |
 	// +---------------------+--------+
@@ -63,6 +67,7 @@ type MarketAPI interface {
 
 	// GetCrossMarginSymbols Get Symbols - Cross Margin
 	// Description: This endpoint allows querying the configuration of cross margin symbol.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470189
 	// +---------------------+--------+
 	// | Extra API Info      | Value  |
 	// +---------------------+--------+
@@ -76,6 +81,7 @@ type MarketAPI interface {
 
 	// GetMarkPriceList Get Mark Price List
 	// Description: This endpoint returns the current Mark price for all margin trading pairs.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470192
 	// +---------------------+--------+
 	// | Extra API Info      | Value  |
 	// +---------------------+--------+

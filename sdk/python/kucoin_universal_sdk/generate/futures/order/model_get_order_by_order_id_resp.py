@@ -19,7 +19,7 @@ class GetOrderByOrderIdResp(BaseModel, Response):
 
     Attributes:
         id (str): Order ID
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         type (TypeEnum): Order type, market order or limit order
         side (SideEnum): Transaction side
         price (str): Order price
@@ -27,7 +27,7 @@ class GetOrderByOrderIdResp(BaseModel, Response):
         value (str): Order value 
         deal_value (str): Executed size of funds 
         deal_size (int): Executed quantity 
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
         stop (str): Stop order type (stop limit or stop market) 
         stop_price_type (StopPriceTypeEnum): Trigger price type of stop orders
         stop_triggered (bool): Mark to show whether the stop order is triggered
@@ -126,7 +126,7 @@ class GetOrderByOrderIdResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     type: Optional[TypeEnum] = Field(
         default=None, description="Order type, market order or limit order")
@@ -144,7 +144,7 @@ class GetOrderByOrderIdResp(BaseModel, Response):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment."
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment."
     )
     stop: Optional[str] = Field(
         default=None,

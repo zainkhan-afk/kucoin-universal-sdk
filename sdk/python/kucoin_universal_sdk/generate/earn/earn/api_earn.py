@@ -31,6 +31,7 @@ class EarnAPI(ABC):
         """
         summary: Get ETH Staking Products
         description: This endpoint can get available ETH staking products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470276
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -49,6 +50,7 @@ class EarnAPI(ABC):
         """
         summary: Get Account Holding
         description: This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470273
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -67,6 +69,7 @@ class EarnAPI(ABC):
         """
         summary: Get KCS Staking Products
         description: This endpoint can get available KCS staking products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470275
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -84,6 +87,7 @@ class EarnAPI(ABC):
         """
         summary: Redeem
         description: This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.
+        documentation: https://www.kucoin.com/docs-new/api-3470270
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -101,6 +105,7 @@ class EarnAPI(ABC):
         """
         summary: purchase
         description: This endpoint allows subscribing earn product
+        documentation: https://www.kucoin.com/docs-new/api-3470268
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -119,6 +124,7 @@ class EarnAPI(ABC):
         """
         summary: Get Promotion Products
         description: This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470272
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -137,6 +143,7 @@ class EarnAPI(ABC):
         """
         summary: Get Redeem Preview
         description: This endpoint allows subscribing earn products
+        documentation: https://www.kucoin.com/docs-new/api-3470269
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -155,6 +162,7 @@ class EarnAPI(ABC):
         """
         summary: Get Savings Products
         description: This endpoint can get available savings products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470271
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -173,6 +181,7 @@ class EarnAPI(ABC):
         """
         summary: Get Staking Products
         description: This endpoint can get available staking products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470274
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

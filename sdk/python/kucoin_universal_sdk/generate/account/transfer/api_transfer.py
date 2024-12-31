@@ -28,6 +28,7 @@ class TransferAPI(ABC):
         """
         summary: Get Transfer Quotas
         description: This endpoint returns the transferable balance of a specified account.
+        documentation: https://www.kucoin.com/docs-new/api-3470148
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -48,6 +49,7 @@ class TransferAPI(ABC):
         """
         summary: Futures Account Transfer In
         description: The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount Account, or the transfer will fail.
+        documentation: https://www.kucoin.com/docs-new/api-3470304
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -68,6 +70,7 @@ class TransferAPI(ABC):
         """
         summary: Get Futures Account Transfer Out Ledger
         description: This endpoint can get futures account transfer out ledger
+        documentation: https://www.kucoin.com/docs-new/api-3470307
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -87,6 +90,7 @@ class TransferAPI(ABC):
         """
         summary: Inner Transfer
         description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge. 
+        documentation: https://www.kucoin.com/docs-new/api-3470302
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -106,6 +110,7 @@ class TransferAPI(ABC):
         """
         summary: SubAccount Transfer
         description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
+        documentation: https://www.kucoin.com/docs-new/api-3470301
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -124,6 +129,7 @@ class TransferAPI(ABC):
         """
         summary: Flex Transfer
         description: This interface can be used for transfers between master and sub accounts and inner transfers
+        documentation: https://www.kucoin.com/docs-new/api-3470147
         +---------------------+---------------+
         | Extra API Info      | Value         |
         +---------------------+---------------+
@@ -144,6 +150,7 @@ class TransferAPI(ABC):
         """
         summary: Futures Account Transfer Out
         description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
+        documentation: https://www.kucoin.com/docs-new/api-3470303
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+

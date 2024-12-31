@@ -19,7 +19,7 @@ class GetTickerResp(BaseModel, Response):
 
     Attributes:
         sequence (int): Sequence number, used to judge whether the messages pushed by Websocket is continuous.
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         side (SideEnum): Filled side, The trade side indicates the taker order side. A taker order is the order that was matched with orders opened on the order book.
         size (int): Filled quantity
         trade_id (str): Transaction ID
@@ -50,7 +50,7 @@ class GetTickerResp(BaseModel, Response):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     side: Optional[SideEnum] = Field(
         default=None,
