@@ -8,7 +8,7 @@ type AddOrderTestReq struct {
 	ClientOid string `json:"clientOid,omitempty"`
 	// specify if the order is to 'buy' or 'sell'
 	Side string `json:"side,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required.
 	Leverage int32 `json:"leverage,omitempty"`
@@ -28,7 +28,7 @@ type AddOrderTestReq struct {
 	CloseOrder *bool `json:"closeOrder,omitempty"`
 	// A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order.
 	ForceHold *bool `json:"forceHold,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
 	Stp *string `json:"stp,omitempty"`
 	// Margin mode: ISOLATED, CROSS, default: ISOLATED
 	MarginMode *string `json:"marginMode,omitempty"`
@@ -36,7 +36,7 @@ type AddOrderTestReq struct {
 	Price *string `json:"price,omitempty"`
 	// **Choose one of size, qty, valueQty**, Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported.
 	Size *int32 `json:"size,omitempty"`
-	// Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC
+	// Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected.
 	PostOnly *bool `json:"postOnly,omitempty"`
@@ -153,7 +153,7 @@ func (builder *AddOrderTestReqBuilder) SetSide(value string) *AddOrderTestReqBui
 	return builder
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *AddOrderTestReqBuilder) SetSymbol(value string) *AddOrderTestReqBuilder {
 	builder.obj.Symbol = value
 	return builder
@@ -213,7 +213,7 @@ func (builder *AddOrderTestReqBuilder) SetForceHold(value bool) *AddOrderTestReq
 	return builder
 }
 
-// [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
+// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB. Not supported DC at the moment.
 func (builder *AddOrderTestReqBuilder) SetStp(value string) *AddOrderTestReqBuilder {
 	builder.obj.Stp = &value
 	return builder
@@ -237,7 +237,7 @@ func (builder *AddOrderTestReqBuilder) SetSize(value int32) *AddOrderTestReqBuil
 	return builder
 }
 
-// Optional for type is 'limit' order, [Time in force](doc://link/pages/338146) is a special strategy used during trading, default is GTC
+// Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC
 func (builder *AddOrderTestReqBuilder) SetTimeInForce(value string) *AddOrderTestReqBuilder {
 	builder.obj.TimeInForce = &value
 	return builder

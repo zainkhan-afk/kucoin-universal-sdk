@@ -29,11 +29,11 @@ type GetOrderByClientOidResp struct {
 	DealSize string `json:"dealSize,omitempty"`
 	// Funds of filled transactions
 	DealFunds string `json:"dealFunds,omitempty"`
-	// [Handling fees](doc://link/pages/5327739)
+	// [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
 	Fee string `json:"fee,omitempty"`
 	// currency used to calculate trading fee
 	FeeCurrency string `json:"feeCurrency,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB , and DC
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC
 	Stp           *string `json:"stp,omitempty"`
 	Stop          *string `json:"stop,omitempty"`
 	StopTriggered bool    `json:"stopTriggered,omitempty"`

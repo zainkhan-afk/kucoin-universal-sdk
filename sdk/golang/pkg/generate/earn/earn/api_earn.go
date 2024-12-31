@@ -11,6 +11,7 @@ type EarnAPI interface {
 
 	// GetETHStakingProducts Get ETH Staking Products
 	// Description: This endpoint can get available ETH staking products. If no products are available, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470276
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type EarnAPI interface {
 
 	// GetAccountHolding Get Account Holding
 	// Description: This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470273
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type EarnAPI interface {
 
 	// GetKcsStakingProducts Get KCS Staking Products
 	// Description: This endpoint can get available KCS staking products. If no products are available, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470275
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -50,6 +53,7 @@ type EarnAPI interface {
 
 	// Redeem Redeem
 	// Description: This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470270
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -63,6 +67,7 @@ type EarnAPI interface {
 
 	// Purchase purchase
 	// Description: This endpoint allows subscribing earn product
+	// Documentation: https://www.kucoin.com/docs-new/api-3470268
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -76,6 +81,7 @@ type EarnAPI interface {
 
 	// GetPromotionProducts Get Promotion Products
 	// Description: This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470272
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -89,6 +95,7 @@ type EarnAPI interface {
 
 	// GetRedeemPreview Get Redeem Preview
 	// Description: This endpoint allows subscribing earn products
+	// Documentation: https://www.kucoin.com/docs-new/api-3470269
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -102,6 +109,7 @@ type EarnAPI interface {
 
 	// GetSavingsProducts Get Savings Products
 	// Description: This endpoint can get available savings products. If no products are available, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470271
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -115,6 +123,7 @@ type EarnAPI interface {
 
 	// GetStakingProducts Get Staking Products
 	// Description: This endpoint can get available staking products. If no products are available, an empty list is returned.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470274
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

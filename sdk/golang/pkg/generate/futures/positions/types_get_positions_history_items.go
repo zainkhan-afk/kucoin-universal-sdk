@@ -8,7 +8,7 @@ type GetPositionsHistoryItems struct {
 	CloseId string `json:"closeId,omitempty"`
 	// User ID
 	UserId string `json:"userId,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Currency used to settle trades
 	SettleCurrency string `json:"settleCurrency,omitempty"`

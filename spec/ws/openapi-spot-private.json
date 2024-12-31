@@ -333,7 +333,7 @@
                                     "taker",
                                     "maker"
                                 ],
-                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
+                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
                                 "x-api-enum": [
                                     {
                                         "value": "taker",
@@ -616,7 +616,7 @@
                                     "taker",
                                     "maker"
                                 ],
-                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
+                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
                                 "x-api-enum": [
                                     {
                                         "value": "taker",

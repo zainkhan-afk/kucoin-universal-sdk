@@ -47,7 +47,7 @@ type OrderV1Event struct {
 	OldSize *string `json:"oldSize,omitempty"`
 	// Actual Fee Type
 	FeeType *string `json:"feeType,omitempty"`
-	// Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](doc://link/pages/338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType**
+	// Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType**
 	Liquidity *string `json:"liquidity,omitempty"`
 	// Match Price (when the type is \"match\")
 	MatchPrice *string `json:"matchPrice,omitempty"`

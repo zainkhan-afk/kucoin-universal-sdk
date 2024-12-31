@@ -11,6 +11,7 @@ type OrderAPI interface {
 
 	// AddOrderV1 Add Order - V1
 	// Description: Place order to the Cross-margin or Isolated-margin trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470312
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -25,6 +26,7 @@ type OrderAPI interface {
 
 	// AddOrderTestV1 Add Order Test - V1
 	// Description: Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470313
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -39,6 +41,7 @@ type OrderAPI interface {
 
 	// GetTradeHistory Get Trade History
 	// Description: This endpoint can be used to obtain a list of the latest Margin transaction details.  The returned data is sorted in descending order according to the latest update time of the order.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470200
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -52,6 +55,7 @@ type OrderAPI interface {
 
 	// GetSymbolsWithOpenOrder Get Symbols With Open Order
 	// Description: This interface can query all Margin symbol that has active orders
+	// Documentation: https://www.kucoin.com/docs-new/api-3470196
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -65,6 +69,7 @@ type OrderAPI interface {
 
 	// AddOrder Add Order
 	// Description: Place order to the Cross-margin or Isolated-margin trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470204
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -78,6 +83,7 @@ type OrderAPI interface {
 
 	// AddOrderTest Add Order Test
 	// Description:  Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470205
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -91,6 +97,7 @@ type OrderAPI interface {
 
 	// GetOpenOrders Get Open Orders
 	// Description: This interface is to obtain all Margin active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470198
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -104,6 +111,7 @@ type OrderAPI interface {
 
 	// CancelOrderByClientOid Cancel Order By ClientOid
 	// Description: This endpoint can be used to cancel a margin order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470201
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -117,6 +125,7 @@ type OrderAPI interface {
 
 	// GetOrderByClientOid Get Order By ClientOid
 	// Description: This endpoint can be used to obtain information for a single Margin order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470203
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -130,6 +139,7 @@ type OrderAPI interface {
 
 	// CancelAllOrdersBySymbol Cancel All Orders By Symbol
 	// Description: This interface can cancel all open Margin orders by symbol This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470197
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -143,6 +153,7 @@ type OrderAPI interface {
 
 	// GetClosedOrders Get Closed Orders
 	// Description: This interface is to obtain all Margin closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470199
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -156,6 +167,7 @@ type OrderAPI interface {
 
 	// CancelOrderByOrderId Cancel Order By OrderId
 	// Description: This endpoint can be used to cancel a margin order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470195
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -169,6 +181,7 @@ type OrderAPI interface {
 
 	// GetOrderByOrderId Get Order By OrderId
 	// Description: This endpoint can be used to obtain information for a single Margin order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470202
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

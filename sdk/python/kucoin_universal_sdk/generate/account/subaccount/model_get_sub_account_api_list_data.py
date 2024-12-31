@@ -19,7 +19,7 @@ class GetSubAccountApiListData(BaseModel):
         remark (str): Remarks
         api_key (str): API Key
         api_version (int): API Version
-        permission (str): [Permissions](doc://link/pages/338144)
+        permission (str): [Permissions](https://www.kucoin.com/docs-new/doc-338144)
         ip_whitelist (str): IP whitelist
         created_at (int): Apikey create time
         uid (int): Sub-account UID
@@ -37,7 +37,9 @@ class GetSubAccountApiListData(BaseModel):
                                        description="API Version",
                                        alias="apiVersion")
     permission: Optional[str] = Field(
-        default=None, description="[Permissions](doc://link/pages/338144)")
+        default=None,
+        description="[Permissions](https://www.kucoin.com/docs-new/doc-338144)"
+    )
     ip_whitelist: Optional[str] = Field(default=None,
                                         description="IP whitelist",
                                         alias="ipWhitelist")

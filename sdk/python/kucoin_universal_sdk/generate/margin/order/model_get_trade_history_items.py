@@ -27,7 +27,7 @@ class GetTradeHistoryItems(BaseModel):
         price (str): Order price
         size (str): Order size
         funds (str): Order Funds
-        fee (str): [Handling fees](doc://link/pages/5327739)
+        fee (str): [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
         fee_rate (str): Fee rate 
         fee_currency (str): currency used to calculate trading fee
         stop (str): Take Profit and Stop Loss type, currently HFT does not support the Take Profit and Stop Loss type, so it is empty
@@ -88,7 +88,9 @@ class GetTradeHistoryItems(BaseModel):
     size: Optional[str] = Field(default=None, description="Order size")
     funds: Optional[str] = Field(default=None, description="Order Funds")
     fee: Optional[str] = Field(
-        default=None, description="[Handling fees](doc://link/pages/5327739)")
+        default=None,
+        description=
+        "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)")
     fee_rate: Optional[str] = Field(default=None,
                                     description="Fee rate ",
                                     alias="feeRate")

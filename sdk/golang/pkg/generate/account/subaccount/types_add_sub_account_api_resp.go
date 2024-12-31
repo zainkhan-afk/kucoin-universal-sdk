@@ -22,7 +22,7 @@ type AddSubAccountApiResp struct {
 	ApiVersion int32 `json:"apiVersion,omitempty"`
 	// Password
 	Passphrase string `json:"passphrase,omitempty"`
-	// [Permissions](doc://link/pages/338144)
+	// [Permissions](https://www.kucoin.com/docs-new/doc-338144)
 	Permission string `json:"permission,omitempty"`
 	// IP whitelist
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`

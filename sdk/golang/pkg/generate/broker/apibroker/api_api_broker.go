@@ -11,6 +11,7 @@ type APIBrokerAPI interface {
 
 	// GetRebase Get Broker Rebate
 	// Description: This interface supports downloading Broker rebate orders
+	// Documentation: https://www.kucoin.com/docs-new/api-3470280
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+

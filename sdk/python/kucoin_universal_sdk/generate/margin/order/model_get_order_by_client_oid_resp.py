@@ -28,9 +28,9 @@ class GetOrderByClientOidResp(BaseModel, Response):
         funds (str): Order Funds
         deal_size (str): Number of filled transactions
         deal_funds (str): Funds of filled transactions
-        fee (str): [Handling fees](doc://link/pages/5327739)
+        fee (str): [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
         fee_currency (str): currency used to calculate trading fee
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB , and DC
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC
         stop (str): 
         stop_triggered (bool): 
         stop_price (str): 
@@ -125,7 +125,9 @@ class GetOrderByClientOidResp(BaseModel, Response):
         description="Funds of filled transactions",
         alias="dealFunds")
     fee: Optional[str] = Field(
-        default=None, description="[Handling fees](doc://link/pages/5327739)")
+        default=None,
+        description=
+        "[Handling fees](https://www.kucoin.com/docs-new/api-5327739)")
     fee_currency: Optional[str] = Field(
         default=None,
         description="currency used to calculate trading fee",
@@ -133,7 +135,7 @@ class GetOrderByClientOidResp(BaseModel, Response):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](doc://link/pages/338146) is divided into these strategies: CN, CO, CB , and DC"
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into these strategies: CN, CO, CB , and DC"
     )
     stop: Optional[str] = None
     stop_triggered: Optional[bool] = Field(default=None, alias="stopTriggered")

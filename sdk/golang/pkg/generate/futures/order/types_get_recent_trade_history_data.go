@@ -4,7 +4,7 @@ package order
 
 // GetRecentTradeHistoryData struct for GetRecentTradeHistoryData
 type GetRecentTradeHistoryData struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Trade ID
 	TradeId string `json:"tradeId,omitempty"`

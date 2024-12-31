@@ -4,7 +4,7 @@ package market
 
 // GetSpotIndexPriceReq struct for GetSpotIndexPriceReq
 type GetSpotIndexPriceReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Start time (milisecond)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
@@ -66,7 +66,7 @@ func NewGetSpotIndexPriceReqBuilder() *GetSpotIndexPriceReqBuilder {
 	return &GetSpotIndexPriceReqBuilder{obj: NewGetSpotIndexPriceReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: indexSymbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetSpotIndexPriceReqBuilder) SetSymbol(value string) *GetSpotIndexPriceReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

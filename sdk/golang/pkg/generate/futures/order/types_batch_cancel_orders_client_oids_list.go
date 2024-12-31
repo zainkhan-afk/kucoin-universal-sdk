@@ -4,7 +4,7 @@ package order
 
 // BatchCancelOrdersClientOidsList struct for BatchCancelOrdersClientOidsList
 type BatchCancelOrdersClientOidsList struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol    string `json:"symbol,omitempty"`
 	ClientOid string `json:"clientOid,omitempty"`
 }
@@ -40,7 +40,7 @@ func NewBatchCancelOrdersClientOidsListBuilder() *BatchCancelOrdersClientOidsLis
 	return &BatchCancelOrdersClientOidsListBuilder{obj: NewBatchCancelOrdersClientOidsListWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *BatchCancelOrdersClientOidsListBuilder) SetSymbol(value string) *BatchCancelOrdersClientOidsListBuilder {
 	builder.obj.Symbol = value
 	return builder

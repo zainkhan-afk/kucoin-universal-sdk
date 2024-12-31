@@ -149,6 +149,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470277",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -230,6 +231,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470278",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",

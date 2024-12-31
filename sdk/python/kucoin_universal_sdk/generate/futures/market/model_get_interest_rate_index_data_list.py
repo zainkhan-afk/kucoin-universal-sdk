@@ -15,7 +15,7 @@ class GetInterestRateIndexDataList(BaseModel):
     GetInterestRateIndexDataList
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) 
         granularity (int): Granularity (milisecond)
         time_point (int): Timestamp(milisecond)
         value (float): Interest rate value
@@ -24,7 +24,7 @@ class GetInterestRateIndexDataList(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220) "
     )
     granularity: Optional[int] = Field(default=None,
                                        description="Granularity (milisecond)")

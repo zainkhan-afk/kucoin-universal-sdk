@@ -12,7 +12,7 @@ type GetPartOrderBookResp struct {
 	CommonResponse *types.RestResponse
 	// Sequence number
 	Sequence int64 `json:"sequence,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// bids, from high to low
 	Bids [][]float32 `json:"bids,omitempty"`

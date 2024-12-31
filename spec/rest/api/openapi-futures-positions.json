@@ -17,7 +17,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -63,7 +63,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "maxBuyOpenSize": {
                                                     "type": "integer",
@@ -90,6 +90,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470251",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -114,7 +115,7 @@
                     {
                         "name": "symbol",
                         "in": "path",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -139,7 +140,7 @@
                                                 "properties": {
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "level": {
                                                         "type": "integer",
@@ -187,6 +188,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470263",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -211,7 +213,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -238,7 +240,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                                     "example": [
                                                         "XBTUSDTM",
                                                         "XBTUSDM",
@@ -486,6 +488,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470252",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -532,6 +535,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470264",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -550,7 +554,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "level": {
                                         "type": "integer",
@@ -580,7 +584,7 @@
                     {
                         "name": "currency",
                         "in": "query",
-                        "description": "Currency code, Please refer to [rootSymbol](apidog://link/endpoint/221752070) , such as USDT,XBT. Query all positions when empty",
+                        "description": "Currency code, Please refer to [rootSymbol](https://www.kucoin.com/docs-new/api-221752070) , such as USDT,XBT. Query all positions when empty",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -614,7 +618,7 @@
                                                     },
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                                         "example": [
                                                             "XBTUSDTM",
                                                             "XBTUSDM",
@@ -863,6 +867,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470253",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -887,7 +892,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -980,7 +985,7 @@
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "settleCurrency": {
                                                                 "type": "string",
@@ -1092,6 +1097,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470254",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1138,6 +1144,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470256",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1156,7 +1163,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "withdrawAmount": {
                                         "type": "string",
@@ -1203,7 +1210,7 @@
                                                 },
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "autoDeposit": {
                                                     "type": "boolean",
@@ -1398,6 +1405,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470257",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1416,7 +1424,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "margin": {
                                         "type": "number",
@@ -1451,7 +1459,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1483,6 +1491,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470258",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1507,7 +1516,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1530,7 +1539,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "marginMode": {
                                                     "type": "string",
@@ -1568,6 +1577,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470259",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1592,7 +1602,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1615,7 +1625,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "leverage": {
                                                     "type": "string",
@@ -1637,6 +1647,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470260",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1694,6 +1705,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470261",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1712,7 +1724,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
                                     "leverage": {
                                         "type": "string",
@@ -1755,7 +1767,7 @@
                                             "properties": {
                                                 "symbol": {
                                                     "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                 },
                                                 "marginMode": {
                                                     "type": "string",
@@ -1793,6 +1805,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470262",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1811,7 +1824,7 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) ",
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                                         "example": [
                                             "XBTUSDTM",
                                             "XBTUSDCM",
@@ -1883,6 +1896,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470255",
                 "x-abandon": "abandon",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",

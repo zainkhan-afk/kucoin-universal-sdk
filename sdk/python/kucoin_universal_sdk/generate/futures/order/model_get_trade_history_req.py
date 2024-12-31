@@ -18,7 +18,7 @@ class GetTradeHistoryReq(BaseModel):
 
     Attributes:
         order_id (str): List fills for a specific order only (If you specify orderId, other parameters can be ignored)
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         side (SideEnum): Order side
         type (TypeEnum): Order Type
         trade_types (str): Transaction type: trade, adl, liquid, settlement. Supports querying multiple types at the same time, separated by commas. Query all type when empty
@@ -58,7 +58,7 @@ class GetTradeHistoryReq(BaseModel):
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     side: Optional[SideEnum] = Field(default=None, description="Order side")
     type: Optional[TypeEnum] = Field(default=None, description="Order Type")
@@ -159,7 +159,7 @@ class GetTradeHistoryReqBuilder:
 
     def set_symbol(self, value: str) -> GetTradeHistoryReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

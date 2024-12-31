@@ -23,11 +23,11 @@ type GetClosedOrdersItems struct {
 	DealSize string `json:"dealSize,omitempty"`
 	// Funds of filled transactions
 	DealFunds string `json:"dealFunds,omitempty"`
-	// [Handling fees](doc://link/pages/5327739)
+	// [Handling fees](https://www.kucoin.com/docs-new/api-5327739)
 	Fee string `json:"fee,omitempty"`
 	// currency used to calculate trading fee
 	FeeCurrency string `json:"feeCurrency,omitempty"`
-	// [Self Trade Prevention](doc://link/pages/5176570)
+	// [Self Trade Prevention](https://www.kucoin.com/docs-new/api-5176570)
 	Stp *string `json:"stp,omitempty"`
 	// Time in force
 	TimeInForce string `json:"timeInForce,omitempty"`

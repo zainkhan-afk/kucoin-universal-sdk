@@ -4,7 +4,7 @@ package positions
 
 // ModifyMarginLeverageReq struct for ModifyMarginLeverageReq
 type ModifyMarginLeverageReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Leverage multiple
 	Leverage string `json:"leverage,omitempty"`
@@ -41,7 +41,7 @@ func NewModifyMarginLeverageReqBuilder() *ModifyMarginLeverageReqBuilder {
 	return &ModifyMarginLeverageReqBuilder{obj: NewModifyMarginLeverageReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *ModifyMarginLeverageReqBuilder) SetSymbol(value string) *ModifyMarginLeverageReqBuilder {
 	builder.obj.Symbol = value
 	return builder

@@ -21,10 +21,10 @@ class AddOrderOldReq(BaseModel):
         symbol (str): symbol
         type (TypeEnum): specify if the order is an 'limit' order or 'market' order.   The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.  When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.  Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged.
         remark (str): Order placement remarks, length cannot exceed 20 characters (ASCII)
-        stp (StpEnum): [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+        stp (StpEnum): [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
         price (str): Specify price for order  When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error.
         size (str): Specify quantity for order  When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.  When **type** is market, select one out of two: size or funds
-        time_in_force (TimeInForceEnum): [Time in force](doc://link/pages/338146) is a special strategy used during trading
+        time_in_force (TimeInForceEnum): [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
         post_only (bool): passive order labels, this is disabled when the order timing strategy is IOC or FOK
         hidden (bool): Hidden or not (not shown in order book)
         iceberg (bool): Whether or not only visible portions of orders are shown in iceberg orders
@@ -107,7 +107,7 @@ class AddOrderOldReq(BaseModel):
     stp: Optional[StpEnum] = Field(
         default=None,
         description=
-        "[Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC"
+        "[Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC"
     )
     price: Optional[str] = Field(
         default=None,
@@ -122,7 +122,7 @@ class AddOrderOldReq(BaseModel):
     time_in_force: Optional[TimeInForceEnum] = Field(
         default=TimeInForceEnum.GTC,
         description=
-        "[Time in force](doc://link/pages/338146) is a special strategy used during trading",
+        "[Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading",
         alias="timeInForce")
     post_only: Optional[bool] = Field(
         default=False,
@@ -276,7 +276,7 @@ class AddOrderOldReqBuilder:
 
     def set_stp(self, value: AddOrderOldReq.StpEnum) -> AddOrderOldReqBuilder:
         """
-        [Self Trade Prevention](doc://link/pages/338146) is divided into four strategies: CN, CO, CB , and DC
+        [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC
         """
         self.obj['stp'] = value
         return self
@@ -299,7 +299,7 @@ class AddOrderOldReqBuilder:
             self,
             value: AddOrderOldReq.TimeInForceEnum) -> AddOrderOldReqBuilder:
         """
-        [Time in force](doc://link/pages/338146) is a special strategy used during trading
+        [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading
         """
         self.obj['timeInForce'] = value
         return self

@@ -11,6 +11,7 @@ type PositionsAPI interface {
 
 	// GetIsolatedMarginRiskLimit Get Isolated Margin Risk Limit
 	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Documentation: https://www.kucoin.com/docs-new/api-3470263
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -24,6 +25,7 @@ type PositionsAPI interface {
 
 	// GetPositionsHistory Get Positions History
 	// Description: This interface can query position history information records.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470254
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -37,6 +39,7 @@ type PositionsAPI interface {
 
 	// GetMaxWithdrawMargin Get Max Withdraw Margin
 	// Description: This interface can query the maximum amount of margin that the current position supports withdrawal.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470258
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -50,6 +53,7 @@ type PositionsAPI interface {
 
 	// RemoveIsolatedMargin Remove Isolated Margin
 	// Description: Remove Isolated Margin Manually.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470256
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -63,6 +67,7 @@ type PositionsAPI interface {
 
 	// GetPositionDetails Get Position Details
 	// Description: Get the position details of a specified position.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470252
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -76,6 +81,7 @@ type PositionsAPI interface {
 
 	// ModifyAutoDepositStatus Modify Isolated Margin Auto-Deposit Status
 	// Description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470255
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -90,6 +96,7 @@ type PositionsAPI interface {
 
 	// AddIsolatedMargin Add Isolated Margin
 	// Description: Add Isolated Margin Manually.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470257
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -103,6 +110,7 @@ type PositionsAPI interface {
 
 	// ModifyIsolatedMarginRiskLimt Modify Isolated Margin Risk Limit
 	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Documentation: https://www.kucoin.com/docs-new/api-3470264
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -116,6 +124,7 @@ type PositionsAPI interface {
 
 	// GetPositionList Get Position List
 	// Description: Get the position details of a specified position.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470253
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -129,6 +138,7 @@ type PositionsAPI interface {
 
 	// ModifyMarginLeverage Modify Cross Margin Leverage
 	// Description: This interface can modify the current symbol’s cross-margin leverage multiple.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470261
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -142,6 +152,7 @@ type PositionsAPI interface {
 
 	// GetCrossMarginLeverage Get Cross Margin Leverage
 	// Description: This interface can query the current symbol’s cross-margin leverage multiple.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470260
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -155,6 +166,7 @@ type PositionsAPI interface {
 
 	// GetMaxOpenSize Get Max Open Size
 	// Description: Get Maximum Open Position Size.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470251
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -168,6 +180,7 @@ type PositionsAPI interface {
 
 	// SwitchMarginMode Switch Margin Mode
 	// Description: This interface can modify the margin mode of the current symbol.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470262
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -181,6 +194,7 @@ type PositionsAPI interface {
 
 	// GetMarginMode Get Margin Mode
 	// Description: This interface can query the margin mode of the current symbol.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470259
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+

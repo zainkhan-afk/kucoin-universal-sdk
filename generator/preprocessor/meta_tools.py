@@ -57,12 +57,32 @@ class MetaTools:
             for k in clear_keys:
                 del data['api'][k]
 
+    def gen_doc_id_collection(self, collection):
+        id = set()
+
+        if 'items' in collection:
+            for item in collection['items']:
+                id.add(item['id'])
+
+        for doc in collection['children']:
+            id.update(self.gen_doc_id_collection(doc))
+
+        return id
+
+
 
     def clear_garbage(self):
         MetaTools.clear_api_collection(self.data['apiCollection'])
+
+        if 'docCollection' in self.data:
+            doc_id = self.gen_doc_id_collection(self.data['docCollection'][0])
+        else:
+            doc_id = self.data['doc_id']
+
         self.data = {
             'apiCollection' : self.data['apiCollection'],
             'schemaCollection': self.data['schemaCollection'],
+            'doc_id': list(doc_id),
         }
 
 

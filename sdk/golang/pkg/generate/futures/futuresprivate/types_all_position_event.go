@@ -11,7 +11,7 @@ import (
 type AllPositionEvent struct {
 	// common response
 	CommonResponse *types.WsMessage
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/221752070)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070)
 	Symbol string `json:"symbol,omitempty"`
 	// Whether it is cross margin.
 	CrossMode bool `json:"crossMode,omitempty"`

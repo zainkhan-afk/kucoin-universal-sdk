@@ -15,14 +15,14 @@ class RemoveIsolatedMarginReq(BaseModel):
     RemoveIsolatedMarginReq
 
     Attributes:
-        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         withdraw_amount (str): The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins 
     """
 
     symbol: Optional[str] = Field(
         default=None,
         description=
-        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+        "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
     )
     withdraw_amount: Optional[str] = Field(
         default=None,
@@ -80,7 +80,7 @@ class RemoveIsolatedMarginReqBuilder:
 
     def set_symbol(self, value: str) -> RemoveIsolatedMarginReqBuilder:
         """
-        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) 
+        Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         """
         self.obj['symbol'] = value
         return self

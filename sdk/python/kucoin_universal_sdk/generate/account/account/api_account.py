@@ -40,6 +40,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account - Futures
         description: Request via this endpoint to get the info of the futures account.
+        documentation: https://www.kucoin.com/docs-new/api-3470129
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -58,6 +59,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Detail - Spot
         description: get Information for a single spot account. Use this endpoint when you know the accountId.
+        documentation: https://www.kucoin.com/docs-new/api-3470126
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -76,6 +78,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account List - Spot
         description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
+        documentation: https://www.kucoin.com/docs-new/api-3470125
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -94,6 +97,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Ledgers - Spot/Margin
         description: This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        documentation: https://www.kucoin.com/docs-new/api-3470121
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -112,6 +116,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Ledgers - Trade_hf
         description: This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+        documentation: https://www.kucoin.com/docs-new/api-3470122
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -129,6 +134,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Type - Spot 
         description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
+        documentation: https://www.kucoin.com/docs-new/api-3470120
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -149,6 +155,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Detail - Isolated Margin - V1
         description: Request via this endpoint to get the info of the isolated margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470315
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -169,6 +176,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account List - Isolated Margin - V1
         description: Request via this endpoint to get the info list of the isolated margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470314
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -188,6 +196,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Detail - Margin
         description: Request via this endpoint to get the info of the margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470311
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -206,6 +215,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Ledgers - Futures
         description: This interface can query the ledger records of the futures business line
+        documentation: https://www.kucoin.com/docs-new/api-3470124
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -221,8 +231,9 @@ class AccountAPI(ABC):
     @abstractmethod
     def get_apikey_info(self, **kwargs: Any) -> GetApikeyInfoResp:
         """
-        summary: Get API Key Info
+        summary: Get Apikey Info
         description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
+        documentation: https://www.kucoin.com/docs-new/api-3470130
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -240,6 +251,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Summary Info
         description: This endpoint can be used to obtain account summary information.
+        documentation: https://www.kucoin.com/docs-new/api-3470119
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -258,6 +270,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account Ledgers - Margin_hf
         description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+        documentation: https://www.kucoin.com/docs-new/api-3470123
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -277,6 +290,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account - Isolated Margin
         description: Request via this endpoint to get the info of the isolated margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470128
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -295,6 +309,7 @@ class AccountAPI(ABC):
         """
         summary: Get Account - Cross Margin
         description: Request via this endpoint to get the info of the cross margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470127
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+

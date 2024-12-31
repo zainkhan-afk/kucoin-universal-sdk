@@ -4,7 +4,7 @@ package positions
 
 // GetPositionsHistoryReq struct for GetPositionsHistoryReq
 type GetPositionsHistoryReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Closing start time(ms)
 	From *int64 `json:"from,omitempty" url:"from,omitempty"`
@@ -56,7 +56,7 @@ func NewGetPositionsHistoryReqBuilder() *GetPositionsHistoryReqBuilder {
 	return &GetPositionsHistoryReqBuilder{obj: NewGetPositionsHistoryReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetPositionsHistoryReqBuilder) SetSymbol(value string) *GetPositionsHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

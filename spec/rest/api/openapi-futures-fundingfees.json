@@ -17,7 +17,7 @@
                     {
                         "name": "symbol",
                         "in": "path",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -88,6 +88,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470265",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -112,7 +113,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -157,7 +158,7 @@
                                                 "properties": {
                                                     "symbol": {
                                                         "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                     },
                                                     "fundingRate": {
                                                         "type": "number",
@@ -186,6 +187,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470266",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -210,7 +212,7 @@
                     {
                         "name": "symbol",
                         "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220) ",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -299,7 +301,7 @@
                                                             },
                                                             "symbol": {
                                                                 "type": "string",
-                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](doc://link/endpoint/3470220) "
+                                                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                                             },
                                                             "timePoint": {
                                                                 "type": "integer",
@@ -390,6 +392,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470267",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",

@@ -4,7 +4,7 @@ package order
 
 // GetStopOrderListReq struct for GetStopOrderListReq
 type GetStopOrderListReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// buy or sell
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
@@ -58,7 +58,7 @@ func NewGetStopOrderListReqBuilder() *GetStopOrderListReqBuilder {
 	return &GetStopOrderListReqBuilder{obj: NewGetStopOrderListReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetStopOrderListReqBuilder) SetSymbol(value string) *GetStopOrderListReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

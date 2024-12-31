@@ -47,6 +47,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470147",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -380,6 +381,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470148",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -434,6 +436,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470301",
                 "x-abandon": "abandon",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -615,6 +618,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470302",
                 "x-abandon": "abandon",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -892,6 +896,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470303",
                 "x-abandon": "abandon",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -989,6 +994,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470304",
                 "x-abandon": "abandon",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1288,6 +1294,7 @@
                         }
                     }
                 },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470307",
                 "x-abandon": "abandon",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",

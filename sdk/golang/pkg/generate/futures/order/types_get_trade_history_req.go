@@ -6,7 +6,7 @@ package order
 type GetTradeHistoryReq struct {
 	// List fills for a specific order only (If you specify orderId, other parameters can be ignored)
 	OrderId *string `json:"orderId,omitempty" url:"orderId,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Order side
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
@@ -74,7 +74,7 @@ func (builder *GetTradeHistoryReqBuilder) SetOrderId(value string) *GetTradeHist
 	return builder
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetTradeHistoryReqBuilder) SetSymbol(value string) *GetTradeHistoryReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

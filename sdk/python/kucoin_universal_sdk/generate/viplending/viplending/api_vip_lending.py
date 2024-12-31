@@ -14,6 +14,7 @@ class VIPLendingAPI(ABC):
         """
         summary: Get Accounts
         description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
+        documentation: https://www.kucoin.com/docs-new/api-3470278
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -31,6 +32,7 @@ class VIPLendingAPI(ABC):
         """
         summary: Get Account Detail
         description: The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.
+        documentation: https://www.kucoin.com/docs-new/api-3470277
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+

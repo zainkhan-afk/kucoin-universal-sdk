@@ -6,7 +6,7 @@ package order
 type GetOrderListReq struct {
 	// active or done, done as default. Only list orders for a specific status
 	Status *string `json:"status,omitempty" url:"status,omitempty"`
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// buy or sell
 	Side *string `json:"side,omitempty" url:"side,omitempty"`
@@ -63,7 +63,7 @@ func (builder *GetOrderListReqBuilder) SetStatus(value string) *GetOrderListReqB
 	return builder
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetOrderListReqBuilder) SetSymbol(value string) *GetOrderListReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

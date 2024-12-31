@@ -103,7 +103,7 @@ class AccountAPITest(unittest.TestCase):
         Get Account Ledgers - Spot/Margin
         /api/v1/accounts/ledgers
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"265329987780896\",\n                \"currency\": \"USDT\",\n                \"amount\": \"0.01\",\n                \"fee\": \"0\",\n                \"balance\": \"0\",\n                \"accountType\": \"TRADE\",\n                \"bizType\": \"\u5b50\u8d26\u53f7\u8f6c\u8d26\",\n                \"direction\": \"out\",\n                \"createdAt\": 1728658481484,\n                \"context\": \"\"\n            }\n        ]\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"265329987780896\",\n                \"currency\": \"USDT\",\n                \"amount\": \"0.01\",\n                \"fee\": \"0\",\n                \"balance\": \"0\",\n                \"accountType\": \"TRADE\",\n                \"bizType\": \"SUB_TRANSFER\",\n                \"direction\": \"out\",\n                \"createdAt\": 1728658481484,\n                \"context\": \"\"\n            }\n        ]\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetSpotLedgerResp.from_dict(common_response.data)
 
@@ -222,14 +222,14 @@ class AccountAPITest(unittest.TestCase):
     def test_get_apikey_info_req_model(self):
         """
        get_apikey_info
-       Get API Key Info
+       Get Apikey Info
        /api/v1/user/api-key
        """
 
     def test_get_apikey_info_resp_model(self):
         """
         get_apikey_info
-        Get API Key Info
+        Get Apikey Info
         /api/v1/user/api-key
         """
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"remark\": \"account1\",\n        \"apiKey\": \"6705f5c311545b000157d3eb\",\n        \"apiVersion\": 3,\n        \"permission\": \"General,Futures,Spot,Earn,InnerTransfer,Transfer,Margin\",\n        \"ipWhitelist\": \"203.**.154,103.**.34\",\n        \"createdAt\": 1728443843000,\n        \"uid\": 165111215,\n        \"isMaster\": true\n    }\n}"

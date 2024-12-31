@@ -4,7 +4,7 @@ package market
 
 // GetInterestRateIndexReq struct for GetInterestRateIndexReq
 type GetInterestRateIndexReq struct {
-	// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](apidog://link/endpoint/3470220)
+	// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol *string `json:"symbol,omitempty" url:"symbol,omitempty"`
 	// Start time (milisecond)
 	StartAt *int64 `json:"startAt,omitempty" url:"startAt,omitempty"`
@@ -66,7 +66,7 @@ func NewGetInterestRateIndexReqBuilder() *GetInterestRateIndexReqBuilder {
 	return &GetInterestRateIndexReqBuilder{obj: NewGetInterestRateIndexReqWithDefaults()}
 }
 
-// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](apidog://link/endpoint/3470220)
+// Symbol of the contract, Please refer to [Get Symbol endpoint: fundingBaseSymbol, fundingQuoteSymbol, fundingBaseSymbol1M, fundingQuoteSymbol1M](https://www.kucoin.com/docs-new/api-3470220)
 func (builder *GetInterestRateIndexReqBuilder) SetSymbol(value string) *GetInterestRateIndexReqBuilder {
 	builder.obj.Symbol = &value
 	return builder

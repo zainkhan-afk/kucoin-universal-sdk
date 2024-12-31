@@ -22,7 +22,7 @@ class GetTradeHistoryReq(BaseModel):
         side (SideEnum): specify if the order is to 'buy' or 'sell'
         type (TypeEnum): specify if the order is an 'limit' order or 'market' order. 
         last_id (int): The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.
-        limit (int): Default100，Max100
+        limit (int): Default20，Max100
         start_at (int): Start time (milisecond)
         end_at (int): End time (milisecond)
     """
@@ -63,7 +63,7 @@ class GetTradeHistoryReq(BaseModel):
         "The id of the last set of data from the previous batch of data. By default, the latest information is given. lastId is used to filter data and paginate. If lastId is not entered, the default is a maximum of 100 returned data items. The return results include lastId，which can be used as a query parameter to look up new data from the next page.",
         alias="lastId")
     limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = Field(
-        default=20, description="Default100，Max100")
+        default=20, description="Default20，Max100")
     start_at: Optional[int] = Field(default=None,
                                     description="Start time (milisecond)",
                                     alias="startAt")
@@ -176,7 +176,7 @@ class GetTradeHistoryReqBuilder:
 
     def set_limit(self, value: int) -> GetTradeHistoryReqBuilder:
         """
-        Default100，Max100
+        Default20，Max100
         """
         self.obj['limit'] = value
         return self

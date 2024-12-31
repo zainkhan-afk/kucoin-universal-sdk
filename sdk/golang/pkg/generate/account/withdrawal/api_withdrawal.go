@@ -11,6 +11,7 @@ type WithdrawalAPI interface {
 
 	// GetWithdrawalHistoryOld Get Withdrawal History - Old
 	// Description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470308
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -25,6 +26,7 @@ type WithdrawalAPI interface {
 
 	// GetWithdrawalHistory Get Withdrawal History
 	// Description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470145
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -38,6 +40,7 @@ type WithdrawalAPI interface {
 
 	// WithdrawalV1 Withdraw - V1
 	// Description: Use this interface to withdraw the specified currency
+	// Documentation: https://www.kucoin.com/docs-new/api-3470310
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -52,6 +55,7 @@ type WithdrawalAPI interface {
 
 	// GetWithdrawalQuotas Get Withdrawal Quotas
 	// Description: This interface can obtain the withdrawal quotas information of this currency.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470143
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -65,6 +69,7 @@ type WithdrawalAPI interface {
 
 	// CancelWithdrawal Cancel Withdrawal
 	// Description: This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470144
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+
@@ -78,6 +83,7 @@ type WithdrawalAPI interface {
 
 	// WithdrawalV3 Withdraw(V3)
 	// Description: Use this interface to withdraw the specified currency
+	// Documentation: https://www.kucoin.com/docs-new/api-3470146
 	// +---------------------+------------+
 	// | Extra API Info      | Value      |
 	// +---------------------+------------+

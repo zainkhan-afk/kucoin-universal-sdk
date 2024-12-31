@@ -12,7 +12,7 @@ type GetSubAccountApiListData struct {
 	ApiKey *string `json:"apiKey,omitempty"`
 	// API Version
 	ApiVersion *int32 `json:"apiVersion,omitempty"`
-	// [Permissions](doc://link/pages/338144)
+	// [Permissions](https://www.kucoin.com/docs-new/doc-338144)
 	Permission *string `json:"permission,omitempty"`
 	// IP whitelist
 	IpWhitelist *string `json:"ipWhitelist,omitempty"`

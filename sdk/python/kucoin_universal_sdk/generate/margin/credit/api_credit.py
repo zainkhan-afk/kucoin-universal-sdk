@@ -27,6 +27,7 @@ class CreditAPI(ABC):
         """
         summary: Modify Purchase
         description: This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account
+        documentation: https://www.kucoin.com/docs-new/api-3470217
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -45,6 +46,7 @@ class CreditAPI(ABC):
         """
         summary: Get Loan Market
         description: This API endpoint is used to get the information about the currencies available for lending.
+        documentation: https://www.kucoin.com/docs-new/api-3470212
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -64,6 +66,7 @@ class CreditAPI(ABC):
         """
         summary: Get Loan Market Interest Rate
         description: This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.
+        documentation: https://www.kucoin.com/docs-new/api-3470215
         +---------------------+--------+
         | Extra API Info      | Value  |
         +---------------------+--------+
@@ -82,6 +85,7 @@ class CreditAPI(ABC):
         """
         summary: Get Purchase Orders
         description: This API endpoint provides pagination query for the purchase orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470213
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -99,6 +103,7 @@ class CreditAPI(ABC):
         """
         summary: Purchase
         description: Invest credit in the market and earn interest
+        documentation: https://www.kucoin.com/docs-new/api-3470216
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -117,6 +122,7 @@ class CreditAPI(ABC):
         """
         summary: Get Redeem Orders
         description: This API endpoint provides pagination query for the redeem orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470214
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -134,6 +140,7 @@ class CreditAPI(ABC):
         """
         summary: Redeem
         description: Redeem your loan order
+        documentation: https://www.kucoin.com/docs-new/api-3470218
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
