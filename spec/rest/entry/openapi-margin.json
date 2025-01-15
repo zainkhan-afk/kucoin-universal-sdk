@@ -165,7 +165,8 @@
                 "x-sdk-method-description": "This endpoint allows querying the configuration of cross margin symbol.",
                 "x-api-rate-limit": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"timestamp\\\": 1729665839353,\\n        \\\"items\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"name\\\": \\\"BTC-USDT\\\",\\n                \\\"enableTrading\\\": true,\\n                \\\"market\\\": \\\"USDS\\\",\\n                \\\"baseCurrency\\\": \\\"BTC\\\",\\n                \\\"quoteCurrency\\\": \\\"USDT\\\",\\n                \\\"baseIncrement\\\": \\\"0.00000001\\\",\\n                \\\"baseMinSize\\\": \\\"0.00001\\\",\\n                \\\"baseMaxSize\\\": \\\"10000000000\\\",\\n                \\\"quoteIncrement\\\": \\\"0.000001\\\",\\n                \\\"quoteMinSize\\\": \\\"0.1\\\",\\n                \\\"quoteMaxSize\\\": \\\"99999999\\\",\\n                \\\"priceIncrement\\\": \\\"0.1\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"priceLimitRate\\\": \\\"0.1\\\",\\n                \\\"minFunds\\\": \\\"0.1\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\"}",
+                "operationId": "001"
             }
         },
         "/api/v1/margin/config": {
@@ -237,7 +238,8 @@
                 "x-sdk-method-name": "getMarginConfig",
                 "x-sdk-method-description": "Request via this endpoint to get the configure info of the cross margin.",
                 "x-api-rate-limit": 25,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"maxLeverage\\\": 5,\\n        \\\"warningDebtRatio\\\": \\\"0.95\\\",\\n        \\\"liqDebtRatio\\\": \\\"0.97\\\",\\n        \\\"currencyList\\\": [\\n            \\\"VRA\\\",\\n            \\\"APT\\\",\\n            \\\"IOTX\\\",\\n            \\\"SHIB\\\",\\n            \\\"KDA\\\",\\n            \\\"BCHSV\\\",\\n            \\\"NEAR\\\",\\n            \\\"CLV\\\",\\n            \\\"AUDIO\\\",\\n            \\\"AIOZ\\\",\\n            \\\"FLOW\\\",\\n            \\\"WLD\\\",\\n            \\\"COMP\\\",\\n            \\\"MEME\\\",\\n            \\\"SLP\\\",\\n            \\\"STX\\\",\\n            \\\"ZRO\\\",\\n            \\\"QI\\\",\\n            \\\"PYTH\\\",\\n            \\\"RUNE\\\",\\n            \\\"DGB\\\",\\n            \\\"IOST\\\",\\n            \\\"SUI\\\",\\n            \\\"BCH\\\",\\n            \\\"CAKE\\\",\\n            \\\"DOT\\\",\\n            \\\"OMG\\\",\\n            \\\"POL\\\",\\n            \\\"GMT\\\",\\n            \\\"1INCH\\\",\\n            \\\"RSR\\\",\\n            \\\"NKN\\\",\\n            \\\"BTC\\\",\\n            \\\"AR\\\",\\n            \\\"ARB\\\",\\n            \\\"TON\\\",\\n            \\\"LISTA\\\",\\n            \\\"AVAX\\\",\\n            \\\"SEI\\\",\\n            \\\"FTM\\\",\\n            \\\"ERN\\\",\\n            \\\"BB\\\",\\n            \\\"BTT\\\",\\n            \\\"JTO\\\",\\n            \\\"ONE\\\",\\n            \\\"RLC\\\",\\n            \\\"ANKR\\\",\\n            \\\"SUSHI\\\",\\n            \\\"CATI\\\",\\n            \\\"ALGO\\\",\\n            \\\"PEPE2\\\",\\n            \\\"ATOM\\\",\\n            \\\"LPT\\\",\\n            \\\"BIGTIME\\\",\\n            \\\"CFX\\\",\\n            \\\"DYM\\\",\\n            \\\"VELO\\\",\\n            \\\"XPR\\\",\\n            \\\"SNX\\\",\\n            \\\"JUP\\\",\\n            \\\"MANA\\\",\\n            \\\"API3\\\",\\n            \\\"PYR\\\",\\n            \\\"ROSE\\\",\\n            \\\"GLMR\\\",\\n            \\\"SATS\\\",\\n            \\\"TIA\\\",\\n            \\\"GALAX\\\",\\n            \\\"SOL\\\",\\n            \\\"DAO\\\",\\n            \\\"FET\\\",\\n            \\\"ETC\\\",\\n            \\\"MKR\\\",\\n            \\\"WOO\\\",\\n            \\\"DODO\\\",\\n            \\\"OGN\\\",\\n            \\\"BNB\\\",\\n            \\\"ICP\\\",\\n            \\\"BLUR\\\",\\n            \\\"ETH\\\",\\n            \\\"ZEC\\\",\\n            \\\"NEO\\\",\\n            \\\"CELO\\\",\\n            \\\"REN\\\",\\n            \\\"MANTA\\\",\\n            \\\"LRC\\\",\\n            \\\"STRK\\\",\\n            \\\"ADA\\\",\\n            \\\"STORJ\\\",\\n            \\\"REQ\\\",\\n            \\\"TAO\\\",\\n            \\\"VET\\\",\\n            \\\"FITFI\\\",\\n            \\\"USDT\\\",\\n            \\\"DOGE\\\",\\n            \\\"HBAR\\\",\\n            \\\"SXP\\\",\\n            \\\"NEIROCTO\\\",\\n            \\\"CHR\\\",\\n            \\\"ORDI\\\",\\n            \\\"DASH\\\",\\n            \\\"PEPE\\\",\\n            \\\"ONDO\\\",\\n            \\\"ILV\\\",\\n            \\\"WAVES\\\",\\n            \\\"CHZ\\\",\\n            \\\"DOGS\\\",\\n            \\\"XRP\\\",\\n            \\\"CTSI\\\",\\n            \\\"JASMY\\\",\\n            \\\"FLOKI\\\",\\n            \\\"TRX\\\",\\n            \\\"KAVA\\\",\\n            \\\"SAND\\\",\\n            \\\"C98\\\",\\n            \\\"UMA\\\",\\n            \\\"NOT\\\",\\n            \\\"IMX\\\",\\n            \\\"WIF\\\",\\n            \\\"ENA\\\",\\n            \\\"EGLD\\\",\\n            \\\"BOME\\\",\\n            \\\"LTC\\\",\\n            \\\"USDC\\\",\\n            \\\"METIS\\\",\\n            \\\"WIN\\\",\\n            \\\"THETA\\\",\\n            \\\"FXS\\\",\\n            \\\"ENJ\\\",\\n            \\\"CRO\\\",\\n            \\\"AEVO\\\",\\n            \\\"INJ\\\",\\n            \\\"LTO\\\",\\n            \\\"CRV\\\",\\n            \\\"GRT\\\",\\n            \\\"DYDX\\\",\\n            \\\"FLUX\\\",\\n            \\\"ENS\\\",\\n            \\\"WAX\\\",\\n            \\\"MASK\\\",\\n            \\\"POND\\\",\\n            \\\"UNI\\\",\\n            \\\"AAVE\\\",\\n            \\\"LINA\\\",\\n            \\\"TLM\\\",\\n            \\\"BONK\\\",\\n            \\\"QNT\\\",\\n            \\\"LDO\\\",\\n            \\\"ALICE\\\",\\n            \\\"XLM\\\",\\n            \\\"LINK\\\",\\n            \\\"CKB\\\",\\n            \\\"LUNC\\\",\\n            \\\"YFI\\\",\\n            \\\"ETHW\\\",\\n            \\\"XTZ\\\",\\n            \\\"LUNA\\\",\\n            \\\"OP\\\",\\n            \\\"SUPER\\\",\\n            \\\"EIGEN\\\",\\n            \\\"KSM\\\",\\n            \\\"ELON\\\",\\n            \\\"EOS\\\",\\n            \\\"FIL\\\",\\n            \\\"ZETA\\\",\\n            \\\"SKL\\\",\\n            \\\"BAT\\\",\\n            \\\"APE\\\",\\n            \\\"HMSTR\\\",\\n            \\\"YGG\\\",\\n            \\\"MOVR\\\",\\n            \\\"PEOPLE\\\",\\n            \\\"KCS\\\",\\n            \\\"AXS\\\",\\n            \\\"ARPA\\\",\\n            \\\"ZIL\\\"\\n        ]\\n    }\\n}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"maxLeverage\\\": 5,\\n        \\\"warningDebtRatio\\\": \\\"0.95\\\",\\n        \\\"liqDebtRatio\\\": \\\"0.97\\\",\\n        \\\"currencyList\\\": [\\n            \\\"VRA\\\",\\n            \\\"APT\\\",\\n            \\\"IOTX\\\",\\n            \\\"SHIB\\\",\\n            \\\"KDA\\\",\\n            \\\"BCHSV\\\",\\n            \\\"NEAR\\\",\\n            \\\"CLV\\\",\\n            \\\"AUDIO\\\",\\n            \\\"AIOZ\\\",\\n            \\\"FLOW\\\",\\n            \\\"WLD\\\",\\n            \\\"COMP\\\",\\n            \\\"MEME\\\",\\n            \\\"SLP\\\",\\n            \\\"STX\\\",\\n            \\\"ZRO\\\",\\n            \\\"QI\\\",\\n            \\\"PYTH\\\",\\n            \\\"RUNE\\\",\\n            \\\"DGB\\\",\\n            \\\"IOST\\\",\\n            \\\"SUI\\\",\\n            \\\"BCH\\\",\\n            \\\"CAKE\\\",\\n            \\\"DOT\\\",\\n            \\\"OMG\\\",\\n            \\\"POL\\\",\\n            \\\"GMT\\\",\\n            \\\"1INCH\\\",\\n            \\\"RSR\\\",\\n            \\\"NKN\\\",\\n            \\\"BTC\\\",\\n            \\\"AR\\\",\\n            \\\"ARB\\\",\\n            \\\"TON\\\",\\n            \\\"LISTA\\\",\\n            \\\"AVAX\\\",\\n            \\\"SEI\\\",\\n            \\\"FTM\\\",\\n            \\\"ERN\\\",\\n            \\\"BB\\\",\\n            \\\"BTT\\\",\\n            \\\"JTO\\\",\\n            \\\"ONE\\\",\\n            \\\"RLC\\\",\\n            \\\"ANKR\\\",\\n            \\\"SUSHI\\\",\\n            \\\"CATI\\\",\\n            \\\"ALGO\\\",\\n            \\\"PEPE2\\\",\\n            \\\"ATOM\\\",\\n            \\\"LPT\\\",\\n            \\\"BIGTIME\\\",\\n            \\\"CFX\\\",\\n            \\\"DYM\\\",\\n            \\\"VELO\\\",\\n            \\\"XPR\\\",\\n            \\\"SNX\\\",\\n            \\\"JUP\\\",\\n            \\\"MANA\\\",\\n            \\\"API3\\\",\\n            \\\"PYR\\\",\\n            \\\"ROSE\\\",\\n            \\\"GLMR\\\",\\n            \\\"SATS\\\",\\n            \\\"TIA\\\",\\n            \\\"GALAX\\\",\\n            \\\"SOL\\\",\\n            \\\"DAO\\\",\\n            \\\"FET\\\",\\n            \\\"ETC\\\",\\n            \\\"MKR\\\",\\n            \\\"WOO\\\",\\n            \\\"DODO\\\",\\n            \\\"OGN\\\",\\n            \\\"BNB\\\",\\n            \\\"ICP\\\",\\n            \\\"BLUR\\\",\\n            \\\"ETH\\\",\\n            \\\"ZEC\\\",\\n            \\\"NEO\\\",\\n            \\\"CELO\\\",\\n            \\\"REN\\\",\\n            \\\"MANTA\\\",\\n            \\\"LRC\\\",\\n            \\\"STRK\\\",\\n            \\\"ADA\\\",\\n            \\\"STORJ\\\",\\n            \\\"REQ\\\",\\n            \\\"TAO\\\",\\n            \\\"VET\\\",\\n            \\\"FITFI\\\",\\n            \\\"USDT\\\",\\n            \\\"DOGE\\\",\\n            \\\"HBAR\\\",\\n            \\\"SXP\\\",\\n            \\\"NEIROCTO\\\",\\n            \\\"CHR\\\",\\n            \\\"ORDI\\\",\\n            \\\"DASH\\\",\\n            \\\"PEPE\\\",\\n            \\\"ONDO\\\",\\n            \\\"ILV\\\",\\n            \\\"WAVES\\\",\\n            \\\"CHZ\\\",\\n            \\\"DOGS\\\",\\n            \\\"XRP\\\",\\n            \\\"CTSI\\\",\\n            \\\"JASMY\\\",\\n            \\\"FLOKI\\\",\\n            \\\"TRX\\\",\\n            \\\"KAVA\\\",\\n            \\\"SAND\\\",\\n            \\\"C98\\\",\\n            \\\"UMA\\\",\\n            \\\"NOT\\\",\\n            \\\"IMX\\\",\\n            \\\"WIF\\\",\\n            \\\"ENA\\\",\\n            \\\"EGLD\\\",\\n            \\\"BOME\\\",\\n            \\\"LTC\\\",\\n            \\\"USDC\\\",\\n            \\\"METIS\\\",\\n            \\\"WIN\\\",\\n            \\\"THETA\\\",\\n            \\\"FXS\\\",\\n            \\\"ENJ\\\",\\n            \\\"CRO\\\",\\n            \\\"AEVO\\\",\\n            \\\"INJ\\\",\\n            \\\"LTO\\\",\\n            \\\"CRV\\\",\\n            \\\"GRT\\\",\\n            \\\"DYDX\\\",\\n            \\\"FLUX\\\",\\n            \\\"ENS\\\",\\n            \\\"WAX\\\",\\n            \\\"MASK\\\",\\n            \\\"POND\\\",\\n            \\\"UNI\\\",\\n            \\\"AAVE\\\",\\n            \\\"LINA\\\",\\n            \\\"TLM\\\",\\n            \\\"BONK\\\",\\n            \\\"QNT\\\",\\n            \\\"LDO\\\",\\n            \\\"ALICE\\\",\\n            \\\"XLM\\\",\\n            \\\"LINK\\\",\\n            \\\"CKB\\\",\\n            \\\"LUNC\\\",\\n            \\\"YFI\\\",\\n            \\\"ETHW\\\",\\n            \\\"XTZ\\\",\\n            \\\"LUNA\\\",\\n            \\\"OP\\\",\\n            \\\"SUPER\\\",\\n            \\\"EIGEN\\\",\\n            \\\"KSM\\\",\\n            \\\"ELON\\\",\\n            \\\"EOS\\\",\\n            \\\"FIL\\\",\\n            \\\"ZETA\\\",\\n            \\\"SKL\\\",\\n            \\\"BAT\\\",\\n            \\\"APE\\\",\\n            \\\"HMSTR\\\",\\n            \\\"YGG\\\",\\n            \\\"MOVR\\\",\\n            \\\"PEOPLE\\\",\\n            \\\"KCS\\\",\\n            \\\"AXS\\\",\\n            \\\"ARPA\\\",\\n            \\\"ZIL\\\"\\n        ]\\n    }\\n}",
+                "operationId": "002"
             }
         },
         "/api/v3/etf/info": {
@@ -330,7 +332,8 @@
                 "x-sdk-method-description": "This interface returns leveraged token information",
                 "x-api-rate-limit": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTCUP\\\",\\n            \\\"netAsset\\\": \\\"33.846\\\",\\n            \\\"targetLeverage\\\": \\\"2-4\\\",\\n            \\\"actualLeverage\\\": \\\"2.1648\\\",\\n            \\\"issuedSize\\\": \\\"107134.87655291\\\",\\n            \\\"basket\\\": \\\"118.324559 XBTUSDTM\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTCUP\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTCUP\\\"}",
+                "operationId": "003"
             }
         },
         "/api/v3/mark-price/all-symbols": {
@@ -398,7 +401,8 @@
                 "x-sdk-method-name": "getMarkPriceList",
                 "x-sdk-method-description": "This endpoint returns the current Mark price for all margin trading pairs.",
                 "x-api-rate-limit": 10,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"USDT-BTC\\\",\\n            \\\"timePoint\\\": 1729676522000,\\n            \\\"value\\\": 1.504E-5\\n        },\\n        {\\n            \\\"symbol\\\": \\\"USDC-BTC\\\",\\n            \\\"timePoint\\\": 1729676522000,\\n            \\\"value\\\": 1.5049024E-5\\n        }\\n    ]\\n}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"USDT-BTC\\\",\\n            \\\"timePoint\\\": 1729676522000,\\n            \\\"value\\\": 1.504E-5\\n        },\\n        {\\n            \\\"symbol\\\": \\\"USDC-BTC\\\",\\n            \\\"timePoint\\\": 1729676522000,\\n            \\\"value\\\": 1.5049024E-5\\n        }\\n    ]\\n}",
+                "operationId": "004"
             }
         },
         "/api/v1/mark-price/{symbol}/current": {
@@ -474,7 +478,8 @@
                 "x-sdk-method-description": "This endpoint returns the current Mark price for specified margin trading pairs.",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"USDT-BTC\\\",\\n        \\\"timePoint\\\": 1729676888000,\\n        \\\"value\\\": 1.5045E-5\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"USDT-BTC\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"USDT-BTC\\\"}",
+                "operationId": "005"
             }
         },
         "/api/v1/isolated/symbols": {
@@ -587,7 +592,8 @@
                 "x-sdk-method-name": "getIsolatedMarginSymbols",
                 "x-sdk-method-description": "This endpoint allows querying the configuration of isolated margin symbol.",
                 "x-api-rate-limit": 3,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"BTC-USDT\\\",\\n            \\\"symbolName\\\": \\\"BTC-USDT\\\",\\n            \\\"baseCurrency\\\": \\\"BTC\\\",\\n            \\\"quoteCurrency\\\": \\\"USDT\\\",\\n            \\\"maxLeverage\\\": 10,\\n            \\\"flDebtRatio\\\": \\\"0.97\\\",\\n            \\\"tradeEnable\\\": true,\\n            \\\"autoRenewMaxDebtRatio\\\": \\\"0.96\\\",\\n            \\\"baseBorrowEnable\\\": true,\\n            \\\"quoteBorrowEnable\\\": true,\\n            \\\"baseTransferInEnable\\\": true,\\n            \\\"quoteTransferInEnable\\\": true,\\n            \\\"baseBorrowCoefficient\\\": \\\"1\\\",\\n            \\\"quoteBorrowCoefficient\\\": \\\"1\\\"\\n        }\\n    ]\\n}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"BTC-USDT\\\",\\n            \\\"symbolName\\\": \\\"BTC-USDT\\\",\\n            \\\"baseCurrency\\\": \\\"BTC\\\",\\n            \\\"quoteCurrency\\\": \\\"USDT\\\",\\n            \\\"maxLeverage\\\": 10,\\n            \\\"flDebtRatio\\\": \\\"0.97\\\",\\n            \\\"tradeEnable\\\": true,\\n            \\\"autoRenewMaxDebtRatio\\\": \\\"0.96\\\",\\n            \\\"baseBorrowEnable\\\": true,\\n            \\\"quoteBorrowEnable\\\": true,\\n            \\\"baseTransferInEnable\\\": true,\\n            \\\"quoteTransferInEnable\\\": true,\\n            \\\"baseBorrowCoefficient\\\": \\\"1\\\",\\n            \\\"quoteBorrowCoefficient\\\": \\\"1\\\"\\n        }\\n    ]\\n}",
+                "operationId": "006"
             }
         },
         "/api/v3/hf/margin/order": {
@@ -850,7 +856,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"success\\\": true,\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"671663e02188630007e21c9c\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e1493fb\\\",\\n        \\\"borrowSize\\\": \\\"10.2\\\",\\n        \\\"loanApplyId\\\": \\\"600656d9a33ac90009de4f6f\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"remark\\\": \\\"order remarks\\\"}"
+                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"remark\\\": \\\"order remarks\\\"}",
+                "operationId": "007"
             }
         },
         "/api/v3/hf/margin/order/test": {
@@ -1113,7 +1120,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"success\\\": true,\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"5bd6e9286d99522a52e458de\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"borrowSize\\\": 10.2,\\n        \\\"loanApplyId\\\": \\\"600656d9a33ac90009de4f6f\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"remark\\\": \\\"order remarks\\\"}"
+                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"remark\\\": \\\"order remarks\\\"}",
+                "operationId": "008"
             }
         },
         "/api/v3/hf/margin/orders/{orderId}": {
@@ -1192,7 +1200,8 @@
                 "x-sdk-method-description": "This endpoint can be used to cancel a margin order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"671663e02188630007e21c9c\\\"}}",
-                "x-request-example": "{\\\"orderId\\\": \\\"671663e02188630007e21c9c\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}"
+                "x-request-example": "{\\\"orderId\\\": \\\"671663e02188630007e21c9c\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
+                "operationId": "009"
             },
             "get": {
                 "summary": "Get Order By OrderId",
@@ -1534,7 +1543,8 @@
                 "x-sdk-method-description": "This endpoint can be used to obtain information for a single Margin order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"671667306afcdb000723107f\\\",\\n        \\\"symbol\\\": \\\"BTC-USDT\\\",\\n        \\\"opType\\\": \\\"DEAL\\\",\\n        \\\"type\\\": \\\"limit\\\",\\n        \\\"side\\\": \\\"buy\\\",\\n        \\\"price\\\": \\\"50000\\\",\\n        \\\"size\\\": \\\"0.00001\\\",\\n        \\\"funds\\\": \\\"0.5\\\",\\n        \\\"dealSize\\\": \\\"0\\\",\\n        \\\"dealFunds\\\": \\\"0\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"feeCurrency\\\": \\\"USDT\\\",\\n        \\\"stp\\\": null,\\n        \\\"stop\\\": null,\\n        \\\"stopTriggered\\\": false,\\n        \\\"stopPrice\\\": \\\"0\\\",\\n        \\\"timeInForce\\\": \\\"GTC\\\",\\n        \\\"postOnly\\\": false,\\n        \\\"hidden\\\": false,\\n        \\\"iceberg\\\": false,\\n        \\\"visibleSize\\\": \\\"0\\\",\\n        \\\"cancelAfter\\\": 0,\\n        \\\"channel\\\": \\\"API\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"remark\\\": null,\\n        \\\"tags\\\": null,\\n        \\\"cancelExist\\\": false,\\n        \\\"createdAt\\\": 1729521456248,\\n        \\\"lastUpdatedAt\\\": 1729651011877,\\n        \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n        \\\"inOrderBook\\\": true,\\n        \\\"cancelledSize\\\": \\\"0\\\",\\n        \\\"cancelledFunds\\\": \\\"0\\\",\\n        \\\"remainSize\\\": \\\"0.00001\\\",\\n        \\\"remainFunds\\\": \\\"0.5\\\",\\n        \\\"tax\\\": \\\"0\\\",\\n        \\\"active\\\": true\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderId\\\": \\\"671667306afcdb000723107f\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderId\\\": \\\"671667306afcdb000723107f\\\"}",
+                "operationId": "016"
             }
         },
         "/api/v3/hf/margin/orders/client-order/{clientOid}": {
@@ -1613,7 +1623,8 @@
                 "x-sdk-method-description": "This endpoint can be used to cancel a margin order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"clientOid\\\":\\\"5c52e11203aa677f33e1493fb\\\"}}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e1493fb\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e1493fb\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
+                "operationId": "010"
             },
             "get": {
                 "summary": "Get Order By ClientOid",
@@ -1954,7 +1965,8 @@
                 "x-sdk-method-description": "This endpoint can be used to obtain information for a single Margin order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"671667306afcdb000723107f\\\",\\n        \\\"symbol\\\": \\\"BTC-USDT\\\",\\n        \\\"opType\\\": \\\"DEAL\\\",\\n        \\\"type\\\": \\\"limit\\\",\\n        \\\"side\\\": \\\"buy\\\",\\n        \\\"price\\\": \\\"50000\\\",\\n        \\\"size\\\": \\\"0.00001\\\",\\n        \\\"funds\\\": \\\"0.5\\\",\\n        \\\"dealSize\\\": \\\"0\\\",\\n        \\\"dealFunds\\\": \\\"0\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"feeCurrency\\\": \\\"USDT\\\",\\n        \\\"stp\\\": null,\\n        \\\"stop\\\": null,\\n        \\\"stopTriggered\\\": false,\\n        \\\"stopPrice\\\": \\\"0\\\",\\n        \\\"timeInForce\\\": \\\"GTC\\\",\\n        \\\"postOnly\\\": false,\\n        \\\"hidden\\\": false,\\n        \\\"iceberg\\\": false,\\n        \\\"visibleSize\\\": \\\"0\\\",\\n        \\\"cancelAfter\\\": 0,\\n        \\\"channel\\\": \\\"API\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"remark\\\": null,\\n        \\\"tags\\\": null,\\n        \\\"cancelExist\\\": false,\\n        \\\"createdAt\\\": 1729521456248,\\n        \\\"lastUpdatedAt\\\": 1729651011877,\\n        \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n        \\\"inOrderBook\\\": true,\\n        \\\"cancelledSize\\\": \\\"0\\\",\\n        \\\"cancelledFunds\\\": \\\"0\\\",\\n        \\\"remainSize\\\": \\\"0.00001\\\",\\n        \\\"remainFunds\\\": \\\"0.5\\\",\\n        \\\"tax\\\": \\\"0\\\",\\n        \\\"active\\\": true\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"}",
+                "operationId": "017"
             }
         },
         "/api/v3/hf/margin/orders": {
@@ -2040,7 +2052,8 @@
                 "x-sdk-method-description": "This interface can cancel all open Margin orders by symbol This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":\\\"success\\\"}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}",
+                "operationId": "011"
             }
         },
         "/api/v3/hf/margin/order/active/symbols": {
@@ -2129,7 +2142,8 @@
                 "x-sdk-method-description": "This interface can query all Margin symbol that has active orders",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbolSize\\\": 1,\\n        \\\"symbols\\\": [\\n            \\\"BTC-USDT\\\"\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}"
+                "x-request-example": "{\\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}",
+                "operationId": "012"
             }
         },
         "/api/v3/hf/margin/orders/active": {
@@ -2491,7 +2505,8 @@
                 "x-sdk-method-description": "This interface is to obtain all Margin active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "x-api-rate-limit": 4,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"671667306afcdb000723107f\\\",\\n            \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n            \\\"symbol\\\": \\\"BTC-USDT\\\",\\n            \\\"opType\\\": \\\"DEAL\\\",\\n            \\\"type\\\": \\\"limit\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"price\\\": \\\"50000\\\",\\n            \\\"size\\\": \\\"0.00001\\\",\\n            \\\"funds\\\": \\\"0.5\\\",\\n            \\\"dealSize\\\": \\\"0\\\",\\n            \\\"dealFunds\\\": \\\"0\\\",\\n            \\\"remainSize\\\": \\\"0.00001\\\",\\n            \\\"remainFunds\\\": \\\"0.5\\\",\\n            \\\"cancelledSize\\\": \\\"0\\\",\\n            \\\"cancelledFunds\\\": \\\"0\\\",\\n            \\\"fee\\\": \\\"0\\\",\\n            \\\"feeCurrency\\\": \\\"USDT\\\",\\n            \\\"stp\\\": null,\\n            \\\"stop\\\": null,\\n            \\\"stopTriggered\\\": false,\\n            \\\"stopPrice\\\": \\\"0\\\",\\n            \\\"timeInForce\\\": \\\"GTC\\\",\\n            \\\"postOnly\\\": false,\\n            \\\"hidden\\\": false,\\n            \\\"iceberg\\\": false,\\n            \\\"visibleSize\\\": \\\"0\\\",\\n            \\\"cancelAfter\\\": 0,\\n            \\\"channel\\\": \\\"API\\\",\\n            \\\"remark\\\": null,\\n            \\\"tags\\\": null,\\n            \\\"cancelExist\\\": false,\\n            \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n            \\\"inOrderBook\\\": true,\\n            \\\"active\\\": true,\\n            \\\"tax\\\": \\\"0\\\",\\n            \\\"createdAt\\\": 1729521456248,\\n            \\\"lastUpdatedAt\\\": 1729521460940\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\"}",
+                "operationId": "013"
             }
         },
         "/api/v3/hf/margin/orders/done": {
@@ -2943,7 +2958,8 @@
                 "x-sdk-method-description": "This interface is to obtain all Margin closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"lastId\\\": 136112949351,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"6716491f6afcdb00078365c8\\\",\\n                \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"opType\\\": \\\"DEAL\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"price\\\": \\\"50000\\\",\\n                \\\"size\\\": \\\"0.00001\\\",\\n                \\\"funds\\\": \\\"0.5\\\",\\n                \\\"dealSize\\\": \\\"0\\\",\\n                \\\"dealFunds\\\": \\\"0\\\",\\n                \\\"remainSize\\\": \\\"0\\\",\\n                \\\"remainFunds\\\": \\\"0\\\",\\n                \\\"cancelledSize\\\": \\\"0.00001\\\",\\n                \\\"cancelledFunds\\\": \\\"0.5\\\",\\n                \\\"fee\\\": \\\"0\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"stp\\\": null,\\n                \\\"stop\\\": null,\\n                \\\"stopTriggered\\\": false,\\n                \\\"stopPrice\\\": \\\"0\\\",\\n                \\\"timeInForce\\\": \\\"GTC\\\",\\n                \\\"postOnly\\\": false,\\n                \\\"hidden\\\": false,\\n                \\\"iceberg\\\": false,\\n                \\\"visibleSize\\\": \\\"0\\\",\\n                \\\"cancelAfter\\\": 0,\\n                \\\"channel\\\": \\\"API\\\",\\n                \\\"remark\\\": null,\\n                \\\"tags\\\": null,\\n                \\\"cancelExist\\\": true,\\n                \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n                \\\"inOrderBook\\\": false,\\n                \\\"active\\\": false,\\n                \\\"tax\\\": \\\"0\\\",\\n                \\\"createdAt\\\": 1729513759162,\\n                \\\"lastUpdatedAt\\\": 1729521126597\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 20, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 20, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
+                "operationId": "014"
             }
         },
         "/api/v3/hf/margin/fills": {
@@ -3305,7 +3321,8 @@
                 "x-sdk-method-description": "This endpoint can be used to obtain a list of the latest Margin transaction details.  The returned data is sorted in descending order according to the latest update time of the order.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": 137891621991,\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"tradeId\\\": 11040911994273793,\\n                \\\"orderId\\\": \\\"671868085584bc0007d85f46\\\",\\n                \\\"counterOrderId\\\": \\\"67186805b7cbdf00071621f9\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"liquidity\\\": \\\"taker\\\",\\n                \\\"forceTaker\\\": false,\\n                \\\"price\\\": \\\"67141.6\\\",\\n                \\\"size\\\": \\\"0.00001\\\",\\n                \\\"funds\\\": \\\"0.671416\\\",\\n                \\\"fee\\\": \\\"0.000671416\\\",\\n                \\\"feeRate\\\": \\\"0.001\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"tradeType\\\": \\\"MARGIN_TRADE\\\",\\n                \\\"tax\\\": \\\"0\\\",\\n                \\\"taxRate\\\": \\\"0\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"createdAt\\\": 1729652744998\\n            }\\n        ],\\n        \\\"lastId\\\": 137891621991\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\", \\\"orderId\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}"
+                "x-request-example": "{\\\"symbol\\\": \\\"BTC-USDT\\\", \\\"tradeType\\\": \\\"MARGIN_TRADE\\\", \\\"orderId\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
+                "operationId": "015"
             }
         },
         "/api/v3/margin/borrow": {
@@ -3434,7 +3451,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderNo\\\":\\\"67187162c0d6990007717b15\\\",\\\"actualSize\\\":\\\"10\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"size\\\": 10, \\\"timeInForce\\\": \\\"FOK\\\", \\\"isIsolated\\\": false, \\\"isHf\\\": false}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"size\\\": 10, \\\"timeInForce\\\": \\\"FOK\\\", \\\"isIsolated\\\": false, \\\"isHf\\\": false}",
+                "operationId": "018"
             },
             "get": {
                 "summary": "Get Borrow History",
@@ -3671,7 +3689,8 @@
                 "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
                 "x-api-rate-limit": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"timestamp\\\": 1729657580449,\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 2,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"orderNo\\\": \\\"67187162c0d6990007717b15\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"10\\\",\\n                \\\"actualSize\\\": \\\"10\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"createdTime\\\": 1729655138000\\n            },\\n            {\\n                \\\"orderNo\\\": \\\"67187155b088e70007149585\\\",\\n                \\\"symbol\\\": null,\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"size\\\": \\\"0.1\\\",\\n                \\\"actualSize\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"FAILED\\\",\\n                \\\"createdTime\\\": 1729655125000\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "019"
             }
         },
         "/api/v3/margin/repay": {
@@ -3784,7 +3803,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729655606816,\\\"orderNo\\\":\\\"671873361d5bd400075096ad\\\",\\\"actualSize\\\":\\\"10\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"size\\\": 10}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"size\\\": 10}",
+                "operationId": "020"
             },
             "get": {
                 "summary": "Get Repay History",
@@ -4021,7 +4041,8 @@
                 "x-sdk-method-description": "This API endpoint is used to get the borrowing orders for cross and isolated margin accounts",
                 "x-api-rate-limit": 15,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729663471891,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"orderNo\\\":\\\"671873361d5bd400075096ad\\\",\\\"symbol\\\":null,\\\"currency\\\":\\\"USDT\\\",\\\"size\\\":\\\"10\\\",\\\"principal\\\":\\\"9.99986518\\\",\\\"interest\\\":\\\"0.00013482\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"createdTime\\\":1729655606000}]}}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"orderNo\\\": \\\"example_string_default_value\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "021"
             }
         },
         "/api/v3/margin/interest": {
@@ -4209,7 +4230,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get the interest records of the cross/isolated margin lending.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"timestamp\\\":1729665170701,\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":3,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729663213375},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729659618802},{\\\"currency\\\":\\\"USDT\\\",\\\"dayRatio\\\":\\\"0.000296\\\",\\\"interestAmount\\\":\\\"0.00000001\\\",\\\"createdTime\\\":1729656028077}]}}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"isIsolated\\\": true, \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"startTime\\\": 123456, \\\"endTime\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "022"
             }
         },
         "/api/v3/position/update-user-leverage": {
@@ -4288,7 +4310,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
-                "x-request-example": "{\\\"leverage\\\": \\\"5\\\"}"
+                "x-request-example": "{\\\"leverage\\\": \\\"5\\\"}",
+                "operationId": "023"
             }
         },
         "/api/v3/project/list": {
@@ -4399,7 +4422,8 @@
                 "x-sdk-method-description": "This API endpoint is used to get the information about the currencies available for lending.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"purchaseEnable\\\": true,\\n            \\\"redeemEnable\\\": true,\\n            \\\"increment\\\": \\\"0.00000001\\\",\\n            \\\"minPurchaseSize\\\": \\\"0.001\\\",\\n            \\\"maxPurchaseSize\\\": \\\"40\\\",\\n            \\\"interestIncrement\\\": \\\"0.0001\\\",\\n            \\\"minInterestRate\\\": \\\"0.005\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\",\\n            \\\"maxInterestRate\\\": \\\"0.32\\\",\\n            \\\"autoPurchaseEnable\\\": false\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "operationId": "024"
             }
         },
         "/api/v3/project/marketInterestRate": {
@@ -4477,7 +4501,8 @@
                 "x-sdk-method-description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"time\\\": \\\"202410170000\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        },\\n        {\\n            \\\"time\\\": \\\"202410170100\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "operationId": "025"
             }
         },
         "/api/v3/purchase": {
@@ -4566,7 +4591,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"interestRate\\\": \\\"0.1\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"interestRate\\\": \\\"0.1\\\"}",
+                "operationId": "026"
             }
         },
         "/api/v3/lend/purchase/update": {
@@ -4646,7 +4672,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}",
+                "operationId": "027"
             }
         },
         "/api/v3/purchase/orders": {
@@ -4860,7 +4887,8 @@
                 "x-sdk-method-description": "This API endpoint provides pagination query for the purchase orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bb15a3b3f930007880bae\\\",\\n                \\\"purchaseSize\\\": \\\"0.001\\\",\\n                \\\"matchSize\\\": \\\"0\\\",\\n                \\\"interestRate\\\": \\\"0.1\\\",\\n                \\\"incomeSize\\\": \\\"0\\\",\\n                \\\"applyTime\\\": 1729868122172,\\n                \\\"status\\\": \\\"PENDING\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "028"
             }
         },
         "/api/v3/redeem": {
@@ -4949,7 +4977,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}",
+                "operationId": "029"
             }
         },
         "/api/v3/redeem/orders": {
@@ -5141,7 +5170,8 @@
                 "x-sdk-method-description": "This API endpoint provides pagination query for the redeem orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\",\\n                \\\"redeemOrderNo\\\": \\\"671bb01004c26d000773c55c\\\",\\n                \\\"redeemSize\\\": \\\"0.001\\\",\\n                \\\"receiptSize\\\": \\\"0.001\\\",\\n                \\\"applyTime\\\": null,\\n                \\\"status\\\": \\\"DONE\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "030"
             }
         },
         "/api/v3/margin/currencies": {
@@ -5346,7 +5376,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get the Configure and Risk limit info of the margin.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"timestamp\\\": 1729678659275,\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"borrowMaxAmount\\\": \\\"75.15\\\",\\n            \\\"buyMaxAmount\\\": \\\"217.12\\\",\\n            \\\"holdMaxAmount\\\": \\\"217.12\\\",\\n            \\\"borrowCoefficient\\\": \\\"1\\\",\\n            \\\"marginCoefficient\\\": \\\"1\\\",\\n            \\\"precision\\\": 8,\\n            \\\"borrowMinAmount\\\": \\\"0.001\\\",\\n            \\\"borrowMinUnit\\\": \\\"0.0001\\\",\\n            \\\"borrowEnabled\\\": true\\n        }\\n    ]\\n}\\n",
-                "x-request-example": "{\\\"isIsolated\\\": true, \\\"currency\\\": \\\"BTC\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}"
+                "x-request-example": "{\\\"isIsolated\\\": true, \\\"currency\\\": \\\"BTC\\\", \\\"symbol\\\": \\\"BTC-USDT\\\"}",
+                "operationId": "031"
             }
         },
         "/api/v1/margin/order": {
@@ -5625,7 +5656,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"671bb90194422f00073ff4f0\\\",\\n        \\\"loanApplyId\\\": null,\\n        \\\"borrowSize\\\": null,\\n        \\\"clientOid\\\": null\\n    }\\n}",
-                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e4193fb\\\", \\\"remark\\\": \\\"order remarks\\\"}"
+                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e4193fb\\\", \\\"remark\\\": \\\"order remarks\\\"}",
+                "operationId": "032"
             }
         },
         "/api/v1/margin/order/test": {
@@ -5904,7 +5936,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"671bb90194422f00073ff4f0\\\",\\n        \\\"loanApplyId\\\": null,\\n        \\\"borrowSize\\\": null,\\n        \\\"clientOid\\\": null\\n    }\\n}",
-                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e4193fb\\\", \\\"remark\\\": \\\"order remarks\\\"}"
+                "x-request-example": "{\\\"type\\\": \\\"limit\\\", \\\"symbol\\\": \\\"BTC-USDT\\\", \\\"side\\\": \\\"buy\\\", \\\"price\\\": \\\"50000\\\", \\\"size\\\": \\\"0.00001\\\", \\\"clientOid\\\": \\\"5c52e11203aa677f33e4193fb\\\", \\\"remark\\\": \\\"order remarks\\\"}",
+                "operationId": "033"
             }
         }
     },

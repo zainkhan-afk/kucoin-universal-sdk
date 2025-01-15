@@ -325,7 +325,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"234125150956625920\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}",
+                "operationId": "001"
             },
             "get": {
                 "summary": "Get Order List",
@@ -719,7 +720,8 @@
                 "x-sdk-method-description": "List your current orders.",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"230181737576050688\\\",\\n                \\\"symbol\\\": \\\"PEOPLEUSDTM\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"price\\\": \\\"0.05\\\",\\n                \\\"size\\\": 10,\\n                \\\"value\\\": \\\"5\\\",\\n                \\\"dealValue\\\": \\\"0\\\",\\n                \\\"dealSize\\\": 0,\\n                \\\"stp\\\": \\\"\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"stopPriceType\\\": \\\"\\\",\\n                \\\"stopTriggered\\\": false,\\n                \\\"stopPrice\\\": null,\\n                \\\"timeInForce\\\": \\\"GTC\\\",\\n                \\\"postOnly\\\": false,\\n                \\\"hidden\\\": false,\\n                \\\"iceberg\\\": false,\\n                \\\"leverage\\\": \\\"1\\\",\\n                \\\"forceHold\\\": false,\\n                \\\"closeOrder\\\": false,\\n                \\\"visibleSize\\\": 0,\\n                \\\"clientOid\\\": \\\"5a80bd847f1811ef8a7faa665a37b3d7\\\",\\n                \\\"remark\\\": null,\\n                \\\"tags\\\": \\\"\\\",\\n                \\\"isActive\\\": true,\\n                \\\"cancelExist\\\": false,\\n                \\\"createdAt\\\": 1727692804813,\\n                \\\"updatedAt\\\": 1727692804813,\\n                \\\"endAt\\\": null,\\n                \\\"orderTime\\\": 1727692804808418000,\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\",\\n                \\\"avgDealPrice\\\": \\\"0\\\",\\n                \\\"filledSize\\\": 0,\\n                \\\"filledValue\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"open\\\",\\n                \\\"reduceOnly\\\": false\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"status\\\": \\\"done\\\", \\\"symbol\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 123456, \\\"pageSize\\\": 123456}"
+                "x-request-example": "{\\\"status\\\": \\\"done\\\", \\\"symbol\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 123456, \\\"pageSize\\\": 123456}",
+                "operationId": "012"
             },
             "delete": {
                 "summary": "Cancel All Orders - V1",
@@ -785,7 +787,8 @@
                 "x-sdk-method-description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
                 "x-api-rate-limit": 200,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "018"
             }
         },
         "/api/v1/orders/test": {
@@ -1107,7 +1110,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"234125150956625920\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}",
+                "operationId": "002"
             }
         },
         "/api/v1/orders/multi": {
@@ -1448,7 +1452,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"orderId\\\": \\\"235919387779985408\\\",\\n            \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"code\\\": \\\"200000\\\",\\n            \\\"msg\\\": \\\"success\\\"\\n        },\\n        {\\n            \\\"orderId\\\": \\\"235919387855482880\\\",\\n            \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fc\\\",\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"code\\\": \\\"200000\\\",\\n            \\\"msg\\\": \\\"success\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "[{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}, {\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fc\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}]"
+                "x-request-example": "[{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}, {\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fc\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.1\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\"}]",
+                "operationId": "003"
             }
         },
         "/api/v1/st-orders": {
@@ -1754,7 +1759,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"234125150956625920\\\",\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.2\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\", \\\"triggerStopUpPrice\\\": \\\"0.3\\\", \\\"triggerStopDownPrice\\\": \\\"0.1\\\", \\\"stopPriceType\\\": \\\"TP\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\", \\\"side\\\": \\\"buy\\\", \\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": 3, \\\"type\\\": \\\"limit\\\", \\\"remark\\\": \\\"order remarks\\\", \\\"reduceOnly\\\": false, \\\"marginMode\\\": \\\"ISOLATED\\\", \\\"price\\\": \\\"0.2\\\", \\\"size\\\": 1, \\\"timeInForce\\\": \\\"GTC\\\", \\\"triggerStopUpPrice\\\": \\\"0.3\\\", \\\"triggerStopDownPrice\\\": \\\"0.1\\\", \\\"stopPriceType\\\": \\\"TP\\\"}",
+                "operationId": "004"
             }
         },
         "/api/v1/orders/{orderId}": {
@@ -1822,7 +1828,8 @@
                 "x-sdk-method-description": "Cancel order by system generated orderId.",
                 "x-api-rate-limit": 1,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235303670076489728\\\"\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"orderId\\\": \\\"example_string_default_value\\\"}"
+                "x-request-example": "{\\\"orderId\\\": \\\"example_string_default_value\\\"}",
+                "operationId": "005"
             }
         },
         "/api/v1/orders/client-order/{clientOid}": {
@@ -1895,7 +1902,8 @@
                 "x-sdk-method-description": "Cancel order by client defined orderId.",
                 "x-api-rate-limit": 1,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"clientOid\\\": \\\"017485b0-2957-4681-8a14-5d46b35aee0d\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"clientOid\\\": \\\"example_string_default_value\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"clientOid\\\": \\\"example_string_default_value\\\"}",
+                "operationId": "006"
             }
         },
         "/api/v1/orders/multi-cancel": {
@@ -2008,7 +2016,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"orderId\\\": \\\"250445104152670209\\\",\\n            \\\"clientOid\\\": null,\\n            \\\"code\\\": \\\"200\\\",\\n            \\\"msg\\\": \\\"success\\\"\\n        },\\n        {\\n            \\\"orderId\\\": \\\"250445181751463936\\\",\\n            \\\"clientOid\\\": null,\\n            \\\"code\\\": \\\"200\\\",\\n            \\\"msg\\\": \\\"success\\\"\\n        }\\n    ]\\n}\\n",
-                "x-request-example": "{\\\"orderIdsList\\\": [\\\"250445104152670209\\\", \\\"250445181751463936\\\"]}"
+                "x-request-example": "{\\\"orderIdsList\\\": [\\\"250445104152670209\\\", \\\"250445181751463936\\\"]}",
+                "operationId": "007"
             }
         },
         "/api/v3/orders": {
@@ -2076,7 +2085,8 @@
                 "x-sdk-method-description": "Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "008"
             }
         },
         "/api/v1/stopOrders": {
@@ -2144,7 +2154,8 @@
                 "x-sdk-method-description": "Cancel all untriggered stop orders. The response is a list of orderIDs of the canceled stop orders. To cancel triggered stop orders, please use 'Cancel Multiple Futures Limit orders'.",
                 "x-api-rate-limit": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"cancelledOrderIds\\\": [\\n            \\\"235919172150824960\\\",\\n            \\\"235919172150824961\\\"\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "009"
             },
             "get": {
                 "summary": "Get Stop Order List",
@@ -2515,7 +2526,8 @@
                 "x-sdk-method-description": "Get the un-triggered stop orders list. Stop orders that have been triggered can be queried through the general order interface",
                 "x-api-rate-limit": 6,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"230181737576050688\\\",\\n                \\\"symbol\\\": \\\"PEOPLEUSDTM\\\",\\n                \\\"type\\\": \\\"limit\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"price\\\": \\\"0.05\\\",\\n                \\\"size\\\": 10,\\n                \\\"value\\\": \\\"5\\\",\\n                \\\"dealValue\\\": \\\"0\\\",\\n                \\\"dealSize\\\": 0,\\n                \\\"stp\\\": \\\"\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"stopPriceType\\\": \\\"\\\",\\n                \\\"stopTriggered\\\": false,\\n                \\\"stopPrice\\\": null,\\n                \\\"timeInForce\\\": \\\"GTC\\\",\\n                \\\"postOnly\\\": false,\\n                \\\"hidden\\\": false,\\n                \\\"iceberg\\\": false,\\n                \\\"leverage\\\": \\\"1\\\",\\n                \\\"forceHold\\\": false,\\n                \\\"closeOrder\\\": false,\\n                \\\"visibleSize\\\": 0,\\n                \\\"clientOid\\\": \\\"5a80bd847f1811ef8a7faa665a37b3d7\\\",\\n                \\\"remark\\\": null,\\n                \\\"tags\\\": \\\"\\\",\\n                \\\"isActive\\\": true,\\n                \\\"cancelExist\\\": false,\\n                \\\"createdAt\\\": 1727692804813,\\n                \\\"updatedAt\\\": 1727692804813,\\n                \\\"endAt\\\": null,\\n                \\\"orderTime\\\": 1727692804808418000,\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\",\\n                \\\"avgDealPrice\\\": \\\"0\\\",\\n                \\\"filledSize\\\": 0,\\n                \\\"filledValue\\\": \\\"0\\\",\\n                \\\"status\\\": \\\"open\\\",\\n                \\\"reduceOnly\\\": false\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 123456, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 123456, \\\"pageSize\\\": 50}",
+                "operationId": "014"
             }
         },
         "/api/v1/orders/{order-id}": {
@@ -2888,7 +2900,8 @@
                 "x-sdk-method-description": "Get a single order by order id (including a stop order).",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"236655147005071361\\\",\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"type\\\": \\\"limit\\\",\\n        \\\"side\\\": \\\"buy\\\",\\n        \\\"price\\\": \\\"0.1\\\",\\n        \\\"size\\\": 1,\\n        \\\"value\\\": \\\"0.0001\\\",\\n        \\\"dealValue\\\": \\\"0\\\",\\n        \\\"dealSize\\\": 0,\\n        \\\"stp\\\": \\\"\\\",\\n        \\\"stop\\\": \\\"\\\",\\n        \\\"stopPriceType\\\": \\\"\\\",\\n        \\\"stopTriggered\\\": false,\\n        \\\"stopPrice\\\": null,\\n        \\\"timeInForce\\\": \\\"GTC\\\",\\n        \\\"postOnly\\\": false,\\n        \\\"hidden\\\": false,\\n        \\\"iceberg\\\": false,\\n        \\\"leverage\\\": \\\"3\\\",\\n        \\\"forceHold\\\": false,\\n        \\\"closeOrder\\\": false,\\n        \\\"visibleSize\\\": 0,\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"remark\\\": null,\\n        \\\"tags\\\": \\\"\\\",\\n        \\\"isActive\\\": true,\\n        \\\"cancelExist\\\": false,\\n        \\\"createdAt\\\": 1729236185949,\\n        \\\"updatedAt\\\": 1729236185949,\\n        \\\"endAt\\\": null,\\n        \\\"orderTime\\\": 1729236185885647952,\\n        \\\"settleCurrency\\\": \\\"USDT\\\",\\n        \\\"marginMode\\\": \\\"ISOLATED\\\",\\n        \\\"avgDealPrice\\\": \\\"0\\\",\\n        \\\"filledSize\\\": 0,\\n        \\\"filledValue\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"open\\\",\\n        \\\"reduceOnly\\\": false\\n    }\\n}",
-                "x-request-example": "{\\\"order-id\\\": \\\"236655147005071361\\\"}"
+                "x-request-example": "{\\\"order-id\\\": \\\"236655147005071361\\\"}",
+                "operationId": "010"
             }
         },
         "/api/v1/orders/byClientOid": {
@@ -3262,7 +3275,8 @@
                 "x-sdk-method-description": "Get a single order by client order id (including a stop order).",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"250444645610336256\\\",\\n        \\\"symbol\\\": \\\"XRPUSDTM\\\",\\n        \\\"type\\\": \\\"limit\\\",\\n        \\\"side\\\": \\\"buy\\\",\\n        \\\"price\\\": \\\"0.1\\\",\\n        \\\"size\\\": 1,\\n        \\\"value\\\": \\\"1\\\",\\n        \\\"dealValue\\\": \\\"0\\\",\\n        \\\"dealSize\\\": 0,\\n        \\\"stp\\\": \\\"\\\",\\n        \\\"stop\\\": \\\"\\\",\\n        \\\"stopPriceType\\\": \\\"\\\",\\n        \\\"stopTriggered\\\": false,\\n        \\\"stopPrice\\\": null,\\n        \\\"timeInForce\\\": \\\"GTC\\\",\\n        \\\"postOnly\\\": false,\\n        \\\"hidden\\\": false,\\n        \\\"iceberg\\\": false,\\n        \\\"leverage\\\": \\\"3\\\",\\n        \\\"forceHold\\\": false,\\n        \\\"closeOrder\\\": false,\\n        \\\"visibleSize\\\": 0,\\n        \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n        \\\"remark\\\": null,\\n        \\\"tags\\\": \\\"\\\",\\n        \\\"isActive\\\": true,\\n        \\\"cancelExist\\\": false,\\n        \\\"createdAt\\\": 1732523858568,\\n        \\\"updatedAt\\\": 1732523858568,\\n        \\\"endAt\\\": null,\\n        \\\"orderTime\\\": 1732523858550892322,\\n        \\\"settleCurrency\\\": \\\"USDT\\\",\\n        \\\"marginMode\\\": \\\"ISOLATED\\\",\\n        \\\"avgDealPrice\\\": \\\"0\\\",\\n        \\\"filledSize\\\": 0,\\n        \\\"filledValue\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"open\\\",\\n        \\\"reduceOnly\\\": false\\n    }\\n}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\"}",
+                "operationId": "011"
             }
         },
         "/api/v1/recentDoneOrders": {
@@ -3519,7 +3533,8 @@
                 "x-sdk-method-description": "Get a list of recent 1000 closed orders in the last 24 hours.  If you need to get your recent traded order history with low latency, you may query this endpoint.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"236387137732231168\\\",\\n            \\\"symbol\\\": \\\"XRPUSDTM\\\",\\n            \\\"type\\\": \\\"market\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"price\\\": \\\"0\\\",\\n            \\\"size\\\": 1,\\n            \\\"value\\\": \\\"5.51\\\",\\n            \\\"dealValue\\\": \\\"5.511\\\",\\n            \\\"dealSize\\\": 1,\\n            \\\"stp\\\": \\\"\\\",\\n            \\\"stop\\\": \\\"\\\",\\n            \\\"stopPriceType\\\": \\\"\\\",\\n            \\\"stopTriggered\\\": false,\\n            \\\"stopPrice\\\": null,\\n            \\\"timeInForce\\\": \\\"GTC\\\",\\n            \\\"postOnly\\\": false,\\n            \\\"hidden\\\": false,\\n            \\\"iceberg\\\": false,\\n            \\\"leverage\\\": \\\"10.0\\\",\\n            \\\"forceHold\\\": false,\\n            \\\"closeOrder\\\": false,\\n            \\\"visibleSize\\\": 0,\\n            \\\"clientOid\\\": \\\"16698fe6-2746-4aeb-a7fa-61f633ab6090\\\",\\n            \\\"remark\\\": null,\\n            \\\"tags\\\": \\\"\\\",\\n            \\\"isActive\\\": false,\\n            \\\"cancelExist\\\": false,\\n            \\\"createdAt\\\": 1729172287496,\\n            \\\"updatedAt\\\": 1729172287568,\\n            \\\"endAt\\\": 1729172287568,\\n            \\\"orderTime\\\": 1729172287496950800,\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"marginMode\\\": \\\"ISOLATED\\\",\\n            \\\"avgDealPrice\\\": \\\"0.5511\\\",\\n            \\\"filledSize\\\": 1,\\n            \\\"filledValue\\\": \\\"5.511\\\",\\n            \\\"status\\\": \\\"done\\\",\\n            \\\"reduceOnly\\\": false\\n        },\\n        {\\n            \\\"id\\\": \\\"236317213710184449\\\",\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"type\\\": \\\"market\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"price\\\": \\\"0\\\",\\n            \\\"size\\\": 1,\\n            \\\"value\\\": \\\"67.4309\\\",\\n            \\\"dealValue\\\": \\\"67.4309\\\",\\n            \\\"dealSize\\\": 1,\\n            \\\"stp\\\": \\\"\\\",\\n            \\\"stop\\\": \\\"\\\",\\n            \\\"stopPriceType\\\": \\\"\\\",\\n            \\\"stopTriggered\\\": false,\\n            \\\"stopPrice\\\": null,\\n            \\\"timeInForce\\\": \\\"GTC\\\",\\n            \\\"postOnly\\\": false,\\n            \\\"hidden\\\": false,\\n            \\\"iceberg\\\": false,\\n            \\\"leverage\\\": \\\"3\\\",\\n            \\\"forceHold\\\": false,\\n            \\\"closeOrder\\\": false,\\n            \\\"visibleSize\\\": 0,\\n            \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n            \\\"remark\\\": null,\\n            \\\"tags\\\": \\\"\\\",\\n            \\\"isActive\\\": false,\\n            \\\"cancelExist\\\": false,\\n            \\\"createdAt\\\": 1729155616310,\\n            \\\"updatedAt\\\": 1729155616324,\\n            \\\"endAt\\\": 1729155616324,\\n            \\\"orderTime\\\": 1729155616310180400,\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"marginMode\\\": \\\"ISOLATED\\\",\\n            \\\"avgDealPrice\\\": \\\"67430.9\\\",\\n            \\\"filledSize\\\": 1,\\n            \\\"filledValue\\\": \\\"67.4309\\\",\\n            \\\"status\\\": \\\"done\\\",\\n            \\\"reduceOnly\\\": false\\n        },\\n        {\\n            \\\"id\\\": \\\"236317094436728832\\\",\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"type\\\": \\\"market\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"price\\\": \\\"0\\\",\\n            \\\"size\\\": 1,\\n            \\\"value\\\": \\\"67.445\\\",\\n            \\\"dealValue\\\": \\\"67.445\\\",\\n            \\\"dealSize\\\": 1,\\n            \\\"stp\\\": \\\"\\\",\\n            \\\"stop\\\": \\\"\\\",\\n            \\\"stopPriceType\\\": \\\"\\\",\\n            \\\"stopTriggered\\\": false,\\n            \\\"stopPrice\\\": null,\\n            \\\"timeInForce\\\": \\\"GTC\\\",\\n            \\\"postOnly\\\": false,\\n            \\\"hidden\\\": false,\\n            \\\"iceberg\\\": false,\\n            \\\"leverage\\\": \\\"3\\\",\\n            \\\"forceHold\\\": false,\\n            \\\"closeOrder\\\": false,\\n            \\\"visibleSize\\\": 0,\\n            \\\"clientOid\\\": \\\"5c52e11203aa677f33e493fb\\\",\\n            \\\"remark\\\": null,\\n            \\\"tags\\\": \\\"\\\",\\n            \\\"isActive\\\": false,\\n            \\\"cancelExist\\\": false,\\n            \\\"createdAt\\\": 1729155587873,\\n            \\\"updatedAt\\\": 1729155587946,\\n            \\\"endAt\\\": 1729155587946,\\n            \\\"orderTime\\\": 1729155587873332000,\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"marginMode\\\": \\\"ISOLATED\\\",\\n            \\\"avgDealPrice\\\": \\\"67445.0\\\",\\n            \\\"filledSize\\\": 1,\\n            \\\"filledValue\\\": \\\"67.445\\\",\\n            \\\"status\\\": \\\"done\\\",\\n            \\\"reduceOnly\\\": false\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "013"
             }
         },
         "/api/v1/openOrderStatistics": {
@@ -3604,7 +3619,8 @@
                 "x-sdk-method-description": "You can query this endpoint to get the the total number and value of the all your active orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"openOrderBuySize\\\": 1,\\n        \\\"openOrderSellSize\\\": 0,\\n        \\\"openOrderBuyCost\\\": \\\"0.0001\\\",\\n        \\\"openOrderSellCost\\\": \\\"0\\\",\\n        \\\"settleCurrency\\\": \\\"USDT\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "015"
             }
         },
         "/api/v1/recentFills": {
@@ -3915,7 +3931,8 @@
                 "x-sdk-method-description": "Get a list of recent 1000 fills in the last 24 hours. If you need to get your recent traded order history with low latency, you may query this endpoint.",
                 "x-api-rate-limit": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"tradeId\\\": \\\"1784277229880\\\",\\n            \\\"orderId\\\": \\\"236317213710184449\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"liquidity\\\": \\\"taker\\\",\\n            \\\"forceTaker\\\": false,\\n            \\\"price\\\": \\\"67430.9\\\",\\n            \\\"size\\\": 1,\\n            \\\"value\\\": \\\"67.4309\\\",\\n            \\\"openFeePay\\\": \\\"0.04045854\\\",\\n            \\\"closeFeePay\\\": \\\"0\\\",\\n            \\\"stop\\\": \\\"\\\",\\n            \\\"feeRate\\\": \\\"0.00060\\\",\\n            \\\"fixFee\\\": \\\"0\\\",\\n            \\\"feeCurrency\\\": \\\"USDT\\\",\\n            \\\"marginMode\\\": \\\"ISOLATED\\\",\\n            \\\"fee\\\": \\\"0.04045854\\\",\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"orderType\\\": \\\"market\\\",\\n            \\\"displayType\\\": \\\"market\\\",\\n            \\\"tradeType\\\": \\\"trade\\\",\\n            \\\"subTradeType\\\": null,\\n            \\\"tradeTime\\\": 1729155616320000000,\\n            \\\"createdAt\\\": 1729155616493\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"tradeId\\\": \\\"1784277132002\\\",\\n            \\\"orderId\\\": \\\"236317094436728832\\\",\\n            \\\"side\\\": \\\"buy\\\",\\n            \\\"liquidity\\\": \\\"taker\\\",\\n            \\\"forceTaker\\\": false,\\n            \\\"price\\\": \\\"67445\\\",\\n            \\\"size\\\": 1,\\n            \\\"value\\\": \\\"67.445\\\",\\n            \\\"openFeePay\\\": \\\"0\\\",\\n            \\\"closeFeePay\\\": \\\"0.040467\\\",\\n            \\\"stop\\\": \\\"\\\",\\n            \\\"feeRate\\\": \\\"0.00060\\\",\\n            \\\"fixFee\\\": \\\"0\\\",\\n            \\\"feeCurrency\\\": \\\"USDT\\\",\\n            \\\"marginMode\\\": \\\"ISOLATED\\\",\\n            \\\"fee\\\": \\\"0.040467\\\",\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"orderType\\\": \\\"market\\\",\\n            \\\"displayType\\\": \\\"market\\\",\\n            \\\"tradeType\\\": \\\"trade\\\",\\n            \\\"subTradeType\\\": null,\\n            \\\"tradeTime\\\": 1729155587944000000,\\n            \\\"createdAt\\\": 1729155588104\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "016"
             }
         },
         "/api/v1/fills": {
@@ -4371,7 +4388,8 @@
                 "x-sdk-method-description": "Get a list of recent fills. If you need to get your recent trade history with low latency, please query endpoint Get List of Orders Completed in 24h. The requested data is not real-time.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 2,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n                \\\"tradeId\\\": \\\"1784277229880\\\",\\n                \\\"orderId\\\": \\\"236317213710184449\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"liquidity\\\": \\\"taker\\\",\\n                \\\"forceTaker\\\": false,\\n                \\\"price\\\": \\\"67430.9\\\",\\n                \\\"size\\\": 1,\\n                \\\"value\\\": \\\"67.4309\\\",\\n                \\\"openFeePay\\\": \\\"0.04045854\\\",\\n                \\\"closeFeePay\\\": \\\"0\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"feeRate\\\": \\\"0.00060\\\",\\n                \\\"fixFee\\\": \\\"0\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\",\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"fee\\\": \\\"0.04045854\\\",\\n                \\\"orderType\\\": \\\"market\\\",\\n                \\\"displayType\\\": \\\"market\\\",\\n                \\\"tradeType\\\": \\\"trade\\\",\\n                \\\"subTradeType\\\": null,\\n                \\\"tradeTime\\\": 1729155616320000000,\\n                \\\"createdAt\\\": 1729155616493\\n            },\\n            {\\n                \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n                \\\"tradeId\\\": \\\"1784277132002\\\",\\n                \\\"orderId\\\": \\\"236317094436728832\\\",\\n                \\\"side\\\": \\\"buy\\\",\\n                \\\"liquidity\\\": \\\"taker\\\",\\n                \\\"forceTaker\\\": false,\\n                \\\"price\\\": \\\"67445\\\",\\n                \\\"size\\\": 1,\\n                \\\"value\\\": \\\"67.445\\\",\\n                \\\"openFeePay\\\": \\\"0\\\",\\n                \\\"closeFeePay\\\": \\\"0.040467\\\",\\n                \\\"stop\\\": \\\"\\\",\\n                \\\"feeRate\\\": \\\"0.00060\\\",\\n                \\\"fixFee\\\": \\\"0\\\",\\n                \\\"feeCurrency\\\": \\\"USDT\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\",\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"fee\\\": \\\"0.040467\\\",\\n                \\\"orderType\\\": \\\"market\\\",\\n                \\\"displayType\\\": \\\"market\\\",\\n                \\\"tradeType\\\": \\\"trade\\\",\\n                \\\"subTradeType\\\": null,\\n                \\\"tradeTime\\\": 1729155587944000000,\\n                \\\"createdAt\\\": 1729155588104\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"orderId\\\": \\\"236655147005071361\\\", \\\"symbol\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"tradeTypes\\\": \\\"trade\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"orderId\\\": \\\"236655147005071361\\\", \\\"symbol\\\": \\\"example_string_default_value\\\", \\\"side\\\": \\\"buy\\\", \\\"type\\\": \\\"limit\\\", \\\"tradeTypes\\\": \\\"trade\\\", \\\"startAt\\\": 123456, \\\"endAt\\\": 123456, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "017"
             }
         }
     },

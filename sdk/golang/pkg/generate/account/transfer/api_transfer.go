@@ -23,6 +23,65 @@ type TransferAPI interface {
 	// +---------------------+------------+
 	GetTransferQuotas(req *GetTransferQuotasReq, ctx context.Context) (*GetTransferQuotasResp, error)
 
+	// FlexTransfer Flex Transfer
+	// Description: This interface can be used for transfers between master and sub accounts and inner transfers
+	// Documentation: https://www.kucoin.com/docs-new/api-3470147
+	// +---------------------+---------------+
+	// | Extra API Info      | Value         |
+	// +---------------------+---------------+
+	// | API-DOMAIN          | SPOT          |
+	// | API-CHANNEL         | PRIVATE       |
+	// | API-PERMISSION      | FLEXTRANSFERS |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT    |
+	// | API-RATE-LIMIT      | 4             |
+	// +---------------------+---------------+
+	FlexTransfer(req *FlexTransferReq, ctx context.Context) (*FlexTransferResp, error)
+
+	// SubAccountTransfer SubAccount Transfer
+	// Description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470301
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | SPOT       |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | SPOT       |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 30         |
+	// +---------------------+------------+
+	// Deprecated
+	SubAccountTransfer(req *SubAccountTransferReq, ctx context.Context) (*SubAccountTransferResp, error)
+
+	// InnerTransfer Inner Transfer
+	// Description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470302
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | SPOT       |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | SPOT       |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 10         |
+	// +---------------------+------------+
+	// Deprecated
+	InnerTransfer(req *InnerTransferReq, ctx context.Context) (*InnerTransferResp, error)
+
+	// FuturesAccountTransferOut Futures Account Transfer Out
+	// Description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470303
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | FUTURES    |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | FUTURES    |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 20         |
+	// +---------------------+------------+
+	// Deprecated
+	FuturesAccountTransferOut(req *FuturesAccountTransferOutReq, ctx context.Context) (*FuturesAccountTransferOutResp, error)
+
 	// FuturesAccountTransferIn Futures Account Transfer In
 	// Description: The amount to be transferred will be deducted from the payAccount. Please ensure that you have sufficient funds in your payAccount Account, or the transfer will fail.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470304
@@ -52,65 +111,6 @@ type TransferAPI interface {
 	// +---------------------+------------+
 	// Deprecated
 	GetFuturesAccountTransferOutLedger(req *GetFuturesAccountTransferOutLedgerReq, ctx context.Context) (*GetFuturesAccountTransferOutLedgerResp, error)
-
-	// InnerTransfer Inner Transfer
-	// Description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470302
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | SPOT       |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 10         |
-	// +---------------------+------------+
-	// Deprecated
-	InnerTransfer(req *InnerTransferReq, ctx context.Context) (*InnerTransferResp, error)
-
-	// SubAccountTransfer SubAccount Transfer
-	// Description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470301
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | SPOT       |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 30         |
-	// +---------------------+------------+
-	// Deprecated
-	SubAccountTransfer(req *SubAccountTransferReq, ctx context.Context) (*SubAccountTransferResp, error)
-
-	// FlexTransfer Flex Transfer
-	// Description: This interface can be used for transfers between master and sub accounts and inner transfers
-	// Documentation: https://www.kucoin.com/docs-new/api-3470147
-	// +---------------------+---------------+
-	// | Extra API Info      | Value         |
-	// +---------------------+---------------+
-	// | API-DOMAIN          | SPOT          |
-	// | API-CHANNEL         | PRIVATE       |
-	// | API-PERMISSION      | FLEXTRANSFERS |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT    |
-	// | API-RATE-LIMIT      | 4             |
-	// +---------------------+---------------+
-	FlexTransfer(req *FlexTransferReq, ctx context.Context) (*FlexTransferResp, error)
-
-	// FuturesAccountTransferOut Futures Account Transfer Out
-	// Description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470303
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | FUTURES    |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | FUTURES    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
-	// Deprecated
-	FuturesAccountTransferOut(req *FuturesAccountTransferOutReq, ctx context.Context) (*FuturesAccountTransferOutResp, error)
 }
 
 type TransferAPIImpl struct {
@@ -127,21 +127,9 @@ func (impl *TransferAPIImpl) GetTransferQuotas(req *GetTransferQuotasReq, ctx co
 	return resp, err
 }
 
-func (impl *TransferAPIImpl) FuturesAccountTransferIn(req *FuturesAccountTransferInReq, ctx context.Context) (*FuturesAccountTransferInResp, error) {
-	resp := &FuturesAccountTransferInResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/transfer-in", req, resp, false)
-	return resp, err
-}
-
-func (impl *TransferAPIImpl) GetFuturesAccountTransferOutLedger(req *GetFuturesAccountTransferOutLedgerReq, ctx context.Context) (*GetFuturesAccountTransferOutLedgerResp, error) {
-	resp := &GetFuturesAccountTransferOutLedgerResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/transfer-list", req, resp, false)
-	return resp, err
-}
-
-func (impl *TransferAPIImpl) InnerTransfer(req *InnerTransferReq, ctx context.Context) (*InnerTransferResp, error) {
-	resp := &InnerTransferResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v2/accounts/inner-transfer", req, resp, false)
+func (impl *TransferAPIImpl) FlexTransfer(req *FlexTransferReq, ctx context.Context) (*FlexTransferResp, error) {
+	resp := &FlexTransferResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/accounts/universal-transfer", req, resp, false)
 	return resp, err
 }
 
@@ -151,14 +139,26 @@ func (impl *TransferAPIImpl) SubAccountTransfer(req *SubAccountTransferReq, ctx 
 	return resp, err
 }
 
-func (impl *TransferAPIImpl) FlexTransfer(req *FlexTransferReq, ctx context.Context) (*FlexTransferResp, error) {
-	resp := &FlexTransferResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/accounts/universal-transfer", req, resp, false)
+func (impl *TransferAPIImpl) InnerTransfer(req *InnerTransferReq, ctx context.Context) (*InnerTransferResp, error) {
+	resp := &InnerTransferResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v2/accounts/inner-transfer", req, resp, false)
 	return resp, err
 }
 
 func (impl *TransferAPIImpl) FuturesAccountTransferOut(req *FuturesAccountTransferOutReq, ctx context.Context) (*FuturesAccountTransferOutResp, error) {
 	resp := &FuturesAccountTransferOutResp{}
 	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v3/transfer-out", req, resp, false)
+	return resp, err
+}
+
+func (impl *TransferAPIImpl) FuturesAccountTransferIn(req *FuturesAccountTransferInReq, ctx context.Context) (*FuturesAccountTransferInResp, error) {
+	resp := &FuturesAccountTransferInResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/transfer-in", req, resp, false)
+	return resp, err
+}
+
+func (impl *TransferAPIImpl) GetFuturesAccountTransferOutLedger(req *GetFuturesAccountTransferOutLedgerReq, ctx context.Context) (*GetFuturesAccountTransferOutLedgerResp, error) {
+	resp := &GetFuturesAccountTransferOutLedgerResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/transfer-list", req, resp, false)
 	return resp, err
 }

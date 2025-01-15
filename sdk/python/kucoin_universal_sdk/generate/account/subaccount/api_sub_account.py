@@ -33,33 +33,72 @@ from typing_extensions import deprecated
 class SubAccountAPI(ABC):
 
     @abstractmethod
-    def get_futures_sub_account_list_v2(
-            self, req: GetFuturesSubAccountListV2Req,
-            **kwargs: Any) -> GetFuturesSubAccountListV2Resp:
+    def add_sub_account(self, req: AddSubAccountReq,
+                        **kwargs: Any) -> AddSubAccountResp:
         """
-        summary: Get SubAccount List - Futures Balance(V2)
-        description: This endpoint can be used to get Futures sub-account information. 
-        documentation: https://www.kucoin.com/docs-new/api-3470134
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 6       |
-        +---------------------+---------+
+        summary: Add SubAccount
+        description: This endpoint can be used to create sub-accounts.
+        documentation: https://www.kucoin.com/docs-new/api-3470135
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 15         |
+        +---------------------+------------+
         """
         pass
 
     @abstractmethod
-    @deprecated('')
-    def get_spot_sub_account_list_v1(
-            self, **kwargs: Any) -> GetSpotSubAccountListV1Resp:
+    def add_sub_account_margin_permission(
+            self, req: AddSubAccountMarginPermissionReq,
+            **kwargs: Any) -> AddSubAccountMarginPermissionResp:
         """
-        summary: Get SubAccount List - Spot Balance(V1)
-        description: This endpoint returns the account info of all sub-users.
-        documentation: https://www.kucoin.com/docs-new/api-3470299
+        summary: Add SubAccount Margin Permission
+        description: This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
+        documentation: https://www.kucoin.com/docs-new/api-3470331
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | MARGIN     |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 15         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def add_sub_account_futures_permission(
+            self, req: AddSubAccountFuturesPermissionReq,
+            **kwargs: Any) -> AddSubAccountFuturesPermissionResp:
+        """
+        summary: Add SubAccount Futures Permission
+        description: This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
+        documentation: https://www.kucoin.com/docs-new/api-3470332
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | FUTURES    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 15         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def get_spot_sub_accounts_summary_v2(
+            self, req: GetSpotSubAccountsSummaryV2Req,
+            **kwargs: Any) -> GetSpotSubAccountsSummaryV2Resp:
+        """
+        summary: Get SubAccount List - Summary Info
+        description: This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.
+        documentation: https://www.kucoin.com/docs-new/api-3470131
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -93,31 +132,13 @@ class SubAccountAPI(ABC):
         pass
 
     @abstractmethod
-    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
-                               **kwargs: Any) -> DeleteSubAccountApiResp:
+    def get_spot_sub_account_list_v2(
+            self, req: GetSpotSubAccountListV2Req,
+            **kwargs: Any) -> GetSpotSubAccountListV2Resp:
         """
-        summary: Delete SubAccount API
-        description: This endpoint can be used to delete sub-account APIs.
-        documentation: https://www.kucoin.com/docs-new/api-3470137
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 30         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def get_sub_account_api_list(self, req: GetSubAccountApiListReq,
-                                 **kwargs: Any) -> GetSubAccountApiListResp:
-        """
-        summary: Get SubAccount API List
-        description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)
-        documentation: https://www.kucoin.com/docs-new/api-3470136
+        summary: Get SubAccount List - Spot Balance(V2)
+        description: This endpoint can be used to get paginated Spot sub-account information. Pagination is required.
+        documentation: https://www.kucoin.com/docs-new/api-3470133
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -127,6 +148,26 @@ class SubAccountAPI(ABC):
         | API-RATE-LIMIT-POOL | MANAGEMENT |
         | API-RATE-LIMIT      | 20         |
         +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def get_futures_sub_account_list_v2(
+            self, req: GetFuturesSubAccountListV2Req,
+            **kwargs: Any) -> GetFuturesSubAccountListV2Resp:
+        """
+        summary: Get SubAccount List - Futures Balance(V2)
+        description: This endpoint can be used to get Futures sub-account information. 
+        documentation: https://www.kucoin.com/docs-new/api-3470134
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 6       |
+        +---------------------+---------+
         """
         pass
 
@@ -169,6 +210,44 @@ class SubAccountAPI(ABC):
         pass
 
     @abstractmethod
+    def get_sub_account_api_list(self, req: GetSubAccountApiListReq,
+                                 **kwargs: Any) -> GetSubAccountApiListResp:
+        """
+        summary: Get SubAccount API List
+        description: This endpoint can be used to obtain a list of APIs pertaining to a sub-account.(Not contain ND Broker Sub Account)
+        documentation: https://www.kucoin.com/docs-new/api-3470136
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 20         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
+                               **kwargs: Any) -> DeleteSubAccountApiResp:
+        """
+        summary: Delete SubAccount API
+        description: This endpoint can be used to delete sub-account APIs.
+        documentation: https://www.kucoin.com/docs-new/api-3470137
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 30         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
     @deprecated('')
     def get_spot_sub_accounts_summary_v1(
             self, **kwargs: Any) -> GetSpotSubAccountsSummaryV1Resp:
@@ -189,13 +268,13 @@ class SubAccountAPI(ABC):
         pass
 
     @abstractmethod
-    def get_spot_sub_account_list_v2(
-            self, req: GetSpotSubAccountListV2Req,
-            **kwargs: Any) -> GetSpotSubAccountListV2Resp:
+    @deprecated('')
+    def get_spot_sub_account_list_v1(
+            self, **kwargs: Any) -> GetSpotSubAccountListV1Resp:
         """
-        summary: Get SubAccount List - Spot Balance(V2)
-        description: This endpoint can be used to get paginated Spot sub-account information. Pagination is required.
-        documentation: https://www.kucoin.com/docs-new/api-3470133
+        summary: Get SubAccount List - Spot Balance(V1)
+        description: This endpoint returns the account info of all sub-users.
+        documentation: https://www.kucoin.com/docs-new/api-3470299
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -204,85 +283,6 @@ class SubAccountAPI(ABC):
         | API-PERMISSION      | GENERAL    |
         | API-RATE-LIMIT-POOL | MANAGEMENT |
         | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def add_sub_account(self, req: AddSubAccountReq,
-                        **kwargs: Any) -> AddSubAccountResp:
-        """
-        summary: Add SubAccount
-        description: This endpoint can be used to create sub-accounts.
-        documentation: https://www.kucoin.com/docs-new/api-3470135
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 15         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def get_spot_sub_accounts_summary_v2(
-            self, req: GetSpotSubAccountsSummaryV2Req,
-            **kwargs: Any) -> GetSpotSubAccountsSummaryV2Resp:
-        """
-        summary: Get SubAccount List - Summary Info
-        description: This endpoint can be used to get a paginated list of sub-accounts. Pagination is required.
-        documentation: https://www.kucoin.com/docs-new/api-3470131
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def add_sub_account_futures_permission(
-            self, req: AddSubAccountFuturesPermissionReq,
-            **kwargs: Any) -> AddSubAccountFuturesPermissionResp:
-        """
-        summary: Add SubAccount Futures Permission
-        description: This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.
-        documentation: https://www.kucoin.com/docs-new/api-3470332
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | FUTURES    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 15         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def add_sub_account_margin_permission(
-            self, req: AddSubAccountMarginPermissionReq,
-            **kwargs: Any) -> AddSubAccountMarginPermissionResp:
-        """
-        summary: Add SubAccount Margin Permission
-        description: This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.
-        documentation: https://www.kucoin.com/docs-new/api-3470331
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | MARGIN     |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 15         |
         +---------------------+------------+
         """
         pass
@@ -293,19 +293,34 @@ class SubAccountAPIImpl(SubAccountAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_futures_sub_account_list_v2(
-            self, req: GetFuturesSubAccountListV2Req,
-            **kwargs: Any) -> GetFuturesSubAccountListV2Resp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/account-overview-all", req,
-                                   GetFuturesSubAccountListV2Resp(), False,
+    def add_sub_account(self, req: AddSubAccountReq,
+                        **kwargs: Any) -> AddSubAccountResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v2/sub/user/created", req,
+                                   AddSubAccountResp(), False, **kwargs)
+
+    def add_sub_account_margin_permission(
+            self, req: AddSubAccountMarginPermissionReq,
+            **kwargs: Any) -> AddSubAccountMarginPermissionResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v3/sub/user/margin/enable", req,
+                                   AddSubAccountMarginPermissionResp(), False,
                                    **kwargs)
 
-    def get_spot_sub_account_list_v1(
-            self, **kwargs: Any) -> GetSpotSubAccountListV1Resp:
+    def add_sub_account_futures_permission(
+            self, req: AddSubAccountFuturesPermissionReq,
+            **kwargs: Any) -> AddSubAccountFuturesPermissionResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v3/sub/user/futures/enable", req,
+                                   AddSubAccountFuturesPermissionResp(), False,
+                                   **kwargs)
+
+    def get_spot_sub_accounts_summary_v2(
+            self, req: GetSpotSubAccountsSummaryV2Req,
+            **kwargs: Any) -> GetSpotSubAccountsSummaryV2Resp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/sub-accounts", None,
-                                   GetSpotSubAccountListV1Resp(), False,
+                                   "/api/v2/sub/user", req,
+                                   GetSpotSubAccountsSummaryV2Resp(), False,
                                    **kwargs)
 
     def get_spot_sub_account_detail(
@@ -316,17 +331,21 @@ class SubAccountAPIImpl(SubAccountAPI):
                                    GetSpotSubAccountDetailResp(), False,
                                    **kwargs)
 
-    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
-                               **kwargs: Any) -> DeleteSubAccountApiResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/sub/api-key", req,
-                                   DeleteSubAccountApiResp(), False, **kwargs)
-
-    def get_sub_account_api_list(self, req: GetSubAccountApiListReq,
-                                 **kwargs: Any) -> GetSubAccountApiListResp:
+    def get_spot_sub_account_list_v2(
+            self, req: GetSpotSubAccountListV2Req,
+            **kwargs: Any) -> GetSpotSubAccountListV2Resp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/sub/api-key", req,
-                                   GetSubAccountApiListResp(), False, **kwargs)
+                                   "/api/v2/sub-accounts", req,
+                                   GetSpotSubAccountListV2Resp(), False,
+                                   **kwargs)
+
+    def get_futures_sub_account_list_v2(
+            self, req: GetFuturesSubAccountListV2Req,
+            **kwargs: Any) -> GetFuturesSubAccountListV2Resp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/account-overview-all", req,
+                                   GetFuturesSubAccountListV2Resp(), False,
+                                   **kwargs)
 
     def add_sub_account_api(self, req: AddSubAccountApiReq,
                             **kwargs: Any) -> AddSubAccountApiResp:
@@ -340,6 +359,18 @@ class SubAccountAPIImpl(SubAccountAPI):
                                    "/api/v1/sub/api-key/update", req,
                                    ModifySubAccountApiResp(), False, **kwargs)
 
+    def get_sub_account_api_list(self, req: GetSubAccountApiListReq,
+                                 **kwargs: Any) -> GetSubAccountApiListResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/sub/api-key", req,
+                                   GetSubAccountApiListResp(), False, **kwargs)
+
+    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
+                               **kwargs: Any) -> DeleteSubAccountApiResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/sub/api-key", req,
+                                   DeleteSubAccountApiResp(), False, **kwargs)
+
     def get_spot_sub_accounts_summary_v1(
             self, **kwargs: Any) -> GetSpotSubAccountsSummaryV1Resp:
         return self.transport.call("spot", False, "GET",
@@ -347,40 +378,9 @@ class SubAccountAPIImpl(SubAccountAPI):
                                    GetSpotSubAccountsSummaryV1Resp(), False,
                                    **kwargs)
 
-    def get_spot_sub_account_list_v2(
-            self, req: GetSpotSubAccountListV2Req,
-            **kwargs: Any) -> GetSpotSubAccountListV2Resp:
+    def get_spot_sub_account_list_v1(
+            self, **kwargs: Any) -> GetSpotSubAccountListV1Resp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v2/sub-accounts", req,
-                                   GetSpotSubAccountListV2Resp(), False,
-                                   **kwargs)
-
-    def add_sub_account(self, req: AddSubAccountReq,
-                        **kwargs: Any) -> AddSubAccountResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v2/sub/user/created", req,
-                                   AddSubAccountResp(), False, **kwargs)
-
-    def get_spot_sub_accounts_summary_v2(
-            self, req: GetSpotSubAccountsSummaryV2Req,
-            **kwargs: Any) -> GetSpotSubAccountsSummaryV2Resp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v2/sub/user", req,
-                                   GetSpotSubAccountsSummaryV2Resp(), False,
-                                   **kwargs)
-
-    def add_sub_account_futures_permission(
-            self, req: AddSubAccountFuturesPermissionReq,
-            **kwargs: Any) -> AddSubAccountFuturesPermissionResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v3/sub/user/futures/enable", req,
-                                   AddSubAccountFuturesPermissionResp(), False,
-                                   **kwargs)
-
-    def add_sub_account_margin_permission(
-            self, req: AddSubAccountMarginPermissionReq,
-            **kwargs: Any) -> AddSubAccountMarginPermissionResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v3/sub/user/margin/enable", req,
-                                   AddSubAccountMarginPermissionResp(), False,
+                                   "/api/v1/sub-accounts", None,
+                                   GetSpotSubAccountListV1Resp(), False,
                                    **kwargs)

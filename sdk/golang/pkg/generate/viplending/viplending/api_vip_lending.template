@@ -1,13 +1,13 @@
 # API FUNCTION TEMPLATE
 
 
-func TestVIPLendingGetAccountsReq(t *testing.T) {
-    // GetAccounts
-    // Get Accounts
-    // /api/v1/otc-loan/accounts
+func TestVIPLendingGetAccountDetailReq(t *testing.T) {
+    // GetAccountDetail
+    // Get Account Detail
+    // /api/v1/otc-loan/loan
 
 
-    resp, err := viplendingApi.GetAccounts(context.TODO())
+    resp, err := viplendingApi.GetAccountDetail(context.TODO())
     if err != nil {
         panic(err)
     }
@@ -21,13 +21,13 @@ func TestVIPLendingGetAccountsReq(t *testing.T) {
 }
 
 
-func TestVIPLendingGetAccountDetailReq(t *testing.T) {
-    // GetAccountDetail
-    // Get Account Detail
-    // /api/v1/otc-loan/loan
+func TestVIPLendingGetAccountsReq(t *testing.T) {
+    // GetAccounts
+    // Get Accounts
+    // /api/v1/otc-loan/accounts
 
 
-    resp, err := viplendingApi.GetAccountDetail(context.TODO())
+    resp, err := viplendingApi.GetAccounts(context.TODO())
     if err != nil {
         panic(err)
     }

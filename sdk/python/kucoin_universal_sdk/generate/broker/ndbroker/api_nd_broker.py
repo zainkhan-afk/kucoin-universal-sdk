@@ -34,88 +34,12 @@ from .model_transfer_resp import TransferResp
 class NDBrokerAPI(ABC):
 
     @abstractmethod
-    def get_deposit_list(self, req: GetDepositListReq,
-                         **kwargs: Any) -> GetDepositListResp:
+    def get_broker_info(self, req: GetBrokerInfoReq,
+                        **kwargs: Any) -> GetBrokerInfoResp:
         """
-        summary: Get Deposit List
-        description: This endpoint can obtain the deposit records of each sub-account under the ND Broker.
-        documentation: https://www.kucoin.com/docs-new/api-3470285
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
-                               **kwargs: Any) -> DeleteSubAccountApiResp:
-        """
-        summary: Delete SubAccount API
-        description: This interface supports deleting Broker’s sub-account APIKEY
-        documentation: https://www.kucoin.com/docs-new/api-3470289
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_sub_account_api(self, req: GetSubAccountApiReq,
-                            **kwargs: Any) -> GetSubAccountApiResp:
-        """
-        summary: Get SubAccount API
-        description: This interface supports querying the Broker’s sub-account APIKEY
-        documentation: https://www.kucoin.com/docs-new/api-3470284
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def add_sub_account_api(self, req: AddSubAccountApiReq,
-                            **kwargs: Any) -> AddSubAccountApiResp:
-        """
-        summary: Add SubAccount API
-        description: This interface supports the creation of Broker sub-account APIKEY
-        documentation: https://www.kucoin.com/docs-new/api-3470291
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_sub_account(self, req: GetSubAccountReq,
-                        **kwargs: Any) -> GetSubAccountResp:
-        """
-        summary: Get SubAccount
-        description: This interface supports querying sub-accounts created by Broker
-        documentation: https://www.kucoin.com/docs-new/api-3470283
+        summary: Get Broker Info
+        description: This endpoint supports querying the basic information of the current Broker
+        documentation: https://www.kucoin.com/docs-new/api-3470282
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -148,6 +72,63 @@ class NDBrokerAPI(ABC):
         pass
 
     @abstractmethod
+    def get_sub_account(self, req: GetSubAccountReq,
+                        **kwargs: Any) -> GetSubAccountResp:
+        """
+        summary: Get SubAccount
+        description: This interface supports querying sub-accounts created by Broker
+        documentation: https://www.kucoin.com/docs-new/api-3470283
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | BROKER  |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | BROKER  |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def add_sub_account_api(self, req: AddSubAccountApiReq,
+                            **kwargs: Any) -> AddSubAccountApiResp:
+        """
+        summary: Add SubAccount API
+        description: This interface supports the creation of Broker sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470291
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | BROKER  |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | BROKER  |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_sub_account_api(self, req: GetSubAccountApiReq,
+                            **kwargs: Any) -> GetSubAccountApiResp:
+        """
+        summary: Get SubAccount API
+        description: This interface supports querying the Broker’s sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470284
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | BROKER  |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | BROKER  |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def modify_sub_account_api(self, req: ModifySubAccountApiReq,
                                **kwargs: Any) -> ModifySubAccountApiResp:
         """
@@ -167,30 +148,12 @@ class NDBrokerAPI(ABC):
         pass
 
     @abstractmethod
-    def get_broker_info(self, req: GetBrokerInfoReq,
-                        **kwargs: Any) -> GetBrokerInfoResp:
+    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
+                               **kwargs: Any) -> DeleteSubAccountApiResp:
         """
-        summary: Get Broker Info
-        description: This endpoint supports querying the basic information of the current Broker
-        documentation: https://www.kucoin.com/docs-new/api-3470282
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_rebase(self, req: GetRebaseReq, **kwargs: Any) -> GetRebaseResp:
-        """
-        summary: Get Broker Rebate
-        description: This interface supports downloading Broker rebate orders
-        documentation: https://www.kucoin.com/docs-new/api-3470281
+        summary: Delete SubAccount API
+        description: This interface supports deleting Broker’s sub-account APIKEY
+        documentation: https://www.kucoin.com/docs-new/api-3470289
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -209,25 +172,6 @@ class NDBrokerAPI(ABC):
         summary: Transfer
         description: This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.
         documentation: https://www.kucoin.com/docs-new/api-3470293
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | BROKER  |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | BROKER  |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_deposit_detail(self, req: GetDepositDetailReq,
-                           **kwargs: Any) -> GetDepositDetailResp:
-        """
-        summary: Get Deposit Detail
-        description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)
-        documentation: https://www.kucoin.com/docs-new/api-3470288
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -260,6 +204,44 @@ class NDBrokerAPI(ABC):
         pass
 
     @abstractmethod
+    def get_deposit_list(self, req: GetDepositListReq,
+                         **kwargs: Any) -> GetDepositListResp:
+        """
+        summary: Get Deposit List
+        description: This endpoint can obtain the deposit records of each sub-account under the ND Broker.
+        documentation: https://www.kucoin.com/docs-new/api-3470285
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | BROKER  |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | BROKER  |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_deposit_detail(self, req: GetDepositDetailReq,
+                           **kwargs: Any) -> GetDepositDetailResp:
+        """
+        summary: Get Deposit Detail
+        description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)
+        documentation: https://www.kucoin.com/docs-new/api-3470288
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | BROKER  |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | BROKER  |
+        | API-RATE-LIMIT      | 1       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def get_withdraw_detail(self, req: GetWithdrawDetailReq,
                             **kwargs: Any) -> GetWithdrawDetailResp:
         """
@@ -278,35 +260,41 @@ class NDBrokerAPI(ABC):
         """
         pass
 
+    @abstractmethod
+    def get_rebase(self, req: GetRebaseReq, **kwargs: Any) -> GetRebaseResp:
+        """
+        summary: Get Broker Rebate
+        description: This interface supports downloading Broker rebate orders
+        documentation: https://www.kucoin.com/docs-new/api-3470281
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | BROKER  |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | BROKER  |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
 
 class NDBrokerAPIImpl(NDBrokerAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_deposit_list(self, req: GetDepositListReq,
-                         **kwargs: Any) -> GetDepositListResp:
+    def get_broker_info(self, req: GetBrokerInfoReq,
+                        **kwargs: Any) -> GetBrokerInfoResp:
         return self.transport.call("broker", True, "GET",
-                                   "/api/v1/asset/ndbroker/deposit/list", req,
-                                   GetDepositListResp(), False, **kwargs)
+                                   "/api/v1/broker/nd/info", req,
+                                   GetBrokerInfoResp(), False, **kwargs)
 
-    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
-                               **kwargs: Any) -> DeleteSubAccountApiResp:
-        return self.transport.call("broker", True, "DELETE",
-                                   "/api/v1/broker/nd/account/apikey", req,
-                                   DeleteSubAccountApiResp(), False, **kwargs)
-
-    def get_sub_account_api(self, req: GetSubAccountApiReq,
-                            **kwargs: Any) -> GetSubAccountApiResp:
-        return self.transport.call("broker", True, "GET",
-                                   "/api/v1/broker/nd/account/apikey", req,
-                                   GetSubAccountApiResp(), False, **kwargs)
-
-    def add_sub_account_api(self, req: AddSubAccountApiReq,
-                            **kwargs: Any) -> AddSubAccountApiResp:
+    def add_sub_account(self, req: AddSubAccountReq,
+                        **kwargs: Any) -> AddSubAccountResp:
         return self.transport.call("broker", True, "POST",
-                                   "/api/v1/broker/nd/account/apikey", req,
-                                   AddSubAccountApiResp(), False, **kwargs)
+                                   "/api/v1/broker/nd/account", req,
+                                   AddSubAccountResp(), False, **kwargs)
 
     def get_sub_account(self, req: GetSubAccountReq,
                         **kwargs: Any) -> GetSubAccountResp:
@@ -314,11 +302,17 @@ class NDBrokerAPIImpl(NDBrokerAPI):
                                    "/api/v1/broker/nd/account", req,
                                    GetSubAccountResp(), False, **kwargs)
 
-    def add_sub_account(self, req: AddSubAccountReq,
-                        **kwargs: Any) -> AddSubAccountResp:
+    def add_sub_account_api(self, req: AddSubAccountApiReq,
+                            **kwargs: Any) -> AddSubAccountApiResp:
         return self.transport.call("broker", True, "POST",
-                                   "/api/v1/broker/nd/account", req,
-                                   AddSubAccountResp(), False, **kwargs)
+                                   "/api/v1/broker/nd/account/apikey", req,
+                                   AddSubAccountApiResp(), False, **kwargs)
+
+    def get_sub_account_api(self, req: GetSubAccountApiReq,
+                            **kwargs: Any) -> GetSubAccountApiResp:
+        return self.transport.call("broker", True, "GET",
+                                   "/api/v1/broker/nd/account/apikey", req,
+                                   GetSubAccountApiResp(), False, **kwargs)
 
     def modify_sub_account_api(self, req: ModifySubAccountApiReq,
                                **kwargs: Any) -> ModifySubAccountApiResp:
@@ -327,27 +321,16 @@ class NDBrokerAPIImpl(NDBrokerAPI):
                                    req, ModifySubAccountApiResp(), False,
                                    **kwargs)
 
-    def get_broker_info(self, req: GetBrokerInfoReq,
-                        **kwargs: Any) -> GetBrokerInfoResp:
-        return self.transport.call("broker", True, "GET",
-                                   "/api/v1/broker/nd/info", req,
-                                   GetBrokerInfoResp(), False, **kwargs)
-
-    def get_rebase(self, req: GetRebaseReq, **kwargs: Any) -> GetRebaseResp:
-        return self.transport.call("broker", True, "GET",
-                                   "/api/v1/broker/nd/rebase/download", req,
-                                   GetRebaseResp(), False, **kwargs)
+    def delete_sub_account_api(self, req: DeleteSubAccountApiReq,
+                               **kwargs: Any) -> DeleteSubAccountApiResp:
+        return self.transport.call("broker", True, "DELETE",
+                                   "/api/v1/broker/nd/account/apikey", req,
+                                   DeleteSubAccountApiResp(), False, **kwargs)
 
     def transfer(self, req: TransferReq, **kwargs: Any) -> TransferResp:
         return self.transport.call("broker", True, "POST",
                                    "/api/v1/broker/nd/transfer", req,
                                    TransferResp(), False, **kwargs)
-
-    def get_deposit_detail(self, req: GetDepositDetailReq,
-                           **kwargs: Any) -> GetDepositDetailResp:
-        return self.transport.call("broker", True, "GET",
-                                   "/api/v3/broker/nd/deposit/detail", req,
-                                   GetDepositDetailResp(), False, **kwargs)
 
     def get_transfer_history(self, req: GetTransferHistoryReq,
                              **kwargs: Any) -> GetTransferHistoryResp:
@@ -355,8 +338,25 @@ class NDBrokerAPIImpl(NDBrokerAPI):
                                    "/api/v3/broker/nd/transfer/detail", req,
                                    GetTransferHistoryResp(), False, **kwargs)
 
+    def get_deposit_list(self, req: GetDepositListReq,
+                         **kwargs: Any) -> GetDepositListResp:
+        return self.transport.call("broker", True, "GET",
+                                   "/api/v1/asset/ndbroker/deposit/list", req,
+                                   GetDepositListResp(), False, **kwargs)
+
+    def get_deposit_detail(self, req: GetDepositDetailReq,
+                           **kwargs: Any) -> GetDepositDetailResp:
+        return self.transport.call("broker", True, "GET",
+                                   "/api/v3/broker/nd/deposit/detail", req,
+                                   GetDepositDetailResp(), False, **kwargs)
+
     def get_withdraw_detail(self, req: GetWithdrawDetailReq,
                             **kwargs: Any) -> GetWithdrawDetailResp:
         return self.transport.call("broker", True, "GET",
                                    "/api/v3/broker/nd/withdraw/detail", req,
                                    GetWithdrawDetailResp(), False, **kwargs)
+
+    def get_rebase(self, req: GetRebaseReq, **kwargs: Any) -> GetRebaseResp:
+        return self.transport.call("broker", True, "GET",
+                                   "/api/v1/broker/nd/rebase/download", req,
+                                   GetRebaseResp(), False, **kwargs)

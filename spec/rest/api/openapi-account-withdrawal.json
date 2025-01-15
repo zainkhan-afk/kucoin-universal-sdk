@@ -178,7 +178,8 @@
                 "x-sdk-method-description": "This interface can obtain the withdrawal quotas information of this currency.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"BTC\\\",\\\"limitBTCAmount\\\":\\\"15.79590095\\\",\\\"usedBTCAmount\\\":\\\"0.00000000\\\",\\\"quotaCurrency\\\":\\\"USDT\\\",\\\"limitQuotaCurrencyAmount\\\":\\\"999999.00000000\\\",\\\"usedQuotaCurrencyAmount\\\":\\\"0\\\",\\\"remainAmount\\\":\\\"15.79590095\\\",\\\"availableAmount\\\":\\\"0\\\",\\\"withdrawMinFee\\\":\\\"0.0005\\\",\\\"innerWithdrawMinFee\\\":\\\"0\\\",\\\"withdrawMinSize\\\":\\\"0.001\\\",\\\"isWithdrawEnabled\\\":true,\\\"precision\\\":8,\\\"chain\\\":\\\"BTC\\\",\\\"reason\\\":null,\\\"lockedAmount\\\":\\\"0\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
+                "operationId": "001"
             }
         },
         "/api/v3/withdrawals": {
@@ -341,7 +342,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670deec84d64da0007d7c946\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"toAddress\\\": \\\"TKFRQXSDcY****GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"withdrawType\\\": \\\"ADDRESS\\\", \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true, \\\"remark\\\": \\\"this is Remark\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"toAddress\\\": \\\"TKFRQXSDcY****GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"withdrawType\\\": \\\"ADDRESS\\\", \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true, \\\"remark\\\": \\\"this is Remark\\\"}",
+                "operationId": "002"
             }
         },
         "/api/v1/withdrawals/{withdrawalId}": {
@@ -397,7 +399,8 @@
                 "x-sdk-method-description": "This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
-                "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}"
+                "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}",
+                "operationId": "003"
             }
         },
         "/api/v1/withdrawals": {
@@ -663,7 +666,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 5,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"a435*****@gmail.com\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"1.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1728555875000,\\n                \\\"updatedAt\\\": 1728555875000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            },\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"trx\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"TSv3L1fS7******X4nLP6rqNxYz\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"6.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1721730920000,\\n                \\\"updatedAt\\\": 1721730920000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "004"
             },
             "post": {
                 "summary": "Withdraw - V1",
@@ -785,7 +789,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670a973cf07b3800070e216c\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"address\\\": \\\"TKFRQXSDc****16GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"address\\\": \\\"TKFRQXSDc****16GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true}",
+                "operationId": "006"
             }
         },
         "/api/v1/hist-withdrawals": {
@@ -1002,7 +1007,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1526723468,\\n                \\\"amount\\\": \\\"0.534\\\",\\n                \\\"address\\\": \\\"33xW37ZSW4tQvg443Pc7NLCAs167Yc2XUV\\\",\\n                \\\"walletTxId\\\": \\\"aeacea864c020acf58e51606169240e96774838dcd4f7ce48acf38e3651323f4\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "005"
             }
         }
     },

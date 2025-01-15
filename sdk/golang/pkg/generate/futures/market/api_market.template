@@ -1,53 +1,16 @@
 # API FUNCTION TEMPLATE
 
 
-func TestMarketGetAllTickersReq(t *testing.T) {
-    // GetAllTickers
-    // Get All Tickers
-    // /api/v1/allTickers
+func TestMarketGetSymbolReq(t *testing.T) {
+    // GetSymbol
+    // Get Symbol
+    // /api/v1/contracts/{symbol}
 
+    builder := market.NewGetSymbolReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
 
-    resp, err := marketApi.GetAllTickers(context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetPrivateTokenReq(t *testing.T) {
-    // GetPrivateToken
-    // Get Private Token - Futures
-    // /api/v1/bullet-private
-
-
-    resp, err := marketApi.GetPrivateToken(context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetPublicTokenReq(t *testing.T) {
-    // GetPublicToken
-    // Get Public Token - Futures
-    // /api/v1/bullet-public
-
-
-    resp, err := marketApi.GetPublicToken(context.TODO())
+    resp, err := marketApi.GetSymbol(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -81,16 +44,151 @@ func TestMarketGetAllSymbolsReq(t *testing.T) {
 }
 
 
-func TestMarketGetSymbolReq(t *testing.T) {
-    // GetSymbol
-    // Get Symbol
-    // /api/v1/contracts/{symbol}
+func TestMarketGetTickerReq(t *testing.T) {
+    // GetTicker
+    // Get Ticker
+    // /api/v1/ticker
 
-    builder := market.NewGetSymbolReqBuilder()
+    builder := market.NewGetTickerReqBuilder()
     builder.SetSymbol(?)
     req := builder.Build()
 
-    resp, err := marketApi.GetSymbol(req, context.TODO())
+    resp, err := marketApi.GetTicker(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetAllTickersReq(t *testing.T) {
+    // GetAllTickers
+    // Get All Tickers
+    // /api/v1/allTickers
+
+
+    resp, err := marketApi.GetAllTickers(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetFullOrderBookReq(t *testing.T) {
+    // GetFullOrderBook
+    // Get Full OrderBook
+    // /api/v1/level2/snapshot
+
+    builder := market.NewGetFullOrderBookReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetFullOrderBook(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetPartOrderBookReq(t *testing.T) {
+    // GetPartOrderBook
+    // Get Part OrderBook
+    // /api/v1/level2/depth{size}
+
+    builder := market.NewGetPartOrderBookReqBuilder()
+    builder.SetSymbol(?).SetSize(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetPartOrderBook(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetTradeHistoryReq(t *testing.T) {
+    // GetTradeHistory
+    // Get Trade History
+    // /api/v1/trade/history
+
+    builder := market.NewGetTradeHistoryReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetTradeHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetKlinesReq(t *testing.T) {
+    // GetKlines
+    // Get Klines
+    // /api/v1/kline/query
+
+    builder := market.NewGetKlinesReqBuilder()
+    builder.SetSymbol(?).SetGranularity(?).SetFrom(?).SetTo(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetKlines(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetMarkPriceReq(t *testing.T) {
+    // GetMarkPrice
+    // Get Mark Price
+    // /api/v1/mark-price/{symbol}/current
+
+    builder := market.NewGetMarkPriceReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetMarkPrice(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -150,98 +248,6 @@ func TestMarketGetInterestRateIndexReq(t *testing.T) {
 }
 
 
-func TestMarketGetKlinesReq(t *testing.T) {
-    // GetKlines
-    // Get Klines
-    // /api/v1/kline/query
-
-    builder := market.NewGetKlinesReqBuilder()
-    builder.SetSymbol(?).SetGranularity(?).SetFrom(?).SetTo(?)
-    req := builder.Build()
-
-    resp, err := marketApi.GetKlines(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetPartOrderBookReq(t *testing.T) {
-    // GetPartOrderBook
-    // Get Part OrderBook
-    // /api/v1/level2/depth{size}
-
-    builder := market.NewGetPartOrderBookReqBuilder()
-    builder.SetSymbol(?).SetSize(?)
-    req := builder.Build()
-
-    resp, err := marketApi.GetPartOrderBook(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetFullOrderBookReq(t *testing.T) {
-    // GetFullOrderBook
-    // Get Full OrderBook
-    // /api/v1/level2/snapshot
-
-    builder := market.NewGetFullOrderBookReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := marketApi.GetFullOrderBook(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetMarkPriceReq(t *testing.T) {
-    // GetMarkPrice
-    // Get Mark Price
-    // /api/v1/mark-price/{symbol}/current
-
-    builder := market.NewGetMarkPriceReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := marketApi.GetMarkPrice(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestMarketGetPremiumIndexReq(t *testing.T) {
     // GetPremiumIndex
     // Get Premium Index
@@ -265,36 +271,13 @@ func TestMarketGetPremiumIndexReq(t *testing.T) {
 }
 
 
-func TestMarketGetServiceStatusReq(t *testing.T) {
-    // GetServiceStatus
-    // Get Service Status
-    // /api/v1/status
+func TestMarketGet24hrStatsReq(t *testing.T) {
+    // Get24hrStats
+    // Get 24hr Stats
+    // /api/v1/trade-statistics
 
 
-    resp, err := marketApi.GetServiceStatus(context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetTickerReq(t *testing.T) {
-    // GetTicker
-    // Get Ticker
-    // /api/v1/ticker
-
-    builder := market.NewGetTickerReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := marketApi.GetTicker(req, context.TODO())
+    resp, err := marketApi.Get24hrStats(context.TODO())
     if err != nil {
         panic(err)
     }
@@ -328,16 +311,13 @@ func TestMarketGetServerTimeReq(t *testing.T) {
 }
 
 
-func TestMarketGetTradeHistoryReq(t *testing.T) {
-    // GetTradeHistory
-    // Get Trade History
-    // /api/v1/trade/history
+func TestMarketGetServiceStatusReq(t *testing.T) {
+    // GetServiceStatus
+    // Get Service Status
+    // /api/v1/status
 
-    builder := market.NewGetTradeHistoryReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
 
-    resp, err := marketApi.GetTradeHistory(req, context.TODO())
+    resp, err := marketApi.GetServiceStatus(context.TODO())
     if err != nil {
         panic(err)
     }
@@ -351,13 +331,33 @@ func TestMarketGetTradeHistoryReq(t *testing.T) {
 }
 
 
-func TestMarketGet24hrStatsReq(t *testing.T) {
-    // Get24hrStats
-    // Get 24hr Stats
-    // /api/v1/trade-statistics
+func TestMarketGetPublicTokenReq(t *testing.T) {
+    // GetPublicToken
+    // Get Public Token - Futures
+    // /api/v1/bullet-public
 
 
-    resp, err := marketApi.Get24hrStats(context.TODO())
+    resp, err := marketApi.GetPublicToken(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestMarketGetPrivateTokenReq(t *testing.T) {
+    // GetPrivateToken
+    // Get Private Token - Futures
+    // /api/v1/bullet-private
+
+
+    resp, err := marketApi.GetPrivateToken(context.TODO())
     if err != nil {
         panic(err)
     }

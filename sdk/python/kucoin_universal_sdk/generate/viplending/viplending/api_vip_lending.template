@@ -1,22 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-def test_get_accounts_req(self):
-    """
-        get_accounts
-        Get Accounts
-        /api/v1/otc-loan/accounts
-    """
-
-    try:
-        resp = self.api.get_accounts()
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_get_account_detail_req(self):
     """
         get_account_detail
@@ -26,6 +10,22 @@ def test_get_account_detail_req(self):
 
     try:
         resp = self.api.get_account_detail()
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_accounts_req(self):
+    """
+        get_accounts
+        Get Accounts
+        /api/v1/otc-loan/accounts
+    """
+
+    try:
+        resp = self.api.get_accounts()
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

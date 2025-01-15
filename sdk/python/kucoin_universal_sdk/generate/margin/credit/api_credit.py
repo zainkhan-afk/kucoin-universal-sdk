@@ -22,25 +22,6 @@ from .model_redeem_resp import RedeemResp
 class CreditAPI(ABC):
 
     @abstractmethod
-    def modify_purchase(self, req: ModifyPurchaseReq,
-                        **kwargs: Any) -> ModifyPurchaseResp:
-        """
-        summary: Modify Purchase
-        description: This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account
-        documentation: https://www.kucoin.com/docs-new/api-3470217
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
     def get_loan_market(self, req: GetLoanMarketReq,
                         **kwargs: Any) -> GetLoanMarketResp:
         """
@@ -80,6 +61,43 @@ class CreditAPI(ABC):
         pass
 
     @abstractmethod
+    def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
+        """
+        summary: Purchase
+        description: Invest credit in the market and earn interest
+        documentation: https://www.kucoin.com/docs-new/api-3470216
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | MARGIN  |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 15      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def modify_purchase(self, req: ModifyPurchaseReq,
+                        **kwargs: Any) -> ModifyPurchaseResp:
+        """
+        summary: Modify Purchase
+        description: This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account
+        documentation: https://www.kucoin.com/docs-new/api-3470217
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | MARGIN  |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def get_purchase_orders(self, req: GetPurchaseOrdersReq,
                             **kwargs: Any) -> GetPurchaseOrdersResp:
         """
@@ -99,11 +117,11 @@ class CreditAPI(ABC):
         pass
 
     @abstractmethod
-    def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
+    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
         """
-        summary: Purchase
-        description: Invest credit in the market and earn interest
-        documentation: https://www.kucoin.com/docs-new/api-3470216
+        summary: Redeem
+        description: Redeem your loan order
+        documentation: https://www.kucoin.com/docs-new/api-3470218
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -135,35 +153,11 @@ class CreditAPI(ABC):
         """
         pass
 
-    @abstractmethod
-    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
-        """
-        summary: Redeem
-        description: Redeem your loan order
-        documentation: https://www.kucoin.com/docs-new/api-3470218
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
-        """
-        pass
-
 
 class CreditAPIImpl(CreditAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
-
-    def modify_purchase(self, req: ModifyPurchaseReq,
-                        **kwargs: Any) -> ModifyPurchaseResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v3/lend/purchase/update", req,
-                                   ModifyPurchaseResp(), False, **kwargs)
 
     def get_loan_market(self, req: GetLoanMarketReq,
                         **kwargs: Any) -> GetLoanMarketResp:
@@ -179,22 +173,28 @@ class CreditAPIImpl(CreditAPI):
                                    GetLoanMarketInterestRateResp(), False,
                                    **kwargs)
 
+    def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
+        return self.transport.call("spot", False, "POST", "/api/v3/purchase",
+                                   req, PurchaseResp(), False, **kwargs)
+
+    def modify_purchase(self, req: ModifyPurchaseReq,
+                        **kwargs: Any) -> ModifyPurchaseResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v3/lend/purchase/update", req,
+                                   ModifyPurchaseResp(), False, **kwargs)
+
     def get_purchase_orders(self, req: GetPurchaseOrdersReq,
                             **kwargs: Any) -> GetPurchaseOrdersResp:
         return self.transport.call("spot", False, "GET",
                                    "/api/v3/purchase/orders", req,
                                    GetPurchaseOrdersResp(), False, **kwargs)
 
-    def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
-        return self.transport.call("spot", False, "POST", "/api/v3/purchase",
-                                   req, PurchaseResp(), False, **kwargs)
+    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
+        return self.transport.call("spot", False, "POST", "/api/v3/redeem",
+                                   req, RedeemResp(), False, **kwargs)
 
     def get_redeem_orders(self, req: GetRedeemOrdersReq,
                           **kwargs: Any) -> GetRedeemOrdersResp:
         return self.transport.call("spot", False, "GET",
                                    "/api/v3/redeem/orders", req,
                                    GetRedeemOrdersResp(), False, **kwargs)
-
-    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
-        return self.transport.call("spot", False, "POST", "/api/v3/redeem",
-                                   req, RedeemResp(), False, **kwargs)

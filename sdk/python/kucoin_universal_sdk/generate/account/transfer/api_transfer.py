@@ -42,6 +42,86 @@ class TransferAPI(ABC):
         pass
 
     @abstractmethod
+    def flex_transfer(self, req: FlexTransferReq,
+                      **kwargs: Any) -> FlexTransferResp:
+        """
+        summary: Flex Transfer
+        description: This interface can be used for transfers between master and sub accounts and inner transfers
+        documentation: https://www.kucoin.com/docs-new/api-3470147
+        +---------------------+---------------+
+        | Extra API Info      | Value         |
+        +---------------------+---------------+
+        | API-DOMAIN          | SPOT          |
+        | API-CHANNEL         | PRIVATE       |
+        | API-PERMISSION      | FLEXTRANSFERS |
+        | API-RATE-LIMIT-POOL | MANAGEMENT    |
+        | API-RATE-LIMIT      | 4             |
+        +---------------------+---------------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def sub_account_transfer(self, req: SubAccountTransferReq,
+                             **kwargs: Any) -> SubAccountTransferResp:
+        """
+        summary: SubAccount Transfer
+        description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
+        documentation: https://www.kucoin.com/docs-new/api-3470301
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | SPOT       |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 30         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def inner_transfer(self, req: InnerTransferReq,
+                       **kwargs: Any) -> InnerTransferResp:
+        """
+        summary: Inner Transfer
+        description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge. 
+        documentation: https://www.kucoin.com/docs-new/api-3470302
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | SPOT       |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 10         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def futures_account_transfer_out(
+            self, req: FuturesAccountTransferOutReq,
+            **kwargs: Any) -> FuturesAccountTransferOutResp:
+        """
+        summary: Futures Account Transfer Out
+        description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
+        documentation: https://www.kucoin.com/docs-new/api-3470303
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | FUTURES    |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | FUTURES    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 20         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
     @deprecated('')
     def futures_account_transfer_in(
             self, req: FuturesAccountTransferInReq,
@@ -83,86 +163,6 @@ class TransferAPI(ABC):
         """
         pass
 
-    @abstractmethod
-    @deprecated('')
-    def inner_transfer(self, req: InnerTransferReq,
-                       **kwargs: Any) -> InnerTransferResp:
-        """
-        summary: Inner Transfer
-        description: This API endpoint can be used to transfer funds between accounts internally. Users can transfer funds between their account free of charge. 
-        documentation: https://www.kucoin.com/docs-new/api-3470302
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | SPOT       |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 10         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def sub_account_transfer(self, req: SubAccountTransferReq,
-                             **kwargs: Any) -> SubAccountTransferResp:
-        """
-        summary: SubAccount Transfer
-        description: Funds in the main account, trading account and margin account of a Master Account can be transferred to the main account, trading account, futures account and margin account of its Sub-Account. The futures account of both the Master Account and Sub-Account can only accept funds transferred in from the main account, trading account and margin account and cannot transfer out to these accounts.
-        documentation: https://www.kucoin.com/docs-new/api-3470301
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | SPOT       |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 30         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def flex_transfer(self, req: FlexTransferReq,
-                      **kwargs: Any) -> FlexTransferResp:
-        """
-        summary: Flex Transfer
-        description: This interface can be used for transfers between master and sub accounts and inner transfers
-        documentation: https://www.kucoin.com/docs-new/api-3470147
-        +---------------------+---------------+
-        | Extra API Info      | Value         |
-        +---------------------+---------------+
-        | API-DOMAIN          | SPOT          |
-        | API-CHANNEL         | PRIVATE       |
-        | API-PERMISSION      | FLEXTRANSFERS |
-        | API-RATE-LIMIT-POOL | MANAGEMENT    |
-        | API-RATE-LIMIT      | 4             |
-        +---------------------+---------------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def futures_account_transfer_out(
-            self, req: FuturesAccountTransferOutReq,
-            **kwargs: Any) -> FuturesAccountTransferOutResp:
-        """
-        summary: Futures Account Transfer Out
-        description: The amount to be transferred will be deducted from the KuCoin Futures Account. Please ensure that you have sufficient funds in your KuCoin Futures Account, or the transfer will fail.
-        documentation: https://www.kucoin.com/docs-new/api-3470303
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | FUTURES    |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | FUTURES    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
 
 class TransferAPIImpl(TransferAPI):
 
@@ -174,6 +174,32 @@ class TransferAPIImpl(TransferAPI):
         return self.transport.call("spot", False, "GET",
                                    "/api/v1/accounts/transferable", req,
                                    GetTransferQuotasResp(), False, **kwargs)
+
+    def flex_transfer(self, req: FlexTransferReq,
+                      **kwargs: Any) -> FlexTransferResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v3/accounts/universal-transfer", req,
+                                   FlexTransferResp(), False, **kwargs)
+
+    def sub_account_transfer(self, req: SubAccountTransferReq,
+                             **kwargs: Any) -> SubAccountTransferResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v2/accounts/sub-transfer", req,
+                                   SubAccountTransferResp(), False, **kwargs)
+
+    def inner_transfer(self, req: InnerTransferReq,
+                       **kwargs: Any) -> InnerTransferResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v2/accounts/inner-transfer", req,
+                                   InnerTransferResp(), False, **kwargs)
+
+    def futures_account_transfer_out(
+            self, req: FuturesAccountTransferOutReq,
+            **kwargs: Any) -> FuturesAccountTransferOutResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v3/transfer-out", req,
+                                   FuturesAccountTransferOutResp(), False,
+                                   **kwargs)
 
     def futures_account_transfer_in(
             self, req: FuturesAccountTransferInReq,
@@ -190,29 +216,3 @@ class TransferAPIImpl(TransferAPI):
                                    "/api/v1/transfer-list", req,
                                    GetFuturesAccountTransferOutLedgerResp(),
                                    False, **kwargs)
-
-    def inner_transfer(self, req: InnerTransferReq,
-                       **kwargs: Any) -> InnerTransferResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v2/accounts/inner-transfer", req,
-                                   InnerTransferResp(), False, **kwargs)
-
-    def sub_account_transfer(self, req: SubAccountTransferReq,
-                             **kwargs: Any) -> SubAccountTransferResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v2/accounts/sub-transfer", req,
-                                   SubAccountTransferResp(), False, **kwargs)
-
-    def flex_transfer(self, req: FlexTransferReq,
-                      **kwargs: Any) -> FlexTransferResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v3/accounts/universal-transfer", req,
-                                   FlexTransferResp(), False, **kwargs)
-
-    def futures_account_transfer_out(
-            self, req: FuturesAccountTransferOutReq,
-            **kwargs: Any) -> FuturesAccountTransferOutResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v3/transfer-out", req,
-                                   FuturesAccountTransferOutResp(), False,
-                                   **kwargs)

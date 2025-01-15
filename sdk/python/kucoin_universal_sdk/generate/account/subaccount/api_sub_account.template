@@ -1,18 +1,18 @@
 # API FUNCTION TEMPLATE
 
 
-def test_get_futures_sub_account_list_v2_req(self):
+def test_add_sub_account_req(self):
     """
-        get_futures_sub_account_list_v2
-        Get SubAccount List - Futures Balance(V2)
-        /api/v1/account-overview-all
+        add_sub_account
+        Add SubAccount
+        /api/v2/sub/user/created
     """
 
-    builder = GetFuturesSubAccountListV2ReqBuilder()
-    builder.set_currency(?)
+    builder = AddSubAccountReqBuilder()
+    builder.set_password(?).set_remarks(?).set_sub_name(?).set_access(?)
     req = builder.build()
     try:
-        resp = self.api.get_futures_sub_account_list_v2(req)
+        resp = self.api.add_sub_account(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -20,15 +20,56 @@ def test_get_futures_sub_account_list_v2_req(self):
         print("error: ", e)
         raise e
 
-def test_get_spot_sub_account_list_v1_req(self):
+def test_add_sub_account_margin_permission_req(self):
     """
-        get_spot_sub_account_list_v1
-        Get SubAccount List - Spot Balance(V1)
-        /api/v1/sub-accounts
+        add_sub_account_margin_permission
+        Add SubAccount Margin Permission
+        /api/v3/sub/user/margin/enable
     """
 
+    builder = AddSubAccountMarginPermissionReqBuilder()
+    builder.set_uid(?)
+    req = builder.build()
     try:
-        resp = self.api.get_spot_sub_account_list_v1()
+        resp = self.api.add_sub_account_margin_permission(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_sub_account_futures_permission_req(self):
+    """
+        add_sub_account_futures_permission
+        Add SubAccount Futures Permission
+        /api/v3/sub/user/futures/enable
+    """
+
+    builder = AddSubAccountFuturesPermissionReqBuilder()
+    builder.set_uid(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_sub_account_futures_permission(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_spot_sub_accounts_summary_v2_req(self):
+    """
+        get_spot_sub_accounts_summary_v2
+        Get SubAccount List - Summary Info
+        /api/v2/sub/user
+    """
+
+    builder = GetSpotSubAccountsSummaryV2ReqBuilder()
+    builder.set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_spot_sub_accounts_summary_v2(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -55,18 +96,18 @@ def test_get_spot_sub_account_detail_req(self):
         print("error: ", e)
         raise e
 
-def test_delete_sub_account_api_req(self):
+def test_get_spot_sub_account_list_v2_req(self):
     """
-        delete_sub_account_api
-        Delete SubAccount API
-        /api/v1/sub/api-key
+        get_spot_sub_account_list_v2
+        Get SubAccount List - Spot Balance(V2)
+        /api/v2/sub-accounts
     """
 
-    builder = DeleteSubAccountApiReqBuilder()
-    builder.set_api_key(?).set_sub_name(?).set_passphrase(?)
+    builder = GetSpotSubAccountListV2ReqBuilder()
+    builder.set_current_page(?).set_page_size(?)
     req = builder.build()
     try:
-        resp = self.api.delete_sub_account_api(req)
+        resp = self.api.get_spot_sub_account_list_v2(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -74,18 +115,18 @@ def test_delete_sub_account_api_req(self):
         print("error: ", e)
         raise e
 
-def test_get_sub_account_api_list_req(self):
+def test_get_futures_sub_account_list_v2_req(self):
     """
-        get_sub_account_api_list
-        Get SubAccount API List
-        /api/v1/sub/api-key
+        get_futures_sub_account_list_v2
+        Get SubAccount List - Futures Balance(V2)
+        /api/v1/account-overview-all
     """
 
-    builder = GetSubAccountApiListReqBuilder()
-    builder.set_api_key(?).set_sub_name(?)
+    builder = GetFuturesSubAccountListV2ReqBuilder()
+    builder.set_currency(?)
     req = builder.build()
     try:
-        resp = self.api.get_sub_account_api_list(req)
+        resp = self.api.get_futures_sub_account_list_v2(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -131,6 +172,44 @@ def test_modify_sub_account_api_req(self):
         print("error: ", e)
         raise e
 
+def test_get_sub_account_api_list_req(self):
+    """
+        get_sub_account_api_list
+        Get SubAccount API List
+        /api/v1/sub/api-key
+    """
+
+    builder = GetSubAccountApiListReqBuilder()
+    builder.set_api_key(?).set_sub_name(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_sub_account_api_list(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_delete_sub_account_api_req(self):
+    """
+        delete_sub_account_api
+        Delete SubAccount API
+        /api/v1/sub/api-key
+    """
+
+    builder = DeleteSubAccountApiReqBuilder()
+    builder.set_api_key(?).set_sub_name(?).set_passphrase(?)
+    req = builder.build()
+    try:
+        resp = self.api.delete_sub_account_api(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_spot_sub_accounts_summary_v1_req(self):
     """
         get_spot_sub_accounts_summary_v1
@@ -147,94 +226,15 @@ def test_get_spot_sub_accounts_summary_v1_req(self):
         print("error: ", e)
         raise e
 
-def test_get_spot_sub_account_list_v2_req(self):
+def test_get_spot_sub_account_list_v1_req(self):
     """
-        get_spot_sub_account_list_v2
-        Get SubAccount List - Spot Balance(V2)
-        /api/v2/sub-accounts
+        get_spot_sub_account_list_v1
+        Get SubAccount List - Spot Balance(V1)
+        /api/v1/sub-accounts
     """
 
-    builder = GetSpotSubAccountListV2ReqBuilder()
-    builder.set_current_page(?).set_page_size(?)
-    req = builder.build()
     try:
-        resp = self.api.get_spot_sub_account_list_v2(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_add_sub_account_req(self):
-    """
-        add_sub_account
-        Add SubAccount
-        /api/v2/sub/user/created
-    """
-
-    builder = AddSubAccountReqBuilder()
-    builder.set_password(?).set_remarks(?).set_sub_name(?).set_access(?)
-    req = builder.build()
-    try:
-        resp = self.api.add_sub_account(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_spot_sub_accounts_summary_v2_req(self):
-    """
-        get_spot_sub_accounts_summary_v2
-        Get SubAccount List - Summary Info
-        /api/v2/sub/user
-    """
-
-    builder = GetSpotSubAccountsSummaryV2ReqBuilder()
-    builder.set_current_page(?).set_page_size(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_spot_sub_accounts_summary_v2(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_add_sub_account_futures_permission_req(self):
-    """
-        add_sub_account_futures_permission
-        Add SubAccount Futures Permission
-        /api/v3/sub/user/futures/enable
-    """
-
-    builder = AddSubAccountFuturesPermissionReqBuilder()
-    builder.set_uid(?)
-    req = builder.build()
-    try:
-        resp = self.api.add_sub_account_futures_permission(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_add_sub_account_margin_permission_req(self):
-    """
-        add_sub_account_margin_permission
-        Add SubAccount Margin Permission
-        /api/v3/sub/user/margin/enable
-    """
-
-    builder = AddSubAccountMarginPermissionReqBuilder()
-    builder.set_uid(?)
-    req = builder.build()
-    try:
-        resp = self.api.add_sub_account_margin_permission(req)
+        resp = self.api.get_spot_sub_account_list_v1()
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

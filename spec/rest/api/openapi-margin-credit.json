@@ -115,7 +115,8 @@
                 "x-sdk-method-description": "This API endpoint is used to get the information about the currencies available for lending.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"purchaseEnable\\\": true,\\n            \\\"redeemEnable\\\": true,\\n            \\\"increment\\\": \\\"0.00000001\\\",\\n            \\\"minPurchaseSize\\\": \\\"0.001\\\",\\n            \\\"maxPurchaseSize\\\": \\\"40\\\",\\n            \\\"interestIncrement\\\": \\\"0.0001\\\",\\n            \\\"minInterestRate\\\": \\\"0.005\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\",\\n            \\\"maxInterestRate\\\": \\\"0.32\\\",\\n            \\\"autoPurchaseEnable\\\": false\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "operationId": "001"
             }
         },
         "/api/v3/project/marketInterestRate": {
@@ -193,7 +194,8 @@
                 "x-sdk-method-description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"time\\\": \\\"202410170000\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        },\\n        {\\n            \\\"time\\\": \\\"202410170100\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "operationId": "002"
             }
         },
         "/api/v3/purchase": {
@@ -282,7 +284,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"interestRate\\\": \\\"0.1\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"interestRate\\\": \\\"0.1\\\"}",
+                "operationId": "003"
             }
         },
         "/api/v3/lend/purchase/update": {
@@ -362,7 +365,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}",
+                "operationId": "004"
             }
         },
         "/api/v3/purchase/orders": {
@@ -576,7 +580,8 @@
                 "x-sdk-method-description": "This API endpoint provides pagination query for the purchase orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bb15a3b3f930007880bae\\\",\\n                \\\"purchaseSize\\\": \\\"0.001\\\",\\n                \\\"matchSize\\\": \\\"0\\\",\\n                \\\"interestRate\\\": \\\"0.1\\\",\\n                \\\"incomeSize\\\": \\\"0\\\",\\n                \\\"applyTime\\\": 1729868122172,\\n                \\\"status\\\": \\\"PENDING\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "005"
             }
         },
         "/api/v3/redeem": {
@@ -665,7 +670,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}",
+                "operationId": "006"
             }
         },
         "/api/v3/redeem/orders": {
@@ -857,7 +863,8 @@
                 "x-sdk-method-description": "This API endpoint provides pagination query for the redeem orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\",\\n                \\\"redeemOrderNo\\\": \\\"671bb01004c26d000773c55c\\\",\\n                \\\"redeemSize\\\": \\\"0.001\\\",\\n                \\\"receiptSize\\\": \\\"0.001\\\",\\n                \\\"applyTime\\\": null,\\n                \\\"status\\\": \\\"DONE\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "007"
             }
         }
     },

@@ -9,37 +9,9 @@ import (
 
 type NDBrokerAPI interface {
 
-	// GetDepositList Get Deposit List
-	// Description: This endpoint can obtain the deposit records of each sub-account under the ND Broker.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470285
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | BROKER  |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | BROKER  |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
-	GetDepositList(req *GetDepositListReq, ctx context.Context) (*GetDepositListResp, error)
-
-	// DeleteSubAccountAPI Delete SubAccount API
-	// Description: This interface supports deleting Broker’s sub-account APIKEY
-	// Documentation: https://www.kucoin.com/docs-new/api-3470289
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | BROKER  |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | BROKER  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
-	DeleteSubAccountAPI(req *DeleteSubAccountAPIReq, ctx context.Context) (*DeleteSubAccountAPIResp, error)
-
-	// GetSubAccountAPI Get SubAccount API
-	// Description: This interface supports querying the Broker’s sub-account APIKEY
-	// Documentation: https://www.kucoin.com/docs-new/api-3470284
+	// GetBrokerInfo Get Broker Info
+	// Description: This endpoint supports querying the basic information of the current Broker
+	// Documentation: https://www.kucoin.com/docs-new/api-3470282
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -49,35 +21,7 @@ type NDBrokerAPI interface {
 	// | API-RATE-LIMIT-POOL | BROKER  |
 	// | API-RATE-LIMIT      | 2       |
 	// +---------------------+---------+
-	GetSubAccountAPI(req *GetSubAccountAPIReq, ctx context.Context) (*GetSubAccountAPIResp, error)
-
-	// AddSubAccountApi Add SubAccount API
-	// Description: This interface supports the creation of Broker sub-account APIKEY
-	// Documentation: https://www.kucoin.com/docs-new/api-3470291
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | BROKER  |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | BROKER  |
-	// | API-RATE-LIMIT      | 3       |
-	// +---------------------+---------+
-	AddSubAccountApi(req *AddSubAccountApiReq, ctx context.Context) (*AddSubAccountApiResp, error)
-
-	// GetSubAccount Get SubAccount
-	// Description: This interface supports querying sub-accounts created by Broker
-	// Documentation: https://www.kucoin.com/docs-new/api-3470283
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | BROKER  |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | BROKER  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
-	GetSubAccount(req *GetSubAccountReq, ctx context.Context) (*GetSubAccountResp, error)
+	GetBrokerInfo(req *GetBrokerInfoReq, ctx context.Context) (*GetBrokerInfoResp, error)
 
 	// AddSubAccount Add SubAccount
 	// Description: This endpoint supports Broker users to create sub-accounts
@@ -93,6 +37,48 @@ type NDBrokerAPI interface {
 	// +---------------------+---------+
 	AddSubAccount(req *AddSubAccountReq, ctx context.Context) (*AddSubAccountResp, error)
 
+	// GetSubAccount Get SubAccount
+	// Description: This interface supports querying sub-accounts created by Broker
+	// Documentation: https://www.kucoin.com/docs-new/api-3470283
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | BROKER  |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | BROKER  |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	GetSubAccount(req *GetSubAccountReq, ctx context.Context) (*GetSubAccountResp, error)
+
+	// AddSubAccountApi Add SubAccount API
+	// Description: This interface supports the creation of Broker sub-account APIKEY
+	// Documentation: https://www.kucoin.com/docs-new/api-3470291
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | BROKER  |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | BROKER  |
+	// | API-RATE-LIMIT      | 3       |
+	// +---------------------+---------+
+	AddSubAccountApi(req *AddSubAccountApiReq, ctx context.Context) (*AddSubAccountApiResp, error)
+
+	// GetSubAccountAPI Get SubAccount API
+	// Description: This interface supports querying the Broker’s sub-account APIKEY
+	// Documentation: https://www.kucoin.com/docs-new/api-3470284
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | BROKER  |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | BROKER  |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	GetSubAccountAPI(req *GetSubAccountAPIReq, ctx context.Context) (*GetSubAccountAPIResp, error)
+
 	// ModifySubAccountApi Modify SubAccount API
 	// Description: This interface supports modify the Broker’s sub-account APIKEY
 	// Documentation: https://www.kucoin.com/docs-new/api-3470292
@@ -107,23 +93,9 @@ type NDBrokerAPI interface {
 	// +---------------------+---------+
 	ModifySubAccountApi(req *ModifySubAccountApiReq, ctx context.Context) (*ModifySubAccountApiResp, error)
 
-	// GetBrokerInfo Get Broker Info
-	// Description: This endpoint supports querying the basic information of the current Broker
-	// Documentation: https://www.kucoin.com/docs-new/api-3470282
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | BROKER  |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | BROKER  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
-	GetBrokerInfo(req *GetBrokerInfoReq, ctx context.Context) (*GetBrokerInfoResp, error)
-
-	// GetRebase Get Broker Rebate
-	// Description: This interface supports downloading Broker rebate orders
-	// Documentation: https://www.kucoin.com/docs-new/api-3470281
+	// DeleteSubAccountAPI Delete SubAccount API
+	// Description: This interface supports deleting Broker’s sub-account APIKEY
+	// Documentation: https://www.kucoin.com/docs-new/api-3470289
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -133,7 +105,7 @@ type NDBrokerAPI interface {
 	// | API-RATE-LIMIT-POOL | BROKER  |
 	// | API-RATE-LIMIT      | 3       |
 	// +---------------------+---------+
-	GetRebase(req *GetRebaseReq, ctx context.Context) (*GetRebaseResp, error)
+	DeleteSubAccountAPI(req *DeleteSubAccountAPIReq, ctx context.Context) (*DeleteSubAccountAPIResp, error)
 
 	// Transfer Transfer
 	// Description: This endpoint supports fund transfer between Broker account and Broker sub-accounts.  Please be aware that withdrawal from sub-account is not directly supported. Broker has to transfer funds from broker sub-account to broker account to initiate the withdrawals.
@@ -149,20 +121,6 @@ type NDBrokerAPI interface {
 	// +---------------------+---------+
 	Transfer(req *TransferReq, ctx context.Context) (*TransferResp, error)
 
-	// GetDepositDetail Get Deposit Detail
-	// Description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)
-	// Documentation: https://www.kucoin.com/docs-new/api-3470288
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | BROKER  |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | BROKER  |
-	// | API-RATE-LIMIT      | 1       |
-	// +---------------------+---------+
-	GetDepositDetail(req *GetDepositDetailReq, ctx context.Context) (*GetDepositDetailResp, error)
-
 	// GetTransferHistory Get Transfer History
 	// Description: This endpoint supports querying transfer records of the broker itself and its created sub-accounts.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470286
@@ -177,6 +135,34 @@ type NDBrokerAPI interface {
 	// +---------------------+---------+
 	GetTransferHistory(req *GetTransferHistoryReq, ctx context.Context) (*GetTransferHistoryResp, error)
 
+	// GetDepositList Get Deposit List
+	// Description: This endpoint can obtain the deposit records of each sub-account under the ND Broker.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470285
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | BROKER  |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | BROKER  |
+	// | API-RATE-LIMIT      | 10      |
+	// +---------------------+---------+
+	GetDepositList(req *GetDepositListReq, ctx context.Context) (*GetDepositListResp, error)
+
+	// GetDepositDetail Get Deposit Detail
+	// Description: This endpoint supports querying the deposit record of sub-accounts created by a Broker (excluding main account of nd broker)
+	// Documentation: https://www.kucoin.com/docs-new/api-3470288
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | BROKER  |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | BROKER  |
+	// | API-RATE-LIMIT      | 1       |
+	// +---------------------+---------+
+	GetDepositDetail(req *GetDepositDetailReq, ctx context.Context) (*GetDepositDetailResp, error)
+
 	// GetWithdrawDetail Get Withdraw Detail
 	// Description: This endpoint supports querying the withdrawal records of sub-accounts created by a Broker (excluding main account of nd broker).
 	// Documentation: https://www.kucoin.com/docs-new/api-3470287
@@ -190,6 +176,20 @@ type NDBrokerAPI interface {
 	// | API-RATE-LIMIT      | 1       |
 	// +---------------------+---------+
 	GetWithdrawDetail(req *GetWithdrawDetailReq, ctx context.Context) (*GetWithdrawDetailResp, error)
+
+	// GetRebase Get Broker Rebate
+	// Description: This interface supports downloading Broker rebate orders
+	// Documentation: https://www.kucoin.com/docs-new/api-3470281
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | BROKER  |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | BROKER  |
+	// | API-RATE-LIMIT      | 3       |
+	// +---------------------+---------+
+	GetRebase(req *GetRebaseReq, ctx context.Context) (*GetRebaseResp, error)
 }
 
 type NDBrokerAPIImpl struct {
@@ -200,33 +200,9 @@ func NewNDBrokerAPIImp(transport interfaces.Transport) *NDBrokerAPIImpl {
 	return &NDBrokerAPIImpl{transport: transport}
 }
 
-func (impl *NDBrokerAPIImpl) GetDepositList(req *GetDepositListReq, ctx context.Context) (*GetDepositListResp, error) {
-	resp := &GetDepositListResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/asset/ndbroker/deposit/list", req, resp, false)
-	return resp, err
-}
-
-func (impl *NDBrokerAPIImpl) DeleteSubAccountAPI(req *DeleteSubAccountAPIReq, ctx context.Context) (*DeleteSubAccountAPIResp, error) {
-	resp := &DeleteSubAccountAPIResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Delete", "/api/v1/broker/nd/account/apikey", req, resp, false)
-	return resp, err
-}
-
-func (impl *NDBrokerAPIImpl) GetSubAccountAPI(req *GetSubAccountAPIReq, ctx context.Context) (*GetSubAccountAPIResp, error) {
-	resp := &GetSubAccountAPIResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/account/apikey", req, resp, false)
-	return resp, err
-}
-
-func (impl *NDBrokerAPIImpl) AddSubAccountApi(req *AddSubAccountApiReq, ctx context.Context) (*AddSubAccountApiResp, error) {
-	resp := &AddSubAccountApiResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Post", "/api/v1/broker/nd/account/apikey", req, resp, false)
-	return resp, err
-}
-
-func (impl *NDBrokerAPIImpl) GetSubAccount(req *GetSubAccountReq, ctx context.Context) (*GetSubAccountResp, error) {
-	resp := &GetSubAccountResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/account", req, resp, false)
+func (impl *NDBrokerAPIImpl) GetBrokerInfo(req *GetBrokerInfoReq, ctx context.Context) (*GetBrokerInfoResp, error) {
+	resp := &GetBrokerInfoResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/info", req, resp, false)
 	return resp, err
 }
 
@@ -236,21 +212,33 @@ func (impl *NDBrokerAPIImpl) AddSubAccount(req *AddSubAccountReq, ctx context.Co
 	return resp, err
 }
 
+func (impl *NDBrokerAPIImpl) GetSubAccount(req *GetSubAccountReq, ctx context.Context) (*GetSubAccountResp, error) {
+	resp := &GetSubAccountResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/account", req, resp, false)
+	return resp, err
+}
+
+func (impl *NDBrokerAPIImpl) AddSubAccountApi(req *AddSubAccountApiReq, ctx context.Context) (*AddSubAccountApiResp, error) {
+	resp := &AddSubAccountApiResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Post", "/api/v1/broker/nd/account/apikey", req, resp, false)
+	return resp, err
+}
+
+func (impl *NDBrokerAPIImpl) GetSubAccountAPI(req *GetSubAccountAPIReq, ctx context.Context) (*GetSubAccountAPIResp, error) {
+	resp := &GetSubAccountAPIResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/account/apikey", req, resp, false)
+	return resp, err
+}
+
 func (impl *NDBrokerAPIImpl) ModifySubAccountApi(req *ModifySubAccountApiReq, ctx context.Context) (*ModifySubAccountApiResp, error) {
 	resp := &ModifySubAccountApiResp{}
 	err := impl.transport.Call(ctx, "broker", true, "Post", "/api/v1/broker/nd/account/update-apikey", req, resp, false)
 	return resp, err
 }
 
-func (impl *NDBrokerAPIImpl) GetBrokerInfo(req *GetBrokerInfoReq, ctx context.Context) (*GetBrokerInfoResp, error) {
-	resp := &GetBrokerInfoResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/info", req, resp, false)
-	return resp, err
-}
-
-func (impl *NDBrokerAPIImpl) GetRebase(req *GetRebaseReq, ctx context.Context) (*GetRebaseResp, error) {
-	resp := &GetRebaseResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/rebase/download", req, resp, false)
+func (impl *NDBrokerAPIImpl) DeleteSubAccountAPI(req *DeleteSubAccountAPIReq, ctx context.Context) (*DeleteSubAccountAPIResp, error) {
+	resp := &DeleteSubAccountAPIResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Delete", "/api/v1/broker/nd/account/apikey", req, resp, false)
 	return resp, err
 }
 
@@ -260,20 +248,32 @@ func (impl *NDBrokerAPIImpl) Transfer(req *TransferReq, ctx context.Context) (*T
 	return resp, err
 }
 
-func (impl *NDBrokerAPIImpl) GetDepositDetail(req *GetDepositDetailReq, ctx context.Context) (*GetDepositDetailResp, error) {
-	resp := &GetDepositDetailResp{}
-	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v3/broker/nd/deposit/detail", req, resp, false)
-	return resp, err
-}
-
 func (impl *NDBrokerAPIImpl) GetTransferHistory(req *GetTransferHistoryReq, ctx context.Context) (*GetTransferHistoryResp, error) {
 	resp := &GetTransferHistoryResp{}
 	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v3/broker/nd/transfer/detail", req, resp, false)
 	return resp, err
 }
 
+func (impl *NDBrokerAPIImpl) GetDepositList(req *GetDepositListReq, ctx context.Context) (*GetDepositListResp, error) {
+	resp := &GetDepositListResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/asset/ndbroker/deposit/list", req, resp, false)
+	return resp, err
+}
+
+func (impl *NDBrokerAPIImpl) GetDepositDetail(req *GetDepositDetailReq, ctx context.Context) (*GetDepositDetailResp, error) {
+	resp := &GetDepositDetailResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v3/broker/nd/deposit/detail", req, resp, false)
+	return resp, err
+}
+
 func (impl *NDBrokerAPIImpl) GetWithdrawDetail(req *GetWithdrawDetailReq, ctx context.Context) (*GetWithdrawDetailResp, error) {
 	resp := &GetWithdrawDetailResp{}
 	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v3/broker/nd/withdraw/detail", req, resp, false)
+	return resp, err
+}
+
+func (impl *NDBrokerAPIImpl) GetRebase(req *GetRebaseReq, ctx context.Context) (*GetRebaseResp, error) {
+	resp := &GetRebaseResp{}
+	err := impl.transport.Call(ctx, "broker", true, "Get", "/api/v1/broker/nd/rebase/download", req, resp, false)
 	return resp, err
 }

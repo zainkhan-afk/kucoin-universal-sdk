@@ -94,7 +94,8 @@
                 "x-sdk-method-description": "This interface is for the spot/margin basic fee rate of users",
                 "x-api-rate-limit": 3,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"takerFeeRate\\\": \\\"0.001\\\",\\n        \\\"makerFeeRate\\\": \\\"0.001\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currencyType\\\": 1}"
+                "x-request-example": "{\\\"currencyType\\\": 1}",
+                "operationId": "001"
             }
         },
         "/api/v1/trade-fees": {
@@ -176,7 +177,8 @@
                 "x-sdk-method-description": "This interface is for the actual fee rate of the trading pair. You can inquire about fee rates of 10 trading pairs each time at most. The fee rate of your sub-account is the same as that of the master account.",
                 "x-api-rate-limit": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":[{\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"takerFeeRate\\\":\\\"0.001\\\",\\\"makerFeeRate\\\":\\\"0.001\\\"},{\\\"symbol\\\":\\\"ETH-USDT\\\",\\\"takerFeeRate\\\":\\\"0.001\\\",\\\"makerFeeRate\\\":\\\"0.001\\\"}]}",
-                "x-request-example": "{\\\"symbols\\\": \\\"BTC-USDT,ETH-USDT\\\"}"
+                "x-request-example": "{\\\"symbols\\\": \\\"BTC-USDT,ETH-USDT\\\"}",
+                "operationId": "002"
             },
             "patch": {
                 "summary": "Get Actual Fee - Futures",
@@ -255,6 +257,7 @@
                 "x-api-rate-limit": 3,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"takerFeeRate\\\":\\\"0.0006\\\",\\\"makerFeeRate\\\":\\\"0.0002\\\"}}",
                 "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "003",
                 "x-original-method": "get"
             }
         }

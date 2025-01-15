@@ -9,19 +9,75 @@ import (
 
 type PositionsAPI interface {
 
-	// GetIsolatedMarginRiskLimit Get Isolated Margin Risk Limit
-	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
-	// Documentation: https://www.kucoin.com/docs-new/api-3470263
+	// GetMarginMode Get Margin Mode
+	// Description: This interface can query the margin mode of the current symbol.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470259
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
 	// | API-DOMAIN          | FUTURES |
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 5       |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 2       |
 	// +---------------------+---------+
-	GetIsolatedMarginRiskLimit(req *GetIsolatedMarginRiskLimitReq, ctx context.Context) (*GetIsolatedMarginRiskLimitResp, error)
+	GetMarginMode(req *GetMarginModeReq, ctx context.Context) (*GetMarginModeResp, error)
+
+	// SwitchMarginMode Switch Margin Mode
+	// Description: This interface can modify the margin mode of the current symbol.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470262
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	SwitchMarginMode(req *SwitchMarginModeReq, ctx context.Context) (*SwitchMarginModeResp, error)
+
+	// GetMaxOpenSize Get Max Open Size
+	// Description: Get Maximum Open Position Size.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470251
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error)
+
+	// GetPositionDetails Get Position Details
+	// Description: Get the position details of a specified position.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470252
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	GetPositionDetails(req *GetPositionDetailsReq, ctx context.Context) (*GetPositionDetailsResp, error)
+
+	// GetPositionList Get Position List
+	// Description: Get the position details of a specified position.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470253
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	GetPositionList(req *GetPositionListReq, ctx context.Context) (*GetPositionListResp, error)
 
 	// GetPositionsHistory Get Positions History
 	// Description: This interface can query position history information records.
@@ -51,23 +107,9 @@ type PositionsAPI interface {
 	// +---------------------+---------+
 	GetMaxWithdrawMargin(req *GetMaxWithdrawMarginReq, ctx context.Context) (*GetMaxWithdrawMarginResp, error)
 
-	// RemoveIsolatedMargin Remove Isolated Margin
-	// Description: Remove Isolated Margin Manually.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470256
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
-	RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error)
-
-	// GetPositionDetails Get Position Details
-	// Description: Get the position details of a specified position.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470252
+	// GetCrossMarginLeverage Get Cross Margin Leverage
+	// Description: This interface can query the current symbol’s cross-margin leverage multiple.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470260
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -77,64 +119,7 @@ type PositionsAPI interface {
 	// | API-RATE-LIMIT-POOL | FUTURES |
 	// | API-RATE-LIMIT      | 2       |
 	// +---------------------+---------+
-	GetPositionDetails(req *GetPositionDetailsReq, ctx context.Context) (*GetPositionDetailsResp, error)
-
-	// ModifyAutoDepositStatus Modify Isolated Margin Auto-Deposit Status
-	// Description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470255
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 4       |
-	// +---------------------+---------+
-	// Deprecated
-	ModifyAutoDepositStatus(req *ModifyAutoDepositStatusReq, ctx context.Context) (*ModifyAutoDepositStatusResp, error)
-
-	// AddIsolatedMargin Add Isolated Margin
-	// Description: Add Isolated Margin Manually.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470257
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 4       |
-	// +---------------------+---------+
-	AddIsolatedMargin(req *AddIsolatedMarginReq, ctx context.Context) (*AddIsolatedMarginResp, error)
-
-	// ModifyIsolatedMarginRiskLimt Modify Isolated Margin Risk Limit
-	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
-	// Documentation: https://www.kucoin.com/docs-new/api-3470264
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 5       |
-	// +---------------------+---------+
-	ModifyIsolatedMarginRiskLimt(req *ModifyIsolatedMarginRiskLimtReq, ctx context.Context) (*ModifyIsolatedMarginRiskLimtResp, error)
-
-	// GetPositionList Get Position List
-	// Description: Get the position details of a specified position.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470253
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
-	GetPositionList(req *GetPositionListReq, ctx context.Context) (*GetPositionListResp, error)
+	GetCrossMarginLeverage(req *GetCrossMarginLeverageReq, ctx context.Context) (*GetCrossMarginLeverageResp, error)
 
 	// ModifyMarginLeverage Modify Cross Margin Leverage
 	// Description: This interface can modify the current symbol’s cross-margin leverage multiple.
@@ -150,9 +135,9 @@ type PositionsAPI interface {
 	// +---------------------+---------+
 	ModifyMarginLeverage(req *ModifyMarginLeverageReq, ctx context.Context) (*ModifyMarginLeverageResp, error)
 
-	// GetCrossMarginLeverage Get Cross Margin Leverage
-	// Description: This interface can query the current symbol’s cross-margin leverage multiple.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470260
+	// AddIsolatedMargin Add Isolated Margin
+	// Description: Add Isolated Margin Manually.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470257
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -160,13 +145,13 @@ type PositionsAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
 	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
+	// | API-RATE-LIMIT      | 4       |
 	// +---------------------+---------+
-	GetCrossMarginLeverage(req *GetCrossMarginLeverageReq, ctx context.Context) (*GetCrossMarginLeverageResp, error)
+	AddIsolatedMargin(req *AddIsolatedMarginReq, ctx context.Context) (*AddIsolatedMarginResp, error)
 
-	// GetMaxOpenSize Get Max Open Size
-	// Description: Get Maximum Open Position Size.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470251
+	// RemoveIsolatedMargin Remove Isolated Margin
+	// Description: Remove Isolated Margin Manually.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470256
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -174,27 +159,27 @@ type PositionsAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
 	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
+	// | API-RATE-LIMIT      | 10      |
 	// +---------------------+---------+
-	GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error)
+	RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error)
 
-	// SwitchMarginMode Switch Margin Mode
-	// Description: This interface can modify the margin mode of the current symbol.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470262
+	// GetIsolatedMarginRiskLimit Get Isolated Margin Risk Limit
+	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Documentation: https://www.kucoin.com/docs-new/api-3470263
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
 	// | API-DOMAIN          | FUTURES |
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
+	// | API-RATE-LIMIT-POOL | PUBLIC  |
+	// | API-RATE-LIMIT      | 5       |
 	// +---------------------+---------+
-	SwitchMarginMode(req *SwitchMarginModeReq, ctx context.Context) (*SwitchMarginModeResp, error)
+	GetIsolatedMarginRiskLimit(req *GetIsolatedMarginRiskLimitReq, ctx context.Context) (*GetIsolatedMarginRiskLimitResp, error)
 
-	// GetMarginMode Get Margin Mode
-	// Description: This interface can query the margin mode of the current symbol.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470259
+	// ModifyIsolatedMarginRiskLimt Modify Isolated Margin Risk Limit
+	// Description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+	// Documentation: https://www.kucoin.com/docs-new/api-3470264
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -202,9 +187,24 @@ type PositionsAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
 	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
+	// | API-RATE-LIMIT      | 5       |
 	// +---------------------+---------+
-	GetMarginMode(req *GetMarginModeReq, ctx context.Context) (*GetMarginModeResp, error)
+	ModifyIsolatedMarginRiskLimt(req *ModifyIsolatedMarginRiskLimtReq, ctx context.Context) (*ModifyIsolatedMarginRiskLimtResp, error)
+
+	// ModifyAutoDepositStatus Modify Isolated Margin Auto-Deposit Status
+	// Description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470255
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 4       |
+	// +---------------------+---------+
+	// Deprecated
+	ModifyAutoDepositStatus(req *ModifyAutoDepositStatusReq, ctx context.Context) (*ModifyAutoDepositStatusResp, error)
 }
 
 type PositionsAPIImpl struct {
@@ -215,9 +215,33 @@ func NewPositionsAPIImp(transport interfaces.Transport) *PositionsAPIImpl {
 	return &PositionsAPIImpl{transport: transport}
 }
 
-func (impl *PositionsAPIImpl) GetIsolatedMarginRiskLimit(req *GetIsolatedMarginRiskLimitReq, ctx context.Context) (*GetIsolatedMarginRiskLimitResp, error) {
-	resp := &GetIsolatedMarginRiskLimitResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/contracts/risk-limit/{symbol}", req, resp, false)
+func (impl *PositionsAPIImpl) GetMarginMode(req *GetMarginModeReq, ctx context.Context) (*GetMarginModeResp, error) {
+	resp := &GetMarginModeResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/position/getMarginMode", req, resp, false)
+	return resp, err
+}
+
+func (impl *PositionsAPIImpl) SwitchMarginMode(req *SwitchMarginModeReq, ctx context.Context) (*SwitchMarginModeResp, error) {
+	resp := &SwitchMarginModeResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v2/position/changeMarginMode", req, resp, false)
+	return resp, err
+}
+
+func (impl *PositionsAPIImpl) GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error) {
+	resp := &GetMaxOpenSizeResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/getMaxOpenSize", req, resp, false)
+	return resp, err
+}
+
+func (impl *PositionsAPIImpl) GetPositionDetails(req *GetPositionDetailsReq, ctx context.Context) (*GetPositionDetailsResp, error) {
+	resp := &GetPositionDetailsResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/position", req, resp, false)
+	return resp, err
+}
+
+func (impl *PositionsAPIImpl) GetPositionList(req *GetPositionListReq, ctx context.Context) (*GetPositionListResp, error) {
+	resp := &GetPositionListResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/positions", req, resp, false)
 	return resp, err
 }
 
@@ -233,39 +257,9 @@ func (impl *PositionsAPIImpl) GetMaxWithdrawMargin(req *GetMaxWithdrawMarginReq,
 	return resp, err
 }
 
-func (impl *PositionsAPIImpl) RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error) {
-	resp := &RemoveIsolatedMarginResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/margin/withdrawMargin", req, resp, false)
-	return resp, err
-}
-
-func (impl *PositionsAPIImpl) GetPositionDetails(req *GetPositionDetailsReq, ctx context.Context) (*GetPositionDetailsResp, error) {
-	resp := &GetPositionDetailsResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/position", req, resp, false)
-	return resp, err
-}
-
-func (impl *PositionsAPIImpl) ModifyAutoDepositStatus(req *ModifyAutoDepositStatusReq, ctx context.Context) (*ModifyAutoDepositStatusResp, error) {
-	resp := &ModifyAutoDepositStatusResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/position/margin/auto-deposit-status", req, resp, false)
-	return resp, err
-}
-
-func (impl *PositionsAPIImpl) AddIsolatedMargin(req *AddIsolatedMarginReq, ctx context.Context) (*AddIsolatedMarginResp, error) {
-	resp := &AddIsolatedMarginResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/position/margin/deposit-margin", req, resp, false)
-	return resp, err
-}
-
-func (impl *PositionsAPIImpl) ModifyIsolatedMarginRiskLimt(req *ModifyIsolatedMarginRiskLimtReq, ctx context.Context) (*ModifyIsolatedMarginRiskLimtResp, error) {
-	resp := &ModifyIsolatedMarginRiskLimtResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/position/risk-limit-level/change", req, resp, false)
-	return resp, err
-}
-
-func (impl *PositionsAPIImpl) GetPositionList(req *GetPositionListReq, ctx context.Context) (*GetPositionListResp, error) {
-	resp := &GetPositionListResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/positions", req, resp, false)
+func (impl *PositionsAPIImpl) GetCrossMarginLeverage(req *GetCrossMarginLeverageReq, ctx context.Context) (*GetCrossMarginLeverageResp, error) {
+	resp := &GetCrossMarginLeverageResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/getCrossUserLeverage", req, resp, false)
 	return resp, err
 }
 
@@ -275,26 +269,32 @@ func (impl *PositionsAPIImpl) ModifyMarginLeverage(req *ModifyMarginLeverageReq,
 	return resp, err
 }
 
-func (impl *PositionsAPIImpl) GetCrossMarginLeverage(req *GetCrossMarginLeverageReq, ctx context.Context) (*GetCrossMarginLeverageResp, error) {
-	resp := &GetCrossMarginLeverageResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/getCrossUserLeverage", req, resp, false)
+func (impl *PositionsAPIImpl) AddIsolatedMargin(req *AddIsolatedMarginReq, ctx context.Context) (*AddIsolatedMarginResp, error) {
+	resp := &AddIsolatedMarginResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/position/margin/deposit-margin", req, resp, false)
 	return resp, err
 }
 
-func (impl *PositionsAPIImpl) GetMaxOpenSize(req *GetMaxOpenSizeReq, ctx context.Context) (*GetMaxOpenSizeResp, error) {
-	resp := &GetMaxOpenSizeResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/getMaxOpenSize", req, resp, false)
+func (impl *PositionsAPIImpl) RemoveIsolatedMargin(req *RemoveIsolatedMarginReq, ctx context.Context) (*RemoveIsolatedMarginResp, error) {
+	resp := &RemoveIsolatedMarginResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/margin/withdrawMargin", req, resp, false)
 	return resp, err
 }
 
-func (impl *PositionsAPIImpl) SwitchMarginMode(req *SwitchMarginModeReq, ctx context.Context) (*SwitchMarginModeResp, error) {
-	resp := &SwitchMarginModeResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v2/position/changeMarginMode", req, resp, false)
+func (impl *PositionsAPIImpl) GetIsolatedMarginRiskLimit(req *GetIsolatedMarginRiskLimitReq, ctx context.Context) (*GetIsolatedMarginRiskLimitResp, error) {
+	resp := &GetIsolatedMarginRiskLimitResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/contracts/risk-limit/{symbol}", req, resp, false)
 	return resp, err
 }
 
-func (impl *PositionsAPIImpl) GetMarginMode(req *GetMarginModeReq, ctx context.Context) (*GetMarginModeResp, error) {
-	resp := &GetMarginModeResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v2/position/getMarginMode", req, resp, false)
+func (impl *PositionsAPIImpl) ModifyIsolatedMarginRiskLimt(req *ModifyIsolatedMarginRiskLimtReq, ctx context.Context) (*ModifyIsolatedMarginRiskLimtResp, error) {
+	resp := &ModifyIsolatedMarginRiskLimtResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/position/risk-limit-level/change", req, resp, false)
+	return resp, err
+}
+
+func (impl *PositionsAPIImpl) ModifyAutoDepositStatus(req *ModifyAutoDepositStatusReq, ctx context.Context) (*ModifyAutoDepositStatusResp, error) {
+	resp := &ModifyAutoDepositStatusResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Post", "/api/v1/position/margin/auto-deposit-status", req, resp, false)
 	return resp, err
 }

@@ -7,6 +7,34 @@ import (
 	"testing"
 )
 
+func TestFundingFeesGetCurrentFundingRateReqModel(t *testing.T) {
+	// GetCurrentFundingRate
+	// Get Current Funding Rate
+	// /api/v1/funding-rate/{symbol}/current
+
+	data := "{\"symbol\": \"XBTUSDTM\"}"
+	req := &GetCurrentFundingRateReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestFundingFeesGetCurrentFundingRateRespModel(t *testing.T) {
+	// GetCurrentFundingRate
+	// Get Current Funding Rate
+	// /api/v1/funding-rate/{symbol}/current
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1731441600000,\n        \"value\": 6.41E-4,\n        \"predictedValue\": 5.2E-5,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetCurrentFundingRateResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
 func TestFundingFeesGetPublicFundingHistoryReqModel(t *testing.T) {
 	// GetPublicFundingHistory
 	// Get Public Funding History
@@ -58,34 +86,6 @@ func TestFundingFeesGetPrivateFundingHistoryRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetPrivateFundingHistoryResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestFundingFeesGetCurrentFundingRateReqModel(t *testing.T) {
-	// GetCurrentFundingRate
-	// Get Current Funding Rate
-	// /api/v1/funding-rate/{symbol}/current
-
-	data := "{\"symbol\": \"XBTUSDTM\"}"
-	req := &GetCurrentFundingRateReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestFundingFeesGetCurrentFundingRateRespModel(t *testing.T) {
-	// GetCurrentFundingRate
-	// Get Current Funding Rate
-	// /api/v1/funding-rate/{symbol}/current
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1731441600000,\n        \"value\": 6.41E-4,\n        \"predictedValue\": 5.2E-5,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetCurrentFundingRateResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

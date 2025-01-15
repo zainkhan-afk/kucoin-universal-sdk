@@ -26,81 +26,6 @@ from .model_redeem_resp import RedeemResp
 class EarnAPI(ABC):
 
     @abstractmethod
-    def get_eth_staking_products(self, req: GetEthStakingProductsReq,
-                                 **kwargs: Any) -> GetEthStakingProductsResp:
-        """
-        summary: Get ETH Staking Products
-        description: This endpoint can get available ETH staking products. If no products are available, an empty list is returned.
-        documentation: https://www.kucoin.com/docs-new/api-3470276
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_account_holding(self, req: GetAccountHoldingReq,
-                            **kwargs: Any) -> GetAccountHoldingResp:
-        """
-        summary: Get Account Holding
-        description: This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.
-        documentation: https://www.kucoin.com/docs-new/api-3470273
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_kcs_staking_products(self, req: GetKcsStakingProductsReq,
-                                 **kwargs: Any) -> GetKcsStakingProductsResp:
-        """
-        summary: Get KCS Staking Products
-        description: This endpoint can get available KCS staking products. If no products are available, an empty list is returned.
-        documentation: https://www.kucoin.com/docs-new/api-3470275
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
-        """
-        summary: Redeem
-        description: This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.
-        documentation: https://www.kucoin.com/docs-new/api-3470270
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | EARN    |
-        | API-RATE-LIMIT-POOL | EARN    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
     def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
         """
         summary: purchase
@@ -119,18 +44,18 @@ class EarnAPI(ABC):
         pass
 
     @abstractmethod
-    def get_promotion_products(self, req: GetPromotionProductsReq,
-                               **kwargs: Any) -> GetPromotionProductsResp:
+    def get_redeem_preview(self, req: GetRedeemPreviewReq,
+                           **kwargs: Any) -> GetRedeemPreviewResp:
         """
-        summary: Get Promotion Products
-        description: This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.
-        documentation: https://www.kucoin.com/docs-new/api-3470272
+        summary: Get Redeem Preview
+        description: This endpoint allows subscribing earn products
+        documentation: https://www.kucoin.com/docs-new/api-3470269
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | SPOT    |
         | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
+        | API-PERMISSION      | EARN    |
         | API-RATE-LIMIT-POOL | EARN    |
         | API-RATE-LIMIT      | 5       |
         +---------------------+---------+
@@ -138,12 +63,11 @@ class EarnAPI(ABC):
         pass
 
     @abstractmethod
-    def get_redeem_preview(self, req: GetRedeemPreviewReq,
-                           **kwargs: Any) -> GetRedeemPreviewResp:
+    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
         """
-        summary: Get Redeem Preview
-        description: This endpoint allows subscribing earn products
-        documentation: https://www.kucoin.com/docs-new/api-3470269
+        summary: Redeem
+        description: This endpoint allows initiating redemption by holding ID. If the current holding is fully redeemed or in the process of being redeemed, it indicates that the holding does not exist.
+        documentation: https://www.kucoin.com/docs-new/api-3470270
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -176,6 +100,44 @@ class EarnAPI(ABC):
         pass
 
     @abstractmethod
+    def get_promotion_products(self, req: GetPromotionProductsReq,
+                               **kwargs: Any) -> GetPromotionProductsResp:
+        """
+        summary: Get Promotion Products
+        description: This endpoint can get available limited-time promotion products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470272
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | EARN    |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_account_holding(self, req: GetAccountHoldingReq,
+                            **kwargs: Any) -> GetAccountHoldingResp:
+        """
+        summary: Get Account Holding
+        description: This endpoint can get current holding assets information. If no current holding assets are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470273
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | EARN    |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def get_staking_products(self, req: GetStakingProductsReq,
                              **kwargs: Any) -> GetStakingProductsResp:
         """
@@ -194,24 +156,89 @@ class EarnAPI(ABC):
         """
         pass
 
+    @abstractmethod
+    def get_kcs_staking_products(self, req: GetKcsStakingProductsReq,
+                                 **kwargs: Any) -> GetKcsStakingProductsResp:
+        """
+        summary: Get KCS Staking Products
+        description: This endpoint can get available KCS staking products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470275
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | EARN    |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_eth_staking_products(self, req: GetEthStakingProductsReq,
+                                 **kwargs: Any) -> GetEthStakingProductsResp:
+        """
+        summary: Get ETH Staking Products
+        description: This endpoint can get available ETH staking products. If no products are available, an empty list is returned.
+        documentation: https://www.kucoin.com/docs-new/api-3470276
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | EARN    |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
 
 class EarnAPIImpl(EarnAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_eth_staking_products(self, req: GetEthStakingProductsReq,
-                                 **kwargs: Any) -> GetEthStakingProductsResp:
+    def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
+        return self.transport.call("spot", False,
+                                   "POST", "/api/v1/earn/orders", req,
+                                   PurchaseResp(), False, **kwargs)
+
+    def get_redeem_preview(self, req: GetRedeemPreviewReq,
+                           **kwargs: Any) -> GetRedeemPreviewResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/earn/eth-staking/products", req,
-                                   GetEthStakingProductsResp(), False,
-                                   **kwargs)
+                                   "/api/v1/earn/redeem-preview", req,
+                                   GetRedeemPreviewResp(), False, **kwargs)
+
+    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
+        return self.transport.call("spot", False,
+                                   "DELETE", "/api/v1/earn/orders", req,
+                                   RedeemResp(), False, **kwargs)
+
+    def get_savings_products(self, req: GetSavingsProductsReq,
+                             **kwargs: Any) -> GetSavingsProductsResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/earn/saving/products", req,
+                                   GetSavingsProductsResp(), False, **kwargs)
+
+    def get_promotion_products(self, req: GetPromotionProductsReq,
+                               **kwargs: Any) -> GetPromotionProductsResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/earn/promotion/products", req,
+                                   GetPromotionProductsResp(), False, **kwargs)
 
     def get_account_holding(self, req: GetAccountHoldingReq,
                             **kwargs: Any) -> GetAccountHoldingResp:
         return self.transport.call("spot", False, "GET",
                                    "/api/v1/earn/hold-assets", req,
                                    GetAccountHoldingResp(), False, **kwargs)
+
+    def get_staking_products(self, req: GetStakingProductsReq,
+                             **kwargs: Any) -> GetStakingProductsResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/earn/staking/products", req,
+                                   GetStakingProductsResp(), False, **kwargs)
 
     def get_kcs_staking_products(self, req: GetKcsStakingProductsReq,
                                  **kwargs: Any) -> GetKcsStakingProductsResp:
@@ -220,36 +247,9 @@ class EarnAPIImpl(EarnAPI):
                                    GetKcsStakingProductsResp(), False,
                                    **kwargs)
 
-    def redeem(self, req: RedeemReq, **kwargs: Any) -> RedeemResp:
-        return self.transport.call("spot", False,
-                                   "DELETE", "/api/v1/earn/orders", req,
-                                   RedeemResp(), False, **kwargs)
-
-    def purchase(self, req: PurchaseReq, **kwargs: Any) -> PurchaseResp:
-        return self.transport.call("spot", False,
-                                   "POST", "/api/v1/earn/orders", req,
-                                   PurchaseResp(), False, **kwargs)
-
-    def get_promotion_products(self, req: GetPromotionProductsReq,
-                               **kwargs: Any) -> GetPromotionProductsResp:
+    def get_eth_staking_products(self, req: GetEthStakingProductsReq,
+                                 **kwargs: Any) -> GetEthStakingProductsResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/earn/promotion/products", req,
-                                   GetPromotionProductsResp(), False, **kwargs)
-
-    def get_redeem_preview(self, req: GetRedeemPreviewReq,
-                           **kwargs: Any) -> GetRedeemPreviewResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/earn/redeem-preview", req,
-                                   GetRedeemPreviewResp(), False, **kwargs)
-
-    def get_savings_products(self, req: GetSavingsProductsReq,
-                             **kwargs: Any) -> GetSavingsProductsResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/earn/saving/products", req,
-                                   GetSavingsProductsResp(), False, **kwargs)
-
-    def get_staking_products(self, req: GetStakingProductsReq,
-                             **kwargs: Any) -> GetStakingProductsResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/earn/staking/products", req,
-                                   GetStakingProductsResp(), False, **kwargs)
+                                   "/api/v1/earn/eth-staking/products", req,
+                                   GetEthStakingProductsResp(), False,
+                                   **kwargs)

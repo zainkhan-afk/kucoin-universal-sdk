@@ -38,6 +38,82 @@ class TransferAPITest(unittest.TestCase):
         common_response = RestResponse.from_json(data)
         resp = GetTransferQuotasResp.from_dict(common_response.data)
 
+    def test_flex_transfer_req_model(self):
+        """
+       flex_transfer
+       Flex Transfer
+       /api/v3/accounts/universal-transfer
+       """
+        data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"type\": \"PARENT_TO_SUB\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"fromAccountType\": \"TRADE\", \"toUserId\": \"63743f07e0c5230001761d08\", \"toAccountType\": \"TRADE\"}"
+        req = FlexTransferReq.from_json(data)
+
+    def test_flex_transfer_resp_model(self):
+        """
+        flex_transfer
+        Flex Transfer
+        /api/v3/accounts/universal-transfer
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"6705f7248c6954000733ecac\"\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = FlexTransferResp.from_dict(common_response.data)
+
+    def test_sub_account_transfer_req_model(self):
+        """
+       sub_account_transfer
+       SubAccount Transfer
+       /api/v2/accounts/sub-transfer
+       """
+        data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"direction\": \"OUT\", \"accountType\": \"MAIN\", \"subAccountType\": \"MAIN\", \"subUserId\": \"63743f07e0c5230001761d08\"}"
+        req = SubAccountTransferReq.from_json(data)
+
+    def test_sub_account_transfer_resp_model(self):
+        """
+        sub_account_transfer
+        SubAccount Transfer
+        /api/v2/accounts/sub-transfer
+        """
+        data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}"
+        common_response = RestResponse.from_json(data)
+        resp = SubAccountTransferResp.from_dict(common_response.data)
+
+    def test_inner_transfer_req_model(self):
+        """
+       inner_transfer
+       Inner Transfer
+       /api/v2/accounts/inner-transfer
+       """
+        data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"from\": \"main\", \"to\": \"trade\"}"
+        req = InnerTransferReq.from_json(data)
+
+    def test_inner_transfer_resp_model(self):
+        """
+        inner_transfer
+        Inner Transfer
+        /api/v2/accounts/inner-transfer
+        """
+        data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}"
+        common_response = RestResponse.from_json(data)
+        resp = InnerTransferResp.from_dict(common_response.data)
+
+    def test_futures_account_transfer_out_req_model(self):
+        """
+       futures_account_transfer_out
+       Futures Account Transfer Out
+       /api/v3/transfer-out
+       """
+        data = "{\"currency\": \"USDT\", \"amount\": 0.01, \"recAccountType\": \"MAIN\"}"
+        req = FuturesAccountTransferOutReq.from_json(data)
+
+    def test_futures_account_transfer_out_resp_model(self):
+        """
+        futures_account_transfer_out
+        Futures Account Transfer Out
+        /api/v3/transfer-out
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"applyId\": \"670bf84c577f6c00017a1c48\",\n        \"bizNo\": \"670bf84c577f6c00017a1c47\",\n        \"payAccountType\": \"CONTRACT\",\n        \"payTag\": \"DEFAULT\",\n        \"remark\": \"\",\n        \"recAccountType\": \"MAIN\",\n        \"recTag\": \"DEFAULT\",\n        \"recRemark\": \"\",\n        \"recSystem\": \"KUCOIN\",\n        \"status\": \"PROCESSING\",\n        \"currency\": \"USDT\",\n        \"amount\": \"0.01\",\n        \"fee\": \"0\",\n        \"sn\": 1519769124134806,\n        \"reason\": \"\",\n        \"createdAt\": 1728837708000,\n        \"updatedAt\": 1728837708000\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = FuturesAccountTransferOutResp.from_dict(common_response.data)
+
     def test_futures_account_transfer_in_req_model(self):
         """
        futures_account_transfer_in
@@ -76,79 +152,3 @@ class TransferAPITest(unittest.TestCase):
         common_response = RestResponse.from_json(data)
         resp = GetFuturesAccountTransferOutLedgerResp.from_dict(
             common_response.data)
-
-    def test_inner_transfer_req_model(self):
-        """
-       inner_transfer
-       Inner Transfer
-       /api/v2/accounts/inner-transfer
-       """
-        data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"from\": \"main\", \"to\": \"trade\"}"
-        req = InnerTransferReq.from_json(data)
-
-    def test_inner_transfer_resp_model(self):
-        """
-        inner_transfer
-        Inner Transfer
-        /api/v2/accounts/inner-transfer
-        """
-        data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670beb3482a1bb0007dec644\"}}"
-        common_response = RestResponse.from_json(data)
-        resp = InnerTransferResp.from_dict(common_response.data)
-
-    def test_sub_account_transfer_req_model(self):
-        """
-       sub_account_transfer
-       SubAccount Transfer
-       /api/v2/accounts/sub-transfer
-       """
-        data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"direction\": \"OUT\", \"accountType\": \"MAIN\", \"subAccountType\": \"MAIN\", \"subUserId\": \"63743f07e0c5230001761d08\"}"
-        req = SubAccountTransferReq.from_json(data)
-
-    def test_sub_account_transfer_resp_model(self):
-        """
-        sub_account_transfer
-        SubAccount Transfer
-        /api/v2/accounts/sub-transfer
-        """
-        data = "{\"code\":\"200000\",\"data\":{\"orderId\":\"670be6b0b1b9080007040a9b\"}}"
-        common_response = RestResponse.from_json(data)
-        resp = SubAccountTransferResp.from_dict(common_response.data)
-
-    def test_flex_transfer_req_model(self):
-        """
-       flex_transfer
-       Flex Transfer
-       /api/v3/accounts/universal-transfer
-       """
-        data = "{\"clientOid\": \"64ccc0f164781800010d8c09\", \"type\": \"PARENT_TO_SUB\", \"currency\": \"USDT\", \"amount\": \"0.01\", \"fromAccountType\": \"TRADE\", \"toUserId\": \"63743f07e0c5230001761d08\", \"toAccountType\": \"TRADE\"}"
-        req = FlexTransferReq.from_json(data)
-
-    def test_flex_transfer_resp_model(self):
-        """
-        flex_transfer
-        Flex Transfer
-        /api/v3/accounts/universal-transfer
-        """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"6705f7248c6954000733ecac\"\n    }\n}"
-        common_response = RestResponse.from_json(data)
-        resp = FlexTransferResp.from_dict(common_response.data)
-
-    def test_futures_account_transfer_out_req_model(self):
-        """
-       futures_account_transfer_out
-       Futures Account Transfer Out
-       /api/v3/transfer-out
-       """
-        data = "{\"currency\": \"USDT\", \"amount\": 0.01, \"recAccountType\": \"MAIN\"}"
-        req = FuturesAccountTransferOutReq.from_json(data)
-
-    def test_futures_account_transfer_out_resp_model(self):
-        """
-        futures_account_transfer_out
-        Futures Account Transfer Out
-        /api/v3/transfer-out
-        """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"applyId\": \"670bf84c577f6c00017a1c48\",\n        \"bizNo\": \"670bf84c577f6c00017a1c47\",\n        \"payAccountType\": \"CONTRACT\",\n        \"payTag\": \"DEFAULT\",\n        \"remark\": \"\",\n        \"recAccountType\": \"MAIN\",\n        \"recTag\": \"DEFAULT\",\n        \"recRemark\": \"\",\n        \"recSystem\": \"KUCOIN\",\n        \"status\": \"PROCESSING\",\n        \"currency\": \"USDT\",\n        \"amount\": \"0.01\",\n        \"fee\": \"0\",\n        \"sn\": 1519769124134806,\n        \"reason\": \"\",\n        \"createdAt\": 1728837708000,\n        \"updatedAt\": 1728837708000\n    }\n}"
-        common_response = RestResponse.from_json(data)
-        resp = FuturesAccountTransferOutResp.from_dict(common_response.data)
