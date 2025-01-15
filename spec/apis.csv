@@ -227,3 +227,14 @@ broker,ndbroker,/api/v1/asset/ndbroker/deposit/list,get,Get Deposit List
 broker,ndbroker,/api/v3/broker/nd/deposit/detail,get,Get Deposit Detail
 broker,ndbroker,/api/v3/broker/nd/withdraw/detail,get,Get Withdraw Detail
 broker,ndbroker,/api/v1/broker/nd/rebase/download,get,Get Broker Rebate
+copytrading,futures,/api/v1/copy-trade/futures/orders,post,Add Order
+copytrading,futures,/api/v1/copy-trade/futures/orders/test,post,Add Order Test
+copytrading,futures,/api/v1/copy-trade/futures/st-orders,post,Add Take Profit And Stop Loss Order
+copytrading,futures,/api/v1/copy-trade/futures/orders,delete,Cancel Order By OrderId
+copytrading,futures,/api/v1/copy-trade/futures/orders/client-order,delete,Cancel Order By ClientOid
+copytrading,futures,/api/v1/copy-trade/futures/get-max-open-size,get,Get Max Open Size
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/max-withdraw-margin,get,Get Max Withdraw Margin
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/deposit-margin,post,Add Isolated Margin
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/withdraw-margin,post,Remove Isolated Margin
+copytrading,futures,/api/v1/copy-trade/futures/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/auto-deposit-status,post,Modify Isolated Margin Auto-Deposit Status

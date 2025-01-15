@@ -18851,6 +18851,1039 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "Copy Trading",
+            "item": [
+                {
+                    "name": "Add Order",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "orders"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470363)\n\n:::info[Description]\nPlace order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.\n:::\n\n:::tip[Tips]\nThe maximum limit orders for a single contract is 100 per account, and the maximum stop orders for a single contract is 200 per account.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-) |\n| side | string | specify if the order is to 'buy' or 'sell'  |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| leverage | integer | Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required. |\n| type | string | specify if the order is an 'limit' order or 'market' order |\n| remark | string | remark for the order, length cannot exceed 100 utf8 characters |\n| stop | string | Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded. |\n| stopPriceType | string | Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified. |\n| stopPrice | string | Need to be defined if stop is specified.  |\n| reduceOnly | boolean | A mark to reduce the position size only. Set to false by default. Need to set the position size when reduceOnly is true. If set to true, only the orders reducing the position size will be executed. If the reduce-only order size exceeds the position size, the extra size will be canceled. |\n| closeOrder | boolean | A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically. |\n| forceHold | boolean | A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order. |\n| marginMode | string | Margin mode: ISOLATED, CROSS, default: ISOLATED |\n| price | string | Required for type is 'limit' order, indicating the operating price |\n| size | integer | Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported. |\n| timeInForce | string | Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC |\n| postOnly | boolean | Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected. |\n| hidden | boolean | Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly. |\n| iceberg | boolean | Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly. |\n| visibleSize | string | Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n| clientOid | string | The user self-defined order id. |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"side\": \"buy\",\n    \"symbol\": \"XBTUSDTM\",\n    \"leverage\": 3,\n    \"type\": \"limit\",\n    \"remark\": \"order remarks\",\n    \"reduceOnly\": false,\n    \"marginMode\": \"ISOLATED\",\n    \"price\": \"0.1\",\n    \"size\": 1,\n    \"timeInForce\": \"GTC\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "orders"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"263485113055133696\",\n        \"clientOid\": \"5c52e11203aa677f331e493fb\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Order Test",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "orders",
+                                "test"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470618)\n\n:::info[Description]\nOrder test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.\n:::\n\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-) |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| leverage | integer | Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required. |\n| type | string | specify if the order is an 'limit' order or 'market' order |\n| remark | string | remark for the order, length cannot exceed 100 utf8 characters |\n| stop | string | Either 'down' or 'up'.  If stop is used,parameter stopPrice and stopPriceType also need to be provieded. |\n| stopPriceType | string | Either 'TP', 'IP' or 'MP', Need to be defined if stop is specified. |\n| stopPrice | string | Need to be defined if stop is specified.  |\n| reduceOnly | boolean | A mark to reduce the position size only. Set to false by default. Need to set the position size when reduceOnly is true. If set to true, only the orders reducing the position size will be executed. If the reduce-only order size exceeds the position size, the extra size will be canceled. |\n| closeOrder | boolean | A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically. |\n| forceHold | boolean | A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order. |\n| marginMode | string | Margin mode: ISOLATED, CROSS, default: ISOLATED |\n| price | string | Required for type is 'limit' order, indicating the operating price |\n| size | integer | Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported. |\n| timeInForce | string | Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC |\n| postOnly | boolean | Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected. |\n| hidden | boolean | Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly. |\n| iceberg | boolean | Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly. |\n| visibleSize | string | Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n| clientOid | string | The user self-defined order id. |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"side\": \"buy\",\n    \"symbol\": \"XBTUSDTM\",\n    \"leverage\": 3,\n    \"type\": \"limit\",\n    \"remark\": \"order remarks\",\n    \"reduceOnly\": false,\n    \"marginMode\": \"ISOLATED\",\n    \"price\": \"0.1\",\n    \"size\": 1,\n    \"timeInForce\": \"GTC\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "orders",
+                                        "test"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Take Profit And Stop Loss Order",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "st-orders"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470619)\n\n:::info[Description]\nPlace take profit and stop loss order supports both take-profit and stop-loss functions, and other functions are exactly the same as the place order interface.\n\nYou can place two types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.\n\nPlease be noted that the system would hold the fees from the orders entered the orderbook in advance. \n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Unique order id created by users to identify their orders, the maximum length cannot exceed 40, e.g. UUID, Only allows numbers, characters, underline(_), and separator(-) |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| leverage | integer | Used to calculate the margin to be frozen for the order. If you are to close the position, this parameter is not required. |\n| type | string | specify if the order is an 'limit' order or 'market' order |\n| remark | string | remark for the order, length cannot exceed 100 utf8 characters |\n| stopPriceType | string | Either 'TP', 'IP' or 'MP' |\n| reduceOnly | boolean | A mark to reduce the position size only. Set to false by default. Need to set the position size when reduceOnly is true. If set to true, only the orders reducing the position size will be executed. If the reduce-only order size exceeds the position size, the extra size will be canceled. |\n| closeOrder | boolean | A mark to close the position. Set to false by default. If closeOrder is set to true, the system will close the position and the position size will become 0. Side, Size and Leverage fields can be left empty and the system will determine the side and size automatically. |\n| forceHold | boolean | A mark to forcely hold the funds for an order, even though it's an order to reduce the position size. This helps the order stay on the order book and not get canceled when the position size changes. Set to false by default. The system will forcely freeze certain amount of funds for this order, including orders whose direction is opposite to the current positions. This feature is to ensure that the order won’t be canceled by the matching engine in such a circumstance that not enough funds are frozen for the order. |\n| marginMode | string | Margin mode: ISOLATED, CROSS, default: ISOLATED |\n| price | string | Required for type is 'limit' order, indicating the operating price |\n| size | integer | Order size (Lot), must be a positive integer. The quantity unit of coin-swap contracts is size(lot), and other units are not supported. |\n| timeInForce | string | Optional for type is 'limit' order, [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading, default is GTC |\n| postOnly | boolean | Optional for type is 'limit' order,  post only flag, invalid when timeInForce is IOC. When postOnly is true, not allowed choose hidden or iceberg. The post-only flag ensures that the trader always pays the maker fee and provides liquidity to the order book. If any part of the order is going to pay taker fee, the order will be fully rejected. |\n| hidden | boolean | Optional for type is 'limit' order, orders not displaying in order book. When hidden chose, not allowed choose postOnly. |\n| iceberg | boolean | Optional for type is 'limit' order, Only visible portion of the order is displayed in the order book. When iceberg chose, not allowed choose postOnly. |\n| visibleSize | string | Optional for type is 'limit' order, The maximum visible size of an iceberg order. please place order in size (lots), The units of qty (base currency) and valueQty (value) are not supported. |\n| triggerStopUpPrice | string | Take profit price |\n| triggerStopDownPrice | string | Stop loss price |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n| clientOid | string | The user self-defined order id. |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"side\": \"buy\",\n    \"symbol\": \"XBTUSDTM\",\n    \"leverage\": 3,\n    \"type\": \"limit\",\n    \"remark\": \"order remarks\",\n    \"reduceOnly\": false,\n    \"marginMode\": \"ISOLATED\",\n    \"price\": \"0.2\",\n    \"size\": 1,\n    \"timeInForce\": \"GTC\",\n    \"triggerStopUpPrice\": \"0.3\",\n    \"triggerStopDownPrice\": \"0.1\",\n    \"stopPriceType\": \"TP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "st-orders"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"234125150956625920\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Cancel Order By OrderId",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "orders"
+                            ],
+                            "query": [
+                                {
+                                    "key": "orderId",
+                                    "value": "263485113055133696",
+                                    "description": "Order id"
+                                }
+                            ]
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470620)\n\n:::info[Description]\nCancel an order (including a stop order).\n\nYou will receive success message once the system has received the cancellation request. The cancellation request will be processed by matching engine in sequence. To know if the request has been processed, you may check the order status or update message from the websocket pushes.\n\nThe `orderId` is the server-assigned order id, not the specified clientOid.\n\nIf the order can not be canceled (already filled or previously canceled, etc), then an error response will indicate the reason in the message field.\n:::\n\n**API KEY PERMISSIONS**\nThis endpoint requires the Futures Trading permission.\n\n**REQUEST URL**\nThis endpoint support Futures URL\n\n**REQUEST RATE LIMIT**\nFutures weight：1\n\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| cancelledOrderIds | array | Refer to the schema section of cancelledOrderIds |\n\n---\n",
+                        "body": {}
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "orders"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "orderId",
+                                            "value": "263485113055133696",
+                                            "description": "Order id"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"263485113055133696\"\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Cancel Order By ClientOid",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "orders",
+                                "client-order"
+                            ],
+                            "query": [
+                                {
+                                    "key": "symbol",
+                                    "value": "XBTUSDTM",
+                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                },
+                                {
+                                    "key": "clientOid",
+                                    "value": "5c52e11203aa677f331e493fb",
+                                    "description": "The user self-defined order id."
+                                }
+                            ]
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470621)\n\n:::info[Description]\nCancel an order (including a stop order).\n\nYou will receive success message once the system has received the cancellation request. The cancellation request will be processed by matching engine in sequence. To know if the request has been processed, you may check the order status or update message from the pushes.\n\nResponse the ID created by the client (clientOid).\n\nIf the order can not be canceled (already filled or previously canceled, etc), then an error response will indicate the reason in the message field.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string |  |\n\n---\n",
+                        "body": {}
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "orders",
+                                        "client-order"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "symbol",
+                                            "value": "XBTUSDTM",
+                                            "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                        },
+                                        {
+                                            "key": "clientOid",
+                                            "value": "5c52e11203aa677f331e493fb",
+                                            "description": "The user self-defined order id."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"clientOid\": \"5c52e11203aa677f331e4913fb\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Max Open Size",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "get-max-open-size"
+                            ],
+                            "query": [
+                                {
+                                    "key": "symbol",
+                                    "value": null,
+                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                },
+                                {
+                                    "key": "price",
+                                    "value": null,
+                                    "description": "Order price\n"
+                                },
+                                {
+                                    "key": "leverage",
+                                    "value": null,
+                                    "description": "Leverage\n"
+                                }
+                            ]
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470612)\n\n:::info[Description]\nGet Maximum Open Position Size.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| maxBuyOpenSize | integer | Maximum buy size<br> |\n| maxSellOpenSize | integer | Maximum buy size<br> |\n\n---\n",
+                        "body": {}
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "get-max-open-size"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "symbol",
+                                            "value": null,
+                                            "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                        },
+                                        {
+                                            "key": "price",
+                                            "value": null,
+                                            "description": "Order price\n"
+                                        },
+                                        {
+                                            "key": "leverage",
+                                            "value": null,
+                                            "description": "Leverage\n"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": 8,\n        \"maxSellOpenSize\": 5\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Max Withdraw Margin",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "position",
+                                "margin",
+                                "max-withdraw-margin"
+                            ],
+                            "query": [
+                                {
+                                    "key": "symbol",
+                                    "value": null,
+                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                }
+                            ]
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470616)\n\n:::info[Description]\nThis interface can query the maximum amount of margin that the current position supports withdrawal.\n:::\n\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | string | The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins<br> |\n\n---\n",
+                        "body": {}
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "position",
+                                        "margin",
+                                        "max-withdraw-margin"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "symbol",
+                                            "value": null,
+                                            "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": \"21.1135719252\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Isolated Margin",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "position",
+                                "margin",
+                                "deposit-margin"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470614)\n\n:::info[Description]\nAdd Isolated Margin Manually.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| margin | number | Margin amount (min. margin amount≥0.00001667XBT） |\n| bizNo | string | A unique ID generated by the user, to ensure the operation is processed by the system only once, The maximum length cannot exceed 36 |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| id | string | Position ID |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| autoDeposit | boolean | Auto deposit margin or not |\n| maintMarginReq | number | Maintenance margin requirement<br><br> |\n| riskLimit | integer | Risk limit<br> |\n| realLeverage | number | Leverage o the order |\n| crossMode | boolean | Cross mode or not |\n| delevPercentage | number | ADL ranking percentile |\n| openingTimestamp | integer | Open time |\n| currentTimestamp | integer | Current timestamp<br> |\n| currentQty | integer | Current postion quantity |\n| currentCost | number | Current postion value |\n| currentComm | number | Current commission |\n| unrealisedCost | number | Unrealised value |\n| realisedGrossCost | number | Accumulated realised gross profit value |\n| realisedCost | number | Current realised position value |\n| isOpen | boolean | Opened position or not |\n| markPrice | number | Mark price |\n| markValue | number | Mark value<br> |\n| posCost | number | Position value |\n| posCross | number | added margin |\n| posInit | number | Leverage margin |\n| posComm | number | Bankruptcy cost |\n| posLoss | number | Funding fees paid out |\n| posMargin | number | Position margin |\n| posMaint | number | Maintenance margin |\n| maintMargin | number | Position margin |\n| realisedGrossPnl | number | Accumulated realised gross profit value |\n| realisedPnl | number | Realised profit and loss |\n| unrealisedPnl | number | Unrealised profit and loss |\n| unrealisedPnlPcnt | number | Profit-loss ratio of the position |\n| unrealisedRoePcnt | number | Rate of return on investment |\n| avgEntryPrice | number | Average entry price |\n| liquidationPrice | number | Liquidation price |\n| bankruptPrice | number | Bankruptcy price |\n| userId | integer | userId |\n| settleCurrency | string | Currency used to clear and settle the trades |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"symbol\": \"string\",\n  \"margin\": 0,\n  \"bizNo\": \"string\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "position",
+                                        "margin",
+                                        "deposit-margin"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"6200c9b83aecfb000152ddcd\",\n        \"symbol\": \"XBTUSDTM\",\n        \"autoDeposit\": false,\n        \"maintMarginReq\": 0.005,\n        \"riskLimit\": 500000,\n        \"realLeverage\": 18.72,\n        \"crossMode\": false,\n        \"delevPercentage\": 0.66,\n        \"openingTimestamp\": 1646287090131,\n        \"currentTimestamp\": 1646295055021,\n        \"currentQty\": 1,\n        \"currentCost\": 43.388,\n        \"currentComm\": 0.0260328,\n        \"unrealisedCost\": 43.388,\n        \"realisedGrossCost\": 0,\n        \"realisedCost\": 0.0260328,\n        \"isOpen\": true,\n        \"markPrice\": 43536.65,\n        \"markValue\": 43.53665,\n        \"posCost\": 43.388,\n        \"posCross\": 2.4985e-05,\n        \"posInit\": 2.1694,\n        \"posComm\": 0.02733446,\n        \"posLoss\": 0,\n        \"posMargin\": 2.19675944,\n        \"posMaint\": 0.24861326,\n        \"maintMargin\": 2.34540944,\n        \"realisedGrossPnl\": 0,\n        \"realisedPnl\": -0.0260328,\n        \"unrealisedPnl\": 0.14865,\n        \"unrealisedPnlPcnt\": 0.0034,\n        \"unrealisedRoePcnt\": 0.0685,\n        \"avgEntryPrice\": 43388,\n        \"liquidationPrice\": 41440,\n        \"bankruptPrice\": 41218,\n        \"userId\": 1234321123,\n        \"settleCurrency\": \"USDT\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove Isolated Margin",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "position",
+                                "margin",
+                                "withdraw-margin"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470615)\n\n:::info[Description]\nRemove Isolated Margin Manually.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| withdrawAmount | string | The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins<br> |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | string | The size of the position deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins<br> |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": \"0.0000001\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "position",
+                                        "margin",
+                                        "withdraw-margin"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": \"0.1\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Modify Isolated Margin Risk Limit",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "position",
+                                "risk-limit-level",
+                                "change"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470613)\n\n:::info[Description]\nThis interface is for the adjustment of the risk limit level(Only valid for isolated Margin). To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not. The result of the adjustment can be achieved by WebSocket information: Position Change Events\n:::\n\n\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string | Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)  |\n| level | integer | level |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | boolean | To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not.<br> |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"symbol\" : \"XBTUSDTM\",\n    \"level\" : 1\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "position",
+                                        "risk-limit-level",
+                                        "change"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": true\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Modify Isolated Margin Auto-Deposit Status",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "",
+                            "protocol": "https",
+                            "host": [
+                                "{{futures_endpoint}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "copy-trade",
+                                "futures",
+                                "position",
+                                "margin",
+                                "auto-deposit-status"
+                            ],
+                            "query": []
+                        },
+                        "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470617)\n\n:::info[Description]\nThis endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.\n:::\n\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string | Symbol of the contract<br> |\n| status | boolean | Status |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | boolean |  |\n\n---\n",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"symbol\": \"XBTUSDTM\",\n  \"status\": true\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{futures_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "copy-trade",
+                                        "futures",
+                                        "position",
+                                        "margin",
+                                        "auto-deposit-status"
+                                    ],
+                                    "query": []
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "name": "Content-Type",
+                                    "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "key": "gw-ratelimit-remaining",
+                                    "value": 1997,
+                                    "name": "gw-ratelimit-remaining"
+                                },
+                                {
+                                    "key": "gw-ratelimit-limit",
+                                    "value": 2000,
+                                    "name": "gw-ratelimit-limit"
+                                },
+                                {
+                                    "key": "gw-ratelimit-reset",
+                                    "value": 29990,
+                                    "name": "gw-ratelimit-reset"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"code\": \"200000\",\n    \"data\": true\n}"
+                        }
+                    ]
+                }
+            ],
+            "description": ""
         }
     ],
     "variable": [

@@ -1,7 +1,6 @@
 # Changelog
 
 ## 2025-01-16
-
 - Updated the API sequence to be consistent with the documentation.
 - Updated the license.
 - Added Copy Trading API.

@@ -17,6 +17,10 @@ type KucoinRestService interface {
 	// BrokerService provides functions to access and manage broker-related data.
 	GetBrokerService() service.BrokerService
 
+	// GetCopytradingService
+	// Provides functions to access and manage copy trading-related data
+	GetCopytradingService() service.CopytradingService
+
 	// GetEarnService
 	// EarnService provides functions to access and manage earn-related data.
 	GetEarnService() service.EarnService

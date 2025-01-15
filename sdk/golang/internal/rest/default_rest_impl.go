@@ -9,14 +9,15 @@ import (
 )
 
 type KuCoinDefaultRestImpl struct {
-	accountService    service.AccountService
-	affiliateService  service.AffiliateService
-	brokerService     service.BrokerService
-	earnService       service.EarnService
-	futuresService    service.FuturesService
-	marginService     service.MarginService
-	spotService       service.SpotService
-	vipLendingService service.ViplendingService
+	accountService     service.AccountService
+	affiliateService   service.AffiliateService
+	brokerService      service.BrokerService
+	copytradingService service.CopytradingService
+	earnService        service.EarnService
+	futuresService     service.FuturesService
+	marginService      service.MarginService
+	spotService        service.SpotService
+	vipLendingService  service.ViplendingService
 }
 
 func NewKuCoinDefaultRestImpl(op *types.ClientOption) *KuCoinDefaultRestImpl {
@@ -29,14 +30,15 @@ func NewKuCoinDefaultRestImpl(op *types.ClientOption) *KuCoinDefaultRestImpl {
 	transport := infra.NewDefaultTransport(op, generate.SdkVersion)
 
 	return &KuCoinDefaultRestImpl{
-		accountService:    service.NewAccountService(transport),
-		affiliateService:  service.NewAffiliateService(transport),
-		brokerService:     service.NewBrokerService(transport),
-		earnService:       service.NewEarnService(transport),
-		futuresService:    service.NewFuturesService(transport),
-		marginService:     service.NewMarginService(transport),
-		spotService:       service.NewSpotService(transport),
-		vipLendingService: service.NewViplendingService(transport),
+		accountService:     service.NewAccountService(transport),
+		affiliateService:   service.NewAffiliateService(transport),
+		brokerService:      service.NewBrokerService(transport),
+		copytradingService: service.NewCopytradingService(transport),
+		earnService:        service.NewEarnService(transport),
+		futuresService:     service.NewFuturesService(transport),
+		marginService:      service.NewMarginService(transport),
+		spotService:        service.NewSpotService(transport),
+		vipLendingService:  service.NewViplendingService(transport),
 	}
 }
 
@@ -50,6 +52,10 @@ func (impl *KuCoinDefaultRestImpl) GetAffiliateService() service.AffiliateServic
 
 func (impl *KuCoinDefaultRestImpl) GetBrokerService() service.BrokerService {
 	return impl.brokerService
+}
+
+func (impl *KuCoinDefaultRestImpl) GetCopytradingService() service.CopytradingService {
+	return impl.copytradingService
 }
 
 func (impl *KuCoinDefaultRestImpl) GetEarnService() service.EarnService {
