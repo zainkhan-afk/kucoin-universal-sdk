@@ -7,6 +7,264 @@
     },
     "tags": [],
     "paths": {
+        "/api/v2/sub/user/created": {
+            "post": {
+                "summary": "Add SubAccount",
+                "deprecated": false,
+                "description": "This endpoint can be used to create sub-accounts.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uid": {
+                                                    "type": "integer",
+                                                    "description": "Sub-account UID"
+                                                },
+                                                "subName": {
+                                                    "type": "string",
+                                                    "description": "Sub-account name"
+                                                },
+                                                "remarks": {
+                                                    "type": "string",
+                                                    "description": "Remarks"
+                                                },
+                                                "access": {
+                                                    "type": "string",
+                                                    "description": "Permission"
+                                                }
+                                            },
+                                            "required": [
+                                                "uid",
+                                                "subName",
+                                                "remarks",
+                                                "access"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470135",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "SubAccount",
+                "x-sdk-method-name": "addSubAccount",
+                "x-sdk-method-description": "This endpoint can be used to create sub-accounts.",
+                "x-api-rate-limit": 15,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)"
+                                    },
+                                    "remarks": {
+                                        "type": "string",
+                                        "description": "Remarks(1~24 characters)"
+                                    },
+                                    "subName": {
+                                        "type": "string",
+                                        "description": "Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)"
+                                    },
+                                    "access": {
+                                        "type": "string",
+                                        "description": "Permission (types include Spot, Futures, Margin permissions, which can be used alone or in combination).",
+                                        "enum": [
+                                            "Spot",
+                                            "Futures",
+                                            "Margin"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "Spot",
+                                                "name": "",
+                                                "description": "Spot Account"
+                                            },
+                                            {
+                                                "value": "Futures",
+                                                "name": "",
+                                                "description": "Futures Account"
+                                            },
+                                            {
+                                                "value": "Margin",
+                                                "name": "",
+                                                "description": "Margin Account"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "password",
+                                    "subName",
+                                    "access"
+                                ]
+                            },
+                            "example": "{\n    \"password\": \"1234567\",\n    \"remarks\": \"TheRemark\",\n    \"subName\": \"Name1234567\",\n    \"access\": \"Spot\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n                \\\"uid\\\": 169579801,\\n                \\\"subName\\\": \\\"testapi6\\\",\\n                \\\"status\\\": 2,\\n                \\\"type\\\": 0,\\n                \\\"access\\\": \\\"All\\\",\\n                \\\"createdAt\\\": 1668562696000,\\n                \\\"remarks\\\": \\\"remarks\\\",\\n                \\\"tradeTypes\\\": [\\n                    \\\"Spot\\\",\\n                    \\\"Futures\\\",\\n                    \\\"Margin\\\"\\n                ],\\n                \\\"openedTradeTypes\\\": [\\n                    \\\"Spot\\\"\\n                ],\\n                \\\"hostedStatus\\\": null\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"password\\\": \\\"1234567\\\", \\\"remarks\\\": \\\"TheRemark\\\", \\\"subName\\\": \\\"Name1234567\\\", \\\"access\\\": \\\"Spot\\\"}"
+            }
+        },
+        "/api/v3/sub/user/margin/enable": {
+            "post": {
+                "summary": "Add SubAccount Margin Permission",
+                "deprecated": false,
+                "description": "This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470331",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "SubAccount",
+                "x-sdk-method-name": "addSubAccountMarginPermission",
+                "x-sdk-method-description": "This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
+                "x-api-rate-limit": 15,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "uid": {
+                                        "type": "string",
+                                        "description": "Sub account UID"
+                                    }
+                                },
+                                "required": [
+                                    "uid"
+                                ]
+                            },
+                            "example": "{\n    \"uid\": \"169579801\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"169579801\\\"}"
+            }
+        },
+        "/api/v3/sub/user/futures/enable": {
+            "post": {
+                "summary": "Add SubAccount Futures Permission",
+                "deprecated": false,
+                "description": "This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470332",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "SubAccount",
+                "x-sdk-method-name": "addSubAccountFuturesPermission",
+                "x-sdk-method-description": "This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
+                "x-api-rate-limit": 15,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "uid": {
+                                        "type": "string",
+                                        "description": "Sub account UID"
+                                    }
+                                },
+                                "required": [
+                                    "uid"
+                                ]
+                            },
+                            "example": "{\n    \"uid\": \"169579801\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
+                "x-request-example": "{\\\"uid\\\": \\\"169579801\\\"}"
+            }
+        },
         "/api/v2/sub/user": {
             "get": {
                 "summary": "Get SubAccount List - Summary Info",
@@ -836,11 +1094,11 @@
                 "x-request-example": "{\\\"currency\\\": \\\"USDT\\\"}"
             }
         },
-        "/api/v2/sub/user/created": {
+        "/api/v1/sub/api-key": {
             "post": {
-                "summary": "Add SubAccount",
+                "summary": "Add SubAccount API",
                 "deprecated": false,
-                "description": "This endpoint can be used to create sub-accounts.",
+                "description": "This endpoint can be used to create APIs for sub-accounts.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -857,28 +1115,53 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "uid": {
-                                                    "type": "integer",
-                                                    "description": "Sub-account UID"
-                                                },
                                                 "subName": {
                                                     "type": "string",
                                                     "description": "Sub-account name"
                                                 },
-                                                "remarks": {
+                                                "remark": {
                                                     "type": "string",
                                                     "description": "Remarks"
                                                 },
-                                                "access": {
+                                                "apiKey": {
                                                     "type": "string",
-                                                    "description": "Permission"
+                                                    "description": "API Key"
+                                                },
+                                                "apiSecret": {
+                                                    "type": "string",
+                                                    "description": "API Secret Key\n"
+                                                },
+                                                "apiVersion": {
+                                                    "type": "integer",
+                                                    "description": "API Version"
+                                                },
+                                                "passphrase": {
+                                                    "type": "string",
+                                                    "description": "Password"
+                                                },
+                                                "permission": {
+                                                    "type": "string",
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)"
+                                                },
+                                                "ipWhitelist": {
+                                                    "type": "string",
+                                                    "description": "IP whitelist"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Time of the event",
+                                                    "format": "int64"
                                                 }
                                             },
                                             "required": [
-                                                "uid",
                                                 "subName",
-                                                "remarks",
-                                                "access"
+                                                "remark",
+                                                "apiKey",
+                                                "apiSecret",
+                                                "apiVersion",
+                                                "passphrase",
+                                                "permission",
+                                                "createdAt"
                                             ]
                                         }
                                     },
@@ -891,7 +1174,7 @@
                         }
                     }
                 },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470135",
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470138",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -899,9 +1182,9 @@
                 "x-api-rate-limit-pool": "Management",
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "SubAccount",
-                "x-sdk-method-name": "addSubAccount",
-                "x-sdk-method-description": "This endpoint can be used to create sub-accounts.",
-                "x-api-rate-limit": 15,
+                "x-sdk-method-name": "addSubAccountApi",
+                "x-sdk-method-description": "This endpoint can be used to create APIs for sub-accounts.",
+                "x-api-rate-limit": 20,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -909,192 +1192,86 @@
                                 "title": "",
                                 "type": "object",
                                 "properties": {
-                                    "password": {
+                                    "passphrase": {
                                         "type": "string",
-                                        "description": "Password(7-24 characters, must contain letters and numbers, cannot only contain numbers or include special characters)"
+                                        "description": "Password(Must contain 7-32 characters. Cannot contain any spaces.)"
                                     },
-                                    "remarks": {
+                                    "remark": {
                                         "type": "string",
                                         "description": "Remarks(1~24 characters)"
                                     },
-                                    "subName": {
+                                    "permission": {
                                         "type": "string",
-                                        "description": "Sub-account name(must contain 7-32 characters, at least one number and one letter. Cannot contain any spaces.)"
+                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
+                                        "default": "General",
+                                        "example": [
+                                            "General, Trade"
+                                        ]
                                     },
-                                    "access": {
+                                    "ipWhitelist": {
                                         "type": "string",
-                                        "description": "Permission (types include Spot, Futures, Margin permissions, which can be used alone or in combination).",
+                                        "description": "IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)"
+                                    },
+                                    "expire": {
+                                        "type": "string",
+                                        "description": "API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360",
+                                        "default": "-1",
                                         "enum": [
-                                            "Spot",
-                                            "Futures",
-                                            "Margin"
+                                            "-1",
+                                            "30",
+                                            "90",
+                                            "180",
+                                            "360"
                                         ],
                                         "x-api-enum": [
                                             {
-                                                "value": "Spot",
+                                                "value": "-1",
                                                 "name": "",
-                                                "description": "Spot Account"
+                                                "description": ""
                                             },
                                             {
-                                                "value": "Futures",
+                                                "value": "30",
                                                 "name": "",
-                                                "description": "Futures Account"
+                                                "description": ""
                                             },
                                             {
-                                                "value": "Margin",
+                                                "value": "90",
                                                 "name": "",
-                                                "description": "Margin Account"
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "180",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "360",
+                                                "name": "",
+                                                "description": ""
                                             }
+                                        ],
+                                        "example": [
+                                            "30"
                                         ]
+                                    },
+                                    "subName": {
+                                        "type": "string",
+                                        "description": "Sub-account name, create sub account name of API Key."
                                     }
                                 },
                                 "required": [
-                                    "password",
                                     "subName",
-                                    "access"
+                                    "remark",
+                                    "passphrase"
                                 ]
                             },
-                            "example": "{\n    \"password\": \"1234567\",\n    \"remarks\": \"TheRemark\",\n    \"subName\": \"Name1234567\",\n    \"access\": \"Spot\"\n}"
+                            "example": "{\n    \"subName\": \"testapi6\",\n    \"passphrase\": \"11223344\",\n    \"remark\": \"TheRemark\",\n    \"permission\": \"General,Spot,Futures\"\n}"
                         }
                     }
                 },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"userId\\\": \\\"63743f07e0c5230001761d08\\\",\\n                \\\"uid\\\": 169579801,\\n                \\\"subName\\\": \\\"testapi6\\\",\\n                \\\"status\\\": 2,\\n                \\\"type\\\": 0,\\n                \\\"access\\\": \\\"All\\\",\\n                \\\"createdAt\\\": 1668562696000,\\n                \\\"remarks\\\": \\\"remarks\\\",\\n                \\\"tradeTypes\\\": [\\n                    \\\"Spot\\\",\\n                    \\\"Futures\\\",\\n                    \\\"Margin\\\"\\n                ],\\n                \\\"openedTradeTypes\\\": [\\n                    \\\"Spot\\\"\\n                ],\\n                \\\"hostedStatus\\\": null\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"password\\\": \\\"1234567\\\", \\\"remarks\\\": \\\"TheRemark\\\", \\\"subName\\\": \\\"Name1234567\\\", \\\"access\\\": \\\"Spot\\\"}"
-            }
-        },
-        "/api/v3/sub/user/margin/enable": {
-            "post": {
-                "summary": "Add SubAccount Margin Permission",
-                "deprecated": false,
-                "description": "This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470331",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "Margin",
-                "x-api-rate-limit-pool": "Management",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "SubAccount",
-                "x-sdk-method-name": "addSubAccountMarginPermission",
-                "x-sdk-method-description": "This endpoint can be used to add sub-accounts Margin permission. Before using this endpoints, you need to ensure that the master account apikey has Margin permissions and the Margin function has been activated.",
-                "x-api-rate-limit": 15,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "title": "",
-                                "type": "object",
-                                "properties": {
-                                    "uid": {
-                                        "type": "string",
-                                        "description": "Sub account UID"
-                                    }
-                                },
-                                "required": [
-                                    "uid"
-                                ]
-                            },
-                            "example": "{\n    \"uid\": \"169579801\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
-                "x-request-example": "{\\\"uid\\\": \\\"169579801\\\"}"
-            }
-        },
-        "/api/v3/sub/user/futures/enable": {
-            "post": {
-                "summary": "Add SubAccount Futures Permission",
-                "deprecated": false,
-                "description": "This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470332",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Management",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "SubAccount",
-                "x-sdk-method-name": "addSubAccountFuturesPermission",
-                "x-sdk-method-description": "This endpoint can be used to add sub-accounts Futures permission. Before using this endpoints, you need to ensure that the master account apikey has Futures permissions and the Futures function has been activated.",
-                "x-api-rate-limit": 15,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "title": "",
-                                "type": "object",
-                                "properties": {
-                                    "uid": {
-                                        "type": "string",
-                                        "description": "Sub account UID"
-                                    }
-                                },
-                                "required": [
-                                    "uid"
-                                ]
-                            },
-                            "example": "{\n    \"uid\": \"169579801\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
-                "x-request-example": "{\\\"uid\\\": \\\"169579801\\\"}"
-            }
-        },
-        "/api/v1/sub/api-key": {
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"subName\\\": \\\"testapi6\\\",\\n        \\\"remark\\\": \\\"TheRemark\\\",\\n        \\\"apiKey\\\": \\\"670621e3a25958000159c82f\\\",\\n        \\\"apiSecret\\\": \\\"46fd8974******896f005b2340\\\",\\n        \\\"apiVersion\\\": 3,\\n        \\\"passphrase\\\": \\\"11223344\\\",\\n        \\\"permission\\\": \\\"General,Futures\\\",\\n        \\\"createdAt\\\": 1728455139000\\n    }\\n}",
+                "x-request-example": "{\\\"subName\\\": \\\"testapi6\\\", \\\"passphrase\\\": \\\"11223344\\\", \\\"remark\\\": \\\"TheRemark\\\", \\\"permission\\\": \\\"General,Spot,Futures\\\"}"
+            },
             "get": {
                 "summary": "Get SubAccount API List",
                 "deprecated": false,
@@ -1285,183 +1462,6 @@
                 "x-api-rate-limit": 30,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"subName\\\":\\\"testapi6\\\",\\\"apiKey\\\":\\\"670621e3a25958000159c82f\\\"}}",
                 "x-request-example": "{\\\"apiKey\\\": \\\"670621e3a25958000159c82f\\\", \\\"subName\\\": \\\"testapi6\\\", \\\"passphrase\\\": \\\"11223344\\\"}"
-            },
-            "post": {
-                "summary": "Add SubAccount API",
-                "deprecated": false,
-                "description": "This endpoint can be used to create APIs for sub-accounts.",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "subName": {
-                                                    "type": "string",
-                                                    "description": "Sub-account name"
-                                                },
-                                                "remark": {
-                                                    "type": "string",
-                                                    "description": "Remarks"
-                                                },
-                                                "apiKey": {
-                                                    "type": "string",
-                                                    "description": "API Key"
-                                                },
-                                                "apiSecret": {
-                                                    "type": "string",
-                                                    "description": "API Secret Key\n"
-                                                },
-                                                "apiVersion": {
-                                                    "type": "integer",
-                                                    "description": "API Version"
-                                                },
-                                                "passphrase": {
-                                                    "type": "string",
-                                                    "description": "Password"
-                                                },
-                                                "permission": {
-                                                    "type": "string",
-                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)"
-                                                },
-                                                "ipWhitelist": {
-                                                    "type": "string",
-                                                    "description": "IP whitelist"
-                                                },
-                                                "createdAt": {
-                                                    "type": "integer",
-                                                    "description": "Time of the event",
-                                                    "format": "int64"
-                                                }
-                                            },
-                                            "required": [
-                                                "subName",
-                                                "remark",
-                                                "apiKey",
-                                                "apiSecret",
-                                                "apiVersion",
-                                                "passphrase",
-                                                "permission",
-                                                "createdAt"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470138",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Management",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "SubAccount",
-                "x-sdk-method-name": "addSubAccountApi",
-                "x-sdk-method-description": "This endpoint can be used to create APIs for sub-accounts.",
-                "x-api-rate-limit": 20,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "title": "",
-                                "type": "object",
-                                "properties": {
-                                    "passphrase": {
-                                        "type": "string",
-                                        "description": "Password(Must contain 7-32 characters. Cannot contain any spaces.)"
-                                    },
-                                    "remark": {
-                                        "type": "string",
-                                        "description": "Remarks(1~24 characters)"
-                                    },
-                                    "permission": {
-                                        "type": "string",
-                                        "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144)(Only General、Spot、Futures、Margin、InnerTransfer(Flex Transfer) permissions can be set, such as \"General, Trade\". The default is \"General\")",
-                                        "default": "General",
-                                        "example": [
-                                            "General, Trade"
-                                        ]
-                                    },
-                                    "ipWhitelist": {
-                                        "type": "string",
-                                        "description": "IP whitelist(You may add up to 20 IPs. Use a halfwidth comma to each IP)"
-                                    },
-                                    "expire": {
-                                        "type": "string",
-                                        "description": "API expiration time; Never expire(default)-1，30Day30，90Day90，180Day180，360Day360",
-                                        "default": "-1",
-                                        "enum": [
-                                            "-1",
-                                            "30",
-                                            "90",
-                                            "180",
-                                            "360"
-                                        ],
-                                        "x-api-enum": [
-                                            {
-                                                "value": "-1",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "30",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "90",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "180",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "360",
-                                                "name": "",
-                                                "description": ""
-                                            }
-                                        ],
-                                        "example": [
-                                            "30"
-                                        ]
-                                    },
-                                    "subName": {
-                                        "type": "string",
-                                        "description": "Sub-account name, create sub account name of API Key."
-                                    }
-                                },
-                                "required": [
-                                    "subName",
-                                    "remark",
-                                    "passphrase"
-                                ]
-                            },
-                            "example": "{\n    \"subName\": \"testapi6\",\n    \"passphrase\": \"11223344\",\n    \"remark\": \"TheRemark\",\n    \"permission\": \"General,Spot,Futures\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"subName\\\": \\\"testapi6\\\",\\n        \\\"remark\\\": \\\"TheRemark\\\",\\n        \\\"apiKey\\\": \\\"670621e3a25958000159c82f\\\",\\n        \\\"apiSecret\\\": \\\"46fd8974******896f005b2340\\\",\\n        \\\"apiVersion\\\": 3,\\n        \\\"passphrase\\\": \\\"11223344\\\",\\n        \\\"permission\\\": \\\"General,Futures\\\",\\n        \\\"createdAt\\\": 1728455139000\\n    }\\n}",
-                "x-request-example": "{\\\"subName\\\": \\\"testapi6\\\", \\\"passphrase\\\": \\\"11223344\\\", \\\"remark\\\": \\\"TheRemark\\\", \\\"permission\\\": \\\"General,Spot,Futures\\\"}"
             }
         },
         "/api/v1/sub/api-key/update": {

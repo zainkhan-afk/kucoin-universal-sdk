@@ -258,7 +258,7 @@ type OrderAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | FUTURES |
 	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 30      |
+	// | API-RATE-LIMIT      | 10      |
 	// +---------------------+---------+
 	CancelAllOrdersV3(req *CancelAllOrdersV3Req, ctx context.Context) (*CancelAllOrdersV3Resp, error)
 }

@@ -118,412 +118,6 @@
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
             }
         },
-        "/api/v3/purchase/orders": {
-            "get": {
-                "summary": "Get Purchase Orders",
-                "deprecated": false,
-                "description": "This API endpoint provides pagination query for the purchase orders.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": [
-                                "BTC",
-                                "ETH",
-                                "KCS"
-                            ]
-                        }
-                    },
-                    {
-                        "name": "status",
-                        "in": "query",
-                        "description": "DONE-completed; PENDING-settling",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "DONE",
-                                "PENDING"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "DONE",
-                                    "name": "",
-                                    "description": ""
-                                },
-                                {
-                                    "value": "PENDING",
-                                    "name": "",
-                                    "description": ""
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "purchaseOrderNo",
-                        "in": "query",
-                        "description": "",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "currentPage",
-                        "in": "query",
-                        "description": "Current page; default is 1",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "pageSize",
-                        "in": "query",
-                        "description": "Page size; 1<=pageSize<=100; default is 50",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 50,
-                            "minimum": 1,
-                            "maximum": 100
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "currentPage": {
-                                                    "type": "integer",
-                                                    "description": "Current Page"
-                                                },
-                                                "pageSize": {
-                                                    "type": "integer",
-                                                    "description": "Page Size"
-                                                },
-                                                "totalNum": {
-                                                    "type": "integer",
-                                                    "description": "Total Number"
-                                                },
-                                                "totalPage": {
-                                                    "type": "integer",
-                                                    "description": "Total Page"
-                                                },
-                                                "items": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "currency": {
-                                                                "type": "string",
-                                                                "description": "Currency",
-                                                                "example": [
-                                                                    "BTC",
-                                                                    "ETH",
-                                                                    "USDT"
-                                                                ]
-                                                            },
-                                                            "purchaseOrderNo": {
-                                                                "type": "string",
-                                                                "description": "Purchase order id"
-                                                            },
-                                                            "purchaseSize": {
-                                                                "type": "string",
-                                                                "description": "Total purchase size"
-                                                            },
-                                                            "matchSize": {
-                                                                "type": "string",
-                                                                "description": "Executed size"
-                                                            },
-                                                            "interestRate": {
-                                                                "type": "string",
-                                                                "description": "Target annualized interest rate"
-                                                            },
-                                                            "incomeSize": {
-                                                                "type": "string",
-                                                                "description": "Redeemed amount"
-                                                            },
-                                                            "applyTime": {
-                                                                "type": "integer",
-                                                                "description": "Time of purchase",
-                                                                "format": "int64"
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "description": "Status: DONE-completed; PENDING-settling",
-                                                                "enum": [
-                                                                    "DONE",
-                                                                    "PENDING"
-                                                                ],
-                                                                "x-api-enum": [
-                                                                    {
-                                                                        "value": "DONE",
-                                                                        "name": "",
-                                                                        "description": ""
-                                                                    },
-                                                                    {
-                                                                        "value": "PENDING",
-                                                                        "name": "",
-                                                                        "description": ""
-                                                                    }
-                                                                ]
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "currency",
-                                                            "purchaseOrderNo",
-                                                            "purchaseSize",
-                                                            "matchSize",
-                                                            "interestRate",
-                                                            "incomeSize",
-                                                            "applyTime",
-                                                            "status"
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            "required": [
-                                                "currentPage",
-                                                "pageSize",
-                                                "totalNum",
-                                                "totalPage",
-                                                "items"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470213",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Margin",
-                "x-sdk-sub-service": "Credit",
-                "x-sdk-method-name": "getPurchaseOrders",
-                "x-sdk-method-description": "This API endpoint provides pagination query for the purchase orders.",
-                "x-api-rate-limit": 10,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bb15a3b3f930007880bae\\\",\\n                \\\"purchaseSize\\\": \\\"0.001\\\",\\n                \\\"matchSize\\\": \\\"0\\\",\\n                \\\"interestRate\\\": \\\"0.1\\\",\\n                \\\"incomeSize\\\": \\\"0\\\",\\n                \\\"applyTime\\\": 1729868122172,\\n                \\\"status\\\": \\\"PENDING\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
-            }
-        },
-        "/api/v3/redeem/orders": {
-            "get": {
-                "summary": "Get Redeem Orders",
-                "deprecated": false,
-                "description": "This API endpoint provides pagination query for the redeem orders.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": [
-                                "BTC",
-                                "ETH",
-                                "KCS"
-                            ]
-                        }
-                    },
-                    {
-                        "name": "status",
-                        "in": "query",
-                        "description": "DONE-completed; PENDING-settling",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "DONE",
-                                "PENDING"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "DONE",
-                                    "name": "",
-                                    "description": ""
-                                },
-                                {
-                                    "value": "PENDING",
-                                    "name": "",
-                                    "description": ""
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "redeemOrderNo",
-                        "in": "query",
-                        "description": "Redeem order id",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "currentPage",
-                        "in": "query",
-                        "description": "Current page; default is 1",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "pageSize",
-                        "in": "query",
-                        "description": "Page size; 1<=pageSize<=100; default is 50",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 50,
-                            "minimum": 1,
-                            "maximum": 100
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "currentPage": {
-                                                    "type": "integer",
-                                                    "description": "Current Page"
-                                                },
-                                                "pageSize": {
-                                                    "type": "integer",
-                                                    "description": "Page Size"
-                                                },
-                                                "totalNum": {
-                                                    "type": "integer",
-                                                    "description": "Total Number"
-                                                },
-                                                "totalPage": {
-                                                    "type": "integer",
-                                                    "description": "Total Page"
-                                                },
-                                                "items": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "currency": {
-                                                                "type": "string",
-                                                                "description": "Currency",
-                                                                "example": [
-                                                                    "BTC",
-                                                                    "ETH",
-                                                                    "USDT"
-                                                                ]
-                                                            },
-                                                            "purchaseOrderNo": {
-                                                                "type": "string",
-                                                                "description": "Purchase order id"
-                                                            },
-                                                            "redeemOrderNo": {
-                                                                "type": "string",
-                                                                "description": "Redeem order id"
-                                                            },
-                                                            "redeemSize": {
-                                                                "type": "string",
-                                                                "description": "Redemption size"
-                                                            },
-                                                            "receiptSize": {
-                                                                "type": "string",
-                                                                "description": "Redeemed size"
-                                                            },
-                                                            "applyTime": {
-                                                                "type": "string",
-                                                                "description": "Time of redeem"
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "description": "Status: DONE-completed; PENDING-settling"
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "currency",
-                                                            "purchaseOrderNo",
-                                                            "redeemOrderNo",
-                                                            "redeemSize",
-                                                            "receiptSize",
-                                                            "applyTime",
-                                                            "status"
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            "required": [
-                                                "currentPage",
-                                                "pageSize",
-                                                "totalNum",
-                                                "totalPage",
-                                                "items"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470214",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Margin",
-                "x-sdk-sub-service": "Credit",
-                "x-sdk-method-name": "getRedeemOrders",
-                "x-sdk-method-description": "This API endpoint provides pagination query for the redeem orders.",
-                "x-api-rate-limit": 10,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\",\\n                \\\"redeemOrderNo\\\": \\\"671bb01004c26d000773c55c\\\",\\n                \\\"redeemSize\\\": \\\"0.001\\\",\\n                \\\"receiptSize\\\": \\\"0.001\\\",\\n                \\\"applyTime\\\": null,\\n                \\\"status\\\": \\\"DONE\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
-            }
-        },
         "/api/v3/project/marketInterestRate": {
             "get": {
                 "summary": "Get Loan Market Interest Rate",
@@ -771,6 +365,220 @@
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}"
             }
         },
+        "/api/v3/purchase/orders": {
+            "get": {
+                "summary": "Get Purchase Orders",
+                "deprecated": false,
+                "description": "This API endpoint provides pagination query for the purchase orders.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "DONE-completed; PENDING-settling",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DONE",
+                                "PENDING"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "DONE",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "PENDING",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "purchaseOrderNo",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current page; default is 1",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Page size; 1<=pageSize<=100; default is 50",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "minimum": 1,
+                            "maximum": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "Current Page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "Page Size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "Total Number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "Total Page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "Currency",
+                                                                "example": [
+                                                                    "BTC",
+                                                                    "ETH",
+                                                                    "USDT"
+                                                                ]
+                                                            },
+                                                            "purchaseOrderNo": {
+                                                                "type": "string",
+                                                                "description": "Purchase order id"
+                                                            },
+                                                            "purchaseSize": {
+                                                                "type": "string",
+                                                                "description": "Total purchase size"
+                                                            },
+                                                            "matchSize": {
+                                                                "type": "string",
+                                                                "description": "Executed size"
+                                                            },
+                                                            "interestRate": {
+                                                                "type": "string",
+                                                                "description": "Target annualized interest rate"
+                                                            },
+                                                            "incomeSize": {
+                                                                "type": "string",
+                                                                "description": "Redeemed amount"
+                                                            },
+                                                            "applyTime": {
+                                                                "type": "integer",
+                                                                "description": "Time of purchase",
+                                                                "format": "int64"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "Status: DONE-completed; PENDING-settling",
+                                                                "enum": [
+                                                                    "DONE",
+                                                                    "PENDING"
+                                                                ],
+                                                                "x-api-enum": [
+                                                                    {
+                                                                        "value": "DONE",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    },
+                                                                    {
+                                                                        "value": "PENDING",
+                                                                        "name": "",
+                                                                        "description": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "currency",
+                                                            "purchaseOrderNo",
+                                                            "purchaseSize",
+                                                            "matchSize",
+                                                            "interestRate",
+                                                            "incomeSize",
+                                                            "applyTime",
+                                                            "status"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470213",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Credit",
+                "x-sdk-method-name": "getPurchaseOrders",
+                "x-sdk-method-description": "This API endpoint provides pagination query for the purchase orders.",
+                "x-api-rate-limit": 10,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bb15a3b3f930007880bae\\\",\\n                \\\"purchaseSize\\\": \\\"0.001\\\",\\n                \\\"matchSize\\\": \\\"0\\\",\\n                \\\"interestRate\\\": \\\"0.1\\\",\\n                \\\"incomeSize\\\": \\\"0\\\",\\n                \\\"applyTime\\\": 1729868122172,\\n                \\\"status\\\": \\\"PENDING\\\"\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+            }
+        },
         "/api/v3/redeem": {
             "post": {
                 "summary": "Redeem",
@@ -858,6 +666,198 @@
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
                 "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}"
+            }
+        },
+        "/api/v3/redeem/orders": {
+            "get": {
+                "summary": "Get Redeem Orders",
+                "deprecated": false,
+                "description": "This API endpoint provides pagination query for the redeem orders.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "DONE-completed; PENDING-settling",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DONE",
+                                "PENDING"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "DONE",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "PENDING",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "redeemOrderNo",
+                        "in": "query",
+                        "description": "Redeem order id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current page; default is 1",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Page size; 1<=pageSize<=100; default is 50",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "minimum": 1,
+                            "maximum": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currentPage": {
+                                                    "type": "integer",
+                                                    "description": "Current Page"
+                                                },
+                                                "pageSize": {
+                                                    "type": "integer",
+                                                    "description": "Page Size"
+                                                },
+                                                "totalNum": {
+                                                    "type": "integer",
+                                                    "description": "Total Number"
+                                                },
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "Total Page"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "Currency",
+                                                                "example": [
+                                                                    "BTC",
+                                                                    "ETH",
+                                                                    "USDT"
+                                                                ]
+                                                            },
+                                                            "purchaseOrderNo": {
+                                                                "type": "string",
+                                                                "description": "Purchase order id"
+                                                            },
+                                                            "redeemOrderNo": {
+                                                                "type": "string",
+                                                                "description": "Redeem order id"
+                                                            },
+                                                            "redeemSize": {
+                                                                "type": "string",
+                                                                "description": "Redemption size"
+                                                            },
+                                                            "receiptSize": {
+                                                                "type": "string",
+                                                                "description": "Redeemed size"
+                                                            },
+                                                            "applyTime": {
+                                                                "type": "string",
+                                                                "description": "Time of redeem"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "Status: DONE-completed; PENDING-settling"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "currency",
+                                                            "purchaseOrderNo",
+                                                            "redeemOrderNo",
+                                                            "redeemSize",
+                                                            "receiptSize",
+                                                            "applyTime",
+                                                            "status"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470214",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Credit",
+                "x-sdk-method-name": "getRedeemOrders",
+                "x-sdk-method-description": "This API endpoint provides pagination query for the redeem orders.",
+                "x-api-rate-limit": 10,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\",\\n                \\\"redeemOrderNo\\\": \\\"671bb01004c26d000773c55c\\\",\\n                \\\"redeemSize\\\": \\\"0.001\\\",\\n                \\\"receiptSize\\\": \\\"0.001\\\",\\n                \\\"applyTime\\\": null,\\n                \\\"status\\\": \\\"DONE\\\"\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
             }
         }
     },

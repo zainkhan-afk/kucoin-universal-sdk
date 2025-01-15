@@ -91,27 +91,27 @@
                 }
             }
         },
-        "/execution/contractMarket/execution:_symbol_": {
+        "/orderbookLevel50/contractMarket/level2Depth50:_symbol_": {
             "trace": {
-                "summary": "Match execution data.",
+                "summary": "Orderbook - Level50",
                 "deprecated": "false",
-                "description": "For each order executed, the system will send you the match messages in the format as following.",
+                "description": "The depth50 market data.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "futures_public",
                 "x-sdk-private": false,
-                "x-sdk-method-name": "execution",
-                "x-topic": "/contractMarket/execution:{symbol}",
-                "x-push_frequency": "realtime",
-                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/execution:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"match\\\",\\\"sn\\\":1794100537695,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1794100537695,\\\"side\\\":\\\"buy\\\",\\\"size\\\":2,\\\"price\\\":\\\"90503.9\\\",\\\"takerOrderId\\\":\\\"247822202957807616\\\",\\\"makerOrderId\\\":\\\"247822167163555840\\\",\\\"tradeId\\\":\\\"1794100537695\\\",\\\"ts\\\":1731898619520000000}}",
+                "x-sdk-method-name": "orderbookLevel50",
+                "x-topic": "/contractMarket/level2Depth50:{symbol}",
+                "x-push_frequency": "100ms",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/level2Depth50:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"sn\\\":1731680249700,\\\"data\\\":{\\\"bids\\\":[[\\\"89778.6\\\",1534],[\\\"89778.2\\\",54]],\\\"sequence\\\":1709294490099,\\\"timestamp\\\":1731680249700,\\\"ts\\\":1731680249700,\\\"asks\\\":[[\\\"89778.7\\\",854],[\\\"89779.2\\\",4]]}}",
                 "responses": {
                     "200": {
                         "description": "",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Futures_futures_public_matchExecution"
+                                    "$ref": "#/components/schemas/Futures_futures_public_orderbookLevel50"
                                 }
                             }
                         }
@@ -147,34 +147,6 @@
                 }
             }
         },
-        "/orderbookLevel50/contractMarket/level2Depth50:_symbol_": {
-            "trace": {
-                "summary": "Orderbook - Level50",
-                "deprecated": "false",
-                "description": "The depth50 market data.",
-                "tags": [],
-                "parameters": [],
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "futures_public",
-                "x-sdk-private": false,
-                "x-sdk-method-name": "orderbookLevel50",
-                "x-topic": "/contractMarket/level2Depth50:{symbol}",
-                "x-push_frequency": "100ms",
-                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/level2Depth50:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"level2\\\",\\\"sn\\\":1731680249700,\\\"data\\\":{\\\"bids\\\":[[\\\"89778.6\\\",1534],[\\\"89778.2\\\",54]],\\\"sequence\\\":1709294490099,\\\"timestamp\\\":1731680249700,\\\"ts\\\":1731680249700,\\\"asks\\\":[[\\\"89778.7\\\",854],[\\\"89779.2\\\",4]]}}",
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Futures_futures_public_orderbookLevel50"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/klines/contractMarket/limitCandle:_symbol___type_": {
             "trace": {
                 "summary": "Klines",
@@ -196,6 +168,34 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Futures_futures_public_klines"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/execution/contractMarket/execution:_symbol_": {
+            "trace": {
+                "summary": "Match execution data.",
+                "deprecated": "false",
+                "description": "For each order executed, the system will send you the match messages in the format as following.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "execution",
+                "x-topic": "/contractMarket/execution:{symbol}",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/execution:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"match\\\",\\\"sn\\\":1794100537695,\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"sequence\\\":1794100537695,\\\"side\\\":\\\"buy\\\",\\\"size\\\":2,\\\"price\\\":\\\"90503.9\\\",\\\"takerOrderId\\\":\\\"247822202957807616\\\",\\\"makerOrderId\\\":\\\"247822167163555840\\\",\\\"tradeId\\\":\\\"1794100537695\\\",\\\"ts\\\":1731898619520000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_public_matchExecution"
                                 }
                             }
                         }
@@ -498,121 +498,6 @@
                     "data"
                 ]
             },
-            "Futures_futures_public_matchExecution": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "sn": {
-                        "type": "integer"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "symbol": {
-                                "type": "string"
-                            },
-                            "sequence": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "side": {
-                                "type": "string"
-                            },
-                            "size": {
-                                "type": "integer"
-                            },
-                            "price": {
-                                "type": "string"
-                            },
-                            "takerOrderId": {
-                                "type": "string"
-                            },
-                            "makerOrderId": {
-                                "type": "string"
-                            },
-                            "tradeId": {
-                                "type": "string"
-                            },
-                            "ts": {
-                                "type": "integer",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "symbol",
-                            "sequence",
-                            "side",
-                            "size",
-                            "price",
-                            "takerOrderId",
-                            "makerOrderId",
-                            "tradeId",
-                            "ts"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "sn",
-                    "data"
-                ]
-            },
-            "Futures_futures_public_orderbookIncrement": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "sn": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "sequence": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "change": {
-                                "type": "string"
-                            },
-                            "timestamp": {
-                                "type": "integer",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "sequence",
-                            "change",
-                            "timestamp"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "sn",
-                    "data"
-                ]
-            },
             "Futures_futures_public_orderbookLevel50": {
                 "type": "object",
                 "properties": {
@@ -683,6 +568,52 @@
                     "data"
                 ]
             },
+            "Futures_futures_public_orderbookIncrement": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "change": {
+                                "type": "string"
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "sequence",
+                            "change",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
+                ]
+            },
             "Futures_futures_public_klines": {
                 "type": "object",
                 "properties": {
@@ -727,6 +658,75 @@
                     "type",
                     "data",
                     "subject"
+                ]
+            },
+            "Futures_futures_public_matchExecution": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "sn": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "sequence": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "side": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "integer"
+                            },
+                            "price": {
+                                "type": "string"
+                            },
+                            "takerOrderId": {
+                                "type": "string"
+                            },
+                            "makerOrderId": {
+                                "type": "string"
+                            },
+                            "tradeId": {
+                                "type": "string"
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "sequence",
+                            "side",
+                            "size",
+                            "price",
+                            "takerOrderId",
+                            "makerOrderId",
+                            "tradeId",
+                            "ts"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "sn",
+                    "data"
                 ]
             },
             "Futures_futures_public_instrument": {

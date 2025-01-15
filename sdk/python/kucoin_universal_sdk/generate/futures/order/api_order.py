@@ -382,7 +382,7 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 30      |
+        | API-RATE-LIMIT      | 10      |
         +---------------------+---------+
         """
         pass
