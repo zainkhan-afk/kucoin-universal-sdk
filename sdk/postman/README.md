@@ -76,6 +76,10 @@ For detailed information about the API endpoints, refer to the official KuCoin A
 
 - [KuCoin API Docs](https://www.kucoin.com/docs-new)
 
+## 📋 Changelog
+
+For a detailed list of changes, see the [Changelog](./CHANGELOG.md).
+
 ## 📧 Contact Support
 
 If you encounter any issues or have questions, feel free to reach out through:

@@ -88,6 +88,9 @@ Official Documentation: [KuCoin API Docs](https://www.kucoin.com/docs-new)
 
 Explore more examples in the [example/](example/) directory for advanced usage.
 
+## 📋 Changelog
+
+For a detailed list of changes, see the [Changelog](./CHANGELOG.md).
 
 ## 📌 Special Notes on APIs
 
