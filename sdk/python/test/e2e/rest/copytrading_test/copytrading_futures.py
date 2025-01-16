@@ -68,9 +68,8 @@ class FuturesApiTest(unittest.TestCase):
 
         builder = AddOrderReqBuilder()
         builder.set_client_oid(uuid.uuid4().__str__()).set_side(AddOrderReq.SideEnum.BUY).set_symbol(
-            'XBTUSDTM').set_leverage(3).set_type(AddOrderReq.TypeEnum.LIMIT).set_remark(
-            'order remarks').set_reduce_only(False).set_margin_mode(AddOrderReq.MarginModeEnum.ISOLATED).set_price(
-            '0.1').set_size(1).set_time_in_force(AddOrderReq.TimeInForceEnum.GOOD_TILL_CANCELED)
+            'XBTUSDTM').set_leverage(3).set_type(AddOrderReq.TypeEnum.MARKET).set_remark(
+            'order remarks').set_size(1)
         req = builder.build()
         try:
             resp = self.api.add_order(req)
@@ -203,7 +202,6 @@ class FuturesApiTest(unittest.TestCase):
             print("error: ", e)
             raise e
 
-    # TODO
     def test_add_isolated_margin_req(self):
         """
             add_isolated_margin
@@ -212,7 +210,7 @@ class FuturesApiTest(unittest.TestCase):
         """
 
         builder = AddIsolatedMarginReqBuilder()
-        builder.set_symbol("XBTUSDTM").set_margin(1).set_biz_no(uuid.uuid4().__str__())
+        builder.set_symbol("XBTUSDTM").set_margin(3).set_biz_no(uuid.uuid4().__str__())
         req = builder.build()
         try:
             resp = self.api.add_isolated_margin(req)
@@ -223,7 +221,6 @@ class FuturesApiTest(unittest.TestCase):
             print("error: ", e)
             raise e
 
-    # TODO
     def test_remove_isolated_margin_req(self):
         """
             remove_isolated_margin

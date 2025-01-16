@@ -17,11 +17,11 @@ type AddIsolatedMarginResp struct {
 	// Auto deposit margin or not
 	AutoDeposit bool `json:"autoDeposit,omitempty"`
 	// Maintenance margin requirement
-	MaintMarginReq float32 `json:"maintMarginReq,omitempty"`
+	MaintMarginReq string `json:"maintMarginReq,omitempty"`
 	// Risk limit
 	RiskLimit int32 `json:"riskLimit,omitempty"`
 	// Leverage o the order
-	RealLeverage float32 `json:"realLeverage,omitempty"`
+	RealLeverage string `json:"realLeverage,omitempty"`
 	// Cross mode or not
 	CrossMode bool `json:"crossMode,omitempty"`
 	// ADL ranking percentile
@@ -33,62 +33,60 @@ type AddIsolatedMarginResp struct {
 	// Current postion quantity
 	CurrentQty int32 `json:"currentQty,omitempty"`
 	// Current postion value
-	CurrentCost float32 `json:"currentCost,omitempty"`
+	CurrentCost string `json:"currentCost,omitempty"`
 	// Current commission
-	CurrentComm float32 `json:"currentComm,omitempty"`
+	CurrentComm string `json:"currentComm,omitempty"`
 	// Unrealised value
-	UnrealisedCost float32 `json:"unrealisedCost,omitempty"`
+	UnrealisedCost string `json:"unrealisedCost,omitempty"`
 	// Accumulated realised gross profit value
-	RealisedGrossCost float32 `json:"realisedGrossCost,omitempty"`
+	RealisedGrossCost string `json:"realisedGrossCost,omitempty"`
 	// Current realised position value
-	RealisedCost float32 `json:"realisedCost,omitempty"`
+	RealisedCost string `json:"realisedCost,omitempty"`
 	// Opened position or not
 	IsOpen bool `json:"isOpen,omitempty"`
 	// Mark price
-	MarkPrice float32 `json:"markPrice,omitempty"`
+	MarkPrice string `json:"markPrice,omitempty"`
 	// Mark value
-	MarkValue float32 `json:"markValue,omitempty"`
+	MarkValue string `json:"markValue,omitempty"`
 	// Position value
-	PosCost float32 `json:"posCost,omitempty"`
+	PosCost string `json:"posCost,omitempty"`
 	// added margin
-	PosCross float32 `json:"posCross,omitempty"`
+	PosCross string `json:"posCross,omitempty"`
 	// Leverage margin
-	PosInit float32 `json:"posInit,omitempty"`
+	PosInit string `json:"posInit,omitempty"`
 	// Bankruptcy cost
-	PosComm float32 `json:"posComm,omitempty"`
+	PosComm string `json:"posComm,omitempty"`
 	// Funding fees paid out
-	PosLoss float32 `json:"posLoss,omitempty"`
+	PosLoss string `json:"posLoss,omitempty"`
 	// Position margin
-	PosMargin float32 `json:"posMargin,omitempty"`
+	PosMargin string `json:"posMargin,omitempty"`
 	// Maintenance margin
-	PosMaint float32 `json:"posMaint,omitempty"`
+	PosMaint string `json:"posMaint,omitempty"`
 	// Position margin
-	MaintMargin float32 `json:"maintMargin,omitempty"`
+	MaintMargin string `json:"maintMargin,omitempty"`
 	// Accumulated realised gross profit value
-	RealisedGrossPnl float32 `json:"realisedGrossPnl,omitempty"`
+	RealisedGrossPnl string `json:"realisedGrossPnl,omitempty"`
 	// Realised profit and loss
-	RealisedPnl float32 `json:"realisedPnl,omitempty"`
+	RealisedPnl string `json:"realisedPnl,omitempty"`
 	// Unrealised profit and loss
-	UnrealisedPnl float32 `json:"unrealisedPnl,omitempty"`
+	UnrealisedPnl string `json:"unrealisedPnl,omitempty"`
 	// Profit-loss ratio of the position
-	UnrealisedPnlPcnt float32 `json:"unrealisedPnlPcnt,omitempty"`
+	UnrealisedPnlPcnt string `json:"unrealisedPnlPcnt,omitempty"`
 	// Rate of return on investment
-	UnrealisedRoePcnt float32 `json:"unrealisedRoePcnt,omitempty"`
+	UnrealisedRoePcnt string `json:"unrealisedRoePcnt,omitempty"`
 	// Average entry price
-	AvgEntryPrice float32 `json:"avgEntryPrice,omitempty"`
+	AvgEntryPrice string `json:"avgEntryPrice,omitempty"`
 	// Liquidation price
-	LiquidationPrice float32 `json:"liquidationPrice,omitempty"`
+	LiquidationPrice string `json:"liquidationPrice,omitempty"`
 	// Bankruptcy price
-	BankruptPrice float32 `json:"bankruptPrice,omitempty"`
-	// userId
-	UserId int32 `json:"userId,omitempty"`
+	BankruptPrice string `json:"bankruptPrice,omitempty"`
 	// Currency used to clear and settle the trades
 	SettleCurrency string `json:"settleCurrency,omitempty"`
 }
 
 // NewAddIsolatedMarginResp instantiates a new AddIsolatedMarginResp object
 // This constructor will assign default values to properties that have it defined
-func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintMarginReq float32, riskLimit int32, realLeverage float32, crossMode bool, delevPercentage float32, openingTimestamp int64, currentTimestamp int64, currentQty int32, currentCost float32, currentComm float32, unrealisedCost float32, realisedGrossCost float32, realisedCost float32, isOpen bool, markPrice float32, markValue float32, posCost float32, posCross float32, posInit float32, posComm float32, posLoss float32, posMargin float32, posMaint float32, maintMargin float32, realisedGrossPnl float32, realisedPnl float32, unrealisedPnl float32, unrealisedPnlPcnt float32, unrealisedRoePcnt float32, avgEntryPrice float32, liquidationPrice float32, bankruptPrice float32, userId int32, settleCurrency string) *AddIsolatedMarginResp {
+func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintMarginReq string, riskLimit int32, realLeverage string, crossMode bool, delevPercentage float32, openingTimestamp int64, currentTimestamp int64, currentQty int32, currentCost string, currentComm string, unrealisedCost string, realisedGrossCost string, realisedCost string, isOpen bool, markPrice string, markValue string, posCost string, posCross string, posInit string, posComm string, posLoss string, posMargin string, posMaint string, maintMargin string, realisedGrossPnl string, realisedPnl string, unrealisedPnl string, unrealisedPnlPcnt string, unrealisedRoePcnt string, avgEntryPrice string, liquidationPrice string, bankruptPrice string, settleCurrency string) *AddIsolatedMarginResp {
 	this := AddIsolatedMarginResp{}
 	this.Id = id
 	this.Symbol = symbol
@@ -125,7 +123,6 @@ func NewAddIsolatedMarginResp(id string, symbol string, autoDeposit bool, maintM
 	this.AvgEntryPrice = avgEntryPrice
 	this.LiquidationPrice = liquidationPrice
 	this.BankruptPrice = bankruptPrice
-	this.UserId = userId
 	this.SettleCurrency = settleCurrency
 	return &this
 }
@@ -174,7 +171,6 @@ func (o *AddIsolatedMarginResp) ToMap() map[string]interface{} {
 	toSerialize["avgEntryPrice"] = o.AvgEntryPrice
 	toSerialize["liquidationPrice"] = o.LiquidationPrice
 	toSerialize["bankruptPrice"] = o.BankruptPrice
-	toSerialize["userId"] = o.UserId
 	toSerialize["settleCurrency"] = o.SettleCurrency
 	return toSerialize
 }

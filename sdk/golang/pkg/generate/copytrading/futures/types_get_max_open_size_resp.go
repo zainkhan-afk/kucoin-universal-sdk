@@ -13,14 +13,14 @@ type GetMaxOpenSizeResp struct {
 	// Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220)
 	Symbol string `json:"symbol,omitempty"`
 	// Maximum buy size
-	MaxBuyOpenSize int32 `json:"maxBuyOpenSize,omitempty"`
+	MaxBuyOpenSize string `json:"maxBuyOpenSize,omitempty"`
 	// Maximum buy size
-	MaxSellOpenSize int32 `json:"maxSellOpenSize,omitempty"`
+	MaxSellOpenSize string `json:"maxSellOpenSize,omitempty"`
 }
 
 // NewGetMaxOpenSizeResp instantiates a new GetMaxOpenSizeResp object
 // This constructor will assign default values to properties that have it defined
-func NewGetMaxOpenSizeResp(symbol string, maxBuyOpenSize int32, maxSellOpenSize int32) *GetMaxOpenSizeResp {
+func NewGetMaxOpenSizeResp(symbol string, maxBuyOpenSize string, maxSellOpenSize string) *GetMaxOpenSizeResp {
 	this := GetMaxOpenSizeResp{}
 	this.Symbol = symbol
 	this.MaxBuyOpenSize = maxBuyOpenSize

@@ -20,39 +20,38 @@ class AddIsolatedMarginResp(BaseModel, Response):
         id (str): Position ID
         symbol (str): Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) 
         auto_deposit (bool): Auto deposit margin or not
-        maint_margin_req (float): Maintenance margin requirement  
+        maint_margin_req (str): Maintenance margin requirement  
         risk_limit (int): Risk limit 
-        real_leverage (float): Leverage o the order
+        real_leverage (str): Leverage o the order
         cross_mode (bool): Cross mode or not
         delev_percentage (float): ADL ranking percentile
         opening_timestamp (int): Open time
         current_timestamp (int): Current timestamp 
         current_qty (int): Current postion quantity
-        current_cost (float): Current postion value
-        current_comm (float): Current commission
-        unrealised_cost (float): Unrealised value
-        realised_gross_cost (float): Accumulated realised gross profit value
-        realised_cost (float): Current realised position value
+        current_cost (str): Current postion value
+        current_comm (str): Current commission
+        unrealised_cost (str): Unrealised value
+        realised_gross_cost (str): Accumulated realised gross profit value
+        realised_cost (str): Current realised position value
         is_open (bool): Opened position or not
-        mark_price (float): Mark price
-        mark_value (float): Mark value 
-        pos_cost (float): Position value
-        pos_cross (float): added margin
-        pos_init (float): Leverage margin
-        pos_comm (float): Bankruptcy cost
-        pos_loss (float): Funding fees paid out
-        pos_margin (float): Position margin
-        pos_maint (float): Maintenance margin
-        maint_margin (float): Position margin
-        realised_gross_pnl (float): Accumulated realised gross profit value
-        realised_pnl (float): Realised profit and loss
-        unrealised_pnl (float): Unrealised profit and loss
-        unrealised_pnl_pcnt (float): Profit-loss ratio of the position
-        unrealised_roe_pcnt (float): Rate of return on investment
-        avg_entry_price (float): Average entry price
-        liquidation_price (float): Liquidation price
-        bankrupt_price (float): Bankruptcy price
-        user_id (int): userId
+        mark_price (str): Mark price
+        mark_value (str): Mark value 
+        pos_cost (str): Position value
+        pos_cross (str): added margin
+        pos_init (str): Leverage margin
+        pos_comm (str): Bankruptcy cost
+        pos_loss (str): Funding fees paid out
+        pos_margin (str): Position margin
+        pos_maint (str): Maintenance margin
+        maint_margin (str): Position margin
+        realised_gross_pnl (str): Accumulated realised gross profit value
+        realised_pnl (str): Realised profit and loss
+        unrealised_pnl (str): Unrealised profit and loss
+        unrealised_pnl_pcnt (str): Profit-loss ratio of the position
+        unrealised_roe_pcnt (str): Rate of return on investment
+        avg_entry_price (str): Average entry price
+        liquidation_price (str): Liquidation price
+        bankrupt_price (str): Bankruptcy price
         settle_currency (str): Currency used to clear and settle the trades
     """
 
@@ -68,16 +67,16 @@ class AddIsolatedMarginResp(BaseModel, Response):
         default=None,
         description="Auto deposit margin or not",
         alias="autoDeposit")
-    maint_margin_req: Optional[float] = Field(
+    maint_margin_req: Optional[str] = Field(
         default=None,
         description="Maintenance margin requirement  ",
         alias="maintMarginReq")
     risk_limit: Optional[int] = Field(default=None,
                                       description="Risk limit ",
                                       alias="riskLimit")
-    real_leverage: Optional[float] = Field(default=None,
-                                           description="Leverage o the order",
-                                           alias="realLeverage")
+    real_leverage: Optional[str] = Field(default=None,
+                                         description="Leverage o the order",
+                                         alias="realLeverage")
     cross_mode: Optional[bool] = Field(default=None,
                                        description="Cross mode or not",
                                        alias="crossMode")
@@ -94,88 +93,84 @@ class AddIsolatedMarginResp(BaseModel, Response):
     current_qty: Optional[int] = Field(default=None,
                                        description="Current postion quantity",
                                        alias="currentQty")
-    current_cost: Optional[float] = Field(default=None,
-                                          description="Current postion value",
-                                          alias="currentCost")
-    current_comm: Optional[float] = Field(default=None,
-                                          description="Current commission",
-                                          alias="currentComm")
-    unrealised_cost: Optional[float] = Field(default=None,
-                                             description="Unrealised value",
-                                             alias="unrealisedCost")
-    realised_gross_cost: Optional[float] = Field(
+    current_cost: Optional[str] = Field(default=None,
+                                        description="Current postion value",
+                                        alias="currentCost")
+    current_comm: Optional[str] = Field(default=None,
+                                        description="Current commission",
+                                        alias="currentComm")
+    unrealised_cost: Optional[str] = Field(default=None,
+                                           description="Unrealised value",
+                                           alias="unrealisedCost")
+    realised_gross_cost: Optional[str] = Field(
         default=None,
         description="Accumulated realised gross profit value",
         alias="realisedGrossCost")
-    realised_cost: Optional[float] = Field(
+    realised_cost: Optional[str] = Field(
         default=None,
         description="Current realised position value",
         alias="realisedCost")
     is_open: Optional[bool] = Field(default=None,
                                     description="Opened position or not",
                                     alias="isOpen")
-    mark_price: Optional[float] = Field(default=None,
-                                        description="Mark price",
-                                        alias="markPrice")
-    mark_value: Optional[float] = Field(default=None,
-                                        description="Mark value ",
-                                        alias="markValue")
-    pos_cost: Optional[float] = Field(default=None,
-                                      description="Position value",
-                                      alias="posCost")
-    pos_cross: Optional[float] = Field(default=None,
-                                       description="added margin",
-                                       alias="posCross")
-    pos_init: Optional[float] = Field(default=None,
-                                      description="Leverage margin",
-                                      alias="posInit")
-    pos_comm: Optional[float] = Field(default=None,
-                                      description="Bankruptcy cost",
-                                      alias="posComm")
-    pos_loss: Optional[float] = Field(default=None,
-                                      description="Funding fees paid out",
-                                      alias="posLoss")
-    pos_margin: Optional[float] = Field(default=None,
+    mark_price: Optional[str] = Field(default=None,
+                                      description="Mark price",
+                                      alias="markPrice")
+    mark_value: Optional[str] = Field(default=None,
+                                      description="Mark value ",
+                                      alias="markValue")
+    pos_cost: Optional[str] = Field(default=None,
+                                    description="Position value",
+                                    alias="posCost")
+    pos_cross: Optional[str] = Field(default=None,
+                                     description="added margin",
+                                     alias="posCross")
+    pos_init: Optional[str] = Field(default=None,
+                                    description="Leverage margin",
+                                    alias="posInit")
+    pos_comm: Optional[str] = Field(default=None,
+                                    description="Bankruptcy cost",
+                                    alias="posComm")
+    pos_loss: Optional[str] = Field(default=None,
+                                    description="Funding fees paid out",
+                                    alias="posLoss")
+    pos_margin: Optional[str] = Field(default=None,
+                                      description="Position margin",
+                                      alias="posMargin")
+    pos_maint: Optional[str] = Field(default=None,
+                                     description="Maintenance margin",
+                                     alias="posMaint")
+    maint_margin: Optional[str] = Field(default=None,
                                         description="Position margin",
-                                        alias="posMargin")
-    pos_maint: Optional[float] = Field(default=None,
-                                       description="Maintenance margin",
-                                       alias="posMaint")
-    maint_margin: Optional[float] = Field(default=None,
-                                          description="Position margin",
-                                          alias="maintMargin")
-    realised_gross_pnl: Optional[float] = Field(
+                                        alias="maintMargin")
+    realised_gross_pnl: Optional[str] = Field(
         default=None,
         description="Accumulated realised gross profit value",
         alias="realisedGrossPnl")
-    realised_pnl: Optional[float] = Field(
-        default=None,
-        description="Realised profit and loss",
-        alias="realisedPnl")
-    unrealised_pnl: Optional[float] = Field(
+    realised_pnl: Optional[str] = Field(default=None,
+                                        description="Realised profit and loss",
+                                        alias="realisedPnl")
+    unrealised_pnl: Optional[str] = Field(
         default=None,
         description="Unrealised profit and loss",
         alias="unrealisedPnl")
-    unrealised_pnl_pcnt: Optional[float] = Field(
+    unrealised_pnl_pcnt: Optional[str] = Field(
         default=None,
         description="Profit-loss ratio of the position",
         alias="unrealisedPnlPcnt")
-    unrealised_roe_pcnt: Optional[float] = Field(
+    unrealised_roe_pcnt: Optional[str] = Field(
         default=None,
         description="Rate of return on investment",
         alias="unrealisedRoePcnt")
-    avg_entry_price: Optional[float] = Field(default=None,
-                                             description="Average entry price",
-                                             alias="avgEntryPrice")
-    liquidation_price: Optional[float] = Field(default=None,
-                                               description="Liquidation price",
-                                               alias="liquidationPrice")
-    bankrupt_price: Optional[float] = Field(default=None,
-                                            description="Bankruptcy price",
-                                            alias="bankruptPrice")
-    user_id: Optional[int] = Field(default=None,
-                                   description="userId",
-                                   alias="userId")
+    avg_entry_price: Optional[str] = Field(default=None,
+                                           description="Average entry price",
+                                           alias="avgEntryPrice")
+    liquidation_price: Optional[str] = Field(default=None,
+                                             description="Liquidation price",
+                                             alias="liquidationPrice")
+    bankrupt_price: Optional[str] = Field(default=None,
+                                          description="Bankruptcy price",
+                                          alias="bankruptPrice")
     settle_currency: Optional[str] = Field(
         default=None,
         description="Currency used to clear and settle the trades",
@@ -190,7 +185,7 @@ class AddIsolatedMarginResp(BaseModel, Response):
         "posLoss", "posMargin", "posMaint", "maintMargin", "realisedGrossPnl",
         "realisedPnl", "unrealisedPnl", "unrealisedPnlPcnt",
         "unrealisedRoePcnt", "avgEntryPrice", "liquidationPrice",
-        "bankruptPrice", "userId", "settleCurrency"
+        "bankruptPrice", "settleCurrency"
     ]
 
     model_config = ConfigDict(
@@ -297,8 +292,6 @@ class AddIsolatedMarginResp(BaseModel, Response):
             obj.get("liquidationPrice"),
             "bankruptPrice":
             obj.get("bankruptPrice"),
-            "userId":
-            obj.get("userId"),
             "settleCurrency":
             obj.get("settleCurrency")
         })

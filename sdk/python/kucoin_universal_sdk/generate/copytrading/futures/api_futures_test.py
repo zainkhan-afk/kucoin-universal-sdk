@@ -136,7 +136,7 @@ class FuturesAPITest(unittest.TestCase):
         Get Max Open Size
         /api/v1/copy-trade/futures/get-max-open-size
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": 8,\n        \"maxSellOpenSize\": 5\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDTM\",\n        \"maxBuyOpenSize\": \"8\",\n        \"maxSellOpenSize\": \"5\"\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetMaxOpenSizeResp.from_dict(common_response.data)
 
@@ -165,7 +165,7 @@ class FuturesAPITest(unittest.TestCase):
        Add Isolated Margin
        /api/v1/copy-trade/futures/position/margin/deposit-margin
        """
-        data = "{\"symbol\": \"string\", \"margin\": 0, \"bizNo\": \"string\"}"
+        data = "{\"symbol\": \"XBTUSDTM\", \"margin\": 3, \"bizNo\": \"112233\"}"
         req = AddIsolatedMarginReq.from_json(data)
 
     def test_add_isolated_margin_resp_model(self):
@@ -174,7 +174,7 @@ class FuturesAPITest(unittest.TestCase):
         Add Isolated Margin
         /api/v1/copy-trade/futures/position/margin/deposit-margin
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"6200c9b83aecfb000152ddcd\",\n        \"symbol\": \"XBTUSDTM\",\n        \"autoDeposit\": false,\n        \"maintMarginReq\": 0.005,\n        \"riskLimit\": 500000,\n        \"realLeverage\": 18.72,\n        \"crossMode\": false,\n        \"delevPercentage\": 0.66,\n        \"openingTimestamp\": 1646287090131,\n        \"currentTimestamp\": 1646295055021,\n        \"currentQty\": 1,\n        \"currentCost\": 43.388,\n        \"currentComm\": 0.0260328,\n        \"unrealisedCost\": 43.388,\n        \"realisedGrossCost\": 0,\n        \"realisedCost\": 0.0260328,\n        \"isOpen\": true,\n        \"markPrice\": 43536.65,\n        \"markValue\": 43.53665,\n        \"posCost\": 43.388,\n        \"posCross\": 0.000024985,\n        \"posInit\": 2.1694,\n        \"posComm\": 0.02733446,\n        \"posLoss\": 0,\n        \"posMargin\": 2.19675944,\n        \"posMaint\": 0.24861326,\n        \"maintMargin\": 2.34540944,\n        \"realisedGrossPnl\": 0,\n        \"realisedPnl\": -0.0260328,\n        \"unrealisedPnl\": 0.14865,\n        \"unrealisedPnlPcnt\": 0.0034,\n        \"unrealisedRoePcnt\": 0.0685,\n        \"avgEntryPrice\": 43388,\n        \"liquidationPrice\": 41440,\n        \"bankruptPrice\": 41218,\n        \"userId\": 1234321123,\n        \"settleCurrency\": \"USDT\"\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"400000000000974886\",\n        \"symbol\": \"XBTUSDTM\",\n        \"autoDeposit\": true,\n        \"maintMarginReq\": \"0.004\",\n        \"riskLimit\": 100000,\n        \"realLeverage\": \"1.83\",\n        \"crossMode\": false,\n        \"marginMode\": \"\",\n        \"positionSide\": \"\",\n        \"leverage\": \"1.83\",\n        \"delevPercentage\": 0.2,\n        \"openingTimestamp\": 1736932881164,\n        \"currentTimestamp\": 1736933530230,\n        \"currentQty\": 1,\n        \"currentCost\": \"97.302\",\n        \"currentComm\": \"0.0583812\",\n        \"unrealisedCost\": \"97.302\",\n        \"realisedGrossCost\": \"0.0000000000\",\n        \"realisedCost\": \"0.0583812000\",\n        \"isOpen\": true,\n        \"markPrice\": \"96939.98\",\n        \"markValue\": \"96.9399800000\",\n        \"posCost\": \"97.302\",\n        \"posCross\": \"20.9874\",\n        \"posInit\": \"32.4339999967\",\n        \"posComm\": \"0.0904415999\",\n        \"posLoss\": \"0\",\n        \"posMargin\": \"53.5118415966\",\n        \"posMaint\": \"0.4796495999\",\n        \"maintMargin\": \"53.1498215966\",\n        \"realisedGrossPnl\": \"0.0000000000\",\n        \"realisedPnl\": \"-0.0583812000\",\n        \"unrealisedPnl\": \"-0.3620200000\",\n        \"unrealisedPnlPcnt\": \"-0.0037\",\n        \"unrealisedRoePcnt\": \"-0.0112\",\n        \"avgEntryPrice\": \"97302.00\",\n        \"liquidationPrice\": \"44269.81\",\n        \"bankruptPrice\": \"43880.61\",\n        \"settleCurrency\": \"USDT\"\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = AddIsolatedMarginResp.from_dict(common_response.data)
 

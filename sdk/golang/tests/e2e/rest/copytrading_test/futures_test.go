@@ -168,7 +168,6 @@ func TestFuturesCancelOrderByClientOidReq(t *testing.T) {
 }
 
 func TestFuturesGetMaxOpenSizeReq(t *testing.T) {
-	// TODO
 	// GetMaxOpenSize
 	// Get Max Open Size
 	// /api/v1/copy-trade/futures/get-max-open-size
@@ -212,49 +211,50 @@ func TestFuturesGetMaxWithdrawMarginReq(t *testing.T) {
 	fmt.Println("data:", string(data))
 }
 
-//	func TestFuturesAddIsolatedMarginReq(t *testing.T) {
-//		// AddIsolatedMargin
-//		// Add Isolated Margin
-//		// /api/v1/copy-trade/futures/position/margin/deposit-margin
-//
-//		builder := futures.NewAddIsolatedMarginReqBuilder()
-//		builder.SetSymbol("XBTUSDTM").SetMargin(1).SetBizNo("123e4567-e89b-12d3-a456-426614174000")
-//		req := builder.Build()
-//
-//		resp, err := futuresApi.AddIsolatedMargin(req, context.TODO())
-//		if err != nil {
-//			panic(err)
-//		}
-//		data, err := json.Marshal(resp.ToMap())
-//		if err != nil {
-//			panic(err)
-//		}
-//		fmt.Println("code:", resp.CommonResponse.Code)
-//		fmt.Println("message:", resp.CommonResponse.Message)
-//		fmt.Println("data:", string(data))
-//	}
-//
-//	func TestFuturesRemoveIsolatedMarginReq(t *testing.T) {
-//		// RemoveIsolatedMargin
-//		// Remove Isolated Margin
-//		// /api/v1/copy-trade/futures/position/margin/withdraw-margin
-//
-//		builder := futures.NewRemoveIsolatedMarginReqBuilder()
-//		builder.SetSymbol("XBTUSDTM").SetWithdrawAmount("0.0000001")
-//		req := builder.Build()
-//
-//		resp, err := futuresApi.RemoveIsolatedMargin(req, context.TODO())
-//		if err != nil {
-//			panic(err)
-//		}
-//		data, err := json.Marshal(resp.ToMap())
-//		if err != nil {
-//			panic(err)
-//		}
-//		fmt.Println("code:", resp.CommonResponse.Code)
-//		fmt.Println("message:", resp.CommonResponse.Message)
-//		fmt.Println("data:", string(data))
-//	}
+func TestFuturesAddIsolatedMarginReq(t *testing.T) {
+	// AddIsolatedMargin
+	// Add Isolated Margin
+	// /api/v1/copy-trade/futures/position/margin/deposit-margin
+
+	builder := futures.NewAddIsolatedMarginReqBuilder()
+	builder.SetSymbol("XBTUSDTM").SetMargin(3).SetBizNo(uuid.NewString())
+	req := builder.Build()
+
+	resp, err := futuresApi.AddIsolatedMargin(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
+func TestFuturesRemoveIsolatedMarginReq(t *testing.T) {
+	// RemoveIsolatedMargin
+	// Remove Isolated Margin
+	// /api/v1/copy-trade/futures/position/margin/withdraw-margin
+
+	builder := futures.NewRemoveIsolatedMarginReqBuilder()
+	builder.SetSymbol("XBTUSDTM").SetWithdrawAmount("0.0000001")
+	req := builder.Build()
+
+	resp, err := futuresApi.RemoveIsolatedMargin(req, context.TODO())
+	if err != nil {
+		panic(err)
+	}
+	data, err := json.Marshal(resp.ToMap())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("code:", resp.CommonResponse.Code)
+	fmt.Println("message:", resp.CommonResponse.Message)
+	fmt.Println("data:", string(data))
+}
+
 func TestFuturesModifyIsolatedMarginRiskLimtReq(t *testing.T) {
 	// ModifyIsolatedMarginRiskLimt
 	// Modify Isolated Margin Risk Limit
