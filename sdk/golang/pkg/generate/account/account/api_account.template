@@ -1,16 +1,76 @@
 # API FUNCTION TEMPLATE
 
 
-func TestAccountGetFuturesAccountReq(t *testing.T) {
-    // GetFuturesAccount
-    // Get Account - Futures
-    // /api/v1/account-overview
+func TestAccountGetAccountInfoReq(t *testing.T) {
+    // GetAccountInfo
+    // Get Account Summary Info
+    // /api/v2/user-info
 
-    builder := account.NewGetFuturesAccountReqBuilder()
-    builder.SetCurrency(?)
+
+    resp, err := accountApi.GetAccountInfo(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestAccountGetApikeyInfoReq(t *testing.T) {
+    // GetApikeyInfo
+    // Get Apikey Info
+    // /api/v1/user/api-key
+
+
+    resp, err := accountApi.GetApikeyInfo(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestAccountGetSpotAccountTypeReq(t *testing.T) {
+    // GetSpotAccountType
+    // Get Account Type - Spot 
+    // /api/v1/hf/accounts/opened
+
+
+    resp, err := accountApi.GetSpotAccountType(context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestAccountGetSpotAccountListReq(t *testing.T) {
+    // GetSpotAccountList
+    // Get Account List - Spot
+    // /api/v1/accounts
+
+    builder := account.NewGetSpotAccountListReqBuilder()
+    builder.SetCurrency(?).SetType(?)
     req := builder.Build()
 
-    resp, err := accountApi.GetFuturesAccount(req, context.TODO())
+    resp, err := accountApi.GetSpotAccountList(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -47,16 +107,62 @@ func TestAccountGetSpotAccountDetailReq(t *testing.T) {
 }
 
 
-func TestAccountGetSpotAccountListReq(t *testing.T) {
-    // GetSpotAccountList
-    // Get Account List - Spot
-    // /api/v1/accounts
+func TestAccountGetCrossMarginAccountReq(t *testing.T) {
+    // GetCrossMarginAccount
+    // Get Account - Cross Margin
+    // /api/v3/margin/accounts
 
-    builder := account.NewGetSpotAccountListReqBuilder()
-    builder.SetCurrency(?).SetType(?)
+    builder := account.NewGetCrossMarginAccountReqBuilder()
+    builder.SetQuoteCurrency(?).SetQueryType(?)
     req := builder.Build()
 
-    resp, err := accountApi.GetSpotAccountList(req, context.TODO())
+    resp, err := accountApi.GetCrossMarginAccount(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestAccountGetIsolatedMarginAccountReq(t *testing.T) {
+    // GetIsolatedMarginAccount
+    // Get Account - Isolated Margin
+    // /api/v3/isolated/accounts
+
+    builder := account.NewGetIsolatedMarginAccountReqBuilder()
+    builder.SetSymbol(?).SetQuoteCurrency(?).SetQueryType(?)
+    req := builder.Build()
+
+    resp, err := accountApi.GetIsolatedMarginAccount(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestAccountGetFuturesAccountReq(t *testing.T) {
+    // GetFuturesAccount
+    // Get Account - Futures
+    // /api/v1/account-overview
+
+    builder := account.NewGetFuturesAccountReqBuilder()
+    builder.SetCurrency(?)
+    req := builder.Build()
+
+    resp, err := accountApi.GetFuturesAccount(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -116,79 +222,16 @@ func TestAccountGetSpotHFLedgerReq(t *testing.T) {
 }
 
 
-func TestAccountGetSpotAccountTypeReq(t *testing.T) {
-    // GetSpotAccountType
-    // Get Account Type - Spot 
-    // /api/v1/hf/accounts/opened
+func TestAccountGetMarginHFLedgerReq(t *testing.T) {
+    // GetMarginHFLedger
+    // Get Account Ledgers - Margin_hf
+    // /api/v3/hf/margin/account/ledgers
 
-
-    resp, err := accountApi.GetSpotAccountType(context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestAccountGetIsolatedMarginAccountDetailV1Req(t *testing.T) {
-    // GetIsolatedMarginAccountDetailV1
-    // Get Account Detail - Isolated Margin - V1
-    // /api/v1/isolated/account/{symbol}
-
-    builder := account.NewGetIsolatedMarginAccountDetailV1ReqBuilder()
-    builder.SetSymbol(?)
+    builder := account.NewGetMarginHFLedgerReqBuilder()
+    builder.SetCurrency(?).SetDirection(?).SetBizType(?).SetLastId(?).SetLimit(?).SetStartAt(?).SetEndAt(?)
     req := builder.Build()
 
-    resp, err := accountApi.GetIsolatedMarginAccountDetailV1(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestAccountGetIsolatedMarginAccountListV1Req(t *testing.T) {
-    // GetIsolatedMarginAccountListV1
-    // Get Account List - Isolated Margin - V1
-    // /api/v1/isolated/accounts
-
-    builder := account.NewGetIsolatedMarginAccountListV1ReqBuilder()
-    builder.SetBalanceCurrency(?)
-    req := builder.Build()
-
-    resp, err := accountApi.GetIsolatedMarginAccountListV1(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestAccountGetMarginAccountDetailReq(t *testing.T) {
-    // GetMarginAccountDetail
-    // Get Account Detail - Margin
-    // /api/v1/margin/account
-
-
-    resp, err := accountApi.GetMarginAccountDetail(context.TODO())
+    resp, err := accountApi.GetMarginHFLedger(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -225,13 +268,13 @@ func TestAccountGetFuturesLedgerReq(t *testing.T) {
 }
 
 
-func TestAccountGetApikeyInfoReq(t *testing.T) {
-    // GetApikeyInfo
-    // Get Apikey Info
-    // /api/v1/user/api-key
+func TestAccountGetMarginAccountDetailReq(t *testing.T) {
+    // GetMarginAccountDetail
+    // Get Account Detail - Margin
+    // /api/v1/margin/account
 
 
-    resp, err := accountApi.GetApikeyInfo(context.TODO())
+    resp, err := accountApi.GetMarginAccountDetail(context.TODO())
     if err != nil {
         panic(err)
     }
@@ -245,36 +288,16 @@ func TestAccountGetApikeyInfoReq(t *testing.T) {
 }
 
 
-func TestAccountGetAccountInfoReq(t *testing.T) {
-    // GetAccountInfo
-    // Get Account Summary Info
-    // /api/v2/user-info
+func TestAccountGetIsolatedMarginAccountListV1Req(t *testing.T) {
+    // GetIsolatedMarginAccountListV1
+    // Get Account List - Isolated Margin - V1
+    // /api/v1/isolated/accounts
 
-
-    resp, err := accountApi.GetAccountInfo(context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestAccountGetMarginHFLedgerReq(t *testing.T) {
-    // GetMarginHFLedger
-    // Get Account Ledgers - Margin_hf
-    // /api/v3/hf/margin/account/ledgers
-
-    builder := account.NewGetMarginHFLedgerReqBuilder()
-    builder.SetCurrency(?).SetDirection(?).SetBizType(?).SetLastId(?).SetLimit(?).SetStartAt(?).SetEndAt(?)
+    builder := account.NewGetIsolatedMarginAccountListV1ReqBuilder()
+    builder.SetBalanceCurrency(?)
     req := builder.Build()
 
-    resp, err := accountApi.GetMarginHFLedger(req, context.TODO())
+    resp, err := accountApi.GetIsolatedMarginAccountListV1(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -288,39 +311,16 @@ func TestAccountGetMarginHFLedgerReq(t *testing.T) {
 }
 
 
-func TestAccountGetIsolatedMarginAccountReq(t *testing.T) {
-    // GetIsolatedMarginAccount
-    // Get Account - Isolated Margin
-    // /api/v3/isolated/accounts
+func TestAccountGetIsolatedMarginAccountDetailV1Req(t *testing.T) {
+    // GetIsolatedMarginAccountDetailV1
+    // Get Account Detail - Isolated Margin - V1
+    // /api/v1/isolated/account/{symbol}
 
-    builder := account.NewGetIsolatedMarginAccountReqBuilder()
-    builder.SetSymbol(?).SetQuoteCurrency(?).SetQueryType(?)
+    builder := account.NewGetIsolatedMarginAccountDetailV1ReqBuilder()
+    builder.SetSymbol(?)
     req := builder.Build()
 
-    resp, err := accountApi.GetIsolatedMarginAccount(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestAccountGetCrossMarginAccountReq(t *testing.T) {
-    // GetCrossMarginAccount
-    // Get Account - Cross Margin
-    // /api/v3/margin/accounts
-
-    builder := account.NewGetCrossMarginAccountReqBuilder()
-    builder.SetQuoteCurrency(?).SetQueryType(?)
-    req := builder.Build()
-
-    resp, err := accountApi.GetCrossMarginAccount(req, context.TODO())
+    resp, err := accountApi.GetIsolatedMarginAccountDetailV1(req, context.TODO())
     if err != nil {
         panic(err)
     }

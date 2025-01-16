@@ -35,27 +35,27 @@
                 }
             }
         },
-        "/symbolSnapshot/market/snapshot:_symbol_": {
+        "/allTickers/market/ticker:all": {
             "trace": {
-                "summary": "Symbol Snapshot",
+                "summary": "Get All Tickers",
                 "deprecated": "false",
-                "description": "Subscribe to get snapshot data for a single symbol.",
+                "description": "Subscribe to this topic to get the push of all market symbols BBO change.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
                 "x-sdk-sub-service": "spot_public",
                 "x-sdk-private": false,
-                "x-sdk-method-name": "symbolSnapshot",
-                "x-topic": "/market/snapshot:{symbol}",
-                "x-push_frequency": "once every 2s",
-                "x-response-example": "{\\\"topic\\\":\\\"/market/snapshot:BTC-USDT\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"trade.snapshot\\\",\\\"data\\\":{\\\"sequence\\\":\\\"14691517895\\\",\\\"data\\\":{\\\"askSize\\\":1.15955795,\\\"averagePrice\\\":66867.89967612,\\\"baseCurrency\\\":\\\"BTC\\\",\\\"bidSize\\\":0.81772627,\\\"board\\\":1,\\\"buy\\\":67158.1,\\\"changePrice\\\":315.20000000000000000000,\\\"changeRate\\\":0.0047,\\\"close\\\":67158.1,\\\"datetime\\\":1729758286011,\\\"high\\\":67611.80000000000000000000,\\\"lastTradedPrice\\\":67158.1,\\\"low\\\":65257.10000000000000000000,\\\"makerCoefficient\\\":1.000000,\\\"makerFeeRate\\\":0.001,\\\"marginTrade\\\":true,\\\"mark\\\":0,\\\"market\\\":\\\"USDS\\\",\\\"marketChange1h\\\":{\\\"changePrice\\\":-102.10000000000000000000,\\\"changeRate\\\":-0.0015,\\\"high\\\":67310.60000000000000000000,\\\"low\\\":67051.80000000000000000000,\\\"open\\\":67260.20000000000000000000,\\\"vol\\\":53.73698081000000000000,\\\"volValue\\\":3609965.13819127700000000000},\\\"marketChange24h\\\":{\\\"changePrice\\\":315.20000000000000000000,\\\"changeRate\\\":0.0047,\\\"high\\\":67611.80000000000000000000,\\\"low\\\":65257.10000000000000000000,\\\"open\\\":66842.90000000000000000000,\\\"vol\\\":2227.69895852000000000000,\\\"volValue\\\":147972941.07857507300000000000},\\\"marketChange4h\\\":{\\\"changePrice\\\":-166.30000000000000000000,\\\"changeRate\\\":-0.0024,\\\"high\\\":67476.60000000000000000000,\\\"low\\\":67051.80000000000000000000,\\\"open\\\":67324.40000000000000000000,\\\"vol\\\":173.76971188000000000000,\\\"volValue\\\":11695949.43841656500000000000},\\\"markets\\\":[\\\"USDS\\\",\\\"PoW\\\"],\\\"open\\\":66842.90000000000000000000,\\\"quoteCurrency\\\":\\\"USDT\\\",\\\"sell\\\":67158.2,\\\"siteTypes\\\":[\\\"turkey\\\",\\\"thailand\\\",\\\"global\\\"],\\\"sort\\\":100,\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"symbolCode\\\":\\\"BTC-USDT\\\",\\\"takerCoefficient\\\":1.000000,\\\"takerFeeRate\\\":0.001,\\\"trading\\\":true,\\\"vol\\\":2227.69895852000000000000,\\\"volValue\\\":147972941.07857507300000000000}}}",
+                "x-sdk-method-name": "allTickers",
+                "x-topic": "/market/ticker:all",
+                "x-push_frequency": "once every 100ms",
+                "x-response-example": "{\\\"topic\\\":\\\"/market/ticker:all\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"BTC-USDT\\\",\\\"data\\\":{\\\"bestAsk\\\":\\\"67218.7\\\",\\\"bestAskSize\\\":\\\"1.92318539\\\",\\\"bestBid\\\":\\\"67218.6\\\",\\\"bestBidSize\\\":\\\"0.01045638\\\",\\\"price\\\":\\\"67220\\\",\\\"sequence\\\":\\\"14691455768\\\",\\\"size\\\":\\\"0.00004316\\\",\\\"time\\\":1729757723612}}",
                 "responses": {
                     "200": {
                         "description": "",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Spot_spot_public_symbolSnapshot"
+                                    "$ref": "#/components/schemas/Spot_spot_public_allTickers"
                                 }
                             }
                         }
@@ -147,6 +147,34 @@
                 }
             }
         },
+        "/orderbookIncrement/market/level2:_symbol_,_symbol_": {
+            "trace": {
+                "summary": "Orderbook - Increment",
+                "deprecated": "false",
+                "description": "The system will return the increment change orderbook data(All depth), A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "orderbookIncrement",
+                "x-topic": "/market/level2:{symbol},{symbol}",
+                "x-push_frequency": "real-time",
+                "x-response-example": "{\\\"topic\\\":\\\"/market/level2:BTC-USDT\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"trade.l2update\\\",\\\"data\\\":{\\\"changes\\\":{\\\"asks\\\":[[\\\"67993.3\\\",\\\"1.21427407\\\",\\\"14701689783\\\"]],\\\"bids\\\":[]},\\\"sequenceEnd\\\":14701689783,\\\"sequenceStart\\\":14701689783,\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"time\\\":1729816425625}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_public_orderbookIncrement"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/klines/market/candles:_symbol___type_": {
             "trace": {
                 "summary": "Klines",
@@ -168,62 +196,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Spot_spot_public_klines"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/allTickers/market/ticker:all": {
-            "trace": {
-                "summary": "Get All Tickers",
-                "deprecated": "false",
-                "description": "Subscribe to this topic to get the push of all market symbols BBO change.",
-                "tags": [],
-                "parameters": [],
-                "x-sdk-service": "Spot",
-                "x-sdk-sub-service": "spot_public",
-                "x-sdk-private": false,
-                "x-sdk-method-name": "allTickers",
-                "x-topic": "/market/ticker:all",
-                "x-push_frequency": "once every 100ms",
-                "x-response-example": "{\\\"topic\\\":\\\"/market/ticker:all\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"BTC-USDT\\\",\\\"data\\\":{\\\"bestAsk\\\":\\\"67218.7\\\",\\\"bestAskSize\\\":\\\"1.92318539\\\",\\\"bestBid\\\":\\\"67218.6\\\",\\\"bestBidSize\\\":\\\"0.01045638\\\",\\\"price\\\":\\\"67220\\\",\\\"sequence\\\":\\\"14691455768\\\",\\\"size\\\":\\\"0.00004316\\\",\\\"time\\\":1729757723612}}",
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Spot_spot_public_allTickers"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/marketSnapshot/market/snapshot:_market_": {
-            "trace": {
-                "summary": "Market Snapshot",
-                "deprecated": "false",
-                "description": "Subscribe this topic to get the snapshot data of for the entire market.",
-                "tags": [],
-                "parameters": [],
-                "x-sdk-service": "Spot",
-                "x-sdk-sub-service": "spot_public",
-                "x-sdk-private": false,
-                "x-sdk-method-name": "marketSnapshot",
-                "x-topic": "/market/snapshot:{market}",
-                "x-push_frequency": "once every 2s",
-                "x-response-example": "{\\\"topic\\\":\\\"/market/snapshot:BTC\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"trade.snapshot\\\",\\\"data\\\":{\\\"sequence\\\":\\\"1729785948015\\\",\\\"data\\\":{\\\"askSize\\\":1375.1096,\\\"averagePrice\\\":0.00000262,\\\"baseCurrency\\\":\\\"CHR\\\",\\\"bidSize\\\":152.0912,\\\"board\\\":0,\\\"buy\\\":0.00000263,\\\"changePrice\\\":0.00000005300000000000,\\\"changeRate\\\":0.0200,\\\"close\\\":0.000002698,\\\"datetime\\\":1729785948008,\\\"high\\\":0.00000274600000000000,\\\"lastTradedPrice\\\":0.000002698,\\\"low\\\":0.00000255800000000000,\\\"makerCoefficient\\\":1.000000,\\\"makerFeeRate\\\":0.001,\\\"marginTrade\\\":false,\\\"mark\\\":0,\\\"market\\\":\\\"BTC\\\",\\\"marketChange1h\\\":{\\\"changePrice\\\":-0.00000000900000000000,\\\"changeRate\\\":-0.0033,\\\"high\\\":0.00000270700000000000,\\\"low\\\":0.00000264200000000000,\\\"open\\\":0.00000270700000000000,\\\"vol\\\":27.10350000000000000000,\\\"volValue\\\":0.00007185015660000000},\\\"marketChange24h\\\":{\\\"changePrice\\\":0.00000005300000000000,\\\"changeRate\\\":0.0200,\\\"high\\\":0.00000274600000000000,\\\"low\\\":0.00000255800000000000,\\\"open\\\":0.00000264500000000000,\\\"vol\\\":6824.94800000000000000000,\\\"volValue\\\":0.01789509649520000000},\\\"marketChange4h\\\":{\\\"changePrice\\\":0.00000000600000000000,\\\"changeRate\\\":0.0022,\\\"high\\\":0.00000270700000000000,\\\"low\\\":0.00000264200000000000,\\\"open\\\":0.00000269200000000000,\\\"vol\\\":92.69020000000000000000,\\\"volValue\\\":0.00024903875740000000},\\\"markets\\\":[\\\"BTC\\\",\\\"DePIN\\\",\\\"Layer 1\\\"],\\\"open\\\":0.00000264500000000000,\\\"quoteCurrency\\\":\\\"BTC\\\",\\\"sell\\\":0.000002695,\\\"siteTypes\\\":[\\\"global\\\"],\\\"sort\\\":100,\\\"symbol\\\":\\\"CHR-BTC\\\",\\\"symbolCode\\\":\\\"CHR-BTC\\\",\\\"takerCoefficient\\\":1.000000,\\\"takerFeeRate\\\":0.001,\\\"trading\\\":true,\\\"vol\\\":6824.94800000000000000000,\\\"volValue\\\":0.01789509649520000000}}}",
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Spot_spot_public_marketSnapshot"
                                 }
                             }
                         }
@@ -259,27 +231,55 @@
                 }
             }
         },
-        "/orderbookIncrement/market/level2:_symbol_,_symbol_": {
+        "/symbolSnapshot/market/snapshot:_symbol_": {
             "trace": {
-                "summary": "Orderbook - Increment",
+                "summary": "Symbol Snapshot",
                 "deprecated": "false",
-                "description": "The system will return the increment change orderbook data(All depth), A topic supports up to 100 symbols. If there is no change in the market, data will not be pushed",
+                "description": "Subscribe to get snapshot data for a single symbol.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Spot",
                 "x-sdk-sub-service": "spot_public",
                 "x-sdk-private": false,
-                "x-sdk-method-name": "orderbookIncrement",
-                "x-topic": "/market/level2:{symbol},{symbol}",
-                "x-push_frequency": "real-time",
-                "x-response-example": "{\\\"topic\\\":\\\"/market/level2:BTC-USDT\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"trade.l2update\\\",\\\"data\\\":{\\\"changes\\\":{\\\"asks\\\":[[\\\"67993.3\\\",\\\"1.21427407\\\",\\\"14701689783\\\"]],\\\"bids\\\":[]},\\\"sequenceEnd\\\":14701689783,\\\"sequenceStart\\\":14701689783,\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"time\\\":1729816425625}}",
+                "x-sdk-method-name": "symbolSnapshot",
+                "x-topic": "/market/snapshot:{symbol}",
+                "x-push_frequency": "once every 2s",
+                "x-response-example": "{\\\"topic\\\":\\\"/market/snapshot:BTC-USDT\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"trade.snapshot\\\",\\\"data\\\":{\\\"sequence\\\":\\\"14691517895\\\",\\\"data\\\":{\\\"askSize\\\":1.15955795,\\\"averagePrice\\\":66867.89967612,\\\"baseCurrency\\\":\\\"BTC\\\",\\\"bidSize\\\":0.81772627,\\\"board\\\":1,\\\"buy\\\":67158.1,\\\"changePrice\\\":315.20000000000000000000,\\\"changeRate\\\":0.0047,\\\"close\\\":67158.1,\\\"datetime\\\":1729758286011,\\\"high\\\":67611.80000000000000000000,\\\"lastTradedPrice\\\":67158.1,\\\"low\\\":65257.10000000000000000000,\\\"makerCoefficient\\\":1.000000,\\\"makerFeeRate\\\":0.001,\\\"marginTrade\\\":true,\\\"mark\\\":0,\\\"market\\\":\\\"USDS\\\",\\\"marketChange1h\\\":{\\\"changePrice\\\":-102.10000000000000000000,\\\"changeRate\\\":-0.0015,\\\"high\\\":67310.60000000000000000000,\\\"low\\\":67051.80000000000000000000,\\\"open\\\":67260.20000000000000000000,\\\"vol\\\":53.73698081000000000000,\\\"volValue\\\":3609965.13819127700000000000},\\\"marketChange24h\\\":{\\\"changePrice\\\":315.20000000000000000000,\\\"changeRate\\\":0.0047,\\\"high\\\":67611.80000000000000000000,\\\"low\\\":65257.10000000000000000000,\\\"open\\\":66842.90000000000000000000,\\\"vol\\\":2227.69895852000000000000,\\\"volValue\\\":147972941.07857507300000000000},\\\"marketChange4h\\\":{\\\"changePrice\\\":-166.30000000000000000000,\\\"changeRate\\\":-0.0024,\\\"high\\\":67476.60000000000000000000,\\\"low\\\":67051.80000000000000000000,\\\"open\\\":67324.40000000000000000000,\\\"vol\\\":173.76971188000000000000,\\\"volValue\\\":11695949.43841656500000000000},\\\"markets\\\":[\\\"USDS\\\",\\\"PoW\\\"],\\\"open\\\":66842.90000000000000000000,\\\"quoteCurrency\\\":\\\"USDT\\\",\\\"sell\\\":67158.2,\\\"siteTypes\\\":[\\\"turkey\\\",\\\"thailand\\\",\\\"global\\\"],\\\"sort\\\":100,\\\"symbol\\\":\\\"BTC-USDT\\\",\\\"symbolCode\\\":\\\"BTC-USDT\\\",\\\"takerCoefficient\\\":1.000000,\\\"takerFeeRate\\\":0.001,\\\"trading\\\":true,\\\"vol\\\":2227.69895852000000000000,\\\"volValue\\\":147972941.07857507300000000000}}}",
                 "responses": {
                     "200": {
                         "description": "",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Spot_spot_public_orderbookIncrement"
+                                    "$ref": "#/components/schemas/Spot_spot_public_symbolSnapshot"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/marketSnapshot/market/snapshot:_market_": {
+            "trace": {
+                "summary": "Market Snapshot",
+                "deprecated": "false",
+                "description": "Subscribe this topic to get the snapshot data of for the entire market.",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Spot",
+                "x-sdk-sub-service": "spot_public",
+                "x-sdk-private": false,
+                "x-sdk-method-name": "marketSnapshot",
+                "x-topic": "/market/snapshot:{market}",
+                "x-push_frequency": "once every 2s",
+                "x-response-example": "{\\\"topic\\\":\\\"/market/snapshot:BTC\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"trade.snapshot\\\",\\\"data\\\":{\\\"sequence\\\":\\\"1729785948015\\\",\\\"data\\\":{\\\"askSize\\\":1375.1096,\\\"averagePrice\\\":0.00000262,\\\"baseCurrency\\\":\\\"CHR\\\",\\\"bidSize\\\":152.0912,\\\"board\\\":0,\\\"buy\\\":0.00000263,\\\"changePrice\\\":0.00000005300000000000,\\\"changeRate\\\":0.0200,\\\"close\\\":0.000002698,\\\"datetime\\\":1729785948008,\\\"high\\\":0.00000274600000000000,\\\"lastTradedPrice\\\":0.000002698,\\\"low\\\":0.00000255800000000000,\\\"makerCoefficient\\\":1.000000,\\\"makerFeeRate\\\":0.001,\\\"marginTrade\\\":false,\\\"mark\\\":0,\\\"market\\\":\\\"BTC\\\",\\\"marketChange1h\\\":{\\\"changePrice\\\":-0.00000000900000000000,\\\"changeRate\\\":-0.0033,\\\"high\\\":0.00000270700000000000,\\\"low\\\":0.00000264200000000000,\\\"open\\\":0.00000270700000000000,\\\"vol\\\":27.10350000000000000000,\\\"volValue\\\":0.00007185015660000000},\\\"marketChange24h\\\":{\\\"changePrice\\\":0.00000005300000000000,\\\"changeRate\\\":0.0200,\\\"high\\\":0.00000274600000000000,\\\"low\\\":0.00000255800000000000,\\\"open\\\":0.00000264500000000000,\\\"vol\\\":6824.94800000000000000000,\\\"volValue\\\":0.01789509649520000000},\\\"marketChange4h\\\":{\\\"changePrice\\\":0.00000000600000000000,\\\"changeRate\\\":0.0022,\\\"high\\\":0.00000270700000000000,\\\"low\\\":0.00000264200000000000,\\\"open\\\":0.00000269200000000000,\\\"vol\\\":92.69020000000000000000,\\\"volValue\\\":0.00024903875740000000},\\\"markets\\\":[\\\"BTC\\\",\\\"DePIN\\\",\\\"Layer 1\\\"],\\\"open\\\":0.00000264500000000000,\\\"quoteCurrency\\\":\\\"BTC\\\",\\\"sell\\\":0.000002695,\\\"siteTypes\\\":[\\\"global\\\"],\\\"sort\\\":100,\\\"symbol\\\":\\\"CHR-BTC\\\",\\\"symbolCode\\\":\\\"CHR-BTC\\\",\\\"takerCoefficient\\\":1.000000,\\\"takerFeeRate\\\":0.001,\\\"trading\\\":true,\\\"vol\\\":6824.94800000000000000000,\\\"volValue\\\":0.01789509649520000000}}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Spot_spot_public_marketSnapshot"
                                 }
                             }
                         }
@@ -358,6 +358,430 @@
                     "data"
                 ],
                 "x-apidog-refs": {}
+            },
+            "Spot_spot_public_allTickers": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "bestAsk": {
+                                "type": "string"
+                            },
+                            "bestAskSize": {
+                                "type": "string"
+                            },
+                            "bestBid": {
+                                "type": "string"
+                            },
+                            "bestBidSize": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "type": "string"
+                            },
+                            "sequence": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "string"
+                            },
+                            "time": {
+                                "type": "integer",
+                                "description": "The matching time of the latest transaction",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "bestAsk",
+                            "bestAskSize",
+                            "bestBid",
+                            "bestBidSize",
+                            "price",
+                            "sequence",
+                            "size",
+                            "time"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_orderbookLevel1": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "asks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "price, size"
+                            },
+                            "bids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "asks",
+                            "bids",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_orderbookLevel5": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "asks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "description": "price, size"
+                            },
+                            "bids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "timestamp": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "asks",
+                            "bids",
+                            "timestamp"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_orderbookLevel50": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "changes": {
+                                "type": "object",
+                                "properties": {
+                                    "asks": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "bids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "asks",
+                                    "bids"
+                                ]
+                            },
+                            "sequenceEnd": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "sequenceStart": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "time": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "changes",
+                            "sequenceEnd",
+                            "sequenceStart",
+                            "symbol",
+                            "time"
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "topic",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_orderbookIncrement": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "changes": {
+                                "type": "object",
+                                "properties": {
+                                    "asks": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "description": "price,size,sequence"
+                                    },
+                                    "bids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "asks",
+                                    "bids"
+                                ]
+                            },
+                            "sequenceEnd": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "sequenceStart": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "time": {
+                                "type": "integer",
+                                "description": "milliseconds",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "changes",
+                            "sequenceEnd",
+                            "sequenceStart",
+                            "symbol",
+                            "time"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_klines": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "symbol"
+                            },
+                            "candles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Start time of the candle cycle,open price,close price, high price,low price,Transaction volume,Transaction amount"
+                            },
+                            "time": {
+                                "type": "integer",
+                                "description": "now（us）",
+                                "format": "int64"
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "candles",
+                            "time"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "data"
+                ]
+            },
+            "Spot_spot_public_trade": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "makerOrderId": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "type": "string"
+                            },
+                            "sequence": {
+                                "type": "string"
+                            },
+                            "side": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "string"
+                            },
+                            "symbol": {
+                                "type": "string"
+                            },
+                            "takerOrderId": {
+                                "type": "string"
+                            },
+                            "time": {
+                                "type": "string"
+                            },
+                            "tradeId": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "makerOrderId",
+                            "price",
+                            "sequence",
+                            "side",
+                            "size",
+                            "symbol",
+                            "takerOrderId",
+                            "time",
+                            "tradeId",
+                            "type"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "data"
+                ]
             },
             "Spot_spot_public_symbolSnapshot": {
                 "type": "object",
@@ -669,287 +1093,6 @@
                         "required": [
                             "sequence",
                             "data"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_orderbookLevel1": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "asks": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                },
-                                "description": "price, size"
-                            },
-                            "bids": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "timestamp": {
-                                "type": "integer",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "asks",
-                            "bids",
-                            "timestamp"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_orderbookLevel5": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "asks": {
-                                "type": "array",
-                                "items": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "description": "price, size"
-                            },
-                            "bids": {
-                                "type": "array",
-                                "items": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "timestamp": {
-                                "type": "integer",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "asks",
-                            "bids",
-                            "timestamp"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_orderbookLevel50": {
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string"
-                    },
-                    "topic": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "changes": {
-                                "type": "object",
-                                "properties": {
-                                    "asks": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    },
-                                    "bids": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "asks",
-                                    "bids"
-                                ]
-                            },
-                            "sequenceEnd": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "sequenceStart": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "symbol": {
-                                "type": "string"
-                            },
-                            "time": {
-                                "type": "integer",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "changes",
-                            "sequenceEnd",
-                            "sequenceStart",
-                            "symbol",
-                            "time"
-                        ]
-                    }
-                },
-                "required": [
-                    "type",
-                    "topic",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_klines": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "symbol": {
-                                "type": "string",
-                                "description": "symbol"
-                            },
-                            "candles": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                },
-                                "description": "Start time of the candle cycle,open price,close price, high price,low price,Transaction volume,Transaction amount"
-                            },
-                            "time": {
-                                "type": "integer",
-                                "description": "now（us）",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "symbol",
-                            "candles",
-                            "time"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_allTickers": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "bestAsk": {
-                                "type": "string"
-                            },
-                            "bestAskSize": {
-                                "type": "string"
-                            },
-                            "bestBid": {
-                                "type": "string"
-                            },
-                            "bestBidSize": {
-                                "type": "string"
-                            },
-                            "price": {
-                                "type": "string"
-                            },
-                            "sequence": {
-                                "type": "string"
-                            },
-                            "size": {
-                                "type": "string"
-                            },
-                            "time": {
-                                "type": "integer",
-                                "description": "The matching time of the latest transaction",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "bestAsk",
-                            "bestAskSize",
-                            "bestBid",
-                            "bestBidSize",
-                            "price",
-                            "sequence",
-                            "size",
-                            "time"
                         ]
                     }
                 },
@@ -1275,149 +1418,6 @@
                         "required": [
                             "sequence",
                             "data"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_trade": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "makerOrderId": {
-                                "type": "string"
-                            },
-                            "price": {
-                                "type": "string"
-                            },
-                            "sequence": {
-                                "type": "string"
-                            },
-                            "side": {
-                                "type": "string"
-                            },
-                            "size": {
-                                "type": "string"
-                            },
-                            "symbol": {
-                                "type": "string"
-                            },
-                            "takerOrderId": {
-                                "type": "string"
-                            },
-                            "time": {
-                                "type": "string"
-                            },
-                            "tradeId": {
-                                "type": "string"
-                            },
-                            "type": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "makerOrderId",
-                            "price",
-                            "sequence",
-                            "side",
-                            "size",
-                            "symbol",
-                            "takerOrderId",
-                            "time",
-                            "tradeId",
-                            "type"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "data"
-                ]
-            },
-            "Spot_spot_public_orderbookIncrement": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "changes": {
-                                "type": "object",
-                                "properties": {
-                                    "asks": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "description": "price,size,sequence"
-                                    },
-                                    "bids": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "asks",
-                                    "bids"
-                                ]
-                            },
-                            "sequenceEnd": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "sequenceStart": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "symbol": {
-                                "type": "string"
-                            },
-                            "time": {
-                                "type": "integer",
-                                "description": "milliseconds",
-                                "format": "int64"
-                            }
-                        },
-                        "required": [
-                            "changes",
-                            "sequenceEnd",
-                            "sequenceStart",
-                            "symbol",
-                            "time"
                         ]
                     }
                 },

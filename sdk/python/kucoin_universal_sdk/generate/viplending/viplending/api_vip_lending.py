@@ -10,11 +10,11 @@ from .model_get_accounts_resp import GetAccountsResp
 class VIPLendingAPI(ABC):
 
     @abstractmethod
-    def get_accounts(self, **kwargs: Any) -> GetAccountsResp:
+    def get_account_detail(self, **kwargs: Any) -> GetAccountDetailResp:
         """
-        summary: Get Accounts
-        description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
-        documentation: https://www.kucoin.com/docs-new/api-3470278
+        summary: Get Account Detail
+        description: The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.
+        documentation: https://www.kucoin.com/docs-new/api-3470277
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -28,11 +28,11 @@ class VIPLendingAPI(ABC):
         pass
 
     @abstractmethod
-    def get_account_detail(self, **kwargs: Any) -> GetAccountDetailResp:
+    def get_accounts(self, **kwargs: Any) -> GetAccountsResp:
         """
-        summary: Get Account Detail
-        description: The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.
-        documentation: https://www.kucoin.com/docs-new/api-3470277
+        summary: Get Accounts
+        description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
+        documentation: https://www.kucoin.com/docs-new/api-3470278
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -51,12 +51,12 @@ class VIPLendingAPIImpl(VIPLendingAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_accounts(self, **kwargs: Any) -> GetAccountsResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/otc-loan/accounts", None,
-                                   GetAccountsResp(), False, **kwargs)
-
     def get_account_detail(self, **kwargs: Any) -> GetAccountDetailResp:
         return self.transport.call("spot", False, "GET",
                                    "/api/v1/otc-loan/loan", None,
                                    GetAccountDetailResp(), False, **kwargs)
+
+    def get_accounts(self, **kwargs: Any) -> GetAccountsResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/otc-loan/accounts", None,
+                                   GetAccountsResp(), False, **kwargs)

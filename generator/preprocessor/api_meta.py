@@ -8,7 +8,6 @@ docPath = 'https://www.kucoin.com/docs-new/doc-'
 
 
 class ApiMetaUtil:
-
     doc_id = []
 
     @staticmethod
@@ -43,7 +42,7 @@ class ApiMetaUtil:
                 raise Exception("illegal customApiFields" + api_name)
 
             x_fields = {
-                'x-api-doc' : api_doc,
+                'x-api-doc': api_doc,
             }
             for k in api_fields:
                 x_fields[f'x-{k}'] = api_fields[k]
@@ -256,7 +255,7 @@ class ApiMetaUtil:
                     result = {
                         'name': query_para['name'],
                         'in': 'query',
-                        'description':  ApiMetaUtil.escape_url(query_para['description'], ApiMetaUtil.doc_id),
+                        'description': ApiMetaUtil.escape_url(query_para['description'], ApiMetaUtil.doc_id),
                         'required': query_para['required'],
                         'schema': schema,
                     }
@@ -361,8 +360,11 @@ class ApiMetaUtil:
         paths = {}
         schemas = {}
 
+        api_idx = 0
         for api in api_collection:
+            api_idx = api_idx + 1
             path_operation = ApiMetaUtil.generate_path_operation(api)
+            path_operation['operationId'] = "{:03d}".format(api_idx)
             method = api['api']['method']
             path = api['api']['path']
 

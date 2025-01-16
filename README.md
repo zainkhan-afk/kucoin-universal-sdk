@@ -32,7 +32,7 @@ The  **KuCoin Universal SDK** is the official SDK provided by KuCoin, offering a
 
 ## 🛠️ Installation
 
-### Latest Version: `1.0.0`
+### Latest Version: `1.1.0`
 
 ### Python Installation
 
@@ -134,6 +134,9 @@ Find usage examples for your desired language by selecting the corresponding lin
 | Python   | [sdk/python/examples/](sdk/python/example/)|
 | Go       | [sdk/go/examples/](sdk/golang/example/) |
 
+## 📋 Changelog
+
+For a detailed list of changes, see the [Changelog](./CHANGELOG.md).
 
 ## 🏗️ Technical Design
 

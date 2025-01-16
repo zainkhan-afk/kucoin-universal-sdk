@@ -9,19 +9,61 @@ import (
 
 type AccountAPI interface {
 
-	// GetFuturesAccount Get Account - Futures
-	// Description: Request via this endpoint to get the info of the futures account.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470129
+	// GetAccountInfo Get Account Summary Info
+	// Description: This endpoint can be used to obtain account summary information.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470119
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | SPOT       |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | GENERAL    |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 20         |
+	// +---------------------+------------+
+	GetAccountInfo(ctx context.Context) (*GetAccountInfoResp, error)
+
+	// GetApikeyInfo Get Apikey Info
+	// Description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470130
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | SPOT       |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | GENERAL    |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 20         |
+	// +---------------------+------------+
+	GetApikeyInfo(ctx context.Context) (*GetApikeyInfoResp, error)
+
+	// GetSpotAccountType Get Account Type - Spot
+	// Description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470120
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
+	// | API-DOMAIN          | SPOT    |
 	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 5       |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | SPOT    |
+	// | API-RATE-LIMIT      | 30      |
 	// +---------------------+---------+
-	GetFuturesAccount(req *GetFuturesAccountReq, ctx context.Context) (*GetFuturesAccountResp, error)
+	GetSpotAccountType(ctx context.Context) (*GetSpotAccountTypeResp, error)
+
+	// GetSpotAccountList Get Account List - Spot
+	// Description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470125
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | SPOT       |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | GENERAL    |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 5          |
+	// +---------------------+------------+
+	GetSpotAccountList(req *GetSpotAccountListReq, ctx context.Context) (*GetSpotAccountListResp, error)
 
 	// GetSpotAccountDetail Get Account Detail - Spot
 	// Description: get Information for a single spot account. Use this endpoint when you know the accountId.
@@ -37,19 +79,47 @@ type AccountAPI interface {
 	// +---------------------+------------+
 	GetSpotAccountDetail(req *GetSpotAccountDetailReq, ctx context.Context) (*GetSpotAccountDetailResp, error)
 
-	// GetSpotAccountList Get Account List - Spot
-	// Description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470125
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 5          |
-	// +---------------------+------------+
-	GetSpotAccountList(req *GetSpotAccountListReq, ctx context.Context) (*GetSpotAccountListResp, error)
+	// GetCrossMarginAccount Get Account - Cross Margin
+	// Description: Request via this endpoint to get the info of the cross margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470127
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | SPOT    |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | SPOT    |
+	// | API-RATE-LIMIT      | 15      |
+	// +---------------------+---------+
+	GetCrossMarginAccount(req *GetCrossMarginAccountReq, ctx context.Context) (*GetCrossMarginAccountResp, error)
+
+	// GetIsolatedMarginAccount Get Account - Isolated Margin
+	// Description: Request via this endpoint to get the info of the isolated margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470128
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | SPOT    |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | SPOT    |
+	// | API-RATE-LIMIT      | 15      |
+	// +---------------------+---------+
+	GetIsolatedMarginAccount(req *GetIsolatedMarginAccountReq, ctx context.Context) (*GetIsolatedMarginAccountResp, error)
+
+	// GetFuturesAccount Get Account - Futures
+	// Description: Request via this endpoint to get the info of the futures account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470129
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 5       |
+	// +---------------------+---------+
+	GetFuturesAccount(req *GetFuturesAccountReq, ctx context.Context) (*GetFuturesAccountResp, error)
 
 	// GetSpotLedger Get Account Ledgers - Spot/Margin
 	// Description: This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
@@ -79,9 +149,9 @@ type AccountAPI interface {
 	// +---------------------+---------+
 	GetSpotHFLedger(req *GetSpotHFLedgerReq, ctx context.Context) (*GetSpotHFLedgerResp, error)
 
-	// GetSpotAccountType Get Account Type - Spot
-	// Description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470120
+	// GetMarginHFLedger Get Account Ledgers - Margin_hf
+	// Description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470123
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -89,39 +159,23 @@ type AccountAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | GENERAL |
 	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 30      |
+	// | API-RATE-LIMIT      | 2       |
 	// +---------------------+---------+
-	GetSpotAccountType(ctx context.Context) (*GetSpotAccountTypeResp, error)
+	GetMarginHFLedger(req *GetMarginHFLedgerReq, ctx context.Context) (*GetMarginHFLedgerResp, error)
 
-	// GetIsolatedMarginAccountDetailV1 Get Account Detail - Isolated Margin - V1
-	// Description: Request via this endpoint to get the info of the isolated margin account.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470315
+	// GetFuturesLedger Get Account Ledgers - Futures
+	// Description: This interface can query the ledger records of the futures business line
+	// Documentation: https://www.kucoin.com/docs-new/api-3470124
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
+	// | API-DOMAIN          | FUTURES |
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 50      |
+	// | API-RATE-LIMIT-POOL | FUTURES |
+	// | API-RATE-LIMIT      | 2       |
 	// +---------------------+---------+
-	// Deprecated
-	GetIsolatedMarginAccountDetailV1(req *GetIsolatedMarginAccountDetailV1Req, ctx context.Context) (*GetIsolatedMarginAccountDetailV1Resp, error)
-
-	// GetIsolatedMarginAccountListV1 Get Account List - Isolated Margin - V1
-	// Description: Request via this endpoint to get the info list of the isolated margin account.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470314
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 50      |
-	// +---------------------+---------+
-	// Deprecated
-	GetIsolatedMarginAccountListV1(req *GetIsolatedMarginAccountListV1Req, ctx context.Context) (*GetIsolatedMarginAccountListV1Resp, error)
+	GetFuturesLedger(req *GetFuturesLedgerReq, ctx context.Context) (*GetFuturesLedgerResp, error)
 
 	// GetMarginAccountDetail Get Account Detail - Margin
 	// Description: Request via this endpoint to get the info of the margin account.
@@ -138,51 +192,9 @@ type AccountAPI interface {
 	// Deprecated
 	GetMarginAccountDetail(ctx context.Context) (*GetMarginAccountDetailResp, error)
 
-	// GetFuturesLedger Get Account Ledgers - Futures
-	// Description: This interface can query the ledger records of the futures business line
-	// Documentation: https://www.kucoin.com/docs-new/api-3470124
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | FUTURES |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
-	GetFuturesLedger(req *GetFuturesLedgerReq, ctx context.Context) (*GetFuturesLedgerResp, error)
-
-	// GetApikeyInfo Get Apikey Info
-	// Description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470130
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
-	GetApikeyInfo(ctx context.Context) (*GetApikeyInfoResp, error)
-
-	// GetAccountInfo Get Account Summary Info
-	// Description: This endpoint can be used to obtain account summary information.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470119
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 20         |
-	// +---------------------+------------+
-	GetAccountInfo(ctx context.Context) (*GetAccountInfoResp, error)
-
-	// GetMarginHFLedger Get Account Ledgers - Margin_hf
-	// Description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470123
+	// GetIsolatedMarginAccountListV1 Get Account List - Isolated Margin - V1
+	// Description: Request via this endpoint to get the info list of the isolated margin account.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470314
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -190,13 +202,14 @@ type AccountAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | GENERAL |
 	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 2       |
+	// | API-RATE-LIMIT      | 50      |
 	// +---------------------+---------+
-	GetMarginHFLedger(req *GetMarginHFLedgerReq, ctx context.Context) (*GetMarginHFLedgerResp, error)
+	// Deprecated
+	GetIsolatedMarginAccountListV1(req *GetIsolatedMarginAccountListV1Req, ctx context.Context) (*GetIsolatedMarginAccountListV1Resp, error)
 
-	// GetIsolatedMarginAccount Get Account - Isolated Margin
+	// GetIsolatedMarginAccountDetailV1 Get Account Detail - Isolated Margin - V1
 	// Description: Request via this endpoint to get the info of the isolated margin account.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470128
+	// Documentation: https://www.kucoin.com/docs-new/api-3470315
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -204,23 +217,10 @@ type AccountAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | GENERAL |
 	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 15      |
+	// | API-RATE-LIMIT      | 50      |
 	// +---------------------+---------+
-	GetIsolatedMarginAccount(req *GetIsolatedMarginAccountReq, ctx context.Context) (*GetIsolatedMarginAccountResp, error)
-
-	// GetCrossMarginAccount Get Account - Cross Margin
-	// Description: Request via this endpoint to get the info of the cross margin account.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470127
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 15      |
-	// +---------------------+---------+
-	GetCrossMarginAccount(req *GetCrossMarginAccountReq, ctx context.Context) (*GetCrossMarginAccountResp, error)
+	// Deprecated
+	GetIsolatedMarginAccountDetailV1(req *GetIsolatedMarginAccountDetailV1Req, ctx context.Context) (*GetIsolatedMarginAccountDetailV1Resp, error)
 }
 
 type AccountAPIImpl struct {
@@ -231,9 +231,27 @@ func NewAccountAPIImp(transport interfaces.Transport) *AccountAPIImpl {
 	return &AccountAPIImpl{transport: transport}
 }
 
-func (impl *AccountAPIImpl) GetFuturesAccount(req *GetFuturesAccountReq, ctx context.Context) (*GetFuturesAccountResp, error) {
-	resp := &GetFuturesAccountResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/account-overview", req, resp, false)
+func (impl *AccountAPIImpl) GetAccountInfo(ctx context.Context) (*GetAccountInfoResp, error) {
+	resp := &GetAccountInfoResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v2/user-info", nil, resp, false)
+	return resp, err
+}
+
+func (impl *AccountAPIImpl) GetApikeyInfo(ctx context.Context) (*GetApikeyInfoResp, error) {
+	resp := &GetApikeyInfoResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/user/api-key", nil, resp, false)
+	return resp, err
+}
+
+func (impl *AccountAPIImpl) GetSpotAccountType(ctx context.Context) (*GetSpotAccountTypeResp, error) {
+	resp := &GetSpotAccountTypeResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/hf/accounts/opened", nil, resp, false)
+	return resp, err
+}
+
+func (impl *AccountAPIImpl) GetSpotAccountList(req *GetSpotAccountListReq, ctx context.Context) (*GetSpotAccountListResp, error) {
+	resp := &GetSpotAccountListResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/accounts", req, resp, false)
 	return resp, err
 }
 
@@ -243,9 +261,21 @@ func (impl *AccountAPIImpl) GetSpotAccountDetail(req *GetSpotAccountDetailReq, c
 	return resp, err
 }
 
-func (impl *AccountAPIImpl) GetSpotAccountList(req *GetSpotAccountListReq, ctx context.Context) (*GetSpotAccountListResp, error) {
-	resp := &GetSpotAccountListResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/accounts", req, resp, false)
+func (impl *AccountAPIImpl) GetCrossMarginAccount(req *GetCrossMarginAccountReq, ctx context.Context) (*GetCrossMarginAccountResp, error) {
+	resp := &GetCrossMarginAccountResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/margin/accounts", req, resp, false)
+	return resp, err
+}
+
+func (impl *AccountAPIImpl) GetIsolatedMarginAccount(req *GetIsolatedMarginAccountReq, ctx context.Context) (*GetIsolatedMarginAccountResp, error) {
+	resp := &GetIsolatedMarginAccountResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/isolated/accounts", req, resp, false)
+	return resp, err
+}
+
+func (impl *AccountAPIImpl) GetFuturesAccount(req *GetFuturesAccountReq, ctx context.Context) (*GetFuturesAccountResp, error) {
+	resp := &GetFuturesAccountResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/account-overview", req, resp, false)
 	return resp, err
 }
 
@@ -261,27 +291,9 @@ func (impl *AccountAPIImpl) GetSpotHFLedger(req *GetSpotHFLedgerReq, ctx context
 	return resp, err
 }
 
-func (impl *AccountAPIImpl) GetSpotAccountType(ctx context.Context) (*GetSpotAccountTypeResp, error) {
-	resp := &GetSpotAccountTypeResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/hf/accounts/opened", nil, resp, false)
-	return resp, err
-}
-
-func (impl *AccountAPIImpl) GetIsolatedMarginAccountDetailV1(req *GetIsolatedMarginAccountDetailV1Req, ctx context.Context) (*GetIsolatedMarginAccountDetailV1Resp, error) {
-	resp := &GetIsolatedMarginAccountDetailV1Resp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/isolated/account/{symbol}", req, resp, false)
-	return resp, err
-}
-
-func (impl *AccountAPIImpl) GetIsolatedMarginAccountListV1(req *GetIsolatedMarginAccountListV1Req, ctx context.Context) (*GetIsolatedMarginAccountListV1Resp, error) {
-	resp := &GetIsolatedMarginAccountListV1Resp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/isolated/accounts", req, resp, false)
-	return resp, err
-}
-
-func (impl *AccountAPIImpl) GetMarginAccountDetail(ctx context.Context) (*GetMarginAccountDetailResp, error) {
-	resp := &GetMarginAccountDetailResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/margin/account", nil, resp, false)
+func (impl *AccountAPIImpl) GetMarginHFLedger(req *GetMarginHFLedgerReq, ctx context.Context) (*GetMarginHFLedgerResp, error) {
+	resp := &GetMarginHFLedgerResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/hf/margin/account/ledgers", req, resp, false)
 	return resp, err
 }
 
@@ -291,32 +303,20 @@ func (impl *AccountAPIImpl) GetFuturesLedger(req *GetFuturesLedgerReq, ctx conte
 	return resp, err
 }
 
-func (impl *AccountAPIImpl) GetApikeyInfo(ctx context.Context) (*GetApikeyInfoResp, error) {
-	resp := &GetApikeyInfoResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/user/api-key", nil, resp, false)
+func (impl *AccountAPIImpl) GetMarginAccountDetail(ctx context.Context) (*GetMarginAccountDetailResp, error) {
+	resp := &GetMarginAccountDetailResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/margin/account", nil, resp, false)
 	return resp, err
 }
 
-func (impl *AccountAPIImpl) GetAccountInfo(ctx context.Context) (*GetAccountInfoResp, error) {
-	resp := &GetAccountInfoResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v2/user-info", nil, resp, false)
+func (impl *AccountAPIImpl) GetIsolatedMarginAccountListV1(req *GetIsolatedMarginAccountListV1Req, ctx context.Context) (*GetIsolatedMarginAccountListV1Resp, error) {
+	resp := &GetIsolatedMarginAccountListV1Resp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/isolated/accounts", req, resp, false)
 	return resp, err
 }
 
-func (impl *AccountAPIImpl) GetMarginHFLedger(req *GetMarginHFLedgerReq, ctx context.Context) (*GetMarginHFLedgerResp, error) {
-	resp := &GetMarginHFLedgerResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/hf/margin/account/ledgers", req, resp, false)
-	return resp, err
-}
-
-func (impl *AccountAPIImpl) GetIsolatedMarginAccount(req *GetIsolatedMarginAccountReq, ctx context.Context) (*GetIsolatedMarginAccountResp, error) {
-	resp := &GetIsolatedMarginAccountResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/isolated/accounts", req, resp, false)
-	return resp, err
-}
-
-func (impl *AccountAPIImpl) GetCrossMarginAccount(req *GetCrossMarginAccountReq, ctx context.Context) (*GetCrossMarginAccountResp, error) {
-	resp := &GetCrossMarginAccountResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/margin/accounts", req, resp, false)
+func (impl *AccountAPIImpl) GetIsolatedMarginAccountDetailV1(req *GetIsolatedMarginAccountDetailV1Req, ctx context.Context) (*GetIsolatedMarginAccountDetailV1Resp, error) {
+	resp := &GetIsolatedMarginAccountDetailV1Resp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/isolated/account/{symbol}", req, resp, false)
 	return resp, err
 }

@@ -7,29 +7,6 @@ import (
 	"testing"
 )
 
-func TestVIPLendingGetAccountsReqModel(t *testing.T) {
-	// GetAccounts
-	// Get Accounts
-	// /api/v1/otc-loan/accounts
-
-}
-
-func TestVIPLendingGetAccountsRespModel(t *testing.T) {
-	// GetAccounts
-	// Get Accounts
-	// /api/v1/otc-loan/accounts
-
-	data := "\n{\n    \"code\": \"200000\",\n    \"data\": [{\n        \"uid\": \"1260004199\",\n        \"marginCcy\": \"USDT\",\n        \"marginQty\": \"900\",\n        \"marginFactor\": \"0.9000000000\",\n        \"accountType\": \"TRADE\",\n        \"isParent\": true\n    }]\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetAccountsResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
 func TestVIPLendingGetAccountDetailReqModel(t *testing.T) {
 	// GetAccountDetail
 	// Get Account Detail
@@ -48,6 +25,29 @@ func TestVIPLendingGetAccountDetailRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetAccountDetailResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestVIPLendingGetAccountsReqModel(t *testing.T) {
+	// GetAccounts
+	// Get Accounts
+	// /api/v1/otc-loan/accounts
+
+}
+
+func TestVIPLendingGetAccountsRespModel(t *testing.T) {
+	// GetAccounts
+	// Get Accounts
+	// /api/v1/otc-loan/accounts
+
+	data := "\n{\n    \"code\": \"200000\",\n    \"data\": [{\n        \"uid\": \"1260004199\",\n        \"marginCcy\": \"USDT\",\n        \"marginQty\": \"900\",\n        \"marginFactor\": \"0.9000000000\",\n        \"accountType\": \"TRADE\",\n        \"isParent\": true\n    }]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetAccountsResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

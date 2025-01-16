@@ -113,7 +113,102 @@
                 "x-sdk-method-name": "getAccountInfo",
                 "x-sdk-method-description": "This endpoint can be used to obtain account summary information.",
                 "x-api-rate-limit": 20,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"level\\\": 0,\\n        \\\"subQuantity\\\": 3,\\n        \\\"spotSubQuantity\\\": 3,\\n        \\\"marginSubQuantity\\\": 2,\\n        \\\"futuresSubQuantity\\\": 2,\\n        \\\"optionSubQuantity\\\": 0,\\n        \\\"maxSubQuantity\\\": 5,\\n        \\\"maxDefaultSubQuantity\\\": 5,\\n        \\\"maxSpotSubQuantity\\\": 0,\\n        \\\"maxMarginSubQuantity\\\": 0,\\n        \\\"maxFuturesSubQuantity\\\": 0,\\n        \\\"maxOptionSubQuantity\\\": 0\\n    }\\n}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"level\\\": 0,\\n        \\\"subQuantity\\\": 3,\\n        \\\"spotSubQuantity\\\": 3,\\n        \\\"marginSubQuantity\\\": 2,\\n        \\\"futuresSubQuantity\\\": 2,\\n        \\\"optionSubQuantity\\\": 0,\\n        \\\"maxSubQuantity\\\": 5,\\n        \\\"maxDefaultSubQuantity\\\": 5,\\n        \\\"maxSpotSubQuantity\\\": 0,\\n        \\\"maxMarginSubQuantity\\\": 0,\\n        \\\"maxFuturesSubQuantity\\\": 0,\\n        \\\"maxOptionSubQuantity\\\": 0\\n    }\\n}",
+                "operationId": "001"
+            }
+        },
+        "/api/v1/user/api-key": {
+            "get": {
+                "summary": "Get Apikey Info",
+                "deprecated": false,
+                "description": "Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user's api key are applicable.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "remark": {
+                                                    "type": "string",
+                                                    "description": "Remarks"
+                                                },
+                                                "apiKey": {
+                                                    "type": "string",
+                                                    "description": "Apikey"
+                                                },
+                                                "apiVersion": {
+                                                    "type": "integer",
+                                                    "description": "API Version"
+                                                },
+                                                "permission": {
+                                                    "type": "string",
+                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
+                                                },
+                                                "ipWhitelist": {
+                                                    "type": "string",
+                                                    "description": "IP whitelist\n\n"
+                                                },
+                                                "createdAt": {
+                                                    "type": "integer",
+                                                    "description": "Apikey create time",
+                                                    "format": "int64"
+                                                },
+                                                "uid": {
+                                                    "type": "integer",
+                                                    "description": "Account UID"
+                                                },
+                                                "isMaster": {
+                                                    "type": "boolean",
+                                                    "description": "Whether it is the master account."
+                                                },
+                                                "subName": {
+                                                    "type": "string",
+                                                    "description": "Sub Name, There is no such param for the master account"
+                                                }
+                                            },
+                                            "required": [
+                                                "remark",
+                                                "apiKey",
+                                                "apiVersion",
+                                                "permission",
+                                                "createdAt",
+                                                "uid",
+                                                "isMaster"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470130",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Account",
+                "x-sdk-method-name": "getApikeyInfo",
+                "x-sdk-method-description": "Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user's api key are applicable.",
+                "x-api-rate-limit": 20,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"remark\\\": \\\"account1\\\",\\n        \\\"apiKey\\\": \\\"6705f5c311545b000157d3eb\\\",\\n        \\\"apiVersion\\\": 3,\\n        \\\"permission\\\": \\\"General,Futures,Spot,Earn,InnerTransfer,Transfer,Margin\\\",\\n        \\\"ipWhitelist\\\": \\\"203.**.154,103.**.34\\\",\\n        \\\"createdAt\\\": 1728443843000,\\n        \\\"uid\\\": 165111215,\\n        \\\"isMaster\\\": true\\n    }\\n}",
+                "operationId": "002"
             }
         },
         "/api/v1/hf/accounts/opened": {
@@ -159,801 +254,8 @@
                 "x-sdk-method-name": "getSpotAccountType",
                 "x-sdk-method-description": "This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.",
                 "x-api-rate-limit": 30,
-                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":false}"
-            }
-        },
-        "/api/v1/accounts/ledgers": {
-            "get": {
-                "summary": "Get Account Ledgers - Spot/Margin",
-                "deprecated": false,
-                "description": "This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "direction",
-                        "in": "query",
-                        "description": "direction: in, out",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "in",
-                                "out"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "in",
-                                    "name": "",
-                                    "description": ""
-                                },
-                                {
-                                    "value": "out",
-                                    "name": "",
-                                    "description": ""
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "bizType",
-                        "in": "query",
-                        "description": "Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "startAt",
-                        "in": "query",
-                        "description": "Start time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "endAt",
-                        "in": "query",
-                        "description": "End time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "currentPage",
-                        "in": "query",
-                        "description": "Current request page.",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "pageSize",
-                        "in": "query",
-                        "description": "Number of results per request. Minimum is 10, maximum is 500.",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 50,
-                            "minimum": 10,
-                            "maximum": 500
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "currentPage": {
-                                                    "type": "integer",
-                                                    "description": "current page"
-                                                },
-                                                "pageSize": {
-                                                    "type": "integer",
-                                                    "description": "page size"
-                                                },
-                                                "totalNum": {
-                                                    "type": "integer",
-                                                    "description": "total number"
-                                                },
-                                                "totalPage": {
-                                                    "type": "integer",
-                                                    "description": "total page"
-                                                },
-                                                "items": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "id": {
-                                                                "type": "string",
-                                                                "description": "unique id"
-                                                            },
-                                                            "currency": {
-                                                                "type": "string",
-                                                                "description": "The currency of an account"
-                                                            },
-                                                            "amount": {
-                                                                "type": "string",
-                                                                "description": "The total amount of assets (fees included) involved in assets changes such as transaction, withdrawal and bonus distribution."
-                                                            },
-                                                            "fee": {
-                                                                "type": "string",
-                                                                "description": "Fees generated in transaction, withdrawal, etc."
-                                                            },
-                                                            "balance": {
-                                                                "type": "string",
-                                                                "description": "Remaining funds after the transaction."
-                                                            },
-                                                            "accountType": {
-                                                                "type": "string",
-                                                                "description": "The account type of the master user: MAIN, TRADE, MARGIN or CONTRACT."
-                                                            },
-                                                            "bizType": {
-                                                                "type": "string",
-                                                                "description": "Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc."
-                                                            },
-                                                            "direction": {
-                                                                "type": "string",
-                                                                "description": "Side, out or in"
-                                                            },
-                                                            "createdAt": {
-                                                                "type": "integer",
-                                                                "description": "Time of the event",
-                                                                "format": "int64"
-                                                            },
-                                                            "context": {
-                                                                "type": "string",
-                                                                "description": "Business related information such as order ID, serial No., etc."
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            "required": [
-                                                "currentPage",
-                                                "pageSize",
-                                                "totalNum",
-                                                "totalPage",
-                                                "items"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470121",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Management",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "Account",
-                "x-sdk-method-name": "getSpotLedger",
-                "x-sdk-method-description": "This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"265329987780896\\\",\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"amount\\\": \\\"0.01\\\",\\n                \\\"fee\\\": \\\"0\\\",\\n                \\\"balance\\\": \\\"0\\\",\\n                \\\"accountType\\\": \\\"TRADE\\\",\\n                \\\"bizType\\\": \\\"SUB_TRANSFER\\\",\\n                \\\"direction\\\": \\\"out\\\",\\n                \\\"createdAt\\\": 1728658481484,\\n                \\\"context\\\": \\\"\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
-            }
-        },
-        "/api/v1/hf/accounts/ledgers": {
-            "get": {
-                "summary": "Get Account Ledgers - Trade_hf",
-                "deprecated": false,
-                "description": "This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "direction",
-                        "in": "query",
-                        "description": "direction: in, out",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "in",
-                                "out"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "in",
-                                    "name": "",
-                                    "description": ""
-                                },
-                                {
-                                    "value": "out",
-                                    "name": "",
-                                    "description": ""
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "bizType",
-                        "in": "query",
-                        "description": "Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "TRADE_EXCHANGE",
-                                "TRANSFER"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "TRADE_EXCHANGE",
-                                    "name": "",
-                                    "description": ""
-                                },
-                                {
-                                    "value": "TRANSFER",
-                                    "name": "",
-                                    "description": ""
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "lastId",
-                        "in": "query",
-                        "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Default100，Max200",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 100,
-                            "maximum": 200,
-                            "minimum": 1
-                        }
-                    },
-                    {
-                        "name": "startAt",
-                        "in": "query",
-                        "description": "Start time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "endAt",
-                        "in": "query",
-                        "description": "End time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string",
-                                                        "description": "Unique id"
-                                                    },
-                                                    "currency": {
-                                                        "type": "string",
-                                                        "description": "currency"
-                                                    },
-                                                    "amount": {
-                                                        "type": "string",
-                                                        "description": "Change in funds balance"
-                                                    },
-                                                    "fee": {
-                                                        "type": "string",
-                                                        "description": "Deposit or withdrawal fee"
-                                                    },
-                                                    "tax": {
-                                                        "type": "string"
-                                                    },
-                                                    "balance": {
-                                                        "type": "string",
-                                                        "description": "Total balance of funds after change"
-                                                    },
-                                                    "accountType": {
-                                                        "type": "string",
-                                                        "description": "Master account type TRADE_HF"
-                                                    },
-                                                    "bizType": {
-                                                        "type": "string",
-                                                        "description": "Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc."
-                                                    },
-                                                    "direction": {
-                                                        "type": "string",
-                                                        "description": "Direction of transfer( out or in)",
-                                                        "enum": [
-                                                            "in",
-                                                            "out"
-                                                        ],
-                                                        "x-api-enum": [
-                                                            {
-                                                                "value": "in",
-                                                                "name": "",
-                                                                "description": ""
-                                                            },
-                                                            {
-                                                                "value": "out",
-                                                                "name": "",
-                                                                "description": ""
-                                                            }
-                                                        ]
-                                                    },
-                                                    "createdAt": {
-                                                        "type": "string",
-                                                        "description": "Created time"
-                                                    },
-                                                    "context": {
-                                                        "type": "string",
-                                                        "description": "Core transaction parameter"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "id",
-                                                    "currency",
-                                                    "amount",
-                                                    "fee",
-                                                    "tax",
-                                                    "balance",
-                                                    "accountType",
-                                                    "bizType",
-                                                    "direction",
-                                                    "createdAt",
-                                                    "context"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470122",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "Account",
-                "x-sdk-method-name": "getSpotHFLedger",
-                "x-sdk-method-description": "This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"254062248624417\\\",\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"amount\\\": \\\"1.59760080\\\",\\n            \\\"fee\\\": \\\"0.00159920\\\",\\n            \\\"tax\\\": \\\"0\\\",\\n            \\\"balance\\\": \\\"26.73759503\\\",\\n            \\\"accountType\\\": \\\"TRADE_HF\\\",\\n            \\\"bizType\\\": \\\"TRADE_EXCHANGE\\\",\\n            \\\"direction\\\": \\\"in\\\",\\n            \\\"createdAt\\\": \\\"1728443957539\\\",\\n            \\\"context\\\": \\\"{\\\\\\\"symbol\\\\\\\":\\\\\\\"KCS-USDT\\\\\\\",\\\\\\\"orderId\\\\\\\":\\\\\\\"6705f6350dc7210007d6a36d\\\\\\\",\\\\\\\"tradeId\\\\\\\":\\\\\\\"10046097631627265\\\\\\\"}\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}"
-            }
-        },
-        "/api/v3/hf/margin/account/ledgers": {
-            "get": {
-                "summary": "Get Account Ledgers - Margin_hf",
-                "deprecated": false,
-                "description": "This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "direction",
-                        "in": "query",
-                        "description": "direction: in, out",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "in",
-                                "out"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "in",
-                                    "name": "",
-                                    "description": ""
-                                },
-                                {
-                                    "value": "out",
-                                    "name": "",
-                                    "description": ""
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "bizType",
-                        "in": "query",
-                        "description": "Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "lastId",
-                        "in": "query",
-                        "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Default100，Max200",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 100,
-                            "maximum": 200,
-                            "minimum": 1
-                        }
-                    },
-                    {
-                        "name": "startAt",
-                        "in": "query",
-                        "description": "Start time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "endAt",
-                        "in": "query",
-                        "description": "End time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "integer",
-                                                        "format": "int64"
-                                                    },
-                                                    "currency": {
-                                                        "type": "string",
-                                                        "description": "currency"
-                                                    },
-                                                    "amount": {
-                                                        "type": "string",
-                                                        "description": "Change in funds balance"
-                                                    },
-                                                    "fee": {
-                                                        "type": "string",
-                                                        "description": "Deposit or withdrawal fee"
-                                                    },
-                                                    "balance": {
-                                                        "type": "string",
-                                                        "description": "Total balance of funds after change"
-                                                    },
-                                                    "accountType": {
-                                                        "type": "string",
-                                                        "description": "Master account type TRADE_HF"
-                                                    },
-                                                    "bizType": {
-                                                        "type": "string",
-                                                        "description": "Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc."
-                                                    },
-                                                    "direction": {
-                                                        "type": "string",
-                                                        "description": "Direction of transfer( out or in)"
-                                                    },
-                                                    "createdAt": {
-                                                        "type": "integer",
-                                                        "description": "Ledger creation time",
-                                                        "format": "int64"
-                                                    },
-                                                    "context": {
-                                                        "type": "string",
-                                                        "description": "Core transaction parameter"
-                                                    },
-                                                    "tax": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470123",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "Account",
-                "x-sdk-method-name": "getMarginHFLedger",
-                "x-sdk-method-description": "This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":[{\\\"id\\\":1949641706720,\\\"currency\\\":\\\"USDT\\\",\\\"amount\\\":\\\"0.01000000\\\",\\\"fee\\\":\\\"0.00000000\\\",\\\"balance\\\":\\\"0.01000000\\\",\\\"accountType\\\":\\\"MARGIN_V2\\\",\\\"bizType\\\":\\\"TRANSFER\\\",\\\"direction\\\":\\\"in\\\",\\\"createdAt\\\":1728664091208,\\\"context\\\":\\\"{}\\\",\\\"tax\\\":\\\"0.00000000\\\"}]}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}"
-            }
-        },
-        "/api/v1/transaction-history": {
-            "get": {
-                "summary": "Get Account Ledgers - Futures",
-                "deprecated": false,
-                "description": "This interface can query the ledger records of the futures business line",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "Currency of transaction history, XBT or USDT",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "type",
-                        "in": "query",
-                        "description": "Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "description": "Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "forward",
-                        "in": "query",
-                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default",
-                        "required": false,
-                        "schema": {
-                            "type": "boolean",
-                            "default": true
-                        }
-                    },
-                    {
-                        "name": "maxCount",
-                        "in": "query",
-                        "description": "Displayed size per page. The default size is 50",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 50,
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "startAt",
-                        "in": "query",
-                        "description": "Start time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "endAt",
-                        "in": "query",
-                        "description": "End time (milisecond)",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "dataList": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "time": {
-                                                                "type": "integer",
-                                                                "description": "ledger time",
-                                                                "format": "int64"
-                                                            },
-                                                            "type": {
-                                                                "type": "string",
-                                                                "description": "Type: RealisedPNL, Deposit, Withdrawal, TransferIn, TransferOut"
-                                                            },
-                                                            "amount": {
-                                                                "type": "number",
-                                                                "description": "Transaction amount"
-                                                            },
-                                                            "fee": {
-                                                                "type": "number",
-                                                                "description": "Fee"
-                                                            },
-                                                            "accountEquity": {
-                                                                "type": "number",
-                                                                "description": "Account equity"
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "description": "Status: Completed, Pending"
-                                                            },
-                                                            "remark": {
-                                                                "type": "string",
-                                                                "description": "Ticker symbol of the contract"
-                                                            },
-                                                            "offset": {
-                                                                "type": "integer",
-                                                                "description": "Offset"
-                                                            },
-                                                            "currency": {
-                                                                "type": "string",
-                                                                "description": "Currency"
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "time",
-                                                            "type",
-                                                            "amount",
-                                                            "fee",
-                                                            "accountEquity",
-                                                            "status",
-                                                            "remark",
-                                                            "offset",
-                                                            "currency"
-                                                        ]
-                                                    }
-                                                },
-                                                "hasMore": {
-                                                    "type": "boolean",
-                                                    "description": "Is it the last page. If it is false, it means it is the last page, and if it is true, it means need to turn the page."
-                                                }
-                                            },
-                                            "required": [
-                                                "dataList",
-                                                "hasMore"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470124",
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Futures",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "Account",
-                "x-sdk-method-name": "getFuturesLedger",
-                "x-sdk-method-description": "This interface can query the ledger records of the futures business line",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"dataList\\\": [\\n            {\\n                \\\"time\\\": 1728665747000,\\n                \\\"type\\\": \\\"TransferIn\\\",\\n                \\\"amount\\\": 0.01,\\n                \\\"fee\\\": 0.0,\\n                \\\"accountEquity\\\": 14.02924938,\\n                \\\"status\\\": \\\"Completed\\\",\\n                \\\"remark\\\": \\\"Transferred from High-Frequency Trading Account\\\",\\n                \\\"offset\\\": 51360793,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            },\\n            {\\n                \\\"time\\\": 1728648000000,\\n                \\\"type\\\": \\\"RealisedPNL\\\",\\n                \\\"amount\\\": 0.00630042,\\n                \\\"fee\\\": 0.0,\\n                \\\"accountEquity\\\": 20.0,\\n                \\\"status\\\": \\\"Completed\\\",\\n                \\\"remark\\\": \\\"XBTUSDTM\\\",\\n                \\\"offset\\\": 51352430,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            }\\n        ],\\n        \\\"hasMore\\\": false\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"XBT\\\", \\\"type\\\": \\\"Transferin\\\", \\\"offset\\\": 254062248624417, \\\"forward\\\": true, \\\"maxCount\\\": 50, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}"
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":false}",
+                "operationId": "003"
             }
         },
         "/api/v1/accounts": {
@@ -1087,7 +389,8 @@
                 "x-sdk-method-description": "Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"548674591753\\\",\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"type\\\": \\\"trade\\\",\\n            \\\"balance\\\": \\\"26.66759503\\\",\\n            \\\"available\\\": \\\"26.66759503\\\",\\n            \\\"holds\\\": \\\"0\\\"\\n        },\\n        {\\n            \\\"id\\\": \\\"63355cd156298d0001b66e61\\\",\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"type\\\": \\\"main\\\",\\n            \\\"balance\\\": \\\"0.01\\\",\\n            \\\"available\\\": \\\"0.01\\\",\\n            \\\"holds\\\": \\\"0\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"type\\\": \\\"main\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"type\\\": \\\"main\\\"}",
+                "operationId": "004"
             }
         },
         "/api/v1/accounts/{accountId}": {
@@ -1167,7 +470,8 @@
                 "x-sdk-method-description": "get Information for a single spot account. Use this endpoint when you know the accountId.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"USDT\\\",\\\"balance\\\":\\\"26.66759503\\\",\\\"available\\\":\\\"26.66759503\\\",\\\"holds\\\":\\\"0\\\"}}",
-                "x-request-example": "{\\\"accountId\\\": \\\"548674591753\\\"}"
+                "x-request-example": "{\\\"accountId\\\": \\\"548674591753\\\"}",
+                "operationId": "005"
             }
         },
         "/api/v3/margin/accounts": {
@@ -1388,7 +692,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get the info of the cross margin account.",
                 "x-api-rate-limit": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"0.02\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"EFFECTIVE\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"total\\\": \\\"0.02\\\",\\n                \\\"available\\\": \\\"0.02\\\",\\n                \\\"hold\\\": \\\"0\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"0\\\",\\n                \\\"borrowEnabled\\\": true,\\n                \\\"transferInEnabled\\\": true\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"MARGIN\\\"}"
+                "x-request-example": "{\\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"MARGIN\\\"}",
+                "operationId": "006"
             }
         },
         "/api/v3/isolated/accounts": {
@@ -1686,7 +991,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get the info of the isolated margin account.",
                 "x-api-rate-limit": 15,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalAssetOfQuoteCurrency\\\": \\\"0.01\\\",\\n        \\\"totalLiabilityOfQuoteCurrency\\\": \\\"0\\\",\\n        \\\"timestamp\\\": 1728725465994,\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"EFFECTIVE\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0\\\",\\n                    \\\"available\\\": \\\"0\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"borrowEnabled\\\": true,\\n                    \\\"transferInEnabled\\\": true,\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"total\\\": \\\"0.01\\\",\\n                    \\\"available\\\": \\\"0.01\\\",\\n                    \\\"hold\\\": \\\"0\\\",\\n                    \\\"maxBorrowSize\\\": \\\"0\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\", \\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"ISOLATED\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\", \\\"quoteCurrency\\\": \\\"USDT\\\", \\\"queryType\\\": \\\"ISOLATED\\\"}",
+                "operationId": "007"
             }
         },
         "/api/v1/account-overview": {
@@ -1801,16 +1107,103 @@
                 "x-sdk-method-description": "Request via this endpoint to get the info of the futures account.",
                 "x-api-rate-limit": 5,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"accountEquity\\\": 48.921913718,\\n        \\\"unrealisedPNL\\\": 1.59475,\\n        \\\"marginBalance\\\": 47.548728628,\\n        \\\"positionMargin\\\": 34.1577964733,\\n        \\\"orderMargin\\\": 0,\\n        \\\"frozenFunds\\\": 0,\\n        \\\"availableBalance\\\": 14.7876172447,\\n        \\\"riskRatio\\\": 0.0090285199\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\"}",
+                "operationId": "008"
             }
         },
-        "/api/v1/user/api-key": {
+        "/api/v1/accounts/ledgers": {
             "get": {
-                "summary": "Get Apikey Info",
+                "summary": "Get Account Ledgers - Spot/Margin",
                 "deprecated": false,
-                "description": "Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user's api key are applicable.",
+                "description": "This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "tags": [],
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "direction: in, out",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "in",
+                                "out"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "in",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "out",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "bizType",
+                        "in": "query",
+                        "description": "Type: DEPOSIT -deposit, WITHDRAW -withdraw, TRANSFER -transfer, SUB_TRANSFER -subaccount transfer,TRADE_EXCHANGE -trade, MARGIN_EXCHANGE -margin trade, KUCOIN_BONUS -bonus, BROKER_TRANSFER -Broker transfer record",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "startAt",
+                        "in": "query",
+                        "description": "Start time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endAt",
+                        "in": "query",
+                        "description": "End time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "currentPage",
+                        "in": "query",
+                        "description": "Current request page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of results per request. Minimum is 10, maximum is 500.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "minimum": 10,
+                            "maximum": 500
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "",
@@ -1825,52 +1218,78 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "remark": {
-                                                    "type": "string",
-                                                    "description": "Remarks"
-                                                },
-                                                "apiKey": {
-                                                    "type": "string",
-                                                    "description": "Apikey"
-                                                },
-                                                "apiVersion": {
+                                                "currentPage": {
                                                     "type": "integer",
-                                                    "description": "API Version"
+                                                    "description": "current page"
                                                 },
-                                                "permission": {
-                                                    "type": "string",
-                                                    "description": "[Permissions](https://www.kucoin.com/docs-new/doc-338144),  possible values: General, Spot, Margin, Futures, InnerTransfer, Transfer, Earn"
-                                                },
-                                                "ipWhitelist": {
-                                                    "type": "string",
-                                                    "description": "IP whitelist\n\n"
-                                                },
-                                                "createdAt": {
+                                                "pageSize": {
                                                     "type": "integer",
-                                                    "description": "Apikey create time",
-                                                    "format": "int64"
+                                                    "description": "page size"
                                                 },
-                                                "uid": {
+                                                "totalNum": {
                                                     "type": "integer",
-                                                    "description": "Account UID"
+                                                    "description": "total number"
                                                 },
-                                                "isMaster": {
-                                                    "type": "boolean",
-                                                    "description": "Whether it is the master account."
+                                                "totalPage": {
+                                                    "type": "integer",
+                                                    "description": "total page"
                                                 },
-                                                "subName": {
-                                                    "type": "string",
-                                                    "description": "Sub Name, There is no such param for the master account"
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "description": "unique id"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "The currency of an account"
+                                                            },
+                                                            "amount": {
+                                                                "type": "string",
+                                                                "description": "The total amount of assets (fees included) involved in assets changes such as transaction, withdrawal and bonus distribution."
+                                                            },
+                                                            "fee": {
+                                                                "type": "string",
+                                                                "description": "Fees generated in transaction, withdrawal, etc."
+                                                            },
+                                                            "balance": {
+                                                                "type": "string",
+                                                                "description": "Remaining funds after the transaction."
+                                                            },
+                                                            "accountType": {
+                                                                "type": "string",
+                                                                "description": "The account type of the master user: MAIN, TRADE, MARGIN or CONTRACT."
+                                                            },
+                                                            "bizType": {
+                                                                "type": "string",
+                                                                "description": "Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc."
+                                                            },
+                                                            "direction": {
+                                                                "type": "string",
+                                                                "description": "Side, out or in"
+                                                            },
+                                                            "createdAt": {
+                                                                "type": "integer",
+                                                                "description": "Time of the event",
+                                                                "format": "int64"
+                                                            },
+                                                            "context": {
+                                                                "type": "string",
+                                                                "description": "Business related information such as order ID, serial No., etc."
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             },
                                             "required": [
-                                                "remark",
-                                                "apiKey",
-                                                "apiVersion",
-                                                "permission",
-                                                "createdAt",
-                                                "uid",
-                                                "isMaster"
+                                                "currentPage",
+                                                "pageSize",
+                                                "totalNum",
+                                                "totalPage",
+                                                "items"
                                             ]
                                         }
                                     },
@@ -1883,7 +1302,7 @@
                         }
                     }
                 },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470130",
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470121",
                 "x-abandon": "normal",
                 "x-domain": "Spot",
                 "x-api-channel": "Private",
@@ -1891,10 +1310,603 @@
                 "x-api-rate-limit-pool": "Management",
                 "x-sdk-service": "Account",
                 "x-sdk-sub-service": "Account",
-                "x-sdk-method-name": "getApikeyInfo",
-                "x-sdk-method-description": "Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user's api key are applicable.",
-                "x-api-rate-limit": 20,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"remark\\\": \\\"account1\\\",\\n        \\\"apiKey\\\": \\\"6705f5c311545b000157d3eb\\\",\\n        \\\"apiVersion\\\": 3,\\n        \\\"permission\\\": \\\"General,Futures,Spot,Earn,InnerTransfer,Transfer,Margin\\\",\\n        \\\"ipWhitelist\\\": \\\"203.**.154,103.**.34\\\",\\n        \\\"createdAt\\\": 1728443843000,\\n        \\\"uid\\\": 165111215,\\n        \\\"isMaster\\\": true\\n    }\\n}"
+                "x-sdk-method-name": "getSpotLedger",
+                "x-sdk-method-description": "This interface is for transaction records from all types of your accounts, supporting inquiry of various currencies. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"id\\\": \\\"265329987780896\\\",\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"amount\\\": \\\"0.01\\\",\\n                \\\"fee\\\": \\\"0\\\",\\n                \\\"balance\\\": \\\"0\\\",\\n                \\\"accountType\\\": \\\"TRADE\\\",\\n                \\\"bizType\\\": \\\"SUB_TRANSFER\\\",\\n                \\\"direction\\\": \\\"out\\\",\\n                \\\"createdAt\\\": 1728658481484,\\n                \\\"context\\\": \\\"\\\"\\n            }\\n        ]\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "009"
+            }
+        },
+        "/api/v1/hf/accounts/ledgers": {
+            "get": {
+                "summary": "Get Account Ledgers - Trade_hf",
+                "deprecated": false,
+                "description": "This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency ( you can choose more than one currency). You can specify 10 currencies at most for one time. If not specified, all currencies will be inquired by default.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "direction: in, out",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "in",
+                                "out"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "in",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "out",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "bizType",
+                        "in": "query",
+                        "description": "Transaction type: TRANSFER-transfer funds,TRADE_EXCHANGE-Trade",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "TRADE_EXCHANGE",
+                                "TRANSFER"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "TRADE_EXCHANGE",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "TRANSFER",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "lastId",
+                        "in": "query",
+                        "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Default100，Max200",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "maximum": 200,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "startAt",
+                        "in": "query",
+                        "description": "Start time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endAt",
+                        "in": "query",
+                        "description": "End time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Unique id"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency"
+                                                    },
+                                                    "amount": {
+                                                        "type": "string",
+                                                        "description": "Change in funds balance"
+                                                    },
+                                                    "fee": {
+                                                        "type": "string",
+                                                        "description": "Deposit or withdrawal fee"
+                                                    },
+                                                    "tax": {
+                                                        "type": "string"
+                                                    },
+                                                    "balance": {
+                                                        "type": "string",
+                                                        "description": "Total balance of funds after change"
+                                                    },
+                                                    "accountType": {
+                                                        "type": "string",
+                                                        "description": "Master account type TRADE_HF"
+                                                    },
+                                                    "bizType": {
+                                                        "type": "string",
+                                                        "description": "Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc."
+                                                    },
+                                                    "direction": {
+                                                        "type": "string",
+                                                        "description": "Direction of transfer( out or in)",
+                                                        "enum": [
+                                                            "in",
+                                                            "out"
+                                                        ],
+                                                        "x-api-enum": [
+                                                            {
+                                                                "value": "in",
+                                                                "name": "",
+                                                                "description": ""
+                                                            },
+                                                            {
+                                                                "value": "out",
+                                                                "name": "",
+                                                                "description": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "string",
+                                                        "description": "Created time"
+                                                    },
+                                                    "context": {
+                                                        "type": "string",
+                                                        "description": "Core transaction parameter"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "currency",
+                                                    "amount",
+                                                    "fee",
+                                                    "tax",
+                                                    "balance",
+                                                    "accountType",
+                                                    "bizType",
+                                                    "direction",
+                                                    "createdAt",
+                                                    "context"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470122",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Account",
+                "x-sdk-method-name": "getSpotHFLedger",
+                "x-sdk-method-description": "This API endpoint returns all transfer (in and out) records in high-frequency trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"254062248624417\\\",\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"amount\\\": \\\"1.59760080\\\",\\n            \\\"fee\\\": \\\"0.00159920\\\",\\n            \\\"tax\\\": \\\"0\\\",\\n            \\\"balance\\\": \\\"26.73759503\\\",\\n            \\\"accountType\\\": \\\"TRADE_HF\\\",\\n            \\\"bizType\\\": \\\"TRADE_EXCHANGE\\\",\\n            \\\"direction\\\": \\\"in\\\",\\n            \\\"createdAt\\\": \\\"1728443957539\\\",\\n            \\\"context\\\": \\\"{\\\\\\\"symbol\\\\\\\":\\\\\\\"KCS-USDT\\\\\\\",\\\\\\\"orderId\\\\\\\":\\\\\\\"6705f6350dc7210007d6a36d\\\\\\\",\\\\\\\"tradeId\\\\\\\":\\\\\\\"10046097631627265\\\\\\\"}\\\"\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
+                "operationId": "010"
+            }
+        },
+        "/api/v3/hf/margin/account/ledgers": {
+            "get": {
+                "summary": "Get Account Ledgers - Margin_hf",
+                "deprecated": false,
+                "description": "This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency, optional，can select more than one，separate with commas，select no more than 10 currencys，the default will be to query for all currencys if left empty",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "description": "direction: in, out",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "in",
+                                "out"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "in",
+                                    "name": "",
+                                    "description": ""
+                                },
+                                {
+                                    "value": "out",
+                                    "name": "",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "bizType",
+                        "in": "query",
+                        "description": "Transaction type: TRANSFER- transfer funds, MARGIN_EXCHANGE - cross margin trade, ISOLATED_EXCHANGE - isolated margin trade, LIQUIDATION - liquidation, ASSERT_RETURN - forced liquidation asset return",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastId",
+                        "in": "query",
+                        "description": "The id of the last set of data from the previous batch of data. By default, the latest information is given.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Default100，Max200",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "maximum": 200,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "startAt",
+                        "in": "query",
+                        "description": "Start time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endAt",
+                        "in": "query",
+                        "description": "End time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "format": "int64"
+                                                    },
+                                                    "currency": {
+                                                        "type": "string",
+                                                        "description": "currency"
+                                                    },
+                                                    "amount": {
+                                                        "type": "string",
+                                                        "description": "Change in funds balance"
+                                                    },
+                                                    "fee": {
+                                                        "type": "string",
+                                                        "description": "Deposit or withdrawal fee"
+                                                    },
+                                                    "balance": {
+                                                        "type": "string",
+                                                        "description": "Total balance of funds after change"
+                                                    },
+                                                    "accountType": {
+                                                        "type": "string",
+                                                        "description": "Master account type TRADE_HF"
+                                                    },
+                                                    "bizType": {
+                                                        "type": "string",
+                                                        "description": "Trnasaction type，such as TRANSFER, TRADE_EXCHANGE, etc."
+                                                    },
+                                                    "direction": {
+                                                        "type": "string",
+                                                        "description": "Direction of transfer( out or in)"
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "integer",
+                                                        "description": "Ledger creation time",
+                                                        "format": "int64"
+                                                    },
+                                                    "context": {
+                                                        "type": "string",
+                                                        "description": "Core transaction parameter"
+                                                    },
+                                                    "tax": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470123",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Account",
+                "x-sdk-method-name": "getMarginHFLedger",
+                "x-sdk-method-description": "This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":[{\\\"id\\\":1949641706720,\\\"currency\\\":\\\"USDT\\\",\\\"amount\\\":\\\"0.01000000\\\",\\\"fee\\\":\\\"0.00000000\\\",\\\"balance\\\":\\\"0.01000000\\\",\\\"accountType\\\":\\\"MARGIN_V2\\\",\\\"bizType\\\":\\\"TRANSFER\\\",\\\"direction\\\":\\\"in\\\",\\\"createdAt\\\":1728664091208,\\\"context\\\":\\\"{}\\\",\\\"tax\\\":\\\"0.00000000\\\"}]}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"direction\\\": \\\"in\\\", \\\"bizType\\\": \\\"TRANSFER\\\", \\\"lastId\\\": 254062248624417, \\\"limit\\\": 100, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
+                "operationId": "011"
+            }
+        },
+        "/api/v1/transaction-history": {
+            "get": {
+                "summary": "Get Account Ledgers - Futures",
+                "deprecated": false,
+                "description": "This interface can query the ledger records of the futures business line",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Currency of transaction history, XBT or USDT",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Type RealisedPNL-Realised profit and loss, Deposit-Deposit, Withdrawal-withdraw, Transferin-Transfer in, TransferOut-Transfer out",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Start offset. Generally, the only attribute of the last returned result of the previous request is used, and the first page is returned by default",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "forward",
+                        "in": "query",
+                        "description": "This parameter functions to judge whether the lookup is forward or not. True means “yes” and False means “no”. This parameter is set as true by default",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true
+                        }
+                    },
+                    {
+                        "name": "maxCount",
+                        "in": "query",
+                        "description": "Displayed size per page. The default size is 50",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50,
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "startAt",
+                        "in": "query",
+                        "description": "Start time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "endAt",
+                        "in": "query",
+                        "description": "End time (milisecond)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "dataList": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "time": {
+                                                                "type": "integer",
+                                                                "description": "ledger time",
+                                                                "format": "int64"
+                                                            },
+                                                            "type": {
+                                                                "type": "string",
+                                                                "description": "Type: RealisedPNL, Deposit, Withdrawal, TransferIn, TransferOut"
+                                                            },
+                                                            "amount": {
+                                                                "type": "number",
+                                                                "description": "Transaction amount"
+                                                            },
+                                                            "fee": {
+                                                                "type": "number",
+                                                                "description": "Fee"
+                                                            },
+                                                            "accountEquity": {
+                                                                "type": "number",
+                                                                "description": "Account equity"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "Status: Completed, Pending"
+                                                            },
+                                                            "remark": {
+                                                                "type": "string",
+                                                                "description": "Ticker symbol of the contract"
+                                                            },
+                                                            "offset": {
+                                                                "type": "integer",
+                                                                "description": "Offset"
+                                                            },
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "description": "Currency"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "time",
+                                                            "type",
+                                                            "amount",
+                                                            "fee",
+                                                            "accountEquity",
+                                                            "status",
+                                                            "remark",
+                                                            "offset",
+                                                            "currency"
+                                                        ]
+                                                    }
+                                                },
+                                                "hasMore": {
+                                                    "type": "boolean",
+                                                    "description": "Is it the last page. If it is false, it means it is the last page, and if it is true, it means need to turn the page."
+                                                }
+                                            },
+                                            "required": [
+                                                "dataList",
+                                                "hasMore"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470124",
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Account",
+                "x-sdk-method-name": "getFuturesLedger",
+                "x-sdk-method-description": "This interface can query the ledger records of the futures business line",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"dataList\\\": [\\n            {\\n                \\\"time\\\": 1728665747000,\\n                \\\"type\\\": \\\"TransferIn\\\",\\n                \\\"amount\\\": 0.01,\\n                \\\"fee\\\": 0.0,\\n                \\\"accountEquity\\\": 14.02924938,\\n                \\\"status\\\": \\\"Completed\\\",\\n                \\\"remark\\\": \\\"Transferred from High-Frequency Trading Account\\\",\\n                \\\"offset\\\": 51360793,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            },\\n            {\\n                \\\"time\\\": 1728648000000,\\n                \\\"type\\\": \\\"RealisedPNL\\\",\\n                \\\"amount\\\": 0.00630042,\\n                \\\"fee\\\": 0.0,\\n                \\\"accountEquity\\\": 20.0,\\n                \\\"status\\\": \\\"Completed\\\",\\n                \\\"remark\\\": \\\"XBTUSDTM\\\",\\n                \\\"offset\\\": 51352430,\\n                \\\"currency\\\": \\\"USDT\\\"\\n            }\\n        ],\\n        \\\"hasMore\\\": false\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"XBT\\\", \\\"type\\\": \\\"Transferin\\\", \\\"offset\\\": 254062248624417, \\\"forward\\\": true, \\\"maxCount\\\": 50, \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000}",
+                "operationId": "012"
             }
         },
         "/api/v1/margin/account": {
@@ -1990,7 +2002,8 @@
                 "x-sdk-method-name": "getMarginAccountDetail",
                 "x-sdk-method-description": "Request via this endpoint to get the info of the margin account.",
                 "x-api-rate-limit": 40,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"totalBalance\\\": \\\"0.03\\\",\\n                \\\"availableBalance\\\": \\\"0.02\\\",\\n                \\\"holdBalance\\\": \\\"0.01\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"0\\\"\\n            }\\n        ]\\n    }\\n}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"accounts\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"totalBalance\\\": \\\"0.03\\\",\\n                \\\"availableBalance\\\": \\\"0.02\\\",\\n                \\\"holdBalance\\\": \\\"0.01\\\",\\n                \\\"liability\\\": \\\"0\\\",\\n                \\\"maxBorrowSize\\\": \\\"0\\\"\\n            }\\n        ]\\n    }\\n}",
+                "operationId": "013"
             }
         },
         "/api/v1/isolated/accounts": {
@@ -2240,7 +2253,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get the info list of the isolated margin account.",
                 "x-api-rate-limit": 50,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"totalConversionBalance\\\": \\\"0.01\\\",\\n        \\\"liabilityConversionBalance\\\": \\\"0\\\",\\n        \\\"assets\\\": [\\n            {\\n                \\\"symbol\\\": \\\"BTC-USDT\\\",\\n                \\\"status\\\": \\\"CLEAR\\\",\\n                \\\"debtRatio\\\": \\\"0\\\",\\n                \\\"baseAsset\\\": {\\n                    \\\"currency\\\": \\\"BTC\\\",\\n                    \\\"totalBalance\\\": \\\"0\\\",\\n                    \\\"holdBalance\\\": \\\"0\\\",\\n                    \\\"availableBalance\\\": \\\"0\\\",\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"interest\\\": \\\"0\\\",\\n                    \\\"borrowableAmount\\\": \\\"0\\\"\\n                },\\n                \\\"quoteAsset\\\": {\\n                    \\\"currency\\\": \\\"USDT\\\",\\n                    \\\"totalBalance\\\": \\\"0.01\\\",\\n                    \\\"holdBalance\\\": \\\"0\\\",\\n                    \\\"availableBalance\\\": \\\"0.01\\\",\\n                    \\\"liability\\\": \\\"0\\\",\\n                    \\\"interest\\\": \\\"0\\\",\\n                    \\\"borrowableAmount\\\": \\\"0\\\"\\n                }\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"balanceCurrency\\\": \\\"USDT\\\"}"
+                "x-request-example": "{\\\"balanceCurrency\\\": \\\"USDT\\\"}",
+                "operationId": "014"
             }
         },
         "/api/v1/isolated/account/{symbol}": {
@@ -2445,7 +2459,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get the info of the isolated margin account.",
                 "x-api-rate-limit": 50,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"BTC-USDT\\\",\\n        \\\"status\\\": \\\"CLEAR\\\",\\n        \\\"debtRatio\\\": \\\"0\\\",\\n        \\\"baseAsset\\\": {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"totalBalance\\\": \\\"0\\\",\\n            \\\"holdBalance\\\": \\\"0\\\",\\n            \\\"availableBalance\\\": \\\"0\\\",\\n            \\\"liability\\\": \\\"0\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"borrowableAmount\\\": \\\"0\\\"\\n        },\\n        \\\"quoteAsset\\\": {\\n            \\\"currency\\\": \\\"USDT\\\",\\n            \\\"totalBalance\\\": \\\"0.01\\\",\\n            \\\"holdBalance\\\": \\\"0\\\",\\n            \\\"availableBalance\\\": \\\"0.01\\\",\\n            \\\"liability\\\": \\\"0\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"borrowableAmount\\\": \\\"0\\\"\\n        }\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}",
+                "operationId": "015"
             }
         }
     },

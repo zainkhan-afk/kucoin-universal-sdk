@@ -1,6 +1,25 @@
 # API FUNCTION TEMPLATE
 
 
+def test_get_current_funding_rate_req(self):
+    """
+        get_current_funding_rate
+        Get Current Funding Rate
+        /api/v1/funding-rate/{symbol}/current
+    """
+
+    builder = GetCurrentFundingRateReqBuilder()
+    builder.set_symbol(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_current_funding_rate(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_public_funding_history_req(self):
     """
         get_public_funding_history
@@ -32,25 +51,6 @@ def test_get_private_funding_history_req(self):
     req = builder.build()
     try:
         resp = self.api.get_private_funding_history(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_current_funding_rate_req(self):
-    """
-        get_current_funding_rate
-        Get Current Funding Rate
-        /api/v1/funding-rate/{symbol}/current
-    """
-
-    builder = GetCurrentFundingRateReqBuilder()
-    builder.set_symbol(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_current_funding_rate(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

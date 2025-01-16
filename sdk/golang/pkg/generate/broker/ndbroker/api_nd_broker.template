@@ -1,108 +1,16 @@
 # API FUNCTION TEMPLATE
 
 
-func TestNDBrokerGetDepositListReq(t *testing.T) {
-    // GetDepositList
-    // Get Deposit List
-    // /api/v1/asset/ndbroker/deposit/list
+func TestNDBrokerGetBrokerInfoReq(t *testing.T) {
+    // GetBrokerInfo
+    // Get Broker Info
+    // /api/v1/broker/nd/info
 
-    builder := ndbroker.NewGetDepositListReqBuilder()
-    builder.SetCurrency(?).SetStatus(?).SetHash(?).SetStartTimestamp(?).SetEndTimestamp(?).SetLimit(?)
+    builder := ndbroker.NewGetBrokerInfoReqBuilder()
+    builder.SetBegin(?).SetEnd(?).SetTradeType(?)
     req := builder.Build()
 
-    resp, err := ndbrokerApi.GetDepositList(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestNDBrokerDeleteSubAccountAPIReq(t *testing.T) {
-    // DeleteSubAccountAPI
-    // Delete SubAccount API
-    // /api/v1/broker/nd/account/apikey
-
-    builder := ndbroker.NewDeleteSubAccountAPIReqBuilder()
-    builder.SetUid(?).SetApiKey(?)
-    req := builder.Build()
-
-    resp, err := ndbrokerApi.DeleteSubAccountAPI(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestNDBrokerGetSubAccountAPIReq(t *testing.T) {
-    // GetSubAccountAPI
-    // Get SubAccount API
-    // /api/v1/broker/nd/account/apikey
-
-    builder := ndbroker.NewGetSubAccountAPIReqBuilder()
-    builder.SetUid(?).SetApiKey(?)
-    req := builder.Build()
-
-    resp, err := ndbrokerApi.GetSubAccountAPI(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestNDBrokerAddSubAccountApiReq(t *testing.T) {
-    // AddSubAccountApi
-    // Add SubAccount API
-    // /api/v1/broker/nd/account/apikey
-
-    builder := ndbroker.NewAddSubAccountApiReqBuilder()
-    builder.SetUid(?).SetPassphrase(?).SetIpWhitelist(?).SetPermissions(?).SetLabel(?)
-    req := builder.Build()
-
-    resp, err := ndbrokerApi.AddSubAccountApi(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestNDBrokerGetSubAccountReq(t *testing.T) {
-    // GetSubAccount
-    // Get SubAccount
-    // /api/v1/broker/nd/account
-
-    builder := ndbroker.NewGetSubAccountReqBuilder()
-    builder.SetUid(?).SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
-
-    resp, err := ndbrokerApi.GetSubAccount(req, context.TODO())
+    resp, err := ndbrokerApi.GetBrokerInfo(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -139,6 +47,75 @@ func TestNDBrokerAddSubAccountReq(t *testing.T) {
 }
 
 
+func TestNDBrokerGetSubAccountReq(t *testing.T) {
+    // GetSubAccount
+    // Get SubAccount
+    // /api/v1/broker/nd/account
+
+    builder := ndbroker.NewGetSubAccountReqBuilder()
+    builder.SetUid(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetSubAccount(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestNDBrokerAddSubAccountApiReq(t *testing.T) {
+    // AddSubAccountApi
+    // Add SubAccount API
+    // /api/v1/broker/nd/account/apikey
+
+    builder := ndbroker.NewAddSubAccountApiReqBuilder()
+    builder.SetUid(?).SetPassphrase(?).SetIpWhitelist(?).SetPermissions(?).SetLabel(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.AddSubAccountApi(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestNDBrokerGetSubAccountAPIReq(t *testing.T) {
+    // GetSubAccountAPI
+    // Get SubAccount API
+    // /api/v1/broker/nd/account/apikey
+
+    builder := ndbroker.NewGetSubAccountAPIReqBuilder()
+    builder.SetUid(?).SetApiKey(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetSubAccountAPI(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestNDBrokerModifySubAccountApiReq(t *testing.T) {
     // ModifySubAccountApi
     // Modify SubAccount API
@@ -162,39 +139,16 @@ func TestNDBrokerModifySubAccountApiReq(t *testing.T) {
 }
 
 
-func TestNDBrokerGetBrokerInfoReq(t *testing.T) {
-    // GetBrokerInfo
-    // Get Broker Info
-    // /api/v1/broker/nd/info
+func TestNDBrokerDeleteSubAccountAPIReq(t *testing.T) {
+    // DeleteSubAccountAPI
+    // Delete SubAccount API
+    // /api/v1/broker/nd/account/apikey
 
-    builder := ndbroker.NewGetBrokerInfoReqBuilder()
-    builder.SetBegin(?).SetEnd(?).SetTradeType(?)
+    builder := ndbroker.NewDeleteSubAccountAPIReqBuilder()
+    builder.SetUid(?).SetApiKey(?)
     req := builder.Build()
 
-    resp, err := ndbrokerApi.GetBrokerInfo(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestNDBrokerGetRebaseReq(t *testing.T) {
-    // GetRebase
-    // Get Broker Rebate
-    // /api/v1/broker/nd/rebase/download
-
-    builder := ndbroker.NewGetRebaseReqBuilder()
-    builder.SetBegin(?).SetEnd(?).SetTradeType(?)
-    req := builder.Build()
-
-    resp, err := ndbrokerApi.GetRebase(req, context.TODO())
+    resp, err := ndbrokerApi.DeleteSubAccountAPI(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -231,29 +185,6 @@ func TestNDBrokerTransferReq(t *testing.T) {
 }
 
 
-func TestNDBrokerGetDepositDetailReq(t *testing.T) {
-    // GetDepositDetail
-    // Get Deposit Detail
-    // /api/v3/broker/nd/deposit/detail
-
-    builder := ndbroker.NewGetDepositDetailReqBuilder()
-    builder.SetCurrency(?).SetHash(?)
-    req := builder.Build()
-
-    resp, err := ndbrokerApi.GetDepositDetail(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestNDBrokerGetTransferHistoryReq(t *testing.T) {
     // GetTransferHistory
     // Get Transfer History
@@ -277,6 +208,52 @@ func TestNDBrokerGetTransferHistoryReq(t *testing.T) {
 }
 
 
+func TestNDBrokerGetDepositListReq(t *testing.T) {
+    // GetDepositList
+    // Get Deposit List
+    // /api/v1/asset/ndbroker/deposit/list
+
+    builder := ndbroker.NewGetDepositListReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetHash(?).SetStartTimestamp(?).SetEndTimestamp(?).SetLimit(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetDepositList(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestNDBrokerGetDepositDetailReq(t *testing.T) {
+    // GetDepositDetail
+    // Get Deposit Detail
+    // /api/v3/broker/nd/deposit/detail
+
+    builder := ndbroker.NewGetDepositDetailReqBuilder()
+    builder.SetCurrency(?).SetHash(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetDepositDetail(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestNDBrokerGetWithdrawDetailReq(t *testing.T) {
     // GetWithdrawDetail
     // Get Withdraw Detail
@@ -287,6 +264,29 @@ func TestNDBrokerGetWithdrawDetailReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := ndbrokerApi.GetWithdrawDetail(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestNDBrokerGetRebaseReq(t *testing.T) {
+    // GetRebase
+    // Get Broker Rebate
+    // /api/v1/broker/nd/rebase/download
+
+    builder := ndbroker.NewGetRebaseReqBuilder()
+    builder.SetBegin(?).SetEnd(?).SetTradeType(?)
+    req := builder.Build()
+
+    resp, err := ndbrokerApi.GetRebase(req, context.TODO())
     if err != nil {
         panic(err)
     }

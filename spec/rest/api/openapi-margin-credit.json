@@ -115,7 +115,258 @@
                 "x-sdk-method-description": "This API endpoint is used to get the information about the currencies available for lending.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"currency\\\": \\\"BTC\\\",\\n            \\\"purchaseEnable\\\": true,\\n            \\\"redeemEnable\\\": true,\\n            \\\"increment\\\": \\\"0.00000001\\\",\\n            \\\"minPurchaseSize\\\": \\\"0.001\\\",\\n            \\\"maxPurchaseSize\\\": \\\"40\\\",\\n            \\\"interestIncrement\\\": \\\"0.0001\\\",\\n            \\\"minInterestRate\\\": \\\"0.005\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\",\\n            \\\"maxInterestRate\\\": \\\"0.32\\\",\\n            \\\"autoPurchaseEnable\\\": false\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "operationId": "001"
+            }
+        },
+        "/api/v3/project/marketInterestRate": {
+            "get": {
+                "summary": "Get Loan Market Interest Rate",
+                "deprecated": false,
+                "description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "KCS"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "time": {
+                                                        "type": "string",
+                                                        "description": "Time: YYYYMMDDHH00"
+                                                    },
+                                                    "marketInterestRate": {
+                                                        "type": "string",
+                                                        "description": "Market lending rate"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "time",
+                                                    "marketInterestRate"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470215",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Public",
+                "x-api-permission": "NULL",
+                "x-api-rate-limit-pool": "Public",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Credit",
+                "x-sdk-method-name": "getLoanMarketInterestRate",
+                "x-sdk-method-description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"time\\\": \\\"202410170000\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        },\\n        {\\n            \\\"time\\\": \\\"202410170100\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}",
+                "operationId": "002"
+            }
+        },
+        "/api/v3/purchase": {
+            "post": {
+                "summary": "Purchase",
+                "deprecated": false,
+                "description": "Invest credit in the market and earn interest",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderNo": {
+                                                    "type": "string",
+                                                    "description": "Purchase order id"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderNo"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470216",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Credit",
+                "x-sdk-method-name": "purchase",
+                "x-sdk-method-description": "Invest credit in the market and earn interest",
+                "x-api-rate-limit": 15,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Currency",
+                                        "example": [
+                                            "BTC",
+                                            "ETH",
+                                            "USDT"
+                                        ]
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "description": "purchase amount"
+                                    },
+                                    "interestRate": {
+                                        "type": "string",
+                                        "description": "purchase interest rate"
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "size",
+                                    "interestRate"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"BTC\",\n    \"size\": \"0.001\",\n    \"interestRate\": \"0.1\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"interestRate\\\": \\\"0.1\\\"}",
+                "operationId": "003"
+            }
+        },
+        "/api/v3/lend/purchase/update": {
+            "post": {
+                "summary": "Modify Purchase",
+                "deprecated": false,
+                "description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470217",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Credit",
+                "x-sdk-method-name": "modifyPurchase",
+                "x-sdk-method-description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account",
+                "x-api-rate-limit": 10,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Currency",
+                                        "example": [
+                                            "BTC",
+                                            "ETH",
+                                            "USDT"
+                                        ]
+                                    },
+                                    "interestRate": {
+                                        "type": "string",
+                                        "description": "Modified purchase interest rate"
+                                    },
+                                    "purchaseOrderNo": {
+                                        "type": "string",
+                                        "description": "Purchase order id"
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "purchaseOrderNo",
+                                    "interestRate"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"BTC\",\n    \"purchaseOrderNo\": \"671bafa804c26d000773c533\",\n    \"interestRate\": \"0.09\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}",
+                "operationId": "004"
             }
         },
         "/api/v3/purchase/orders": {
@@ -329,7 +580,98 @@
                 "x-sdk-method-description": "This API endpoint provides pagination query for the purchase orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bb15a3b3f930007880bae\\\",\\n                \\\"purchaseSize\\\": \\\"0.001\\\",\\n                \\\"matchSize\\\": \\\"0\\\",\\n                \\\"interestRate\\\": \\\"0.1\\\",\\n                \\\"incomeSize\\\": \\\"0\\\",\\n                \\\"applyTime\\\": 1729868122172,\\n                \\\"status\\\": \\\"PENDING\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"purchaseOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "005"
+            }
+        },
+        "/api/v3/redeem": {
+            "post": {
+                "summary": "Redeem",
+                "deprecated": false,
+                "description": "Redeem your loan order",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "orderNo": {
+                                                    "type": "string",
+                                                    "description": "Redeem order id"
+                                                }
+                                            },
+                                            "required": [
+                                                "orderNo"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470218",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Margin",
+                "x-api-rate-limit-pool": "Spot",
+                "x-sdk-service": "Margin",
+                "x-sdk-sub-service": "Credit",
+                "x-sdk-method-name": "redeem",
+                "x-sdk-method-description": "Redeem your loan order",
+                "x-api-rate-limit": 15,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Currency",
+                                        "example": [
+                                            "BTC",
+                                            "ETH",
+                                            "USDT"
+                                        ]
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "description": "Redemption amount"
+                                    },
+                                    "purchaseOrderNo": {
+                                        "type": "string",
+                                        "description": "Purchase order id"
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "size",
+                                    "purchaseOrderNo"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"BTC\",\n    \"size\": \"0.001\",\n    \"purchaseOrderNo\": \"671bafa804c26d000773c533\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}",
+                "operationId": "006"
             }
         },
         "/api/v3/redeem/orders": {
@@ -521,343 +863,8 @@
                 "x-sdk-method-description": "This API endpoint provides pagination query for the redeem orders.",
                 "x-api-rate-limit": 10,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\",\\n                \\\"redeemOrderNo\\\": \\\"671bb01004c26d000773c55c\\\",\\n                \\\"redeemSize\\\": \\\"0.001\\\",\\n                \\\"receiptSize\\\": \\\"0.001\\\",\\n                \\\"applyTime\\\": null,\\n                \\\"status\\\": \\\"DONE\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
-            }
-        },
-        "/api/v3/project/marketInterestRate": {
-            "get": {
-                "summary": "Get Loan Market Interest Rate",
-                "deprecated": false,
-                "description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": [
-                                "BTC",
-                                "ETH",
-                                "KCS"
-                            ]
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "time": {
-                                                        "type": "string",
-                                                        "description": "Time: YYYYMMDDHH00"
-                                                    },
-                                                    "marketInterestRate": {
-                                                        "type": "string",
-                                                        "description": "Market lending rate"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "time",
-                                                    "marketInterestRate"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470215",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Public",
-                "x-api-permission": "NULL",
-                "x-api-rate-limit-pool": "Public",
-                "x-sdk-service": "Margin",
-                "x-sdk-sub-service": "Credit",
-                "x-sdk-method-name": "getLoanMarketInterestRate",
-                "x-sdk-method-description": "This API endpoint is used to get the interest rates of the margin lending market over the past 7 days.",
-                "x-api-rate-limit": 5,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"time\\\": \\\"202410170000\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        },\\n        {\\n            \\\"time\\\": \\\"202410170100\\\",\\n            \\\"marketInterestRate\\\": \\\"0.005\\\"\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\"}"
-            }
-        },
-        "/api/v3/purchase": {
-            "post": {
-                "summary": "Purchase",
-                "deprecated": false,
-                "description": "Invest credit in the market and earn interest",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "orderNo": {
-                                                    "type": "string",
-                                                    "description": "Purchase order id"
-                                                }
-                                            },
-                                            "required": [
-                                                "orderNo"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470216",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "Margin",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Margin",
-                "x-sdk-sub-service": "Credit",
-                "x-sdk-method-name": "purchase",
-                "x-sdk-method-description": "Invest credit in the market and earn interest",
-                "x-api-rate-limit": 15,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "currency": {
-                                        "type": "string",
-                                        "description": "Currency",
-                                        "example": [
-                                            "BTC",
-                                            "ETH",
-                                            "USDT"
-                                        ]
-                                    },
-                                    "size": {
-                                        "type": "string",
-                                        "description": "purchase amount"
-                                    },
-                                    "interestRate": {
-                                        "type": "string",
-                                        "description": "purchase interest rate"
-                                    }
-                                },
-                                "required": [
-                                    "currency",
-                                    "size",
-                                    "interestRate"
-                                ]
-                            },
-                            "example": "{\n    \"currency\": \"BTC\",\n    \"size\": \"0.001\",\n    \"interestRate\": \"0.1\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"interestRate\\\": \\\"0.1\\\"}"
-            }
-        },
-        "/api/v3/lend/purchase/update": {
-            "post": {
-                "summary": "Modify Purchase",
-                "deprecated": false,
-                "description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470217",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "Margin",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Margin",
-                "x-sdk-sub-service": "Credit",
-                "x-sdk-method-name": "modifyPurchase",
-                "x-sdk-method-description": "This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account",
-                "x-api-rate-limit": 10,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "currency": {
-                                        "type": "string",
-                                        "description": "Currency",
-                                        "example": [
-                                            "BTC",
-                                            "ETH",
-                                            "USDT"
-                                        ]
-                                    },
-                                    "interestRate": {
-                                        "type": "string",
-                                        "description": "Modified purchase interest rate"
-                                    },
-                                    "purchaseOrderNo": {
-                                        "type": "string",
-                                        "description": "Purchase order id"
-                                    }
-                                },
-                                "required": [
-                                    "currency",
-                                    "purchaseOrderNo",
-                                    "interestRate"
-                                ]
-                            },
-                            "example": "{\n    \"currency\": \"BTC\",\n    \"purchaseOrderNo\": \"671bafa804c26d000773c533\",\n    \"interestRate\": \"0.09\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": null\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\", \\\"interestRate\\\": \\\"0.09\\\"}"
-            }
-        },
-        "/api/v3/redeem": {
-            "post": {
-                "summary": "Redeem",
-                "deprecated": false,
-                "description": "Redeem your loan order",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "orderNo": {
-                                                    "type": "string",
-                                                    "description": "Redeem order id"
-                                                }
-                                            },
-                                            "required": [
-                                                "orderNo"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470218",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "Margin",
-                "x-api-rate-limit-pool": "Spot",
-                "x-sdk-service": "Margin",
-                "x-sdk-sub-service": "Credit",
-                "x-sdk-method-name": "redeem",
-                "x-sdk-method-description": "Redeem your loan order",
-                "x-api-rate-limit": 15,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "currency": {
-                                        "type": "string",
-                                        "description": "Currency",
-                                        "example": [
-                                            "BTC",
-                                            "ETH",
-                                            "USDT"
-                                        ]
-                                    },
-                                    "size": {
-                                        "type": "string",
-                                        "description": "Redemption amount"
-                                    },
-                                    "purchaseOrderNo": {
-                                        "type": "string",
-                                        "description": "Purchase order id"
-                                    }
-                                },
-                                "required": [
-                                    "currency",
-                                    "size",
-                                    "purchaseOrderNo"
-                                ]
-                            },
-                            "example": "{\n    \"currency\": \"BTC\",\n    \"size\": \"0.001\",\n    \"purchaseOrderNo\": \"671bafa804c26d000773c533\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderNo\\\": \\\"671bafa804c26d000773c533\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"size\\\": \\\"0.001\\\", \\\"purchaseOrderNo\\\": \\\"671bafa804c26d000773c533\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"DONE\\\", \\\"redeemOrderNo\\\": \\\"example_string_default_value\\\", \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "007"
             }
         }
     },

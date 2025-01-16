@@ -7,350 +7,85 @@ import (
 	"testing"
 )
 
-func TestOrderGetTradeHistoryOldReqModel(t *testing.T) {
-	// GetTradeHistoryOld
-	// Get Trade History - Old
-	// /api/v1/fills
-
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"example_string_default_value\", \"side\": \"buy\", \"type\": \"limit\", \"tradeType\": \"TRADE\", \"startAt\": 1728663338000, \"endAt\": 1728692138000, \"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetTradeHistoryOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetTradeHistoryOldRespModel(t *testing.T) {
-	// GetTradeHistoryOld
-	// Get Trade History - Old
-	// /api/v1/fills
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"symbol\": \"DOGE-USDT\",\n                \"tradeId\": \"10862827223795713\",\n                \"orderId\": \"6745698ef4f1200007c561a8\",\n                \"counterOrderId\": \"6745695ef15b270007ac5076\",\n                \"side\": \"buy\",\n                \"liquidity\": \"taker\",\n                \"forceTaker\": false,\n                \"price\": \"0.40739\",\n                \"size\": \"10\",\n                \"funds\": \"4.0739\",\n                \"fee\": \"0.0040739\",\n                \"feeRate\": \"0.001\",\n                \"feeCurrency\": \"USDT\",\n                \"stop\": \"\",\n                \"tradeType\": \"TRADE\",\n                \"type\": \"market\",\n                \"createdAt\": 1732602254928\n            }\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetTradeHistoryOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetTradeHistoryReqModel(t *testing.T) {
-	// GetTradeHistory
-	// Get Trade History
-	// /api/v1/hf/fills
-
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"example_string_default_value\", \"side\": \"buy\", \"type\": \"limit\", \"lastId\": 254062248624417, \"limit\": 100, \"startAt\": 1728663338000, \"endAt\": 1728692138000}"
-	req := &GetTradeHistoryReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetTradeHistoryRespModel(t *testing.T) {
-	// GetTradeHistory
-	// Get Trade History
-	// /api/v1/hf/fills
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 19814995255305,\n                \"orderId\": \"6717422bd51c29000775ea03\",\n                \"counterOrderId\": \"67174228135f9e000709da8c\",\n                \"tradeId\": 11029373945659392,\n                \"symbol\": \"BTC-USDT\",\n                \"side\": \"buy\",\n                \"liquidity\": \"taker\",\n                \"type\": \"limit\",\n                \"forceTaker\": false,\n                \"price\": \"67717.6\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.677176\",\n                \"fee\": \"0.000677176\",\n                \"feeRate\": \"0.001\",\n                \"feeCurrency\": \"USDT\",\n                \"stop\": \"\",\n                \"tradeType\": \"TRADE\",\n                \"taxRate\": \"0\",\n                \"tax\": \"0\",\n                \"createdAt\": 1729577515473\n            }\n        ],\n        \"lastId\": 19814995255305\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetTradeHistoryResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOpenOrdersReqModel(t *testing.T) {
-	// GetOpenOrders
-	// Get Open Orders
-	// /api/v1/hf/orders/active
-
-	data := "{\"symbol\": \"BTC-USDT\"}"
-	req := &GetOpenOrdersReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOpenOrdersRespModel(t *testing.T) {
-	// GetOpenOrders
-	// Get Open Orders
-	// /api/v1/hf/orders/active
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"id\": \"67120bbef094e200070976f6\",\n            \"clientOid\": \"5c52e11203aa677f33e493fb\",\n            \"symbol\": \"BTC-USDT\",\n            \"opType\": \"DEAL\",\n            \"type\": \"limit\",\n            \"side\": \"buy\",\n            \"price\": \"50000\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0.5\",\n            \"dealSize\": \"0\",\n            \"dealFunds\": \"0\",\n            \"fee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"stp\": null,\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"visibleSize\": \"0\",\n            \"cancelAfter\": 0,\n            \"channel\": \"API\",\n            \"remark\": \"order remarks\",\n            \"tags\": \"order tags\",\n            \"cancelExist\": false,\n            \"tradeType\": \"TRADE\",\n            \"inOrderBook\": true,\n            \"cancelledSize\": \"0\",\n            \"cancelledFunds\": \"0\",\n            \"remainSize\": \"0.00001\",\n            \"remainFunds\": \"0.5\",\n            \"tax\": \"0\",\n            \"active\": true,\n            \"createdAt\": 1729235902748,\n            \"lastUpdatedAt\": 1729235909862\n        }\n    ]\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetOpenOrdersResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetSymbolsWithOpenOrderReqModel(t *testing.T) {
-	// GetSymbolsWithOpenOrder
-	// Get Symbols With Open Order
-	// /api/v1/hf/orders/active/symbols
-
-}
-
-func TestOrderGetSymbolsWithOpenOrderRespModel(t *testing.T) {
-	// GetSymbolsWithOpenOrder
-	// Get Symbols With Open Order
-	// /api/v1/hf/orders/active/symbols
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbols\": [\n            \"ETH-USDT\",\n            \"BTC-USDT\"\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetSymbolsWithOpenOrderResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderModifyOrderReqModel(t *testing.T) {
-	// ModifyOrder
-	// Modify Order
-	// /api/v1/hf/orders/alter
-
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"670fd33bf9406e0007ab3945\", \"newPrice\": \"30000\", \"newSize\": \"0.0001\"}"
-	req := &ModifyOrderReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderModifyOrderRespModel(t *testing.T) {
-	// ModifyOrder
-	// Modify Order
-	// /api/v1/hf/orders/alter
-
-	data := "{\"code\":\"200000\",\"data\":{\"newOrderId\":\"67112258f9406e0007408827\",\"clientOid\":\"client order id 12\"}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &ModifyOrderResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelAllOrdersReqModel(t *testing.T) {
-	// CancelAllOrders
-	// Cancel All Orders
-	// /api/v1/hf/orders/cancelAll
-
-}
-
-func TestOrderCancelAllOrdersRespModel(t *testing.T) {
-	// CancelAllOrders
-	// Cancel All Orders
-	// /api/v1/hf/orders/cancelAll
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"succeedSymbols\": [\n            \"ETH-USDT\",\n            \"BTC-USDT\"\n        ],\n        \"failedSymbols\": []\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelAllOrdersResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelPartialOrderReqModel(t *testing.T) {
-	// CancelPartialOrder
-	// Cancel Partial Order
-	// /api/v1/hf/orders/cancel/{orderId}
-
-	data := "{\"orderId\": \"6711f73c1ef16c000717bb31\", \"symbol\": \"BTC-USDT\", \"cancelSize\": \"0.00001\"}"
-	req := &CancelPartialOrderReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelPartialOrderRespModel(t *testing.T) {
-	// CancelPartialOrder
-	// Cancel Partial Order
-	// /api/v1/hf/orders/cancel/{orderId}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"6711f73c1ef16c000717bb31\",\n        \"cancelSize\": \"0.00001\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelPartialOrderResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOrderByClientOidReqModel(t *testing.T) {
-	// CancelOrderByClientOid
-	// Cancel Order By ClientOid
-	// /api/v1/hf/orders/client-order/{clientOid}
-
-	data := "{\"clientOid\": \"5c52e11203aa677f33e493fb\", \"symbol\": \"BTC-USDT\"}"
-	req := &CancelOrderByClientOidReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOrderByClientOidRespModel(t *testing.T) {
-	// CancelOrderByClientOid
-	// Cancel Order By ClientOid
-	// /api/v1/hf/orders/client-order/{clientOid}
-
-	data := "{\"code\":\"200000\",\"data\":{\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelOrderByClientOidResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrderByClientOidReqModel(t *testing.T) {
-	// GetOrderByClientOid
-	// Get Order By ClientOid
-	// /api/v1/hf/orders/client-order/{clientOid}
-
-	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e493fb\"}"
-	req := &GetOrderByClientOidReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrderByClientOidRespModel(t *testing.T) {
-	// GetOrderByClientOid
-	// Get Order By ClientOid
-	// /api/v1/hf/orders/client-order/{clientOid}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"6717422bd51c29000775ea03\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"70000\",\n        \"size\": \"0.00001\",\n        \"funds\": \"0.7\",\n        \"dealSize\": \"0.00001\",\n        \"dealFunds\": \"0.677176\",\n        \"remainSize\": \"0\",\n        \"remainFunds\": \"0.022824\",\n        \"cancelledSize\": \"0\",\n        \"cancelledFunds\": \"0\",\n        \"fee\": \"0.000677176\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": null,\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"remark\": \"order remarks\",\n        \"tags\": null,\n        \"cancelExist\": false,\n        \"tradeType\": \"TRADE\",\n        \"inOrderBook\": false,\n        \"active\": false,\n        \"tax\": \"0\",\n        \"createdAt\": 1729577515444,\n        \"lastUpdatedAt\": 1729577515481\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetOrderByClientOidResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderSetDCPReqModel(t *testing.T) {
-	// SetDCP
-	// Set DCP
-	// /api/v1/hf/orders/dead-cancel-all
-
-	data := "{\"timeout\": 5, \"symbols\": \"BTC-USDT,ETH-USDT\"}"
-	req := &SetDCPReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderSetDCPRespModel(t *testing.T) {
-	// SetDCP
-	// Set DCP
-	// /api/v1/hf/orders/dead-cancel-all
-
-	data := "{\"code\":\"200000\",\"data\":{\"currentTime\":1729656588,\"triggerTime\":1729656593}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &SetDCPResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetDCPReqModel(t *testing.T) {
-	// GetDCP
-	// Get DCP
-	// /api/v1/hf/orders/dead-cancel-all/query
-
-}
-
-func TestOrderGetDCPRespModel(t *testing.T) {
-	// GetDCP
-	// Get DCP
-	// /api/v1/hf/orders/dead-cancel-all/query
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"timeout\": 5,\n        \"symbols\": \"BTC-USDT,ETH-USDT\",\n        \"currentTime\": 1729241305,\n        \"triggerTime\": 1729241308\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetDCPResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelAllOrdersBySymbolReqModel(t *testing.T) {
-	// CancelAllOrdersBySymbol
-	// Cancel All Orders By Symbol
+func TestOrderAddOrderReqModel(t *testing.T) {
+	// AddOrder
+	// Add Order
 	// /api/v1/hf/orders
 
-	data := "{\"symbol\": \"BTC-USDT\"}"
-	req := &CancelAllOrdersBySymbolReq{}
+	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
+	req := &AddOrderReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelAllOrdersBySymbolRespModel(t *testing.T) {
-	// CancelAllOrdersBySymbol
-	// Cancel All Orders By Symbol
+func TestOrderAddOrderRespModel(t *testing.T) {
+	// AddOrder
+	// Add Order
 	// /api/v1/hf/orders
 
-	data := "{\"code\":\"200000\",\"data\":\"success\"}"
+	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670fd33bf9406e0007ab3945\",\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &CancelAllOrdersBySymbolResp{}
+	resp := &AddOrderResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetClosedOrdersReqModel(t *testing.T) {
-	// GetClosedOrders
-	// Get Closed Orders
-	// /api/v1/hf/orders/done
+func TestOrderAddOrderSyncReqModel(t *testing.T) {
+	// AddOrderSync
+	// Add Order Sync
+	// /api/v1/hf/orders/sync
 
-	data := "{\"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"type\": \"limit\", \"lastId\": 254062248624417, \"limit\": 20, \"startAt\": 1728663338000, \"endAt\": 1728692138000}"
-	req := &GetClosedOrdersReq{}
+	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493f\", \"remark\": \"order remarks\"}"
+	req := &AddOrderSyncReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetClosedOrdersRespModel(t *testing.T) {
-	// GetClosedOrders
-	// Get Closed Orders
-	// /api/v1/hf/orders/done
+func TestOrderAddOrderSyncRespModel(t *testing.T) {
+	// AddOrderSync
+	// Add Order Sync
+	// /api/v1/hf/orders/sync
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"lastId\": 19814995255305,\n        \"items\": [\n            {\n                \"id\": \"6717422bd51c29000775ea03\",\n                \"clientOid\": \"5c52e11203aa677f33e493fb\",\n                \"symbol\": \"BTC-USDT\",\n                \"opType\": \"DEAL\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"70000\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.7\",\n                \"dealSize\": \"0.00001\",\n                \"dealFunds\": \"0.677176\",\n                \"remainSize\": \"0\",\n                \"remainFunds\": \"0.022824\",\n                \"cancelledSize\": \"0\",\n                \"cancelledFunds\": \"0\",\n                \"fee\": \"0.000677176\",\n                \"feeCurrency\": \"USDT\",\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": \"0\",\n                \"cancelAfter\": 0,\n                \"channel\": \"API\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"cancelExist\": false,\n                \"tradeType\": \"TRADE\",\n                \"inOrderBook\": false,\n                \"active\": false,\n                \"tax\": \"0\",\n                \"createdAt\": 1729577515444,\n                \"lastUpdatedAt\": 1729577515481\n            }\n        ]\n    }\n}"
+	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"67111a7cb7cbdf000703e1f6\",\"clientOid\":\"5c52e11203aa677f33e493f\",\"orderTime\":1729174140586,\"originSize\":\"0.00001\",\"dealSize\":\"0\",\"remainSize\":\"0.00001\",\"canceledSize\":\"0\",\"status\":\"open\",\"matchTime\":1729174140588}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetClosedOrdersResp{}
+	resp := &AddOrderSyncResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOrderTestReqModel(t *testing.T) {
+	// AddOrderTest
+	// Add Order Test
+	// /api/v1/hf/orders/test
+
+	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493f\", \"remark\": \"order remarks\"}"
+	req := &AddOrderTestReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOrderTestRespModel(t *testing.T) {
+	// AddOrderTest
+	// Add Order Test
+	// /api/v1/hf/orders/test
+
+	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670fd33bf9406e0007ab3945\",\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &AddOrderTestResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -440,57 +175,57 @@ func TestOrderCancelOrderByOrderIdRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestOrderGetOrderByOrderIdReqModel(t *testing.T) {
-	// GetOrderByOrderId
-	// Get Order By OrderId
-	// /api/v1/hf/orders/{orderId}
+func TestOrderCancelOrderByOrderIdSyncReqModel(t *testing.T) {
+	// CancelOrderByOrderIdSync
+	// Cancel Order By OrderId Sync
+	// /api/v1/hf/orders/sync/{orderId}
 
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"6717422bd51c29000775ea03\"}"
-	req := &GetOrderByOrderIdReq{}
+	data := "{\"orderId\": \"671128ee365ccb0007534d45\", \"symbol\": \"BTC-USDT\"}"
+	req := &CancelOrderByOrderIdSyncReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetOrderByOrderIdRespModel(t *testing.T) {
-	// GetOrderByOrderId
-	// Get Order By OrderId
-	// /api/v1/hf/orders/{orderId}
+func TestOrderCancelOrderByOrderIdSyncRespModel(t *testing.T) {
+	// CancelOrderByOrderIdSync
+	// Cancel Order By OrderId Sync
+	// /api/v1/hf/orders/sync/{orderId}
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"6717422bd51c29000775ea03\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"70000\",\n        \"size\": \"0.00001\",\n        \"funds\": \"0.7\",\n        \"dealSize\": \"0.00001\",\n        \"dealFunds\": \"0.677176\",\n        \"remainSize\": \"0\",\n        \"remainFunds\": \"0.022824\",\n        \"cancelledSize\": \"0\",\n        \"cancelledFunds\": \"0\",\n        \"fee\": \"0.000677176\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": null,\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"remark\": \"order remarks\",\n        \"tags\": null,\n        \"cancelExist\": false,\n        \"tradeType\": \"TRADE\",\n        \"inOrderBook\": false,\n        \"active\": false,\n        \"tax\": \"0\",\n        \"createdAt\": 1729577515444,\n        \"lastUpdatedAt\": 1729577515481\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"671128ee365ccb0007534d45\",\n        \"originSize\": \"0.00001\",\n        \"dealSize\": \"0\",\n        \"remainSize\": \"0\",\n        \"canceledSize\": \"0.00001\",\n        \"status\": \"done\"\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetOrderByOrderIdResp{}
+	resp := &CancelOrderByOrderIdSyncResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderAddOrderReqModel(t *testing.T) {
-	// AddOrder
-	// Add Order
-	// /api/v1/hf/orders
+func TestOrderCancelOrderByClientOidReqModel(t *testing.T) {
+	// CancelOrderByClientOid
+	// Cancel Order By ClientOid
+	// /api/v1/hf/orders/client-order/{clientOid}
 
-	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
-	req := &AddOrderReq{}
+	data := "{\"clientOid\": \"5c52e11203aa677f33e493fb\", \"symbol\": \"BTC-USDT\"}"
+	req := &CancelOrderByClientOidReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderAddOrderRespModel(t *testing.T) {
-	// AddOrder
-	// Add Order
-	// /api/v1/hf/orders
+func TestOrderCancelOrderByClientOidRespModel(t *testing.T) {
+	// CancelOrderByClientOid
+	// Cancel Order By ClientOid
+	// /api/v1/hf/orders/client-order/{clientOid}
 
-	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670fd33bf9406e0007ab3945\",\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
+	data := "{\"code\":\"200000\",\"data\":{\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &AddOrderResp{}
+	resp := &CancelOrderByClientOidResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -524,533 +259,322 @@ func TestOrderCancelOrderByClientOidSyncRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelOrderByOrderIdSyncReqModel(t *testing.T) {
-	// CancelOrderByOrderIdSync
-	// Cancel Order By OrderId Sync
-	// /api/v1/hf/orders/sync/{orderId}
+func TestOrderCancelPartialOrderReqModel(t *testing.T) {
+	// CancelPartialOrder
+	// Cancel Partial Order
+	// /api/v1/hf/orders/cancel/{orderId}
 
-	data := "{\"orderId\": \"671128ee365ccb0007534d45\", \"symbol\": \"BTC-USDT\"}"
-	req := &CancelOrderByOrderIdSyncReq{}
+	data := "{\"orderId\": \"6711f73c1ef16c000717bb31\", \"symbol\": \"BTC-USDT\", \"cancelSize\": \"0.00001\"}"
+	req := &CancelPartialOrderReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelOrderByOrderIdSyncRespModel(t *testing.T) {
-	// CancelOrderByOrderIdSync
-	// Cancel Order By OrderId Sync
-	// /api/v1/hf/orders/sync/{orderId}
+func TestOrderCancelPartialOrderRespModel(t *testing.T) {
+	// CancelPartialOrder
+	// Cancel Partial Order
+	// /api/v1/hf/orders/cancel/{orderId}
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"671128ee365ccb0007534d45\",\n        \"originSize\": \"0.00001\",\n        \"dealSize\": \"0\",\n        \"remainSize\": \"0\",\n        \"canceledSize\": \"0.00001\",\n        \"status\": \"done\"\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"6711f73c1ef16c000717bb31\",\n        \"cancelSize\": \"0.00001\"\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &CancelOrderByOrderIdSyncResp{}
+	resp := &CancelPartialOrderResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderAddOrderSyncReqModel(t *testing.T) {
-	// AddOrderSync
-	// Add Order Sync
-	// /api/v1/hf/orders/sync
+func TestOrderCancelAllOrdersBySymbolReqModel(t *testing.T) {
+	// CancelAllOrdersBySymbol
+	// Cancel All Orders By Symbol
+	// /api/v1/hf/orders
 
-	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493f\", \"remark\": \"order remarks\"}"
-	req := &AddOrderSyncReq{}
+	data := "{\"symbol\": \"BTC-USDT\"}"
+	req := &CancelAllOrdersBySymbolReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderAddOrderSyncRespModel(t *testing.T) {
-	// AddOrderSync
-	// Add Order Sync
-	// /api/v1/hf/orders/sync
+func TestOrderCancelAllOrdersBySymbolRespModel(t *testing.T) {
+	// CancelAllOrdersBySymbol
+	// Cancel All Orders By Symbol
+	// /api/v1/hf/orders
 
-	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"67111a7cb7cbdf000703e1f6\",\"clientOid\":\"5c52e11203aa677f33e493f\",\"orderTime\":1729174140586,\"originSize\":\"0.00001\",\"dealSize\":\"0\",\"remainSize\":\"0.00001\",\"canceledSize\":\"0\",\"status\":\"open\",\"matchTime\":1729174140588}}"
+	data := "{\"code\":\"200000\",\"data\":\"success\"}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &AddOrderSyncResp{}
+	resp := &CancelAllOrdersBySymbolResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderAddOrderTestReqModel(t *testing.T) {
-	// AddOrderTest
-	// Add Order Test
-	// /api/v1/hf/orders/test
+func TestOrderCancelAllOrdersReqModel(t *testing.T) {
+	// CancelAllOrders
+	// Cancel All Orders
+	// /api/v1/hf/orders/cancelAll
 
-	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493f\", \"remark\": \"order remarks\"}"
-	req := &AddOrderTestReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
 }
 
-func TestOrderAddOrderTestRespModel(t *testing.T) {
-	// AddOrderTest
-	// Add Order Test
-	// /api/v1/hf/orders/test
+func TestOrderCancelAllOrdersRespModel(t *testing.T) {
+	// CancelAllOrders
+	// Cancel All Orders
+	// /api/v1/hf/orders/cancelAll
 
-	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"670fd33bf9406e0007ab3945\",\"clientOid\":\"5c52e11203aa677f33e493fb\"}}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"succeedSymbols\": [\n            \"ETH-USDT\",\n            \"BTC-USDT\"\n        ],\n        \"failedSymbols\": []\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &AddOrderTestResp{}
+	resp := &CancelAllOrdersResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetRecentTradeHistoryOldReqModel(t *testing.T) {
-	// GetRecentTradeHistoryOld
-	// Get Recent Trade History - Old
-	// /api/v1/limit/fills
-
-	data := "{\"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetRecentTradeHistoryOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetRecentTradeHistoryOldRespModel(t *testing.T) {
-	// GetRecentTradeHistoryOld
-	// Get Recent Trade History - Old
-	// /api/v1/limit/fills
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"tradeId\": \"11732720444522497\",\n            \"orderId\": \"674aab24754b1e00077dbc69\",\n            \"counterOrderId\": \"674aab1fb26bfb0007a18b67\",\n            \"side\": \"buy\",\n            \"liquidity\": \"taker\",\n            \"forceTaker\": false,\n            \"price\": \"96999.6\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0.969996\",\n            \"fee\": \"0.000969996\",\n            \"feeRate\": \"0.001\",\n            \"feeCurrency\": \"USDT\",\n            \"stop\": \"\",\n            \"tradeType\": \"TRADE\",\n            \"type\": \"limit\",\n            \"createdAt\": 1732946724082\n        }\n    ]\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetRecentTradeHistoryOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetRecentOrdersListOldReqModel(t *testing.T) {
-	// GetRecentOrdersListOld
-	// Get Recent Orders List - Old
-	// /api/v1/limit/orders
-
-	data := "{\"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetRecentOrdersListOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetRecentOrdersListOldRespModel(t *testing.T) {
-	// GetRecentOrdersListOld
-	// Get Recent Orders List - Old
-	// /api/v1/limit/orders
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"id\": \"674a9a872033a50007e2790d\",\n            \"symbol\": \"BTC-USDT\",\n            \"opType\": \"DEAL\",\n            \"type\": \"limit\",\n            \"side\": \"buy\",\n            \"price\": \"50000\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0\",\n            \"dealFunds\": \"0\",\n            \"dealSize\": \"0\",\n            \"fee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"stp\": \"\",\n            \"stop\": \"\",\n            \"stopTriggered\": false,\n            \"stopPrice\": \"0\",\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"visibleSize\": \"0\",\n            \"cancelAfter\": 0,\n            \"channel\": \"API\",\n            \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n            \"remark\": \"order remarks\",\n            \"tags\": null,\n            \"isActive\": false,\n            \"cancelExist\": true,\n            \"createdAt\": 1732942471752,\n            \"tradeType\": \"TRADE\"\n        }\n    ]\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetRecentOrdersListOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOrderByClientOidOldReqModel(t *testing.T) {
-	// CancelOrderByClientOidOld
-	// Cancel Order By ClientOid - Old
-	// /api/v1/order/client-order/{clientOid}
-
-	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e4923fb\"}"
-	req := &CancelOrderByClientOidOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOrderByClientOidOldRespModel(t *testing.T) {
-	// CancelOrderByClientOidOld
-	// Cancel Order By ClientOid - Old
-	// /api/v1/order/client-order/{clientOid}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"674a9a872033a50007e2790d\",\n        \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelOrderByClientOidOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrderByClientOidOldReqModel(t *testing.T) {
-	// GetOrderByClientOidOld
-	// Get Order By ClientOid - Old
-	// /api/v1/order/client-order/{clientOid}
-
-	data := "{\"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\"}"
-	req := &GetOrderByClientOidOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrderByClientOidOldRespModel(t *testing.T) {
-	// GetOrderByClientOidOld
-	// Get Order By ClientOid - Old
-	// /api/v1/order/client-order/{clientOid}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"674a97dfef434f0007efc431\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"50000\",\n        \"size\": \"0.0001\",\n        \"funds\": \"0\",\n        \"dealFunds\": \"0\",\n        \"dealSize\": \"0\",\n        \"fee\": \"0\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": \"\",\n        \"stop\": \"\",\n        \"stopTriggered\": false,\n        \"stopPrice\": \"0\",\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\",\n        \"remark\": null,\n        \"tags\": null,\n        \"isActive\": false,\n        \"cancelExist\": true,\n        \"createdAt\": 1732941791518,\n        \"tradeType\": \"TRADE\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetOrderByClientOidOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchCancelOrderOldReqModel(t *testing.T) {
-	// BatchCancelOrderOld
-	// Batch Cancel Order - Old
-	// /api/v1/orders
-
-	data := "{\"symbol\": \"BTC-USDT\", \"tradeType\": \"TRADE\"}"
-	req := &BatchCancelOrderOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchCancelOrderOldRespModel(t *testing.T) {
-	// BatchCancelOrderOld
-	// Batch Cancel Order - Old
-	// /api/v1/orders
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a8635b38d120007709c0f\",\n            \"674a8630439c100007d3bce1\"\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &BatchCancelOrderOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrdersListOldReqModel(t *testing.T) {
-	// GetOrdersListOld
-	// Get Orders List - Old
-	// /api/v1/orders
-
-	data := "{\"symbol\": \"BTC-USDT\", \"status\": \"active\", \"side\": \"buy\", \"type\": \"limit\", \"tradeType\": \"TRADE\", \"startAt\": 123456, \"endAt\": 123456, \"currentPage\": 1, \"pageSize\": 50}"
-	req := &GetOrdersListOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrdersListOldRespModel(t *testing.T) {
-	// GetOrdersListOld
-	// Get Orders List - Old
-	// /api/v1/orders
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"674a9a872033a50007e2790d\",\n                \"symbol\": \"BTC-USDT\",\n                \"opType\": \"DEAL\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0\",\n                \"dealFunds\": \"0\",\n                \"dealSize\": \"0\",\n                \"fee\": \"0\",\n                \"feeCurrency\": \"USDT\",\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopTriggered\": false,\n                \"stopPrice\": \"0\",\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": \"0\",\n                \"cancelAfter\": 0,\n                \"channel\": \"API\",\n                \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"isActive\": false,\n                \"cancelExist\": true,\n                \"createdAt\": 1732942471752,\n                \"tradeType\": \"TRADE\"\n            }\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetOrdersListOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchAddOrdersOldReqModel(t *testing.T) {
-	// BatchAddOrdersOld
-	// Batch Add Orders - Old
-	// /api/v1/orders/multi
-
-	data := "{\"symbol\": \"BTC-USDT\", \"orderList\": [{\"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\", \"side\": \"buy\", \"type\": \"limit\", \"price\": \"50000\", \"size\": \"0.0001\"}, {\"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\", \"side\": \"buy\", \"type\": \"limit\", \"price\": \"49999\", \"size\": \"0.0001\"}]}"
-	req := &BatchAddOrdersOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchAddOrdersOldRespModel(t *testing.T) {
-	// BatchAddOrdersOld
-	// Batch Add Orders - Old
-	// /api/v1/orders/multi
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"data\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dfef434f0007efc431\",\n                \"status\": \"success\",\n                \"failMsg\": null,\n                \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\"\n            },\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"49999\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dffb378b00077b9c20\",\n                \"status\": \"fail\",\n                \"failMsg\": \"Balance insufficient!\",\n                \"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\"\n            }\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &BatchAddOrdersOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOrderByOrderIdOldReqModel(t *testing.T) {
-	// CancelOrderByOrderIdOld
-	// Cancel Order By OrderId - Old
-	// /api/v1/orders/{orderId}
-
-	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"674a97dfef434f0007efc431\"}"
-	req := &CancelOrderByOrderIdOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOrderByOrderIdOldRespModel(t *testing.T) {
-	// CancelOrderByOrderIdOld
-	// Cancel Order By OrderId - Old
-	// /api/v1/orders/{orderId}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a97dfef434f0007efc431\"\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelOrderByOrderIdOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrderByOrderIdOldReqModel(t *testing.T) {
-	// GetOrderByOrderIdOld
-	// Get Order By OrderId - Old
-	// /api/v1/orders/{orderId}
-
-	data := "{\"orderId\": \"674a97dfef434f0007efc431\"}"
-	req := &GetOrderByOrderIdOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOrderByOrderIdOldRespModel(t *testing.T) {
-	// GetOrderByOrderIdOld
-	// Get Order By OrderId - Old
-	// /api/v1/orders/{orderId}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"674a97dfef434f0007efc431\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"50000\",\n        \"size\": \"0.0001\",\n        \"funds\": \"0\",\n        \"dealFunds\": \"0\",\n        \"dealSize\": \"0\",\n        \"fee\": \"0\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": \"\",\n        \"stop\": \"\",\n        \"stopTriggered\": false,\n        \"stopPrice\": \"0\",\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\",\n        \"remark\": null,\n        \"tags\": null,\n        \"isActive\": false,\n        \"cancelExist\": true,\n        \"createdAt\": 1732941791518,\n        \"tradeType\": \"TRADE\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetOrderByOrderIdOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderAddOrderOldReqModel(t *testing.T) {
-	// AddOrderOld
-	// Add Order - Old
-	// /api/v1/orders
-
-	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
-	req := &AddOrderOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderAddOrderOldRespModel(t *testing.T) {
-	// AddOrderOld
-	// Add Order - Old
-	// /api/v1/orders
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8635b38d120007709c0f\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &AddOrderOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderAddOrderTestOldReqModel(t *testing.T) {
-	// AddOrderTestOld
-	// Add Order Test - Old
-	// /api/v1/orders/test
-
-	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
-	req := &AddOrderTestOldReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderAddOrderTestOldRespModel(t *testing.T) {
-	// AddOrderTestOld
-	// Add Order Test - Old
-	// /api/v1/orders/test
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8776291d9e00074f1edf\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &AddOrderTestOldResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchCancelStopOrderReqModel(t *testing.T) {
-	// BatchCancelStopOrder
-	// Batch Cancel Stop Orders
-	// /api/v1/stop-order/cancel
-
-	data := "{\"symbol\": \"example_string_default_value\", \"tradeType\": \"example_string_default_value\", \"orderIds\": \"example_string_default_value\"}"
-	req := &BatchCancelStopOrderReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchCancelStopOrderRespModel(t *testing.T) {
-	// BatchCancelStopOrder
-	// Batch Cancel Stop Orders
-	// /api/v1/stop-order/cancel
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"671124f9365ccb00073debd4\"\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &BatchCancelStopOrderResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelStopOrderByClientOidReqModel(t *testing.T) {
-	// CancelStopOrderByClientOid
-	// Cancel Stop Order By ClientOid
-	// /api/v1/stop-order/cancelOrderByClientOid
-
-	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"689ff597f4414061aa819cc414836abd\"}"
-	req := &CancelStopOrderByClientOidReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelStopOrderByClientOidRespModel(t *testing.T) {
-	// CancelStopOrderByClientOid
-	// Cancel Stop Order By ClientOid
-	// /api/v1/stop-order/cancelOrderByClientOid
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"vs8hoo8ksc8mario0035a74n\",\n        \"clientOid\": \"689ff597f4414061aa819cc414836abd\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelStopOrderByClientOidResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetStopOrdersListReqModel(t *testing.T) {
-	// GetStopOrdersList
-	// Get Stop Orders List
-	// /api/v1/stop-order
+func TestOrderModifyOrderReqModel(t *testing.T) {
+	// ModifyOrder
+	// Modify Order
+	// /api/v1/hf/orders/alter
 
 	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"670fd33bf9406e0007ab3945\", \"newPrice\": \"30000\", \"newSize\": \"0.0001\"}"
-	req := &GetStopOrdersListReq{}
+	req := &ModifyOrderReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetStopOrdersListRespModel(t *testing.T) {
-	// GetStopOrdersList
-	// Get Stop Orders List
-	// /api/v1/stop-order
+func TestOrderModifyOrderRespModel(t *testing.T) {
+	// ModifyOrder
+	// Modify Order
+	// /api/v1/hf/orders/alter
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"vs8hoo8kqjnklv4m0038lrfq\",\n                \"symbol\": \"KCS-USDT\",\n                \"userId\": \"60fe4956c43cbc0006562c2c\",\n                \"status\": \"NEW\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.01000000000000000000\",\n                \"size\": \"0.01000000000000000000\",\n                \"funds\": null,\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": -1,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"clientOid\": \"404814a0fb4311eb9098acde48001122\",\n                \"remark\": null,\n                \"tags\": null,\n                \"orderTime\": 1628755183702150100,\n                \"domainId\": \"kucoin\",\n                \"tradeSource\": \"USER\",\n                \"tradeType\": \"TRADE\",\n                \"feeCurrency\": \"USDT\",\n                \"takerFeeRate\": \"0.00200000000000000000\",\n                \"makerFeeRate\": \"0.00200000000000000000\",\n                \"createdAt\": 1628755183704,\n                \"stop\": \"loss\",\n                \"stopTriggerTime\": null,\n                \"stopPrice\": \"10.00000000000000000000\"\n            }\n        ]\n    }\n}"
+	data := "{\"code\":\"200000\",\"data\":{\"newOrderId\":\"67112258f9406e0007408827\",\"clientOid\":\"client order id 12\"}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetStopOrdersListResp{}
+	resp := &ModifyOrderResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelStopOrderByOrderIdReqModel(t *testing.T) {
-	// CancelStopOrderByOrderId
-	// Cancel Stop Order By OrderId
-	// /api/v1/stop-order/{orderId}
+func TestOrderGetOrderByOrderIdReqModel(t *testing.T) {
+	// GetOrderByOrderId
+	// Get Order By OrderId
+	// /api/v1/hf/orders/{orderId}
 
-	data := "{\"orderId\": \"671124f9365ccb00073debd4\"}"
-	req := &CancelStopOrderByOrderIdReq{}
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"6717422bd51c29000775ea03\"}"
+	req := &GetOrderByOrderIdReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelStopOrderByOrderIdRespModel(t *testing.T) {
-	// CancelStopOrderByOrderId
-	// Cancel Stop Order By OrderId
-	// /api/v1/stop-order/{orderId}
+func TestOrderGetOrderByOrderIdRespModel(t *testing.T) {
+	// GetOrderByOrderId
+	// Get Order By OrderId
+	// /api/v1/hf/orders/{orderId}
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"671124f9365ccb00073debd4\"\n        ]\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"6717422bd51c29000775ea03\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"70000\",\n        \"size\": \"0.00001\",\n        \"funds\": \"0.7\",\n        \"dealSize\": \"0.00001\",\n        \"dealFunds\": \"0.677176\",\n        \"remainSize\": \"0\",\n        \"remainFunds\": \"0.022824\",\n        \"cancelledSize\": \"0\",\n        \"cancelledFunds\": \"0\",\n        \"fee\": \"0.000677176\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": null,\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"remark\": \"order remarks\",\n        \"tags\": null,\n        \"cancelExist\": false,\n        \"tradeType\": \"TRADE\",\n        \"inOrderBook\": false,\n        \"active\": false,\n        \"tax\": \"0\",\n        \"createdAt\": 1729577515444,\n        \"lastUpdatedAt\": 1729577515481\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &CancelStopOrderByOrderIdResp{}
+	resp := &GetOrderByOrderIdResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetStopOrderByOrderIdReqModel(t *testing.T) {
-	// GetStopOrderByOrderId
-	// Get Stop Order By OrderId
-	// /api/v1/stop-order/{orderId}
+func TestOrderGetOrderByClientOidReqModel(t *testing.T) {
+	// GetOrderByClientOid
+	// Get Order By ClientOid
+	// /api/v1/hf/orders/client-order/{clientOid}
 
-	data := "{\"orderId\": \"example_string_default_value\"}"
-	req := &GetStopOrderByOrderIdReq{}
+	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e493fb\"}"
+	req := &GetOrderByClientOidReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestOrderGetStopOrderByOrderIdRespModel(t *testing.T) {
-	// GetStopOrderByOrderId
-	// Get Stop Order By OrderId
-	// /api/v1/stop-order/{orderId}
+func TestOrderGetOrderByClientOidRespModel(t *testing.T) {
+	// GetOrderByClientOid
+	// Get Order By ClientOid
+	// /api/v1/hf/orders/client-order/{clientOid}
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"vs8hoo8q2ceshiue003b67c0\",\n        \"symbol\": \"KCS-USDT\",\n        \"userId\": \"60fe4956c43cbc0006562c2c\",\n        \"status\": \"NEW\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"0.01000000000000000000\",\n        \"size\": \"0.01000000000000000000\",\n        \"funds\": null,\n        \"stp\": null,\n        \"timeInForce\": \"GTC\",\n        \"cancelAfter\": -1,\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": null,\n        \"channel\": \"API\",\n        \"clientOid\": \"40e0eb9efe6311eb8e58acde48001122\",\n        \"remark\": null,\n        \"tags\": null,\n        \"orderTime\": 1629098781127530200,\n        \"domainId\": \"kucoin\",\n        \"tradeSource\": \"USER\",\n        \"tradeType\": \"TRADE\",\n        \"feeCurrency\": \"USDT\",\n        \"takerFeeRate\": \"0.00200000000000000000\",\n        \"makerFeeRate\": \"0.00200000000000000000\",\n        \"createdAt\": 1629098781128,\n        \"stop\": \"loss\",\n        \"stopTriggerTime\": null,\n        \"stopPrice\": \"10.00000000000000000000\"\n    }\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"6717422bd51c29000775ea03\",\n        \"clientOid\": \"5c52e11203aa677f33e493fb\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"70000\",\n        \"size\": \"0.00001\",\n        \"funds\": \"0.7\",\n        \"dealSize\": \"0.00001\",\n        \"dealFunds\": \"0.677176\",\n        \"remainSize\": \"0\",\n        \"remainFunds\": \"0.022824\",\n        \"cancelledSize\": \"0\",\n        \"cancelledFunds\": \"0\",\n        \"fee\": \"0.000677176\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": null,\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"remark\": \"order remarks\",\n        \"tags\": null,\n        \"cancelExist\": false,\n        \"tradeType\": \"TRADE\",\n        \"inOrderBook\": false,\n        \"active\": false,\n        \"tax\": \"0\",\n        \"createdAt\": 1729577515444,\n        \"lastUpdatedAt\": 1729577515481\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetStopOrderByOrderIdResp{}
+	resp := &GetOrderByClientOidResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetSymbolsWithOpenOrderReqModel(t *testing.T) {
+	// GetSymbolsWithOpenOrder
+	// Get Symbols With Open Order
+	// /api/v1/hf/orders/active/symbols
+
+}
+
+func TestOrderGetSymbolsWithOpenOrderRespModel(t *testing.T) {
+	// GetSymbolsWithOpenOrder
+	// Get Symbols With Open Order
+	// /api/v1/hf/orders/active/symbols
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbols\": [\n            \"ETH-USDT\",\n            \"BTC-USDT\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetSymbolsWithOpenOrderResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOpenOrdersReqModel(t *testing.T) {
+	// GetOpenOrders
+	// Get Open Orders
+	// /api/v1/hf/orders/active
+
+	data := "{\"symbol\": \"BTC-USDT\"}"
+	req := &GetOpenOrdersReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOpenOrdersRespModel(t *testing.T) {
+	// GetOpenOrders
+	// Get Open Orders
+	// /api/v1/hf/orders/active
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"id\": \"67120bbef094e200070976f6\",\n            \"clientOid\": \"5c52e11203aa677f33e493fb\",\n            \"symbol\": \"BTC-USDT\",\n            \"opType\": \"DEAL\",\n            \"type\": \"limit\",\n            \"side\": \"buy\",\n            \"price\": \"50000\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0.5\",\n            \"dealSize\": \"0\",\n            \"dealFunds\": \"0\",\n            \"fee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"stp\": null,\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"visibleSize\": \"0\",\n            \"cancelAfter\": 0,\n            \"channel\": \"API\",\n            \"remark\": \"order remarks\",\n            \"tags\": \"order tags\",\n            \"cancelExist\": false,\n            \"tradeType\": \"TRADE\",\n            \"inOrderBook\": true,\n            \"cancelledSize\": \"0\",\n            \"cancelledFunds\": \"0\",\n            \"remainSize\": \"0.00001\",\n            \"remainFunds\": \"0.5\",\n            \"tax\": \"0\",\n            \"active\": true,\n            \"createdAt\": 1729235902748,\n            \"lastUpdatedAt\": 1729235909862\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetOpenOrdersResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetClosedOrdersReqModel(t *testing.T) {
+	// GetClosedOrders
+	// Get Closed Orders
+	// /api/v1/hf/orders/done
+
+	data := "{\"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"type\": \"limit\", \"lastId\": 254062248624417, \"limit\": 20, \"startAt\": 1728663338000, \"endAt\": 1728692138000}"
+	req := &GetClosedOrdersReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetClosedOrdersRespModel(t *testing.T) {
+	// GetClosedOrders
+	// Get Closed Orders
+	// /api/v1/hf/orders/done
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"lastId\": 19814995255305,\n        \"items\": [\n            {\n                \"id\": \"6717422bd51c29000775ea03\",\n                \"clientOid\": \"5c52e11203aa677f33e493fb\",\n                \"symbol\": \"BTC-USDT\",\n                \"opType\": \"DEAL\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"70000\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.7\",\n                \"dealSize\": \"0.00001\",\n                \"dealFunds\": \"0.677176\",\n                \"remainSize\": \"0\",\n                \"remainFunds\": \"0.022824\",\n                \"cancelledSize\": \"0\",\n                \"cancelledFunds\": \"0\",\n                \"fee\": \"0.000677176\",\n                \"feeCurrency\": \"USDT\",\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": \"0\",\n                \"cancelAfter\": 0,\n                \"channel\": \"API\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"cancelExist\": false,\n                \"tradeType\": \"TRADE\",\n                \"inOrderBook\": false,\n                \"active\": false,\n                \"tax\": \"0\",\n                \"createdAt\": 1729577515444,\n                \"lastUpdatedAt\": 1729577515481\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetClosedOrdersResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetTradeHistoryReqModel(t *testing.T) {
+	// GetTradeHistory
+	// Get Trade History
+	// /api/v1/hf/fills
+
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"example_string_default_value\", \"side\": \"buy\", \"type\": \"limit\", \"lastId\": 254062248624417, \"limit\": 100, \"startAt\": 1728663338000, \"endAt\": 1728692138000}"
+	req := &GetTradeHistoryReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetTradeHistoryRespModel(t *testing.T) {
+	// GetTradeHistory
+	// Get Trade History
+	// /api/v1/hf/fills
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 19814995255305,\n                \"orderId\": \"6717422bd51c29000775ea03\",\n                \"counterOrderId\": \"67174228135f9e000709da8c\",\n                \"tradeId\": 11029373945659392,\n                \"symbol\": \"BTC-USDT\",\n                \"side\": \"buy\",\n                \"liquidity\": \"taker\",\n                \"type\": \"limit\",\n                \"forceTaker\": false,\n                \"price\": \"67717.6\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0.677176\",\n                \"fee\": \"0.000677176\",\n                \"feeRate\": \"0.001\",\n                \"feeCurrency\": \"USDT\",\n                \"stop\": \"\",\n                \"tradeType\": \"TRADE\",\n                \"taxRate\": \"0\",\n                \"tax\": \"0\",\n                \"createdAt\": 1729577515473\n            }\n        ],\n        \"lastId\": 19814995255305\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetTradeHistoryResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetDCPReqModel(t *testing.T) {
+	// GetDCP
+	// Get DCP
+	// /api/v1/hf/orders/dead-cancel-all/query
+
+}
+
+func TestOrderGetDCPRespModel(t *testing.T) {
+	// GetDCP
+	// Get DCP
+	// /api/v1/hf/orders/dead-cancel-all/query
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"timeout\": 5,\n        \"symbols\": \"BTC-USDT,ETH-USDT\",\n        \"currentTime\": 1729241305,\n        \"triggerTime\": 1729241308\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetDCPResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderSetDCPReqModel(t *testing.T) {
+	// SetDCP
+	// Set DCP
+	// /api/v1/hf/orders/dead-cancel-all
+
+	data := "{\"timeout\": 5, \"symbols\": \"BTC-USDT,ETH-USDT\"}"
+	req := &SetDCPReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderSetDCPRespModel(t *testing.T) {
+	// SetDCP
+	// Set DCP
+	// /api/v1/hf/orders/dead-cancel-all
+
+	data := "{\"code\":\"200000\",\"data\":{\"currentTime\":1729656588,\"triggerTime\":1729656593}}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &SetDCPResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -1084,6 +608,146 @@ func TestOrderAddStopOrderRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestOrderCancelStopOrderByClientOidReqModel(t *testing.T) {
+	// CancelStopOrderByClientOid
+	// Cancel Stop Order By ClientOid
+	// /api/v1/stop-order/cancelOrderByClientOid
+
+	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"689ff597f4414061aa819cc414836abd\"}"
+	req := &CancelStopOrderByClientOidReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelStopOrderByClientOidRespModel(t *testing.T) {
+	// CancelStopOrderByClientOid
+	// Cancel Stop Order By ClientOid
+	// /api/v1/stop-order/cancelOrderByClientOid
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"vs8hoo8ksc8mario0035a74n\",\n        \"clientOid\": \"689ff597f4414061aa819cc414836abd\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &CancelStopOrderByClientOidResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelStopOrderByOrderIdReqModel(t *testing.T) {
+	// CancelStopOrderByOrderId
+	// Cancel Stop Order By OrderId
+	// /api/v1/stop-order/{orderId}
+
+	data := "{\"orderId\": \"671124f9365ccb00073debd4\"}"
+	req := &CancelStopOrderByOrderIdReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelStopOrderByOrderIdRespModel(t *testing.T) {
+	// CancelStopOrderByOrderId
+	// Cancel Stop Order By OrderId
+	// /api/v1/stop-order/{orderId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"671124f9365ccb00073debd4\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &CancelStopOrderByOrderIdResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchCancelStopOrderReqModel(t *testing.T) {
+	// BatchCancelStopOrder
+	// Batch Cancel Stop Orders
+	// /api/v1/stop-order/cancel
+
+	data := "{\"symbol\": \"example_string_default_value\", \"tradeType\": \"example_string_default_value\", \"orderIds\": \"example_string_default_value\"}"
+	req := &BatchCancelStopOrderReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchCancelStopOrderRespModel(t *testing.T) {
+	// BatchCancelStopOrder
+	// Batch Cancel Stop Orders
+	// /api/v1/stop-order/cancel
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"671124f9365ccb00073debd4\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &BatchCancelStopOrderResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetStopOrdersListReqModel(t *testing.T) {
+	// GetStopOrdersList
+	// Get Stop Orders List
+	// /api/v1/stop-order
+
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"670fd33bf9406e0007ab3945\", \"newPrice\": \"30000\", \"newSize\": \"0.0001\"}"
+	req := &GetStopOrdersListReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetStopOrdersListRespModel(t *testing.T) {
+	// GetStopOrdersList
+	// Get Stop Orders List
+	// /api/v1/stop-order
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"vs8hoo8kqjnklv4m0038lrfq\",\n                \"symbol\": \"KCS-USDT\",\n                \"userId\": \"60fe4956c43cbc0006562c2c\",\n                \"status\": \"NEW\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"0.01000000000000000000\",\n                \"size\": \"0.01000000000000000000\",\n                \"funds\": null,\n                \"stp\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": -1,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"clientOid\": \"404814a0fb4311eb9098acde48001122\",\n                \"remark\": null,\n                \"tags\": null,\n                \"orderTime\": 1628755183702150100,\n                \"domainId\": \"kucoin\",\n                \"tradeSource\": \"USER\",\n                \"tradeType\": \"TRADE\",\n                \"feeCurrency\": \"USDT\",\n                \"takerFeeRate\": \"0.00200000000000000000\",\n                \"makerFeeRate\": \"0.00200000000000000000\",\n                \"createdAt\": 1628755183704,\n                \"stop\": \"loss\",\n                \"stopTriggerTime\": null,\n                \"stopPrice\": \"10.00000000000000000000\"\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetStopOrdersListResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetStopOrderByOrderIdReqModel(t *testing.T) {
+	// GetStopOrderByOrderId
+	// Get Stop Order By OrderId
+	// /api/v1/stop-order/{orderId}
+
+	data := "{\"orderId\": \"example_string_default_value\"}"
+	req := &GetStopOrderByOrderIdReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetStopOrderByOrderIdRespModel(t *testing.T) {
+	// GetStopOrderByOrderId
+	// Get Stop Order By OrderId
+	// /api/v1/stop-order/{orderId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"vs8hoo8q2ceshiue003b67c0\",\n        \"symbol\": \"KCS-USDT\",\n        \"userId\": \"60fe4956c43cbc0006562c2c\",\n        \"status\": \"NEW\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"0.01000000000000000000\",\n        \"size\": \"0.01000000000000000000\",\n        \"funds\": null,\n        \"stp\": null,\n        \"timeInForce\": \"GTC\",\n        \"cancelAfter\": -1,\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": null,\n        \"channel\": \"API\",\n        \"clientOid\": \"40e0eb9efe6311eb8e58acde48001122\",\n        \"remark\": null,\n        \"tags\": null,\n        \"orderTime\": 1629098781127530200,\n        \"domainId\": \"kucoin\",\n        \"tradeSource\": \"USER\",\n        \"tradeType\": \"TRADE\",\n        \"feeCurrency\": \"USDT\",\n        \"takerFeeRate\": \"0.00200000000000000000\",\n        \"makerFeeRate\": \"0.00200000000000000000\",\n        \"createdAt\": 1629098781128,\n        \"stop\": \"loss\",\n        \"stopTriggerTime\": null,\n        \"stopPrice\": \"10.00000000000000000000\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetStopOrderByOrderIdResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
 func TestOrderGetStopOrderByClientOidReqModel(t *testing.T) {
 	// GetStopOrderByClientOid
 	// Get Stop Order By ClientOid
@@ -1112,6 +776,62 @@ func TestOrderGetStopOrderByClientOidRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestOrderAddOcoOrderReqModel(t *testing.T) {
+	// AddOcoOrder
+	// Add OCO Order
+	// /api/v3/oco/order
+
+	data := "{\"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"94000\", \"size\": \"0.1\", \"clientOid\": \"5c52e11203aa67f1e493fb\", \"stopPrice\": \"98000\", \"limitPrice\": \"96000\", \"remark\": \"this is remark\", \"tradeType\": \"TRADE\"}"
+	req := &AddOcoOrderReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOcoOrderRespModel(t *testing.T) {
+	// AddOcoOrder
+	// Add OCO Order
+	// /api/v3/oco/order
+
+	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"674c316e688dea0007c7b986\"}}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &AddOcoOrderResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelOcoOrderByOrderIdReqModel(t *testing.T) {
+	// CancelOcoOrderByOrderId
+	// Cancel OCO Order By OrderId
+	// /api/v3/oco/order/{orderId}
+
+	data := "{\"orderId\": \"674c316e688dea0007c7b986\"}"
+	req := &CancelOcoOrderByOrderIdReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelOcoOrderByOrderIdRespModel(t *testing.T) {
+	// CancelOcoOrderByOrderId
+	// Cancel OCO Order By OrderId
+	// /api/v3/oco/order/{orderId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"vs93gpqc6kkmkk57003gok16\",\n            \"vs93gpqc6kkmkk57003gok17\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &CancelOcoOrderByOrderIdResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
 func TestOrderCancelOcoOrderByClientOidReqModel(t *testing.T) {
 	// CancelOcoOrderByClientOid
 	// Cancel OCO Order By ClientOid
@@ -1135,6 +855,62 @@ func TestOrderCancelOcoOrderByClientOidRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &CancelOcoOrderByClientOidResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchCancelOcoOrdersReqModel(t *testing.T) {
+	// BatchCancelOcoOrders
+	// Batch Cancel OCO Order
+	// /api/v3/oco/orders
+
+	data := "{\"orderIds\": \"674c388172cf2800072ee746,674c38bdfd8300000795167e\", \"symbol\": \"BTC-USDT\"}"
+	req := &BatchCancelOcoOrdersReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchCancelOcoOrdersRespModel(t *testing.T) {
+	// BatchCancelOcoOrders
+	// Batch Cancel OCO Order
+	// /api/v3/oco/orders
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"vs93gpqc750mkk57003gok6i\",\n            \"vs93gpqc750mkk57003gok6j\",\n            \"vs93gpqc75c39p83003tnriu\",\n            \"vs93gpqc75c39p83003tnriv\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &BatchCancelOcoOrdersResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOcoOrderByOrderIdReqModel(t *testing.T) {
+	// GetOcoOrderByOrderId
+	// Get OCO Order By OrderId
+	// /api/v3/oco/order/{orderId}
+
+	data := "{\"orderId\": \"674c3b6e688dea0007c7bab2\"}"
+	req := &GetOcoOrderByOrderIdReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOcoOrderByOrderIdRespModel(t *testing.T) {
+	// GetOcoOrderByOrderId
+	// Get OCO Order By OrderId
+	// /api/v3/oco/order/{orderId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674c3b6e688dea0007c7bab2\",\n        \"symbol\": \"BTC-USDT\",\n        \"clientOid\": \"5c52e1203aa6f37f1e493fb\",\n        \"orderTime\": 1733049198863,\n        \"status\": \"NEW\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetOcoOrderByOrderIdResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -1196,118 +972,6 @@ func TestOrderGetOcoOrderDetailByOrderIdRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestOrderCancelOcoOrderByOrderIdReqModel(t *testing.T) {
-	// CancelOcoOrderByOrderId
-	// Cancel OCO Order By OrderId
-	// /api/v3/oco/order/{orderId}
-
-	data := "{\"orderId\": \"674c316e688dea0007c7b986\"}"
-	req := &CancelOcoOrderByOrderIdReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderCancelOcoOrderByOrderIdRespModel(t *testing.T) {
-	// CancelOcoOrderByOrderId
-	// Cancel OCO Order By OrderId
-	// /api/v3/oco/order/{orderId}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"vs93gpqc6kkmkk57003gok16\",\n            \"vs93gpqc6kkmkk57003gok17\"\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &CancelOcoOrderByOrderIdResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOcoOrderByOrderIdReqModel(t *testing.T) {
-	// GetOcoOrderByOrderId
-	// Get OCO Order By OrderId
-	// /api/v3/oco/order/{orderId}
-
-	data := "{\"orderId\": \"674c3b6e688dea0007c7bab2\"}"
-	req := &GetOcoOrderByOrderIdReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderGetOcoOrderByOrderIdRespModel(t *testing.T) {
-	// GetOcoOrderByOrderId
-	// Get OCO Order By OrderId
-	// /api/v3/oco/order/{orderId}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674c3b6e688dea0007c7bab2\",\n        \"symbol\": \"BTC-USDT\",\n        \"clientOid\": \"5c52e1203aa6f37f1e493fb\",\n        \"orderTime\": 1733049198863,\n        \"status\": \"NEW\"\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetOcoOrderByOrderIdResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderAddOcoOrderReqModel(t *testing.T) {
-	// AddOcoOrder
-	// Add OCO Order
-	// /api/v3/oco/order
-
-	data := "{\"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"94000\", \"size\": \"0.1\", \"clientOid\": \"5c52e11203aa67f1e493fb\", \"stopPrice\": \"98000\", \"limitPrice\": \"96000\", \"remark\": \"this is remark\", \"tradeType\": \"TRADE\"}"
-	req := &AddOcoOrderReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderAddOcoOrderRespModel(t *testing.T) {
-	// AddOcoOrder
-	// Add OCO Order
-	// /api/v3/oco/order
-
-	data := "{\"code\":\"200000\",\"data\":{\"orderId\":\"674c316e688dea0007c7b986\"}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &AddOcoOrderResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchCancelOcoOrdersReqModel(t *testing.T) {
-	// BatchCancelOcoOrders
-	// Batch Cancel OCO Order
-	// /api/v3/oco/orders
-
-	data := "{\"orderIds\": \"674c388172cf2800072ee746,674c38bdfd8300000795167e\", \"symbol\": \"BTC-USDT\"}"
-	req := &BatchCancelOcoOrdersReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestOrderBatchCancelOcoOrdersRespModel(t *testing.T) {
-	// BatchCancelOcoOrders
-	// Batch Cancel OCO Order
-	// /api/v3/oco/orders
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"vs93gpqc750mkk57003gok6i\",\n            \"vs93gpqc750mkk57003gok6j\",\n            \"vs93gpqc75c39p83003tnriu\",\n            \"vs93gpqc75c39p83003tnriv\"\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &BatchCancelOcoOrdersResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
 func TestOrderGetOcoOrderListReqModel(t *testing.T) {
 	// GetOcoOrderList
 	// Get OCO Order List
@@ -1331,6 +995,342 @@ func TestOrderGetOcoOrderListRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetOcoOrderListResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOrderOldReqModel(t *testing.T) {
+	// AddOrderOld
+	// Add Order - Old
+	// /api/v1/orders
+
+	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
+	req := &AddOrderOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOrderOldRespModel(t *testing.T) {
+	// AddOrderOld
+	// Add Order - Old
+	// /api/v1/orders
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8635b38d120007709c0f\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &AddOrderOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOrderTestOldReqModel(t *testing.T) {
+	// AddOrderTestOld
+	// Add Order Test - Old
+	// /api/v1/orders/test
+
+	data := "{\"type\": \"limit\", \"symbol\": \"BTC-USDT\", \"side\": \"buy\", \"price\": \"50000\", \"size\": \"0.00001\", \"clientOid\": \"5c52e11203aa677f33e493fb\", \"remark\": \"order remarks\"}"
+	req := &AddOrderTestOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderAddOrderTestOldRespModel(t *testing.T) {
+	// AddOrderTestOld
+	// Add Order Test - Old
+	// /api/v1/orders/test
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8776291d9e00074f1edf\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &AddOrderTestOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchAddOrdersOldReqModel(t *testing.T) {
+	// BatchAddOrdersOld
+	// Batch Add Orders - Old
+	// /api/v1/orders/multi
+
+	data := "{\"symbol\": \"BTC-USDT\", \"orderList\": [{\"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\", \"side\": \"buy\", \"type\": \"limit\", \"price\": \"50000\", \"size\": \"0.0001\"}, {\"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\", \"side\": \"buy\", \"type\": \"limit\", \"price\": \"49999\", \"size\": \"0.0001\"}]}"
+	req := &BatchAddOrdersOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchAddOrdersOldRespModel(t *testing.T) {
+	// BatchAddOrdersOld
+	// Batch Add Orders - Old
+	// /api/v1/orders/multi
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"data\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dfef434f0007efc431\",\n                \"status\": \"success\",\n                \"failMsg\": null,\n                \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\"\n            },\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"49999\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dffb378b00077b9c20\",\n                \"status\": \"fail\",\n                \"failMsg\": \"Balance insufficient!\",\n                \"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\"\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &BatchAddOrdersOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelOrderByOrderIdOldReqModel(t *testing.T) {
+	// CancelOrderByOrderIdOld
+	// Cancel Order By OrderId - Old
+	// /api/v1/orders/{orderId}
+
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"674a97dfef434f0007efc431\"}"
+	req := &CancelOrderByOrderIdOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelOrderByOrderIdOldRespModel(t *testing.T) {
+	// CancelOrderByOrderIdOld
+	// Cancel Order By OrderId - Old
+	// /api/v1/orders/{orderId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a97dfef434f0007efc431\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &CancelOrderByOrderIdOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelOrderByClientOidOldReqModel(t *testing.T) {
+	// CancelOrderByClientOidOld
+	// Cancel Order By ClientOid - Old
+	// /api/v1/order/client-order/{clientOid}
+
+	data := "{\"symbol\": \"BTC-USDT\", \"clientOid\": \"5c52e11203aa677f33e4923fb\"}"
+	req := &CancelOrderByClientOidOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderCancelOrderByClientOidOldRespModel(t *testing.T) {
+	// CancelOrderByClientOidOld
+	// Cancel Order By ClientOid - Old
+	// /api/v1/order/client-order/{clientOid}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"674a9a872033a50007e2790d\",\n        \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &CancelOrderByClientOidOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchCancelOrderOldReqModel(t *testing.T) {
+	// BatchCancelOrderOld
+	// Batch Cancel Order - Old
+	// /api/v1/orders
+
+	data := "{\"symbol\": \"BTC-USDT\", \"tradeType\": \"TRADE\"}"
+	req := &BatchCancelOrderOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderBatchCancelOrderOldRespModel(t *testing.T) {
+	// BatchCancelOrderOld
+	// Batch Cancel Order - Old
+	// /api/v1/orders
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a8635b38d120007709c0f\",\n            \"674a8630439c100007d3bce1\"\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &BatchCancelOrderOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOrdersListOldReqModel(t *testing.T) {
+	// GetOrdersListOld
+	// Get Orders List - Old
+	// /api/v1/orders
+
+	data := "{\"symbol\": \"BTC-USDT\", \"status\": \"active\", \"side\": \"buy\", \"type\": \"limit\", \"tradeType\": \"TRADE\", \"startAt\": 123456, \"endAt\": 123456, \"currentPage\": 1, \"pageSize\": 50}"
+	req := &GetOrdersListOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOrdersListOldRespModel(t *testing.T) {
+	// GetOrdersListOld
+	// Get Orders List - Old
+	// /api/v1/orders
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"id\": \"674a9a872033a50007e2790d\",\n                \"symbol\": \"BTC-USDT\",\n                \"opType\": \"DEAL\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.00001\",\n                \"funds\": \"0\",\n                \"dealFunds\": \"0\",\n                \"dealSize\": \"0\",\n                \"fee\": \"0\",\n                \"feeCurrency\": \"USDT\",\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopTriggered\": false,\n                \"stopPrice\": \"0\",\n                \"timeInForce\": \"GTC\",\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberg\": false,\n                \"visibleSize\": \"0\",\n                \"cancelAfter\": 0,\n                \"channel\": \"API\",\n                \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n                \"remark\": \"order remarks\",\n                \"tags\": null,\n                \"isActive\": false,\n                \"cancelExist\": true,\n                \"createdAt\": 1732942471752,\n                \"tradeType\": \"TRADE\"\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetOrdersListOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetRecentOrdersListOldReqModel(t *testing.T) {
+	// GetRecentOrdersListOld
+	// Get Recent Orders List - Old
+	// /api/v1/limit/orders
+
+	data := "{\"currentPage\": 1, \"pageSize\": 50}"
+	req := &GetRecentOrdersListOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetRecentOrdersListOldRespModel(t *testing.T) {
+	// GetRecentOrdersListOld
+	// Get Recent Orders List - Old
+	// /api/v1/limit/orders
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"id\": \"674a9a872033a50007e2790d\",\n            \"symbol\": \"BTC-USDT\",\n            \"opType\": \"DEAL\",\n            \"type\": \"limit\",\n            \"side\": \"buy\",\n            \"price\": \"50000\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0\",\n            \"dealFunds\": \"0\",\n            \"dealSize\": \"0\",\n            \"fee\": \"0\",\n            \"feeCurrency\": \"USDT\",\n            \"stp\": \"\",\n            \"stop\": \"\",\n            \"stopTriggered\": false,\n            \"stopPrice\": \"0\",\n            \"timeInForce\": \"GTC\",\n            \"postOnly\": false,\n            \"hidden\": false,\n            \"iceberg\": false,\n            \"visibleSize\": \"0\",\n            \"cancelAfter\": 0,\n            \"channel\": \"API\",\n            \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n            \"remark\": \"order remarks\",\n            \"tags\": null,\n            \"isActive\": false,\n            \"cancelExist\": true,\n            \"createdAt\": 1732942471752,\n            \"tradeType\": \"TRADE\"\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetRecentOrdersListOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOrderByOrderIdOldReqModel(t *testing.T) {
+	// GetOrderByOrderIdOld
+	// Get Order By OrderId - Old
+	// /api/v1/orders/{orderId}
+
+	data := "{\"orderId\": \"674a97dfef434f0007efc431\"}"
+	req := &GetOrderByOrderIdOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOrderByOrderIdOldRespModel(t *testing.T) {
+	// GetOrderByOrderIdOld
+	// Get Order By OrderId - Old
+	// /api/v1/orders/{orderId}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"674a97dfef434f0007efc431\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"50000\",\n        \"size\": \"0.0001\",\n        \"funds\": \"0\",\n        \"dealFunds\": \"0\",\n        \"dealSize\": \"0\",\n        \"fee\": \"0\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": \"\",\n        \"stop\": \"\",\n        \"stopTriggered\": false,\n        \"stopPrice\": \"0\",\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\",\n        \"remark\": null,\n        \"tags\": null,\n        \"isActive\": false,\n        \"cancelExist\": true,\n        \"createdAt\": 1732941791518,\n        \"tradeType\": \"TRADE\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetOrderByOrderIdOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOrderByClientOidOldReqModel(t *testing.T) {
+	// GetOrderByClientOidOld
+	// Get Order By ClientOid - Old
+	// /api/v1/order/client-order/{clientOid}
+
+	data := "{\"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\"}"
+	req := &GetOrderByClientOidOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetOrderByClientOidOldRespModel(t *testing.T) {
+	// GetOrderByClientOidOld
+	// Get Order By ClientOid - Old
+	// /api/v1/order/client-order/{clientOid}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"id\": \"674a97dfef434f0007efc431\",\n        \"symbol\": \"BTC-USDT\",\n        \"opType\": \"DEAL\",\n        \"type\": \"limit\",\n        \"side\": \"buy\",\n        \"price\": \"50000\",\n        \"size\": \"0.0001\",\n        \"funds\": \"0\",\n        \"dealFunds\": \"0\",\n        \"dealSize\": \"0\",\n        \"fee\": \"0\",\n        \"feeCurrency\": \"USDT\",\n        \"stp\": \"\",\n        \"stop\": \"\",\n        \"stopTriggered\": false,\n        \"stopPrice\": \"0\",\n        \"timeInForce\": \"GTC\",\n        \"postOnly\": false,\n        \"hidden\": false,\n        \"iceberg\": false,\n        \"visibleSize\": \"0\",\n        \"cancelAfter\": 0,\n        \"channel\": \"API\",\n        \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\",\n        \"remark\": null,\n        \"tags\": null,\n        \"isActive\": false,\n        \"cancelExist\": true,\n        \"createdAt\": 1732941791518,\n        \"tradeType\": \"TRADE\"\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetOrderByClientOidOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetTradeHistoryOldReqModel(t *testing.T) {
+	// GetTradeHistoryOld
+	// Get Trade History - Old
+	// /api/v1/fills
+
+	data := "{\"symbol\": \"BTC-USDT\", \"orderId\": \"example_string_default_value\", \"side\": \"buy\", \"type\": \"limit\", \"tradeType\": \"TRADE\", \"startAt\": 1728663338000, \"endAt\": 1728692138000, \"currentPage\": 1, \"pageSize\": 50}"
+	req := &GetTradeHistoryOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetTradeHistoryOldRespModel(t *testing.T) {
+	// GetTradeHistoryOld
+	// Get Trade History - Old
+	// /api/v1/fills
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 50,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"symbol\": \"DOGE-USDT\",\n                \"tradeId\": \"10862827223795713\",\n                \"orderId\": \"6745698ef4f1200007c561a8\",\n                \"counterOrderId\": \"6745695ef15b270007ac5076\",\n                \"side\": \"buy\",\n                \"liquidity\": \"taker\",\n                \"forceTaker\": false,\n                \"price\": \"0.40739\",\n                \"size\": \"10\",\n                \"funds\": \"4.0739\",\n                \"fee\": \"0.0040739\",\n                \"feeRate\": \"0.001\",\n                \"feeCurrency\": \"USDT\",\n                \"stop\": \"\",\n                \"tradeType\": \"TRADE\",\n                \"type\": \"market\",\n                \"createdAt\": 1732602254928\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetTradeHistoryOldResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetRecentTradeHistoryOldReqModel(t *testing.T) {
+	// GetRecentTradeHistoryOld
+	// Get Recent Trade History - Old
+	// /api/v1/limit/fills
+
+	data := "{\"currentPage\": 1, \"pageSize\": 50}"
+	req := &GetRecentTradeHistoryOldReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestOrderGetRecentTradeHistoryOldRespModel(t *testing.T) {
+	// GetRecentTradeHistoryOld
+	// Get Recent Trade History - Old
+	// /api/v1/limit/fills
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"tradeId\": \"11732720444522497\",\n            \"orderId\": \"674aab24754b1e00077dbc69\",\n            \"counterOrderId\": \"674aab1fb26bfb0007a18b67\",\n            \"side\": \"buy\",\n            \"liquidity\": \"taker\",\n            \"forceTaker\": false,\n            \"price\": \"96999.6\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0.969996\",\n            \"fee\": \"0.000969996\",\n            \"feeRate\": \"0.001\",\n            \"feeCurrency\": \"USDT\",\n            \"stop\": \"\",\n            \"tradeType\": \"TRADE\",\n            \"type\": \"limit\",\n            \"createdAt\": 1732946724082\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetRecentTradeHistoryOldResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

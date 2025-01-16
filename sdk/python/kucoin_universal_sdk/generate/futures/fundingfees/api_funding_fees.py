@@ -14,6 +14,25 @@ from .model_get_public_funding_history_resp import GetPublicFundingHistoryResp
 class FundingFeesAPI(ABC):
 
     @abstractmethod
+    def get_current_funding_rate(self, req: GetCurrentFundingRateReq,
+                                 **kwargs: Any) -> GetCurrentFundingRateResp:
+        """
+        summary: Get Current Funding Rate
+        description: get Current Funding Rate
+        documentation: https://www.kucoin.com/docs-new/api-3470265
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def get_public_funding_history(
             self, req: GetPublicFundingHistoryReq,
             **kwargs: Any) -> GetPublicFundingHistoryResp:
@@ -53,30 +72,18 @@ class FundingFeesAPI(ABC):
         """
         pass
 
-    @abstractmethod
-    def get_current_funding_rate(self, req: GetCurrentFundingRateReq,
-                                 **kwargs: Any) -> GetCurrentFundingRateResp:
-        """
-        summary: Get Current Funding Rate
-        description: get Current Funding Rate
-        documentation: https://www.kucoin.com/docs-new/api-3470265
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
 
 class FundingFeesAPIImpl(FundingFeesAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
+
+    def get_current_funding_rate(self, req: GetCurrentFundingRateReq,
+                                 **kwargs: Any) -> GetCurrentFundingRateResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/funding-rate/{symbol}/current",
+                                   req, GetCurrentFundingRateResp(), False,
+                                   **kwargs)
 
     def get_public_funding_history(
             self, req: GetPublicFundingHistoryReq,
@@ -92,11 +99,4 @@ class FundingFeesAPIImpl(FundingFeesAPI):
         return self.transport.call("futures", False, "GET",
                                    "/api/v1/funding-history", req,
                                    GetPrivateFundingHistoryResp(), False,
-                                   **kwargs)
-
-    def get_current_funding_rate(self, req: GetCurrentFundingRateReq,
-                                 **kwargs: Any) -> GetCurrentFundingRateResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/funding-rate/{symbol}/current",
-                                   req, GetCurrentFundingRateResp(), False,
                                    **kwargs)

@@ -1,47 +1,47 @@
 service,subservice,path,method,name
 account,account,/api/v2/user-info,get,Get Account Summary Info
+account,account,/api/v1/user/api-key,get,Get Apikey Info
 account,account,/api/v1/hf/accounts/opened,get,Get Account Type - Spot 
-account,account,/api/v1/accounts/ledgers,get,Get Account Ledgers - Spot/Margin
-account,account,/api/v1/hf/accounts/ledgers,get,Get Account Ledgers - Trade_hf
-account,account,/api/v3/hf/margin/account/ledgers,get,Get Account Ledgers - Margin_hf
-account,account,/api/v1/transaction-history,get,Get Account Ledgers - Futures
 account,account,/api/v1/accounts,get,Get Account List - Spot
 account,account,/api/v1/accounts/{accountId},get,Get Account Detail - Spot
 account,account,/api/v3/margin/accounts,get,Get Account - Cross Margin
 account,account,/api/v3/isolated/accounts,get,Get Account - Isolated Margin
 account,account,/api/v1/account-overview,get,Get Account - Futures
-account,account,/api/v1/user/api-key,get,Get Apikey Info
+account,account,/api/v1/accounts/ledgers,get,Get Account Ledgers - Spot/Margin
+account,account,/api/v1/hf/accounts/ledgers,get,Get Account Ledgers - Trade_hf
+account,account,/api/v3/hf/margin/account/ledgers,get,Get Account Ledgers - Margin_hf
+account,account,/api/v1/transaction-history,get,Get Account Ledgers - Futures
 account,account,/api/v1/margin/account,get,Get Account Detail - Margin
 account,account,/api/v1/isolated/accounts,get,Get Account List - Isolated Margin - V1
 account,account,/api/v1/isolated/account/{symbol},get,Get Account Detail - Isolated Margin - V1
+account,subaccount,/api/v2/sub/user/created,post,Add SubAccount
+account,subaccount,/api/v3/sub/user/margin/enable,post,Add SubAccount Margin Permission
+account,subaccount,/api/v3/sub/user/futures/enable,post,Add SubAccount Futures Permission
 account,subaccount,/api/v2/sub/user,get,Get SubAccount List - Summary Info
 account,subaccount,/api/v1/sub-accounts/{subUserId},get,Get SubAccount Detail - Balance
 account,subaccount,/api/v2/sub-accounts,get,Get SubAccount List - Spot Balance(V2)
 account,subaccount,/api/v1/account-overview-all,get,Get SubAccount List - Futures Balance(V2)
-account,subaccount,/api/v2/sub/user/created,post,Add SubAccount
-account,subaccount,/api/v3/sub/user/margin/enable,post,Add SubAccount Margin Permission
-account,subaccount,/api/v3/sub/user/futures/enable,post,Add SubAccount Futures Permission
-account,subaccount,/api/v1/sub/api-key,get,Get SubAccount API List
-account,subaccount,/api/v1/sub/api-key,delete,Delete SubAccount API
 account,subaccount,/api/v1/sub/api-key,post,Add SubAccount API
 account,subaccount,/api/v1/sub/api-key/update,post,Modify SubAccount API
+account,subaccount,/api/v1/sub/api-key,get,Get SubAccount API List
+account,subaccount,/api/v1/sub/api-key,delete,Delete SubAccount API
 account,subaccount,/api/v1/sub/user,get,Get SubAccount List - Summary Info(V1)
 account,subaccount,/api/v1/sub-accounts,get,Get SubAccount List - Spot Balance(V1)
+account,deposit,/api/v3/deposit-address/create,post,Add Deposit Address(V3)
 account,deposit,/api/v3/deposit-addresses,get,Get Deposit Address(V3)
 account,deposit,/api/v1/deposits,get,Get Deposit History
-account,deposit,/api/v3/deposit-address/create,post,Add Deposit Address(V3)
 account,deposit,/api/v2/deposit-addresses,get,Get Deposit Addresses(V2)
 account,deposit,/api/v1/deposit-addresses,get,Get Deposit Addresses - V1
 account,deposit,/api/v1/hist-deposits,get,Get Deposit History - Old
 account,deposit,/api/v1/deposit-addresses,post,Add Deposit Address - V1
 account,withdrawal,/api/v1/withdrawals/quotas,get,Get Withdrawal Quotas
+account,withdrawal,/api/v3/withdrawals,post,Withdraw(V3)
 account,withdrawal,/api/v1/withdrawals/{withdrawalId},delete,Cancel Withdrawal
 account,withdrawal,/api/v1/withdrawals,get,Get Withdrawal History
-account,withdrawal,/api/v3/withdrawals,post,Withdraw(V3)
 account,withdrawal,/api/v1/hist-withdrawals,get,Get Withdrawal History - Old
 account,withdrawal,/api/v1/withdrawals,post,Withdraw - V1
-account,transfer,/api/v3/accounts/universal-transfer,post,Flex Transfer
 account,transfer,/api/v1/accounts/transferable,get,Get Transfer Quotas
+account,transfer,/api/v3/accounts/universal-transfer,post,Flex Transfer
 account,transfer,/api/v2/accounts/sub-transfer,post,SubAccount Transfer
 account,transfer,/api/v2/accounts/inner-transfer,post,Inner Transfer
 account,transfer,/api/v3/transfer-out,post,Futures Account Transfer Out
@@ -50,153 +50,153 @@ account,transfer,/api/v1/transfer-list,get,Get Futures Account Transfer Out Ledg
 account,fee,/api/v1/base-fee,get,Get Basic Fee - Spot/Margin
 account,fee,/api/v1/trade-fees,get,Get Actual Fee - Spot/Margin
 account,fee,/api/v1/trade-fees,get,Get Actual Fee - Futures
-spot,market,/api/v3/currencies,get,Get All Currencies
-spot,market,/api/v1/prices,get,Get Fiat Price
-spot,market,/api/v2/symbols,get,Get All Symbols
-spot,market,/api/v3/currencies/{currency},get,Get Currency
-spot,market,/api/v1/timestamp,get,Get Server Time
 spot,market,/api/v3/announcements,get,Get Announcements
-spot,market,/api/v1/status,get,Get Service Status
+spot,market,/api/v3/currencies/{currency},get,Get Currency
+spot,market,/api/v3/currencies,get,Get All Currencies
 spot,market,/api/v2/symbols/{symbol},get,Get Symbol 
+spot,market,/api/v2/symbols,get,Get All Symbols
 spot,market,/api/v1/market/orderbook/level1,get,Get Ticker
-spot,market,/api/v1/market/stats,get,Get 24hr Stats
+spot,market,/api/v1/market/allTickers,get,Get All Tickers
 spot,market,/api/v1/market/histories,get,Get Trade History
 spot,market,/api/v1/market/candles,get,Get Klines
-spot,market,/api/v3/market/orderbook/level2,get,Get Full OrderBook
 spot,market,/api/v1/market/orderbook/level2_{size},get,Get Part OrderBook
+spot,market,/api/v3/market/orderbook/level2,get,Get Full OrderBook
+spot,market,/api/v1/prices,get,Get Fiat Price
+spot,market,/api/v1/market/stats,get,Get 24hr Stats
 spot,market,/api/v1/markets,get,Get Market List
-spot,market,/api/v1/market/allTickers,get,Get All Tickers
+spot,market,/api/v1/timestamp,get,Get Server Time
+spot,market,/api/v1/status,get,Get Service Status
 spot,market,/api/v1/bullet-public,post,Get Public Token - Spot/Margin
 spot,market,/api/v1/bullet-private,post,Get Private Token - Spot/Margin
+spot,order,/api/v1/hf/orders,post,Add Order
+spot,order,/api/v1/hf/orders/sync,post,Add Order Sync
+spot,order,/api/v1/hf/orders/test,post,Add Order Test
 spot,order,/api/v1/hf/orders/multi,post,Batch Add Orders
 spot,order,/api/v1/hf/orders/multi/sync,post,Batch Add Orders Sync
-spot,order,/api/v1/hf/orders/sync,post,Add Order Sync
-spot,order,/api/v1/hf/orders/alter,post,Modify Order
-spot,order,/api/v1/hf/orders/dead-cancel-all/query,get,Get DCP
-spot,order,/api/v1/hf/orders/dead-cancel-all,post,Set DCP
 spot,order,/api/v1/hf/orders/{orderId},delete,Cancel Order By OrderId
-spot,order,/api/v1/stop-order/{orderId},delete,Cancel Stop Order By OrderId
+spot,order,/api/v1/hf/orders/sync/{orderId},delete,Cancel Order By OrderId Sync
+spot,order,/api/v1/hf/orders/client-order/{clientOid},delete,Cancel Order By ClientOid
+spot,order,/api/v1/hf/orders/sync/client-order/{clientOid},delete,Cancel Order By ClientOid Sync
+spot,order,/api/v1/hf/orders/cancel/{orderId},delete,Cancel Partial Order
 spot,order,/api/v1/hf/orders,delete,Cancel All Orders By Symbol
 spot,order,/api/v1/hf/orders/cancelAll,delete,Cancel All Orders
-spot,order,/api/v3/oco/order/{orderId},delete,Cancel OCO Order By OrderId
+spot,order,/api/v1/hf/orders/alter,post,Modify Order
+spot,order,/api/v1/hf/orders/{orderId},get,Get Order By OrderId
+spot,order,/api/v1/hf/orders/client-order/{clientOid},get,Get Order By ClientOid
 spot,order,/api/v1/hf/orders/active/symbols,get,Get Symbols With Open Order
 spot,order,/api/v1/hf/orders/active,get,Get Open Orders
-spot,order,/api/v1/stop-order,get,Get Stop Orders List
 spot,order,/api/v1/hf/orders/done,get,Get Closed Orders
+spot,order,/api/v1/hf/fills,get,Get Trade History
+spot,order,/api/v1/hf/orders/dead-cancel-all/query,get,Get DCP
+spot,order,/api/v1/hf/orders/dead-cancel-all,post,Set DCP
+spot,order,/api/v1/stop-order,post,Add Stop Order
+spot,order,/api/v1/stop-order/cancelOrderByClientOid,delete,Cancel Stop Order By ClientOid
+spot,order,/api/v1/stop-order/{orderId},delete,Cancel Stop Order By OrderId
+spot,order,/api/v1/stop-order/cancel,delete,Batch Cancel Stop Orders
+spot,order,/api/v1/stop-order,get,Get Stop Orders List
 spot,order,/api/v1/stop-order/{orderId},get,Get Stop Order By OrderId
 spot,order,/api/v1/stop-order/queryOrderByClientOid,get,Get Stop Order By ClientOid
-spot,order,/api/v1/stop-order/cancel,delete,Batch Cancel Stop Orders
-spot,order,/api/v3/oco/orders,delete,Batch Cancel OCO Order
-spot,order,/api/v1/hf/fills,get,Get Trade History
-spot,order,/api/v3/oco/order/{orderId},get,Get OCO Order By OrderId
-spot,order,/api/v3/oco/orders,get,Get OCO Order List
-spot,order,/api/v3/oco/order/details/{orderId},get,Get OCO Order Detail By OrderId
-spot,order,/api/v1/hf/orders/{orderId},get,Get Order By OrderId
-spot,order,/api/v3/oco/client-order/{clientOid},get,Get OCO Order By ClientOid
-spot,order,/api/v1/hf/orders/client-order/{clientOid},get,Get Order By ClientOid
-spot,order,/api/v3/oco/client-order/{clientOid},delete,Cancel OCO Order By ClientOid
-spot,order,/api/v1/hf/orders/cancel/{orderId},delete,Cancel Partial Order
-spot,order,/api/v1/hf/orders/client-order/{clientOid},delete,Cancel Order By ClientOid
-spot,order,/api/v1/stop-order/cancelOrderByClientOid,delete,Cancel Stop Order By ClientOid
-spot,order,/api/v1/hf/orders/sync/{orderId},delete,Cancel Order By OrderId Sync
-spot,order,/api/v1/hf/orders/sync/client-order/{clientOid},delete,Cancel Order By ClientOid Sync
-spot,order,/api/v1/hf/orders/test,post,Add Order Test
-spot,order,/api/v1/hf/orders,post,Add Order
 spot,order,/api/v3/oco/order,post,Add OCO Order
-spot,order,/api/v1/stop-order,post,Add Stop Order
+spot,order,/api/v3/oco/order/{orderId},delete,Cancel OCO Order By OrderId
+spot,order,/api/v3/oco/client-order/{clientOid},delete,Cancel OCO Order By ClientOid
+spot,order,/api/v3/oco/orders,delete,Batch Cancel OCO Order
+spot,order,/api/v3/oco/order/{orderId},get,Get OCO Order By OrderId
+spot,order,/api/v3/oco/client-order/{clientOid},get,Get OCO Order By ClientOid
+spot,order,/api/v3/oco/order/details/{orderId},get,Get OCO Order Detail By OrderId
+spot,order,/api/v3/oco/orders,get,Get OCO Order List
+spot,order,/api/v1/orders,post,Add Order - Old
+spot,order,/api/v1/orders/test,post,Add Order Test - Old
+spot,order,/api/v1/orders/multi,post,Batch Add Orders - Old
 spot,order,/api/v1/orders/{orderId},delete,Cancel Order By OrderId - Old
+spot,order,/api/v1/order/client-order/{clientOid},delete,Cancel Order By ClientOid - Old
+spot,order,/api/v1/orders,delete,Batch Cancel Order - Old
 spot,order,/api/v1/orders,get,Get Orders List - Old
 spot,order,/api/v1/limit/orders,get,Get Recent Orders List - Old
 spot,order,/api/v1/orders/{orderId},get,Get Order By OrderId - Old
 spot,order,/api/v1/order/client-order/{clientOid},get,Get Order By ClientOid - Old
-spot,order,/api/v1/orders,delete,Batch Cancel Order - Old
 spot,order,/api/v1/fills,get,Get Trade History - Old
 spot,order,/api/v1/limit/fills,get,Get Recent Trade History - Old
-spot,order,/api/v1/order/client-order/{clientOid},delete,Cancel Order By ClientOid - Old
-spot,order,/api/v1/orders,post,Add Order - Old
-spot,order,/api/v1/orders/multi,post,Batch Add Orders - Old
-spot,order,/api/v1/orders/test,post,Add Order Test - Old
 margin,market,/api/v3/margin/symbols,get,Get Symbols - Cross Margin
 margin,market,/api/v1/margin/config,get,Get Margin Config
 margin,market,/api/v3/etf/info,get,Get ETF Info
 margin,market,/api/v3/mark-price/all-symbols,get,Get Mark Price List
 margin,market,/api/v1/mark-price/{symbol}/current,get,Get Mark Price Detail
 margin,market,/api/v1/isolated/symbols,get,Get Symbols - Isolated Margin
+margin,order,/api/v3/hf/margin/order,post,Add Order
+margin,order,/api/v3/hf/margin/order/test,post,Add Order Test
 margin,order,/api/v3/hf/margin/orders/{orderId},delete,Cancel Order By OrderId
-margin,order,/api/v3/hf/margin/order/active/symbols,get,Get Symbols With Open Order
+margin,order,/api/v3/hf/margin/orders/client-order/{clientOid},delete,Cancel Order By ClientOid
 margin,order,/api/v3/hf/margin/orders,delete,Cancel All Orders By Symbol
+margin,order,/api/v3/hf/margin/order/active/symbols,get,Get Symbols With Open Order
 margin,order,/api/v3/hf/margin/orders/active,get,Get Open Orders
 margin,order,/api/v3/hf/margin/orders/done,get,Get Closed Orders
 margin,order,/api/v3/hf/margin/fills,get,Get Trade History
-margin,order,/api/v3/hf/margin/orders/client-order/{clientOid},delete,Cancel Order By ClientOid
 margin,order,/api/v3/hf/margin/orders/{orderId},get,Get Order By OrderId
 margin,order,/api/v3/hf/margin/orders/client-order/{clientOid},get,Get Order By ClientOid
-margin,order,/api/v3/hf/margin/order,post,Add Order
-margin,order,/api/v3/hf/margin/order/test,post,Add Order Test
 margin,order,/api/v1/margin/order,post,Add Order - V1
 margin,order,/api/v1/margin/order/test,post,Add Order Test - V1
 margin,debit,/api/v3/margin/borrow,post,Borrow
 margin,debit,/api/v3/margin/borrow,get,Get Borrow History
+margin,debit,/api/v3/margin/repay,post,Repay
 margin,debit,/api/v3/margin/repay,get,Get Repay History
 margin,debit,/api/v3/margin/interest,get,Get Interest History
-margin,debit,/api/v3/margin/repay,post,Repay
 margin,debit,/api/v3/position/update-user-leverage,post,Modify Leverage
 margin,credit,/api/v3/project/list,get,Get Loan Market
-margin,credit,/api/v3/purchase/orders,get,Get Purchase Orders
-margin,credit,/api/v3/redeem/orders,get,Get Redeem Orders
 margin,credit,/api/v3/project/marketInterestRate,get,Get Loan Market Interest Rate
 margin,credit,/api/v3/purchase,post,Purchase
 margin,credit,/api/v3/lend/purchase/update,post,Modify Purchase
+margin,credit,/api/v3/purchase/orders,get,Get Purchase Orders
 margin,credit,/api/v3/redeem,post,Redeem
+margin,credit,/api/v3/redeem/orders,get,Get Redeem Orders
 margin,risklimit,/api/v3/margin/currencies,get,Get Margin Risk Limit
-futures,market,/api/v1/contracts/active,get,Get All Symbols
 futures,market,/api/v1/contracts/{symbol},get,Get Symbol
+futures,market,/api/v1/contracts/active,get,Get All Symbols
 futures,market,/api/v1/ticker,get,Get Ticker
 futures,market,/api/v1/allTickers,get,Get All Tickers
 futures,market,/api/v1/level2/snapshot,get,Get Full OrderBook
 futures,market,/api/v1/level2/depth{size},get,Get Part OrderBook
+futures,market,/api/v1/trade/history,get,Get Trade History
+futures,market,/api/v1/kline/query,get,Get Klines
+futures,market,/api/v1/mark-price/{symbol}/current,get,Get Mark Price
+futures,market,/api/v1/index/query,get,Get Spot Index Price
 futures,market,/api/v1/interest/query,get,Get Interest Rate Index
 futures,market,/api/v1/premium/query,get,Get Premium Index
 futures,market,/api/v1/trade-statistics,get,Get 24hr Stats
 futures,market,/api/v1/timestamp,get,Get Server Time
 futures,market,/api/v1/status,get,Get Service Status
-futures,market,/api/v1/index/query,get,Get Spot Index Price
-futures,market,/api/v1/trade/history,get,Get Trade History
-futures,market,/api/v1/mark-price/{symbol}/current,get,Get Mark Price
-futures,market,/api/v1/kline/query,get,Get Klines
-futures,market,/api/v1/bullet-private,post,Get Private Token - Futures
 futures,market,/api/v1/bullet-public,post,Get Public Token - Futures
+futures,market,/api/v1/bullet-private,post,Get Private Token - Futures
 futures,order,/api/v1/orders,post,Add Order
-futures,order,/api/v1/fills,get,Get Trade History
-futures,order,/api/v1/orders/multi,post,Batch Add Orders
-futures,order,/api/v1/recentFills,get,Get Recent Trade History
-futures,order,/api/v1/st-orders,post,Add Take Profit And Stop Loss Order
-futures,order,/api/v1/openOrderStatistics,get,Get Open Order Value
 futures,order,/api/v1/orders/test,post,Add Order Test
+futures,order,/api/v1/orders/multi,post,Batch Add Orders
+futures,order,/api/v1/st-orders,post,Add Take Profit And Stop Loss Order
 futures,order,/api/v1/orders/{orderId},delete,Cancel Order By OrderId
 futures,order,/api/v1/orders/client-order/{clientOid},delete,Cancel Order By ClientOid
 futures,order,/api/v1/orders/multi-cancel,delete,Batch Cancel Orders
 futures,order,/api/v3/orders,delete,Cancel All Orders
 futures,order,/api/v1/stopOrders,delete,Cancel All Stop orders
-futures,order,/api/v1/orders,get,Get Order List
 futures,order,/api/v1/orders/{order-id},get,Get Order By OrderId
 futures,order,/api/v1/orders/byClientOid,get,Get Order By ClientOid
+futures,order,/api/v1/orders,get,Get Order List
 futures,order,/api/v1/recentDoneOrders,get,Get Recent Closed Orders
 futures,order,/api/v1/stopOrders,get,Get Stop Order List
+futures,order,/api/v1/openOrderStatistics,get,Get Open Order Value
+futures,order,/api/v1/recentFills,get,Get Recent Trade History
+futures,order,/api/v1/fills,get,Get Trade History
 futures,order,/api/v1/orders,delete,Cancel All Orders - V1
+futures,positions,/api/v2/position/getMarginMode,get,Get Margin Mode
+futures,positions,/api/v2/position/changeMarginMode,post,Switch Margin Mode
 futures,positions,/api/v2/getMaxOpenSize,get,Get Max Open Size
-futures,positions,/api/v1/contracts/risk-limit/{symbol},get,Get Isolated Margin Risk Limit
 futures,positions,/api/v1/position,get,Get Position Details
-futures,positions,/api/v1/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
 futures,positions,/api/v1/positions,get,Get Position List
 futures,positions,/api/v1/history-positions,get,Get Positions History
-futures,positions,/api/v1/margin/withdrawMargin,post,Remove Isolated Margin
-futures,positions,/api/v1/position/margin/deposit-margin,post,Add Isolated Margin
 futures,positions,/api/v1/margin/maxWithdrawMargin,get,Get Max Withdraw Margin
-futures,positions,/api/v2/position/getMarginMode,get,Get Margin Mode
 futures,positions,/api/v2/getCrossUserLeverage,get,Get Cross Margin Leverage
 futures,positions,/api/v2/changeCrossUserLeverage,post,Modify Cross Margin Leverage
-futures,positions,/api/v2/position/changeMarginMode,post,Switch Margin Mode
+futures,positions,/api/v1/position/margin/deposit-margin,post,Add Isolated Margin
+futures,positions,/api/v1/margin/withdrawMargin,post,Remove Isolated Margin
+futures,positions,/api/v1/contracts/risk-limit/{symbol},get,Get Isolated Margin Risk Limit
+futures,positions,/api/v1/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
 futures,positions,/api/v1/position/margin/auto-deposit-status,post,Modify Isolated Margin Auto-Deposit Status
 futures,fundingfees,/api/v1/funding-rate/{symbol}/current,get,Get Current Funding Rate
 futures,fundingfees,/api/v1/contract/funding-rates,get,Get Public Funding History
@@ -214,16 +214,27 @@ viplending,viplending,/api/v1/otc-loan/loan,get,Get Account Detail
 viplending,viplending,/api/v1/otc-loan/accounts,get,Get Accounts
 affiliate,affiliate,/api/v2/affiliate/inviter/statistics,get,Get Account
 broker,apibroker,/api/v1/broker/api/rebase/download,get,Get Broker Rebate
-broker,ndbroker,/api/v1/broker/nd/rebase/download,get,Get Broker Rebate
 broker,ndbroker,/api/v1/broker/nd/info,get,Get Broker Info
-broker,ndbroker,/api/v1/broker/nd/account,get,Get SubAccount
-broker,ndbroker,/api/v1/broker/nd/account/apikey,get,Get SubAccount API
-broker,ndbroker,/api/v1/asset/ndbroker/deposit/list,get,Get Deposit List
-broker,ndbroker,/api/v3/broker/nd/transfer/detail,get,Get Transfer History
-broker,ndbroker,/api/v3/broker/nd/withdraw/detail,get,Get Withdraw Detail
-broker,ndbroker,/api/v3/broker/nd/deposit/detail,get,Get Deposit Detail
-broker,ndbroker,/api/v1/broker/nd/account/apikey,delete,Delete SubAccount API
 broker,ndbroker,/api/v1/broker/nd/account,post,Add SubAccount
+broker,ndbroker,/api/v1/broker/nd/account,get,Get SubAccount
 broker,ndbroker,/api/v1/broker/nd/account/apikey,post,Add SubAccount API
+broker,ndbroker,/api/v1/broker/nd/account/apikey,get,Get SubAccount API
 broker,ndbroker,/api/v1/broker/nd/account/update-apikey,post,Modify SubAccount API
+broker,ndbroker,/api/v1/broker/nd/account/apikey,delete,Delete SubAccount API
 broker,ndbroker,/api/v1/broker/nd/transfer,post,Transfer
+broker,ndbroker,/api/v3/broker/nd/transfer/detail,get,Get Transfer History
+broker,ndbroker,/api/v1/asset/ndbroker/deposit/list,get,Get Deposit List
+broker,ndbroker,/api/v3/broker/nd/deposit/detail,get,Get Deposit Detail
+broker,ndbroker,/api/v3/broker/nd/withdraw/detail,get,Get Withdraw Detail
+broker,ndbroker,/api/v1/broker/nd/rebase/download,get,Get Broker Rebate
+copytrading,futures,/api/v1/copy-trade/futures/orders,post,Add Order
+copytrading,futures,/api/v1/copy-trade/futures/orders/test,post,Add Order Test
+copytrading,futures,/api/v1/copy-trade/futures/st-orders,post,Add Take Profit And Stop Loss Order
+copytrading,futures,/api/v1/copy-trade/futures/orders,delete,Cancel Order By OrderId
+copytrading,futures,/api/v1/copy-trade/futures/orders/client-order,delete,Cancel Order By ClientOid
+copytrading,futures,/api/v1/copy-trade/futures/get-max-open-size,get,Get Max Open Size
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/max-withdraw-margin,get,Get Max Withdraw Margin
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/deposit-margin,post,Add Isolated Margin
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/withdraw-margin,post,Remove Isolated Margin
+copytrading,futures,/api/v1/copy-trade/futures/position/risk-limit-level/change,post,Modify Isolated Margin Risk Limit
+copytrading,futures,/api/v1/copy-trade/futures/position/margin/auto-deposit-status,post,Modify Isolated Margin Auto-Deposit Status

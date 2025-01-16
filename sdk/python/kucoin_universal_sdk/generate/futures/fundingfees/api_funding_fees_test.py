@@ -10,6 +10,25 @@ from kucoin_universal_sdk.model.common import RestResponse
 
 class FundingFeesAPITest(unittest.TestCase):
 
+    def test_get_current_funding_rate_req_model(self):
+        """
+       get_current_funding_rate
+       Get Current Funding Rate
+       /api/v1/funding-rate/{symbol}/current
+       """
+        data = "{\"symbol\": \"XBTUSDTM\"}"
+        req = GetCurrentFundingRateReq.from_json(data)
+
+    def test_get_current_funding_rate_resp_model(self):
+        """
+        get_current_funding_rate
+        Get Current Funding Rate
+        /api/v1/funding-rate/{symbol}/current
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1731441600000,\n        \"value\": 6.41E-4,\n        \"predictedValue\": 5.2E-5,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = GetCurrentFundingRateResp.from_dict(common_response.data)
+
     def test_get_public_funding_history_req_model(self):
         """
        get_public_funding_history
@@ -47,22 +66,3 @@ class FundingFeesAPITest(unittest.TestCase):
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"dataList\": [\n            {\n                \"id\": 1472387374042586,\n                \"symbol\": \"XBTUSDTM\",\n                \"timePoint\": 1731470400000,\n                \"fundingRate\": 6.41E-4,\n                \"markPrice\": 87139.92,\n                \"positionQty\": 1,\n                \"positionCost\": 87.13992,\n                \"funding\": -0.05585669,\n                \"settleCurrency\": \"USDT\",\n                \"context\": \"{\\\"marginMode\\\": \\\"ISOLATED\\\", \\\"positionSide\\\": \\\"BOTH\\\"}\",\n                \"marginMode\": \"ISOLATED\"\n            }\n        ],\n        \"hasMore\": true\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = GetPrivateFundingHistoryResp.from_dict(common_response.data)
-
-    def test_get_current_funding_rate_req_model(self):
-        """
-       get_current_funding_rate
-       Get Current Funding Rate
-       /api/v1/funding-rate/{symbol}/current
-       """
-        data = "{\"symbol\": \"XBTUSDTM\"}"
-        req = GetCurrentFundingRateReq.from_json(data)
-
-    def test_get_current_funding_rate_resp_model(self):
-        """
-        get_current_funding_rate
-        Get Current Funding Rate
-        /api/v1/funding-rate/{symbol}/current
-        """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \".XBTUSDTMFPI8H\",\n        \"granularity\": 28800000,\n        \"timePoint\": 1731441600000,\n        \"value\": 6.41E-4,\n        \"predictedValue\": 5.2E-5,\n        \"fundingRateCap\": 0.003,\n        \"fundingRateFloor\": -0.003\n    }\n}"
-        common_response = RestResponse.from_json(data)
-        resp = GetCurrentFundingRateResp.from_dict(common_response.data)

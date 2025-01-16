@@ -1,236 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-func TestOrderGetTradeHistoryReq(t *testing.T) {
-    // GetTradeHistory
-    // Get Trade History
-    // /api/v1/fills
-
-    builder := order.NewGetTradeHistoryReqBuilder()
-    builder.SetOrderId(?).SetSymbol(?).SetSide(?).SetType(?).SetTradeTypes(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetTradeHistory(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetOpenOrderValueReq(t *testing.T) {
-    // GetOpenOrderValue
-    // Get Open Order Value
-    // /api/v1/openOrderStatistics
-
-    builder := order.NewGetOpenOrderValueReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetOpenOrderValue(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetOrderByClientOidReq(t *testing.T) {
-    // GetOrderByClientOid
-    // Get Order By ClientOid
-    // /api/v1/orders/byClientOid
-
-    builder := order.NewGetOrderByClientOidReqBuilder()
-    builder.SetClientOid(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetOrderByClientOid(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderCancelOrderByClientOidReq(t *testing.T) {
-    // CancelOrderByClientOid
-    // Cancel Order By ClientOid
-    // /api/v1/orders/client-order/{clientOid}
-
-    builder := order.NewCancelOrderByClientOidReqBuilder()
-    builder.SetSymbol(?).SetClientOid(?)
-    req := builder.Build()
-
-    resp, err := orderApi.CancelOrderByClientOid(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderCancelAllOrdersV1Req(t *testing.T) {
-    // CancelAllOrdersV1
-    // Cancel All Orders - V1
-    // /api/v1/orders
-
-    builder := order.NewCancelAllOrdersV1ReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := orderApi.CancelAllOrdersV1(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetOrderListReq(t *testing.T) {
-    // GetOrderList
-    // Get Order List
-    // /api/v1/orders
-
-    builder := order.NewGetOrderListReqBuilder()
-    builder.SetStatus(?).SetSymbol(?).SetSide(?).SetType(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetOrderList(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderBatchCancelOrdersReq(t *testing.T) {
-    // BatchCancelOrders
-    // Batch Cancel Orders
-    // /api/v1/orders/multi-cancel
-
-    builder := order.NewBatchCancelOrdersReqBuilder()
-    builder.SetOrderIdsList(?).SetClientOidsList(?)
-    req := builder.Build()
-
-    resp, err := orderApi.BatchCancelOrders(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderBatchAddOrdersReq(t *testing.T) {
-    // BatchAddOrders
-    // Batch Add Orders
-    // /api/v1/orders/multi
-
-    builder := order.NewBatchAddOrdersReqBuilder()
-    builder.SetItems(?)
-    req := builder.Build()
-
-    resp, err := orderApi.BatchAddOrders(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderCancelOrderByIdReq(t *testing.T) {
-    // CancelOrderById
-    // Cancel Order By OrderId
-    // /api/v1/orders/{orderId}
-
-    builder := order.NewCancelOrderByIdReqBuilder()
-    builder.SetOrderId(?)
-    req := builder.Build()
-
-    resp, err := orderApi.CancelOrderById(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetOrderByOrderIdReq(t *testing.T) {
-    // GetOrderByOrderId
-    // Get Order By OrderId
-    // /api/v1/orders/{order-id}
-
-    builder := order.NewGetOrderByOrderIdReqBuilder()
-    builder.SetOrderId(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetOrderByOrderId(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestOrderAddOrderReq(t *testing.T) {
     // AddOrder
     // Add Order
@@ -277,39 +47,16 @@ func TestOrderAddOrderTestReq(t *testing.T) {
 }
 
 
-func TestOrderGetRecentClosedOrdersReq(t *testing.T) {
-    // GetRecentClosedOrders
-    // Get Recent Closed Orders
-    // /api/v1/recentDoneOrders
+func TestOrderBatchAddOrdersReq(t *testing.T) {
+    // BatchAddOrders
+    // Batch Add Orders
+    // /api/v1/orders/multi
 
-    builder := order.NewGetRecentClosedOrdersReqBuilder()
-    builder.SetSymbol(?)
+    builder := order.NewBatchAddOrdersReqBuilder()
+    builder.SetItems(?)
     req := builder.Build()
 
-    resp, err := orderApi.GetRecentClosedOrders(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetRecentTradeHistoryReq(t *testing.T) {
-    // GetRecentTradeHistory
-    // Get Recent Trade History
-    // /api/v1/recentFills
-
-    builder := order.NewGetRecentTradeHistoryReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetRecentTradeHistory(req, context.TODO())
+    resp, err := orderApi.BatchAddOrders(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -346,6 +93,98 @@ func TestOrderAddTPSLOrderReq(t *testing.T) {
 }
 
 
+func TestOrderCancelOrderByIdReq(t *testing.T) {
+    // CancelOrderById
+    // Cancel Order By OrderId
+    // /api/v1/orders/{orderId}
+
+    builder := order.NewCancelOrderByIdReqBuilder()
+    builder.SetOrderId(?)
+    req := builder.Build()
+
+    resp, err := orderApi.CancelOrderById(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderCancelOrderByClientOidReq(t *testing.T) {
+    // CancelOrderByClientOid
+    // Cancel Order By ClientOid
+    // /api/v1/orders/client-order/{clientOid}
+
+    builder := order.NewCancelOrderByClientOidReqBuilder()
+    builder.SetSymbol(?).SetClientOid(?)
+    req := builder.Build()
+
+    resp, err := orderApi.CancelOrderByClientOid(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderBatchCancelOrdersReq(t *testing.T) {
+    // BatchCancelOrders
+    // Batch Cancel Orders
+    // /api/v1/orders/multi-cancel
+
+    builder := order.NewBatchCancelOrdersReqBuilder()
+    builder.SetOrderIdsList(?).SetClientOidsList(?)
+    req := builder.Build()
+
+    resp, err := orderApi.BatchCancelOrders(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderCancelAllOrdersV3Req(t *testing.T) {
+    // CancelAllOrdersV3
+    // Cancel All Orders
+    // /api/v3/orders
+
+    builder := order.NewCancelAllOrdersV3ReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := orderApi.CancelAllOrdersV3(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestOrderCancelAllStopOrdersReq(t *testing.T) {
     // CancelAllStopOrders
     // Cancel All Stop orders
@@ -356,6 +195,98 @@ func TestOrderCancelAllStopOrdersReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := orderApi.CancelAllStopOrders(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetOrderByOrderIdReq(t *testing.T) {
+    // GetOrderByOrderId
+    // Get Order By OrderId
+    // /api/v1/orders/{order-id}
+
+    builder := order.NewGetOrderByOrderIdReqBuilder()
+    builder.SetOrderId(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetOrderByOrderId(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetOrderByClientOidReq(t *testing.T) {
+    // GetOrderByClientOid
+    // Get Order By ClientOid
+    // /api/v1/orders/byClientOid
+
+    builder := order.NewGetOrderByClientOidReqBuilder()
+    builder.SetClientOid(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetOrderByClientOid(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetOrderListReq(t *testing.T) {
+    // GetOrderList
+    // Get Order List
+    // /api/v1/orders
+
+    builder := order.NewGetOrderListReqBuilder()
+    builder.SetStatus(?).SetSymbol(?).SetSide(?).SetType(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetOrderList(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetRecentClosedOrdersReq(t *testing.T) {
+    // GetRecentClosedOrders
+    // Get Recent Closed Orders
+    // /api/v1/recentDoneOrders
+
+    builder := order.NewGetRecentClosedOrdersReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetRecentClosedOrders(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -392,16 +323,85 @@ func TestOrderGetStopOrderListReq(t *testing.T) {
 }
 
 
-func TestOrderCancelAllOrdersV3Req(t *testing.T) {
-    // CancelAllOrdersV3
-    // Cancel All Orders
-    // /api/v3/orders
+func TestOrderGetOpenOrderValueReq(t *testing.T) {
+    // GetOpenOrderValue
+    // Get Open Order Value
+    // /api/v1/openOrderStatistics
 
-    builder := order.NewCancelAllOrdersV3ReqBuilder()
+    builder := order.NewGetOpenOrderValueReqBuilder()
     builder.SetSymbol(?)
     req := builder.Build()
 
-    resp, err := orderApi.CancelAllOrdersV3(req, context.TODO())
+    resp, err := orderApi.GetOpenOrderValue(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetRecentTradeHistoryReq(t *testing.T) {
+    // GetRecentTradeHistory
+    // Get Recent Trade History
+    // /api/v1/recentFills
+
+    builder := order.NewGetRecentTradeHistoryReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetRecentTradeHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetTradeHistoryReq(t *testing.T) {
+    // GetTradeHistory
+    // Get Trade History
+    // /api/v1/fills
+
+    builder := order.NewGetTradeHistoryReqBuilder()
+    builder.SetOrderId(?).SetSymbol(?).SetSide(?).SetType(?).SetTradeTypes(?).SetStartAt(?).SetEndAt(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetTradeHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderCancelAllOrdersV1Req(t *testing.T) {
+    // CancelAllOrdersV1
+    // Cancel All Orders - V1
+    // /api/v1/orders
+
+    builder := order.NewCancelAllOrdersV1ReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := orderApi.CancelAllOrdersV1(req, context.TODO())
     if err != nil {
         panic(err)
     }

@@ -35,6 +35,34 @@
                 }
             }
         },
+        "/allOrder/contractMarket/tradeOrders": {
+            "trace": {
+                "summary": "All Order change pushes.",
+                "deprecated": "false",
+                "description": "Push order changes for all symbol",
+                "tags": [],
+                "parameters": [],
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "futures_private",
+                "x-sdk-private": true,
+                "x-sdk-method-name": "allOrder",
+                "x-topic": "/contractMarket/tradeOrders",
+                "x-push_frequency": "realtime",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tradeOrders:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"symbolOrderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"side\\\":\\\"buy\\\",\\\"canceledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"247899236673269761\\\",\\\"liquidity\\\":\\\"maker\\\",\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"type\\\":\\\"open\\\",\\\"orderTime\\\":1731916985768138917,\\\"size\\\":\\\"1\\\",\\\"filledSize\\\":\\\"0\\\",\\\"price\\\":\\\"91670\\\",\\\"remainSize\\\":\\\"1\\\",\\\"status\\\":\\\"open\\\",\\\"ts\\\":1731916985789000000}}",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Futures_futures_private_allOrders"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/balance/contractAccount/wallet": {
             "trace": {
                 "summary": "the balance change push",
@@ -91,27 +119,27 @@
                 }
             }
         },
-        "/stopOrders/contractMarket/advancedOrders": {
+        "/allPosition/contract/positionAll": {
             "trace": {
-                "summary": "stop order change pushes.",
+                "summary": "All symbol position change events push",
                 "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of stop order changes.",
+                "description": "Subscribe this topic to get the realtime push of position change event of all symbol",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "futures_private",
                 "x-sdk-private": true,
-                "x-sdk-method-name": "stopOrders",
-                "x-topic": "/contractMarket/advancedOrders",
+                "x-sdk-method-name": "allPosition",
+                "x-topic": "/contract/positionAll",
                 "x-push_frequency": "realtime",
-                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/advancedOrders\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"createdAt\\\":1730194206837,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"orderId\\\":\\\"240673378116083712\\\",\\\"orderPrice\\\":\\\"0.1\\\",\\\"orderType\\\":\\\"stop\\\",\\\"side\\\":\\\"buy\\\",\\\"size\\\":1,\\\"stop\\\":\\\"down\\\",\\\"stopPrice\\\":\\\"1000\\\",\\\"stopPriceType\\\":\\\"TP\\\",\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"ts\\\":1730194206843133000,\\\"type\\\":\\\"open\\\"},\\\"subject\\\":\\\"stopOrder\\\",\\\"id\\\":\\\"6720ab1ea52a9b0001734392\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
+                "x-response-example": "{\\\"topic\\\":\\\"/contract/position:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"maintMarginReq\\\":0.005,\\\"riskLimit\\\":500000,\\\"realLeverage\\\":4.9685590767,\\\"crossMode\\\":false,\\\"delevPercentage\\\":0.10,\\\"openingTimestamp\\\":1731916913097,\\\"autoDeposit\\\":true,\\\"currentTimestamp\\\":1731924561514,\\\"currentQty\\\":1,\\\"currentCost\\\":91.5306,\\\"currentComm\\\":0.09179284,\\\"unrealisedCost\\\":91.6945,\\\"realisedCost\\\":-0.07210716,\\\"isOpen\\\":true,\\\"markPrice\\\":91839.79,\\\"markValue\\\":91.83979,\\\"posCost\\\":91.6945,\\\"posCross\\\":0,\\\"posInit\\\":18.3389,\\\"posComm\\\":0.06602004,\\\"posLoss\\\":0,\\\"posMargin\\\":18.40492004,\\\"posFunding\\\":0,\\\"posMaint\\\":0.5634627025,\\\"maintMargin\\\":18.55021004,\\\"avgEntryPrice\\\":91694.5,\\\"liquidationPrice\\\":73853.0426625,\\\"bankruptPrice\\\":73355.6,\\\"settleCurrency\\\":\\\"USDT\\\",\\\"changeReason\\\":\\\"positionChange\\\",\\\"riskLimitLevel\\\":2,\\\"realisedGrossCost\\\":-0.1639,\\\"realisedGrossPnl\\\":0.1639,\\\"realisedPnl\\\":0.07210716,\\\"unrealisedPnl\\\":0.14529,\\\"unrealisedPnlPcnt\\\":0.0016,\\\"unrealisedRoePcnt\\\":0.0079,\\\"leverage\\\":4.9685590767,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"positionSide\\\":\\\"BOTH\\\"},\\\"subject\\\":\\\"position.change\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
                         "description": "",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Futures_futures_private_stopOrders"
+                                    "$ref": "#/components/schemas/Futures_futures_private_allPosition"
                                 }
                             }
                         }
@@ -175,55 +203,27 @@
                 }
             }
         },
-        "/allOrder/contractMarket/tradeOrders": {
+        "/stopOrders/contractMarket/advancedOrders": {
             "trace": {
-                "summary": "All Order change pushes.",
+                "summary": "stop order change pushes.",
                 "deprecated": "false",
-                "description": "Push order changes for all symbol",
+                "description": "Subscribe this topic to get the realtime push of stop order changes.",
                 "tags": [],
                 "parameters": [],
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "futures_private",
                 "x-sdk-private": true,
-                "x-sdk-method-name": "allOrder",
-                "x-topic": "/contractMarket/tradeOrders",
+                "x-sdk-method-name": "stopOrders",
+                "x-topic": "/contractMarket/advancedOrders",
                 "x-push_frequency": "realtime",
-                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/tradeOrders:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"subject\\\":\\\"symbolOrderChange\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"side\\\":\\\"buy\\\",\\\"canceledSize\\\":\\\"0\\\",\\\"orderId\\\":\\\"247899236673269761\\\",\\\"liquidity\\\":\\\"maker\\\",\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"type\\\":\\\"open\\\",\\\"orderTime\\\":1731916985768138917,\\\"size\\\":\\\"1\\\",\\\"filledSize\\\":\\\"0\\\",\\\"price\\\":\\\"91670\\\",\\\"remainSize\\\":\\\"1\\\",\\\"status\\\":\\\"open\\\",\\\"ts\\\":1731916985789000000}}",
+                "x-response-example": "{\\\"topic\\\":\\\"/contractMarket/advancedOrders\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"createdAt\\\":1730194206837,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"orderId\\\":\\\"240673378116083712\\\",\\\"orderPrice\\\":\\\"0.1\\\",\\\"orderType\\\":\\\"stop\\\",\\\"side\\\":\\\"buy\\\",\\\"size\\\":1,\\\"stop\\\":\\\"down\\\",\\\"stopPrice\\\":\\\"1000\\\",\\\"stopPriceType\\\":\\\"TP\\\",\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"ts\\\":1730194206843133000,\\\"type\\\":\\\"open\\\"},\\\"subject\\\":\\\"stopOrder\\\",\\\"id\\\":\\\"6720ab1ea52a9b0001734392\\\",\\\"userId\\\":\\\"66f12e8befb04d0001882b49\\\",\\\"channelType\\\":\\\"private\\\"}",
                 "responses": {
                     "200": {
                         "description": "",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Futures_futures_private_allOrders"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/allPosition/contract/positionAll": {
-            "trace": {
-                "summary": "All symbol position change events push",
-                "deprecated": "false",
-                "description": "Subscribe this topic to get the realtime push of position change event of all symbol",
-                "tags": [],
-                "parameters": [],
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "futures_private",
-                "x-sdk-private": true,
-                "x-sdk-method-name": "allPosition",
-                "x-topic": "/contract/positionAll",
-                "x-push_frequency": "realtime",
-                "x-response-example": "{\\\"topic\\\":\\\"/contract/position:XBTUSDTM\\\",\\\"type\\\":\\\"message\\\",\\\"data\\\":{\\\"symbol\\\":\\\"XBTUSDTM\\\",\\\"maintMarginReq\\\":0.005,\\\"riskLimit\\\":500000,\\\"realLeverage\\\":4.9685590767,\\\"crossMode\\\":false,\\\"delevPercentage\\\":0.10,\\\"openingTimestamp\\\":1731916913097,\\\"autoDeposit\\\":true,\\\"currentTimestamp\\\":1731924561514,\\\"currentQty\\\":1,\\\"currentCost\\\":91.5306,\\\"currentComm\\\":0.09179284,\\\"unrealisedCost\\\":91.6945,\\\"realisedCost\\\":-0.07210716,\\\"isOpen\\\":true,\\\"markPrice\\\":91839.79,\\\"markValue\\\":91.83979,\\\"posCost\\\":91.6945,\\\"posCross\\\":0,\\\"posInit\\\":18.3389,\\\"posComm\\\":0.06602004,\\\"posLoss\\\":0,\\\"posMargin\\\":18.40492004,\\\"posFunding\\\":0,\\\"posMaint\\\":0.5634627025,\\\"maintMargin\\\":18.55021004,\\\"avgEntryPrice\\\":91694.5,\\\"liquidationPrice\\\":73853.0426625,\\\"bankruptPrice\\\":73355.6,\\\"settleCurrency\\\":\\\"USDT\\\",\\\"changeReason\\\":\\\"positionChange\\\",\\\"riskLimitLevel\\\":2,\\\"realisedGrossCost\\\":-0.1639,\\\"realisedGrossPnl\\\":0.1639,\\\"realisedPnl\\\":0.07210716,\\\"unrealisedPnl\\\":0.14529,\\\"unrealisedPnlPcnt\\\":0.0016,\\\"unrealisedRoePcnt\\\":0.0079,\\\"leverage\\\":4.9685590767,\\\"marginMode\\\":\\\"ISOLATED\\\",\\\"positionSide\\\":\\\"BOTH\\\"},\\\"subject\\\":\\\"position.change\\\",\\\"userId\\\":\\\"633559791e1cbc0001f319bc\\\",\\\"channelType\\\":\\\"private\\\"}",
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Futures_futures_private_allPosition"
+                                    "$ref": "#/components/schemas/Futures_futures_private_stopOrders"
                                 }
                             }
                         }
@@ -235,6 +235,313 @@
     "components": {
         "schemas": {
             "Futures_futures_private_orders": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "enum": [
+                            "orderChange",
+                            "symbolOrderChange"
+                        ],
+                        "x-api-enum": [
+                            {
+                                "value": "orderChange",
+                                "name": "orderChange",
+                                "description": "orderChange"
+                            },
+                            {
+                                "value": "symbolOrderChange",
+                                "name": "symbolOrderChange",
+                                "description": "symbolOrderChange"
+                            }
+                        ]
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "enum": [
+                                    "limit",
+                                    "market"
+                                ],
+                                "description": "User-specified order type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "limit",
+                                        "name": "limit",
+                                        "description": "limit"
+                                    },
+                                    {
+                                        "value": "market",
+                                        "name": "market",
+                                        "description": "market"
+                                    }
+                                ]
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "canceledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of cancellations"
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "enum": [
+                                    "ISOLATED",
+                                    "CROSS"
+                                ],
+                                "description": "Margin Mode",
+                                "x-api-enum": [
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "Isolated Margin"
+                                    },
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "Cross Margin"
+                                    }
+                                ]
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "Order Type",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "update",
+                                    "filled",
+                                    "canceled"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
+                                    },
+                                    {
+                                        "value": "update",
+                                        "name": "update",
+                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
+                                    },
+                                    {
+                                        "value": "filled",
+                                        "name": "filled",
+                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
+                                    },
+                                    {
+                                        "value": "canceled",
+                                        "name": "canceled",
+                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
+                                    }
+                                ]
+                            },
+                            "orderTime": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Order time(Nanosecond)"
+                            },
+                            "size": {
+                                "type": "string",
+                                "description": "User-specified order size"
+                            },
+                            "filledSize": {
+                                "type": "string",
+                                "description": "Cumulative number of filled"
+                            },
+                            "price": {
+                                "type": "string",
+                                "description": "Price"
+                            },
+                            "remainSize": {
+                                "type": "string",
+                                "description": "Remain size"
+                            },
+                            "status": {
+                                "type": "string",
+                                "description": "Order Status",
+                                "enum": [
+                                    "open",
+                                    "match",
+                                    "done"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "match",
+                                        "name": "match",
+                                        "description": "when taker order executes with orders in the order book, the taker order status is “match”"
+                                    },
+                                    {
+                                        "value": "done",
+                                        "name": "done",
+                                        "description": "the order is fully executed successfully"
+                                    }
+                                ]
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Push time(Nanosecond)"
+                            },
+                            "liquidity": {
+                                "type": "string",
+                                "enum": [
+                                    "taker",
+                                    "maker"
+                                ],
+                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
+                                "x-api-enum": [
+                                    {
+                                        "value": "taker",
+                                        "name": "taker",
+                                        "description": "taker"
+                                    },
+                                    {
+                                        "value": "maker",
+                                        "name": "maker",
+                                        "description": "maker"
+                                    }
+                                ]
+                            },
+                            "feeType": {
+                                "type": "string",
+                                "enum": [
+                                    "takerFee",
+                                    "makerFee"
+                                ],
+                                "description": "Actual Fee Type",
+                                "x-api-enum": [
+                                    {
+                                        "value": "takerFee",
+                                        "name": "takerFee",
+                                        "description": "takerFee"
+                                    },
+                                    {
+                                        "value": "makerFee",
+                                        "name": "makerFee",
+                                        "description": "makerFee"
+                                    }
+                                ]
+                            },
+                            "matchPrice": {
+                                "type": "string",
+                                "description": "Match Price(when the type is \"match\")"
+                            },
+                            "matchSize": {
+                                "type": "string",
+                                "description": "Match Size (when the type is \"match\")"
+                            },
+                            "tradeId": {
+                                "type": "string",
+                                "description": "Trade id, it is generated by Matching engine."
+                            },
+                            "oldSize": {
+                                "type": "string",
+                                "description": "The size before order update"
+                            },
+                            "clientOid": {
+                                "type": "string",
+                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
+                            },
+                            "tradeType": {
+                                "type": "string",
+                                "description": "normal order or liquid order",
+                                "enum": [
+                                    "trade",
+                                    "liquid"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "trade",
+                                        "name": "trade",
+                                        "description": "Normal trade order"
+                                    },
+                                    {
+                                        "value": "liquid",
+                                        "name": "liquid",
+                                        "description": "Liquid order, except type=update, all other types will be pushed"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "symbol",
+                            "side",
+                            "canceledSize",
+                            "orderId",
+                            "marginMode",
+                            "type",
+                            "orderTime",
+                            "size",
+                            "filledSize",
+                            "price",
+                            "remainSize",
+                            "status",
+                            "ts",
+                            "tradeType"
+                        ]
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Futures_futures_private_allOrders": {
                 "type": "object",
                 "properties": {
                     "topic": {
@@ -939,579 +1246,6 @@
                     "channelType"
                 ]
             },
-            "Futures_futures_private_stopOrders": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "createdAt": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "marginMode": {
-                                "type": "string",
-                                "enum": [
-                                    "ISOLATED",
-                                    "CROSS"
-                                ],
-                                "description": "Margin Mode",
-                                "x-api-enum": [
-                                    {
-                                        "value": "ISOLATED",
-                                        "name": "ISOLATED",
-                                        "description": "Isolated Margin"
-                                    },
-                                    {
-                                        "value": "CROSS",
-                                        "name": "CROSS",
-                                        "description": "Cross Margin"
-                                    }
-                                ]
-                            },
-                            "orderId": {
-                                "type": "string",
-                                "description": "The unique order id generated by the trading system"
-                            },
-                            "orderPrice": {
-                                "type": "string",
-                                "description": "Order price"
-                            },
-                            "orderType": {
-                                "type": "string",
-                                "description": "User-specified order type",
-                                "enum": [
-                                    "stop"
-                                ],
-                                "x-api-enum": [
-                                    {
-                                        "value": "stop",
-                                        "name": "stop",
-                                        "description": "Stop order"
-                                    }
-                                ]
-                            },
-                            "side": {
-                                "type": "string",
-                                "enum": [
-                                    "buy",
-                                    "sell"
-                                ],
-                                "description": "buy or sell",
-                                "x-api-enum": [
-                                    {
-                                        "value": "buy",
-                                        "name": "buy",
-                                        "description": "buy"
-                                    },
-                                    {
-                                        "value": "sell",
-                                        "name": "sell",
-                                        "description": "sell"
-                                    }
-                                ]
-                            },
-                            "size": {
-                                "type": "integer",
-                                "description": "User-specified order size"
-                            },
-                            "stop": {
-                                "type": "string",
-                                "description": "Either 'down' or 'up'",
-                                "enum": [
-                                    "down",
-                                    "up"
-                                ],
-                                "x-api-enum": [
-                                    {
-                                        "value": "down",
-                                        "name": "down",
-                                        "description": "Triggers when the price reaches or goes below the stopPrice"
-                                    },
-                                    {
-                                        "value": "up",
-                                        "name": "up",
-                                        "description": "Triggers when the price reaches or goes above the stopPrice"
-                                    }
-                                ]
-                            },
-                            "stopPrice": {
-                                "type": "string",
-                                "description": "Stop Price"
-                            },
-                            "stopPriceType": {
-                                "type": "string"
-                            },
-                            "symbol": {
-                                "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
-                            },
-                            "ts": {
-                                "type": "integer",
-                                "format": "int64"
-                            },
-                            "type": {
-                                "type": "string",
-                                "description": "Order Type",
-                                "enum": [
-                                    "open",
-                                    "triggered",
-                                    "cancel"
-                                ],
-                                "x-api-enum": [
-                                    {
-                                        "value": "open",
-                                        "name": "open",
-                                        "description": "the order is in the order book（maker order）"
-                                    },
-                                    {
-                                        "value": "triggered",
-                                        "name": "triggered",
-                                        "description": "when the stop order has been triggered"
-                                    },
-                                    {
-                                        "value": "cancel",
-                                        "name": "cancel",
-                                        "description": "when the order has been canceled"
-                                    }
-                                ]
-                            }
-                        },
-                        "required": [
-                            "createdAt",
-                            "marginMode",
-                            "orderId",
-                            "orderPrice",
-                            "orderType",
-                            "side",
-                            "size",
-                            "stop",
-                            "stopPrice",
-                            "stopPriceType",
-                            "symbol",
-                            "ts",
-                            "type"
-                        ]
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "type": "string"
-                    },
-                    "userId": {
-                        "type": "string"
-                    },
-                    "channelType": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "data",
-                    "subject",
-                    "id",
-                    "userId",
-                    "channelType"
-                ]
-            },
-            "Futures_futures_private_marginMode": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "SYMBOL": {
-                                "type": "string",
-                                "description": "The SYMBOL is the key with value \n\"CROSS\" or \"ISOLATED\""
-                            }
-                        },
-                        "required": [
-                            "SYMBOL"
-                        ]
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "userId": {
-                        "type": "string"
-                    },
-                    "channelType": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "data",
-                    "subject",
-                    "userId",
-                    "channelType"
-                ]
-            },
-            "Futures_futures_private_crossLeverage": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "userId": {
-                        "type": "string"
-                    },
-                    "channelType": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {},
-                        "additionalProperties": {
-                            "type": "object",
-                            "properties": {
-                                "leverage": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "leverage"
-                            ]
-                        }
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "userId",
-                    "channelType",
-                    "data"
-                ]
-            },
-            "Futures_futures_private_allOrders": {
-                "type": "object",
-                "properties": {
-                    "topic": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string",
-                        "enum": [
-                            "orderChange",
-                            "symbolOrderChange"
-                        ],
-                        "x-api-enum": [
-                            {
-                                "value": "orderChange",
-                                "name": "orderChange",
-                                "description": "orderChange"
-                            },
-                            {
-                                "value": "symbolOrderChange",
-                                "name": "symbolOrderChange",
-                                "description": "symbolOrderChange"
-                            }
-                        ]
-                    },
-                    "userId": {
-                        "type": "string"
-                    },
-                    "channelType": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "symbol": {
-                                "type": "string",
-                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
-                            },
-                            "orderType": {
-                                "type": "string",
-                                "enum": [
-                                    "limit",
-                                    "market"
-                                ],
-                                "description": "User-specified order type",
-                                "x-api-enum": [
-                                    {
-                                        "value": "limit",
-                                        "name": "limit",
-                                        "description": "limit"
-                                    },
-                                    {
-                                        "value": "market",
-                                        "name": "market",
-                                        "description": "market"
-                                    }
-                                ]
-                            },
-                            "side": {
-                                "type": "string",
-                                "enum": [
-                                    "buy",
-                                    "sell"
-                                ],
-                                "description": "buy or sell",
-                                "x-api-enum": [
-                                    {
-                                        "value": "buy",
-                                        "name": "buy",
-                                        "description": "buy"
-                                    },
-                                    {
-                                        "value": "sell",
-                                        "name": "sell",
-                                        "description": "sell"
-                                    }
-                                ]
-                            },
-                            "canceledSize": {
-                                "type": "string",
-                                "description": "Cumulative number of cancellations"
-                            },
-                            "orderId": {
-                                "type": "string",
-                                "description": "The unique order id generated by the trading system"
-                            },
-                            "marginMode": {
-                                "type": "string",
-                                "enum": [
-                                    "ISOLATED",
-                                    "CROSS"
-                                ],
-                                "description": "Margin Mode",
-                                "x-api-enum": [
-                                    {
-                                        "value": "ISOLATED",
-                                        "name": "ISOLATED",
-                                        "description": "Isolated Margin"
-                                    },
-                                    {
-                                        "value": "CROSS",
-                                        "name": "CROSS",
-                                        "description": "Cross Margin"
-                                    }
-                                ]
-                            },
-                            "type": {
-                                "type": "string",
-                                "description": "Order Type",
-                                "enum": [
-                                    "open",
-                                    "match",
-                                    "update",
-                                    "filled",
-                                    "canceled"
-                                ],
-                                "x-api-enum": [
-                                    {
-                                        "value": "open",
-                                        "name": "open",
-                                        "description": "the order is in the order book（maker order）"
-                                    },
-                                    {
-                                        "value": "match",
-                                        "name": "match",
-                                        "description": "the message sent when the order is match,  1. When the status is open and the type is match, it is a maker match.  2. When the status is match and the type is match, it is a taker match."
-                                    },
-                                    {
-                                        "value": "update",
-                                        "name": "update",
-                                        "description": "The message sent due to the order being modified: STP triggering, partial cancellation of the order. Includes these three situations:  1. When the status is open and the type is update: partial amounts of the order have been canceled, or STP triggers  2. When the status is match and the type is update: STP triggers  3. When the status is done and the type is update: partial amounts of the order have been filled and the unfilled part got canceled, or STP is triggered."
-                                    },
-                                    {
-                                        "value": "filled",
-                                        "name": "filled",
-                                        "description": "The message sent when the status of the order changes to DONE after the transaction"
-                                    },
-                                    {
-                                        "value": "canceled",
-                                        "name": "canceled",
-                                        "description": "The message sent when the status of the order changes to DONE due to being canceled"
-                                    }
-                                ]
-                            },
-                            "orderTime": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "Order time(Nanosecond)"
-                            },
-                            "size": {
-                                "type": "string",
-                                "description": "User-specified order size"
-                            },
-                            "filledSize": {
-                                "type": "string",
-                                "description": "Cumulative number of filled"
-                            },
-                            "price": {
-                                "type": "string",
-                                "description": "Price"
-                            },
-                            "remainSize": {
-                                "type": "string",
-                                "description": "Remain size"
-                            },
-                            "status": {
-                                "type": "string",
-                                "description": "Order Status",
-                                "enum": [
-                                    "open",
-                                    "match",
-                                    "done"
-                                ],
-                                "x-api-enum": [
-                                    {
-                                        "value": "open",
-                                        "name": "open",
-                                        "description": "the order is in the order book（maker order）"
-                                    },
-                                    {
-                                        "value": "match",
-                                        "name": "match",
-                                        "description": "when taker order executes with orders in the order book, the taker order status is “match”"
-                                    },
-                                    {
-                                        "value": "done",
-                                        "name": "done",
-                                        "description": "the order is fully executed successfully"
-                                    }
-                                ]
-                            },
-                            "ts": {
-                                "type": "integer",
-                                "format": "int64",
-                                "description": "Push time(Nanosecond)"
-                            },
-                            "liquidity": {
-                                "type": "string",
-                                "enum": [
-                                    "taker",
-                                    "maker"
-                                ],
-                                "description": "Actual transaction order type, If the counterparty order is an [Hidden/Iceberg Order](https://www.kucoin.com/docs-new/doc-338146), even if it is a maker order, this param will be displayed as taker. For actual trading fee, please refer to the **feeType** ",
-                                "x-api-enum": [
-                                    {
-                                        "value": "taker",
-                                        "name": "taker",
-                                        "description": "taker"
-                                    },
-                                    {
-                                        "value": "maker",
-                                        "name": "maker",
-                                        "description": "maker"
-                                    }
-                                ]
-                            },
-                            "feeType": {
-                                "type": "string",
-                                "enum": [
-                                    "takerFee",
-                                    "makerFee"
-                                ],
-                                "description": "Actual Fee Type",
-                                "x-api-enum": [
-                                    {
-                                        "value": "takerFee",
-                                        "name": "takerFee",
-                                        "description": "takerFee"
-                                    },
-                                    {
-                                        "value": "makerFee",
-                                        "name": "makerFee",
-                                        "description": "makerFee"
-                                    }
-                                ]
-                            },
-                            "matchPrice": {
-                                "type": "string",
-                                "description": "Match Price(when the type is \"match\")"
-                            },
-                            "matchSize": {
-                                "type": "string",
-                                "description": "Match Size (when the type is \"match\")"
-                            },
-                            "tradeId": {
-                                "type": "string",
-                                "description": "Trade id, it is generated by Matching engine."
-                            },
-                            "oldSize": {
-                                "type": "string",
-                                "description": "The size before order update"
-                            },
-                            "clientOid": {
-                                "type": "string",
-                                "description": "Client Order Id，The ClientOid field is a unique ID created by the user"
-                            },
-                            "tradeType": {
-                                "type": "string",
-                                "description": "normal order or liquid order",
-                                "enum": [
-                                    "trade",
-                                    "liquid"
-                                ],
-                                "x-api-enum": [
-                                    {
-                                        "value": "trade",
-                                        "name": "trade",
-                                        "description": "Normal trade order"
-                                    },
-                                    {
-                                        "value": "liquid",
-                                        "name": "liquid",
-                                        "description": "Liquid order, except type=update, all other types will be pushed"
-                                    }
-                                ]
-                            }
-                        },
-                        "required": [
-                            "symbol",
-                            "side",
-                            "canceledSize",
-                            "orderId",
-                            "marginMode",
-                            "type",
-                            "orderTime",
-                            "size",
-                            "filledSize",
-                            "price",
-                            "remainSize",
-                            "status",
-                            "ts",
-                            "tradeType"
-                        ]
-                    }
-                },
-                "required": [
-                    "topic",
-                    "type",
-                    "subject",
-                    "userId",
-                    "channelType",
-                    "data"
-                ]
-            },
             "Futures_futures_private_allPosition": {
                 "type": "object",
                 "properties": {
@@ -1793,6 +1527,272 @@
                     "subject",
                     "data",
                     "type",
+                    "channelType"
+                ]
+            },
+            "Futures_futures_private_marginMode": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "SYMBOL": {
+                                "type": "string",
+                                "description": "The SYMBOL is the key with value \n\"CROSS\" or \"ISOLATED\""
+                            }
+                        },
+                        "required": [
+                            "SYMBOL"
+                        ]
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "data",
+                    "subject",
+                    "userId",
+                    "channelType"
+                ]
+            },
+            "Futures_futures_private_crossLeverage": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {},
+                        "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                                "leverage": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "leverage"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "subject",
+                    "userId",
+                    "channelType",
+                    "data"
+                ]
+            },
+            "Futures_futures_private_stopOrders": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "enum": [
+                                    "ISOLATED",
+                                    "CROSS"
+                                ],
+                                "description": "Margin Mode",
+                                "x-api-enum": [
+                                    {
+                                        "value": "ISOLATED",
+                                        "name": "ISOLATED",
+                                        "description": "Isolated Margin"
+                                    },
+                                    {
+                                        "value": "CROSS",
+                                        "name": "CROSS",
+                                        "description": "Cross Margin"
+                                    }
+                                ]
+                            },
+                            "orderId": {
+                                "type": "string",
+                                "description": "The unique order id generated by the trading system"
+                            },
+                            "orderPrice": {
+                                "type": "string",
+                                "description": "Order price"
+                            },
+                            "orderType": {
+                                "type": "string",
+                                "description": "User-specified order type",
+                                "enum": [
+                                    "stop"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "stop",
+                                        "name": "stop",
+                                        "description": "Stop order"
+                                    }
+                                ]
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": [
+                                    "buy",
+                                    "sell"
+                                ],
+                                "description": "buy or sell",
+                                "x-api-enum": [
+                                    {
+                                        "value": "buy",
+                                        "name": "buy",
+                                        "description": "buy"
+                                    },
+                                    {
+                                        "value": "sell",
+                                        "name": "sell",
+                                        "description": "sell"
+                                    }
+                                ]
+                            },
+                            "size": {
+                                "type": "integer",
+                                "description": "User-specified order size"
+                            },
+                            "stop": {
+                                "type": "string",
+                                "description": "Either 'down' or 'up'",
+                                "enum": [
+                                    "down",
+                                    "up"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "down",
+                                        "name": "down",
+                                        "description": "Triggers when the price reaches or goes below the stopPrice"
+                                    },
+                                    {
+                                        "value": "up",
+                                        "name": "up",
+                                        "description": "Triggers when the price reaches or goes above the stopPrice"
+                                    }
+                                ]
+                            },
+                            "stopPrice": {
+                                "type": "string",
+                                "description": "Stop Price"
+                            },
+                            "stopPriceType": {
+                                "type": "string"
+                            },
+                            "symbol": {
+                                "type": "string",
+                                "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-221752070) "
+                            },
+                            "ts": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "type": {
+                                "type": "string",
+                                "description": "Order Type",
+                                "enum": [
+                                    "open",
+                                    "triggered",
+                                    "cancel"
+                                ],
+                                "x-api-enum": [
+                                    {
+                                        "value": "open",
+                                        "name": "open",
+                                        "description": "the order is in the order book（maker order）"
+                                    },
+                                    {
+                                        "value": "triggered",
+                                        "name": "triggered",
+                                        "description": "when the stop order has been triggered"
+                                    },
+                                    {
+                                        "value": "cancel",
+                                        "name": "cancel",
+                                        "description": "when the order has been canceled"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "marginMode",
+                            "orderId",
+                            "orderPrice",
+                            "orderType",
+                            "side",
+                            "size",
+                            "stop",
+                            "stopPrice",
+                            "stopPriceType",
+                            "symbol",
+                            "ts",
+                            "type"
+                        ]
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "channelType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "topic",
+                    "type",
+                    "data",
+                    "subject",
+                    "id",
+                    "userId",
                     "channelType"
                 ]
             }

@@ -35,11 +35,11 @@ from .model_get_trade_history_resp import GetTradeHistoryResp
 class MarketAPI(ABC):
 
     @abstractmethod
-    def get_all_tickers(self, **kwargs: Any) -> GetAllTickersResp:
+    def get_symbol(self, req: GetSymbolReq, **kwargs: Any) -> GetSymbolResp:
         """
-        summary: Get All Tickers
-        description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470223
+        summary: Get Symbol
+        description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
+        documentation: https://www.kucoin.com/docs-new/api-3470221
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -47,43 +47,7 @@ class MarketAPI(ABC):
         | API-CHANNEL         | PUBLIC  |
         | API-PERMISSION      | NULL    |
         | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_private_token(self, **kwargs: Any) -> GetPrivateTokenResp:
-        """
-        summary: Get Private Token - Futures
-        description: This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token
-        documentation: https://www.kucoin.com/docs-new/api-3470296
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_public_token(self, **kwargs: Any) -> GetPublicTokenResp:
-        """
-        summary: Get Public Token - Futures
-        description: This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
-        documentation: https://www.kucoin.com/docs-new/api-3470297
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PUBLIC  |
-        | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 10      |
+        | API-RATE-LIMIT      | 3       |
         +---------------------+---------+
         """
         pass
@@ -107,11 +71,123 @@ class MarketAPI(ABC):
         pass
 
     @abstractmethod
-    def get_symbol(self, req: GetSymbolReq, **kwargs: Any) -> GetSymbolResp:
+    def get_ticker(self, req: GetTickerReq, **kwargs: Any) -> GetTickerResp:
         """
-        summary: Get Symbol
-        description: Get information of specified contracts that can be traded. This API will return a list of tradable contracts, including some key parameters of the contract such as the symbol name, tick size, mark price,etc.
-        documentation: https://www.kucoin.com/docs-new/api-3470221
+        summary: Get Ticker
+        description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470222
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PUBLIC  |
+        | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_all_tickers(self, **kwargs: Any) -> GetAllTickersResp:
+        """
+        summary: Get All Tickers
+        description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470223
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PUBLIC  |
+        | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_full_order_book(self, req: GetFullOrderBookReq,
+                            **kwargs: Any) -> GetFullOrderBookResp:
+        """
+        summary: Get Full OrderBook
+        description: Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
+        documentation: https://www.kucoin.com/docs-new/api-3470224
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PUBLIC  |
+        | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_part_order_book(self, req: GetPartOrderBookReq,
+                            **kwargs: Any) -> GetPartOrderBookResp:
+        """
+        summary: Get Part OrderBook
+        description: Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.
+        documentation: https://www.kucoin.com/docs-new/api-3470225
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PUBLIC  |
+        | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_trade_history(self, req: GetTradeHistoryReq,
+                          **kwargs: Any) -> GetTradeHistoryResp:
+        """
+        summary: Get Trade History
+        description: Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.
+        documentation: https://www.kucoin.com/docs-new/api-3470232
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PUBLIC  |
+        | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_klines(self, req: GetKlinesReq, **kwargs: Any) -> GetKlinesResp:
+        """
+        summary: Get Klines
+        description: Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.
+        documentation: https://www.kucoin.com/docs-new/api-3470234
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PUBLIC  |
+        | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_mark_price(self, req: GetMarkPriceReq,
+                       **kwargs: Any) -> GetMarkPriceResp:
+        """
+        summary: Get Mark Price
+        description: Get current mark price
+        documentation: https://www.kucoin.com/docs-new/api-3470233
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -163,81 +239,6 @@ class MarketAPI(ABC):
         pass
 
     @abstractmethod
-    def get_klines(self, req: GetKlinesReq, **kwargs: Any) -> GetKlinesResp:
-        """
-        summary: Get Klines
-        description: Get the Kline of the symbol. Data are returned in grouped buckets based on requested type. For each query, the system would return at most 500 pieces of data. To obtain more data, please page the data by time.
-        documentation: https://www.kucoin.com/docs-new/api-3470234
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PUBLIC  |
-        | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_part_order_book(self, req: GetPartOrderBookReq,
-                            **kwargs: Any) -> GetPartOrderBookResp:
-        """
-        summary: Get Part OrderBook
-        description: Query for part orderbook depth data. (aggregated by price)  You are recommended to request via this endpoint as the system reponse would be faster and cosume less traffic.
-        documentation: https://www.kucoin.com/docs-new/api-3470225
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PUBLIC  |
-        | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_full_order_book(self, req: GetFullOrderBookReq,
-                            **kwargs: Any) -> GetFullOrderBookResp:
-        """
-        summary: Get Full OrderBook
-        description: Query for Full orderbook depth data. (aggregated by price)  It is generally used by professional traders because it uses more server resources and traffic, and we have strict access rate limit control.  To maintain up-to-date Order Book, please use Websocket incremental feed after retrieving the OrderBook.
-        documentation: https://www.kucoin.com/docs-new/api-3470224
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PUBLIC  |
-        | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_mark_price(self, req: GetMarkPriceReq,
-                       **kwargs: Any) -> GetMarkPriceResp:
-        """
-        summary: Get Mark Price
-        description: Get current mark price
-        documentation: https://www.kucoin.com/docs-new/api-3470233
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PUBLIC  |
-        | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
     def get_premium_index(self, req: GetPremiumIndexReq,
                           **kwargs: Any) -> GetPremiumIndexResp:
         """
@@ -257,37 +258,19 @@ class MarketAPI(ABC):
         pass
 
     @abstractmethod
-    def get_service_status(self, **kwargs: Any) -> GetServiceStatusResp:
+    def get24hr_stats(self, **kwargs: Any) -> Get24hrStatsResp:
         """
-        summary: Get Service Status
-        description: Get the service status.
-        documentation: https://www.kucoin.com/docs-new/api-3470230
+        summary: Get 24hr Stats
+        description: Get the statistics of the platform futures trading volume in the last 24 hours.
+        documentation: https://www.kucoin.com/docs-new/api-3470228
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | FUTURES |
         | API-CHANNEL         | PUBLIC  |
         | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 4       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_ticker(self, req: GetTickerReq, **kwargs: Any) -> GetTickerResp:
-        """
-        summary: Get Ticker
-        description: This endpoint returns \&quot;last traded price/size\&quot;、\&quot;best bid/ask price/size\&quot; etc. of a single symbol. These messages can also be obtained through Websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470222
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PUBLIC  |
-        | API-PERMISSION      | NULL    |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 3       |
         +---------------------+---------+
         """
         pass
@@ -311,12 +294,11 @@ class MarketAPI(ABC):
         pass
 
     @abstractmethod
-    def get_trade_history(self, req: GetTradeHistoryReq,
-                          **kwargs: Any) -> GetTradeHistoryResp:
+    def get_service_status(self, **kwargs: Any) -> GetServiceStatusResp:
         """
-        summary: Get Trade History
-        description: Request via this endpoint to get the trade history of the specified symbol, the returned quantity is the last 100 transaction records.
-        documentation: https://www.kucoin.com/docs-new/api-3470232
+        summary: Get Service Status
+        description: Get the service status.
+        documentation: https://www.kucoin.com/docs-new/api-3470230
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -324,25 +306,43 @@ class MarketAPI(ABC):
         | API-CHANNEL         | PUBLIC  |
         | API-PERMISSION      | NULL    |
         | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 5       |
+        | API-RATE-LIMIT      | 4       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def get24hr_stats(self, **kwargs: Any) -> Get24hrStatsResp:
+    def get_public_token(self, **kwargs: Any) -> GetPublicTokenResp:
         """
-        summary: Get 24hr Stats
-        description: Get the statistics of the platform futures trading volume in the last 24 hours.
-        documentation: https://www.kucoin.com/docs-new/api-3470228
+        summary: Get Public Token - Futures
+        description: This interface can obtain the token required for websocket to establish a Futures connection. If you need use public channels (e.g. all public market data), please make request as follows to obtain the server list and public token
+        documentation: https://www.kucoin.com/docs-new/api-3470297
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | FUTURES |
         | API-CHANNEL         | PUBLIC  |
         | API-PERMISSION      | NULL    |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_private_token(self, **kwargs: Any) -> GetPrivateTokenResp:
+        """
+        summary: Get Private Token - Futures
+        description: This interface can obtain the token required for websocket to establish a Futures private connection. If you need use private channels(e.g. account balance notice), please make request as follows to obtain the server list and private token
+        documentation: https://www.kucoin.com/docs-new/api-3470296
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 3       |
+        | API-RATE-LIMIT      | 10      |
         +---------------------+---------+
         """
         pass
@@ -353,30 +353,53 @@ class MarketAPIImpl(MarketAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_all_tickers(self, **kwargs: Any) -> GetAllTickersResp:
+    def get_symbol(self, req: GetSymbolReq, **kwargs: Any) -> GetSymbolResp:
         return self.transport.call("futures", False, "GET",
-                                   "/api/v1/allTickers", None,
-                                   GetAllTickersResp(), False, **kwargs)
-
-    def get_private_token(self, **kwargs: Any) -> GetPrivateTokenResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v1/bullet-private", None,
-                                   GetPrivateTokenResp(), False, **kwargs)
-
-    def get_public_token(self, **kwargs: Any) -> GetPublicTokenResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v1/bullet-public", None,
-                                   GetPublicTokenResp(), False, **kwargs)
+                                   "/api/v1/contracts/{symbol}", req,
+                                   GetSymbolResp(), False, **kwargs)
 
     def get_all_symbols(self, **kwargs: Any) -> GetAllSymbolsResp:
         return self.transport.call("futures", False, "GET",
                                    "/api/v1/contracts/active", None,
                                    GetAllSymbolsResp(), False, **kwargs)
 
-    def get_symbol(self, req: GetSymbolReq, **kwargs: Any) -> GetSymbolResp:
+    def get_ticker(self, req: GetTickerReq, **kwargs: Any) -> GetTickerResp:
+        return self.transport.call("futures", False, "GET", "/api/v1/ticker",
+                                   req, GetTickerResp(), False, **kwargs)
+
+    def get_all_tickers(self, **kwargs: Any) -> GetAllTickersResp:
         return self.transport.call("futures", False, "GET",
-                                   "/api/v1/contracts/{symbol}", req,
-                                   GetSymbolResp(), False, **kwargs)
+                                   "/api/v1/allTickers", None,
+                                   GetAllTickersResp(), False, **kwargs)
+
+    def get_full_order_book(self, req: GetFullOrderBookReq,
+                            **kwargs: Any) -> GetFullOrderBookResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/level2/snapshot", req,
+                                   GetFullOrderBookResp(), False, **kwargs)
+
+    def get_part_order_book(self, req: GetPartOrderBookReq,
+                            **kwargs: Any) -> GetPartOrderBookResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/level2/depth{size}", req,
+                                   GetPartOrderBookResp(), False, **kwargs)
+
+    def get_trade_history(self, req: GetTradeHistoryReq,
+                          **kwargs: Any) -> GetTradeHistoryResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/trade/history", req,
+                                   GetTradeHistoryResp(), False, **kwargs)
+
+    def get_klines(self, req: GetKlinesReq, **kwargs: Any) -> GetKlinesResp:
+        return self.transport.call("futures", False,
+                                   "GET", "/api/v1/kline/query", req,
+                                   GetKlinesResp(), False, **kwargs)
+
+    def get_mark_price(self, req: GetMarkPriceReq,
+                       **kwargs: Any) -> GetMarkPriceResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/mark-price/{symbol}/current", req,
+                                   GetMarkPriceResp(), False, **kwargs)
 
     def get_spot_index_price(self, req: GetSpotIndexPriceReq,
                              **kwargs: Any) -> GetSpotIndexPriceResp:
@@ -390,56 +413,33 @@ class MarketAPIImpl(MarketAPI):
                                    "/api/v1/interest/query", req,
                                    GetInterestRateIndexResp(), False, **kwargs)
 
-    def get_klines(self, req: GetKlinesReq, **kwargs: Any) -> GetKlinesResp:
-        return self.transport.call("futures", False,
-                                   "GET", "/api/v1/kline/query", req,
-                                   GetKlinesResp(), False, **kwargs)
-
-    def get_part_order_book(self, req: GetPartOrderBookReq,
-                            **kwargs: Any) -> GetPartOrderBookResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/level2/depth{size}", req,
-                                   GetPartOrderBookResp(), False, **kwargs)
-
-    def get_full_order_book(self, req: GetFullOrderBookReq,
-                            **kwargs: Any) -> GetFullOrderBookResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/level2/snapshot", req,
-                                   GetFullOrderBookResp(), False, **kwargs)
-
-    def get_mark_price(self, req: GetMarkPriceReq,
-                       **kwargs: Any) -> GetMarkPriceResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/mark-price/{symbol}/current", req,
-                                   GetMarkPriceResp(), False, **kwargs)
-
     def get_premium_index(self, req: GetPremiumIndexReq,
                           **kwargs: Any) -> GetPremiumIndexResp:
         return self.transport.call("futures", False, "GET",
                                    "/api/v1/premium/query", req,
                                    GetPremiumIndexResp(), False, **kwargs)
 
-    def get_service_status(self, **kwargs: Any) -> GetServiceStatusResp:
+    def get24hr_stats(self, **kwargs: Any) -> Get24hrStatsResp:
         return self.transport.call("futures", False, "GET",
-                                   "/api/v1/status", None,
-                                   GetServiceStatusResp(), False, **kwargs)
-
-    def get_ticker(self, req: GetTickerReq, **kwargs: Any) -> GetTickerResp:
-        return self.transport.call("futures", False, "GET", "/api/v1/ticker",
-                                   req, GetTickerResp(), False, **kwargs)
+                                   "/api/v1/trade-statistics", None,
+                                   Get24hrStatsResp(), False, **kwargs)
 
     def get_server_time(self, **kwargs: Any) -> GetServerTimeResp:
         return self.transport.call("futures", False, "GET",
                                    "/api/v1/timestamp", None,
                                    GetServerTimeResp(), False, **kwargs)
 
-    def get_trade_history(self, req: GetTradeHistoryReq,
-                          **kwargs: Any) -> GetTradeHistoryResp:
+    def get_service_status(self, **kwargs: Any) -> GetServiceStatusResp:
         return self.transport.call("futures", False, "GET",
-                                   "/api/v1/trade/history", req,
-                                   GetTradeHistoryResp(), False, **kwargs)
+                                   "/api/v1/status", None,
+                                   GetServiceStatusResp(), False, **kwargs)
 
-    def get24hr_stats(self, **kwargs: Any) -> Get24hrStatsResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/trade-statistics", None,
-                                   Get24hrStatsResp(), False, **kwargs)
+    def get_public_token(self, **kwargs: Any) -> GetPublicTokenResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v1/bullet-public", None,
+                                   GetPublicTokenResp(), False, **kwargs)
+
+    def get_private_token(self, **kwargs: Any) -> GetPrivateTokenResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v1/bullet-private", None,
+                                   GetPrivateTokenResp(), False, **kwargs)

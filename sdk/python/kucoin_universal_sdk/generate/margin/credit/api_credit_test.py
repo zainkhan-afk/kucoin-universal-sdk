@@ -18,25 +18,6 @@ from kucoin_universal_sdk.model.common import RestResponse
 
 class CreditAPITest(unittest.TestCase):
 
-    def test_modify_purchase_req_model(self):
-        """
-       modify_purchase
-       Modify Purchase
-       /api/v3/lend/purchase/update
-       """
-        data = "{\"currency\": \"BTC\", \"purchaseOrderNo\": \"671bafa804c26d000773c533\", \"interestRate\": \"0.09\"}"
-        req = ModifyPurchaseReq.from_json(data)
-
-    def test_modify_purchase_resp_model(self):
-        """
-        modify_purchase
-        Modify Purchase
-        /api/v3/lend/purchase/update
-        """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": null\n}"
-        common_response = RestResponse.from_json(data)
-        resp = ModifyPurchaseResp.from_dict(common_response.data)
-
     def test_get_loan_market_req_model(self):
         """
        get_loan_market
@@ -75,25 +56,6 @@ class CreditAPITest(unittest.TestCase):
         common_response = RestResponse.from_json(data)
         resp = GetLoanMarketInterestRateResp.from_dict(common_response.data)
 
-    def test_get_purchase_orders_req_model(self):
-        """
-       get_purchase_orders
-       Get Purchase Orders
-       /api/v3/purchase/orders
-       """
-        data = "{\"currency\": \"BTC\", \"status\": \"DONE\", \"purchaseOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
-        req = GetPurchaseOrdersReq.from_json(data)
-
-    def test_get_purchase_orders_resp_model(self):
-        """
-        get_purchase_orders
-        Get Purchase Orders
-        /api/v3/purchase/orders
-        """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"currency\": \"BTC\",\n                \"purchaseOrderNo\": \"671bb15a3b3f930007880bae\",\n                \"purchaseSize\": \"0.001\",\n                \"matchSize\": \"0\",\n                \"interestRate\": \"0.1\",\n                \"incomeSize\": \"0\",\n                \"applyTime\": 1729868122172,\n                \"status\": \"PENDING\"\n            }\n        ]\n    }\n}"
-        common_response = RestResponse.from_json(data)
-        resp = GetPurchaseOrdersResp.from_dict(common_response.data)
-
     def test_purchase_req_model(self):
         """
        purchase
@@ -113,24 +75,43 @@ class CreditAPITest(unittest.TestCase):
         common_response = RestResponse.from_json(data)
         resp = PurchaseResp.from_dict(common_response.data)
 
-    def test_get_redeem_orders_req_model(self):
+    def test_modify_purchase_req_model(self):
         """
-       get_redeem_orders
-       Get Redeem Orders
-       /api/v3/redeem/orders
+       modify_purchase
+       Modify Purchase
+       /api/v3/lend/purchase/update
        """
-        data = "{\"currency\": \"BTC\", \"status\": \"DONE\", \"redeemOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
-        req = GetRedeemOrdersReq.from_json(data)
+        data = "{\"currency\": \"BTC\", \"purchaseOrderNo\": \"671bafa804c26d000773c533\", \"interestRate\": \"0.09\"}"
+        req = ModifyPurchaseReq.from_json(data)
 
-    def test_get_redeem_orders_resp_model(self):
+    def test_modify_purchase_resp_model(self):
         """
-        get_redeem_orders
-        Get Redeem Orders
-        /api/v3/redeem/orders
+        modify_purchase
+        Modify Purchase
+        /api/v3/lend/purchase/update
         """
-        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"currency\": \"BTC\",\n                \"purchaseOrderNo\": \"671bafa804c26d000773c533\",\n                \"redeemOrderNo\": \"671bb01004c26d000773c55c\",\n                \"redeemSize\": \"0.001\",\n                \"receiptSize\": \"0.001\",\n                \"applyTime\": null,\n                \"status\": \"DONE\"\n            }\n        ]\n    }\n}"
+        data = "{\n    \"code\": \"200000\",\n    \"data\": null\n}"
         common_response = RestResponse.from_json(data)
-        resp = GetRedeemOrdersResp.from_dict(common_response.data)
+        resp = ModifyPurchaseResp.from_dict(common_response.data)
+
+    def test_get_purchase_orders_req_model(self):
+        """
+       get_purchase_orders
+       Get Purchase Orders
+       /api/v3/purchase/orders
+       """
+        data = "{\"currency\": \"BTC\", \"status\": \"DONE\", \"purchaseOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
+        req = GetPurchaseOrdersReq.from_json(data)
+
+    def test_get_purchase_orders_resp_model(self):
+        """
+        get_purchase_orders
+        Get Purchase Orders
+        /api/v3/purchase/orders
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"currency\": \"BTC\",\n                \"purchaseOrderNo\": \"671bb15a3b3f930007880bae\",\n                \"purchaseSize\": \"0.001\",\n                \"matchSize\": \"0\",\n                \"interestRate\": \"0.1\",\n                \"incomeSize\": \"0\",\n                \"applyTime\": 1729868122172,\n                \"status\": \"PENDING\"\n            }\n        ]\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = GetPurchaseOrdersResp.from_dict(common_response.data)
 
     def test_redeem_req_model(self):
         """
@@ -150,3 +131,22 @@ class CreditAPITest(unittest.TestCase):
         data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderNo\": \"671bafa804c26d000773c533\"\n    }\n}"
         common_response = RestResponse.from_json(data)
         resp = RedeemResp.from_dict(common_response.data)
+
+    def test_get_redeem_orders_req_model(self):
+        """
+       get_redeem_orders
+       Get Redeem Orders
+       /api/v3/redeem/orders
+       """
+        data = "{\"currency\": \"BTC\", \"status\": \"DONE\", \"redeemOrderNo\": \"example_string_default_value\", \"currentPage\": 1, \"pageSize\": 50}"
+        req = GetRedeemOrdersReq.from_json(data)
+
+    def test_get_redeem_orders_resp_model(self):
+        """
+        get_redeem_orders
+        Get Redeem Orders
+        /api/v3/redeem/orders
+        """
+        data = "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalNum\": 1,\n        \"totalPage\": 1,\n        \"items\": [\n            {\n                \"currency\": \"BTC\",\n                \"purchaseOrderNo\": \"671bafa804c26d000773c533\",\n                \"redeemOrderNo\": \"671bb01004c26d000773c55c\",\n                \"redeemSize\": \"0.001\",\n                \"receiptSize\": \"0.001\",\n                \"applyTime\": null,\n                \"status\": \"DONE\"\n            }\n        ]\n    }\n}"
+        common_response = RestResponse.from_json(data)
+        resp = GetRedeemOrdersResp.from_dict(common_response.data)

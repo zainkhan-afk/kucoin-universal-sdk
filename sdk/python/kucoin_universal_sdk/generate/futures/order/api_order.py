@@ -45,198 +45,6 @@ from typing_extensions import deprecated
 class OrderAPI(ABC):
 
     @abstractmethod
-    def get_trade_history(self, req: GetTradeHistoryReq,
-                          **kwargs: Any) -> GetTradeHistoryResp:
-        """
-        summary: Get Trade History
-        description: Get a list of recent fills. If you need to get your recent trade history with low latency, please query endpoint Get List of Orders Completed in 24h. The requested data is not real-time.
-        documentation: https://www.kucoin.com/docs-new/api-3470248
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_open_order_value(self, req: GetOpenOrderValueReq,
-                             **kwargs: Any) -> GetOpenOrderValueResp:
-        """
-        summary: Get Open Order Value
-        description: You can query this endpoint to get the the total number and value of the all your active orders.
-        documentation: https://www.kucoin.com/docs-new/api-3470250
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
-                                **kwargs: Any) -> GetOrderByClientOidResp:
-        """
-        summary: Get Order By ClientOid
-        description: Get a single order by client order id (including a stop order).
-        documentation: https://www.kucoin.com/docs-new/api-3470352
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_order_by_client_oid(
-            self, req: CancelOrderByClientOidReq,
-            **kwargs: Any) -> CancelOrderByClientOidResp:
-        """
-        summary: Cancel Order By ClientOid
-        description: Cancel order by client defined orderId.
-        documentation: https://www.kucoin.com/docs-new/api-3470240
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def cancel_all_orders_v1(self, req: CancelAllOrdersV1Req,
-                             **kwargs: Any) -> CancelAllOrdersV1Resp:
-        """
-        summary: Cancel All Orders - V1
-        description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
-        documentation: https://www.kucoin.com/docs-new/api-3470362
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 200     |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_order_list(self, req: GetOrderListReq,
-                       **kwargs: Any) -> GetOrderListResp:
-        """
-        summary: Get Order List
-        description: List your current orders.
-        documentation: https://www.kucoin.com/docs-new/api-3470244
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def batch_cancel_orders(self, req: BatchCancelOrdersReq,
-                            **kwargs: Any) -> BatchCancelOrdersResp:
-        """
-        summary: Batch Cancel Orders
-        description: Cancel a bach of orders by client defined orderId or system generated orderId
-        documentation: https://www.kucoin.com/docs-new/api-3470241
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def batch_add_orders(self, req: BatchAddOrdersReq,
-                         **kwargs: Any) -> BatchAddOrdersResp:
-        """
-        summary: Batch Add Orders
-        description: Place multiple order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified. You can place up to 20 orders at one time, including limit orders, market orders, and stop orders  Please be noted that the system would hold the fees from the orders entered the orderbook in advance.
-        documentation: https://www.kucoin.com/docs-new/api-3470236
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_order_by_id(self, req: CancelOrderByIdReq,
-                           **kwargs: Any) -> CancelOrderByIdResp:
-        """
-        summary: Cancel Order By OrderId
-        description: Cancel order by system generated orderId.
-        documentation: https://www.kucoin.com/docs-new/api-3470239
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
-                              **kwargs: Any) -> GetOrderByOrderIdResp:
-        """
-        summary: Get Order By OrderId
-        description: Get a single order by order id (including a stop order).
-        documentation: https://www.kucoin.com/docs-new/api-3470245
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
     def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
         """
         summary: Add Order
@@ -274,12 +82,12 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def get_recent_closed_orders(self, req: GetRecentClosedOrdersReq,
-                                 **kwargs: Any) -> GetRecentClosedOrdersResp:
+    def batch_add_orders(self, req: BatchAddOrdersReq,
+                         **kwargs: Any) -> BatchAddOrdersResp:
         """
-        summary: Get Recent Closed Orders
-        description: Get a list of recent 1000 closed orders in the last 24 hours.  If you need to get your recent traded order history with low latency, you may query this endpoint.
-        documentation: https://www.kucoin.com/docs-new/api-3470246
+        summary: Batch Add Orders
+        description: Place multiple order to the futures trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified. You can place up to 20 orders at one time, including limit orders, market orders, and stop orders  Please be noted that the system would hold the fees from the orders entered the orderbook in advance.
+        documentation: https://www.kucoin.com/docs-new/api-3470236
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -287,26 +95,7 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_recent_trade_history(self, req: GetRecentTradeHistoryReq,
-                                 **kwargs: Any) -> GetRecentTradeHistoryResp:
-        """
-        summary: Get Recent Trade History
-        description: Get a list of recent 1000 fills in the last 24 hours. If you need to get your recent traded order history with low latency, you may query this endpoint.
-        documentation: https://www.kucoin.com/docs-new/api-3470249
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 3       |
+        | API-RATE-LIMIT      | 20      |
         +---------------------+---------+
         """
         pass
@@ -331,6 +120,83 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
+    def cancel_order_by_id(self, req: CancelOrderByIdReq,
+                           **kwargs: Any) -> CancelOrderByIdResp:
+        """
+        summary: Cancel Order By OrderId
+        description: Cancel order by system generated orderId.
+        documentation: https://www.kucoin.com/docs-new/api-3470239
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 1       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def cancel_order_by_client_oid(
+            self, req: CancelOrderByClientOidReq,
+            **kwargs: Any) -> CancelOrderByClientOidResp:
+        """
+        summary: Cancel Order By ClientOid
+        description: Cancel order by client defined orderId.
+        documentation: https://www.kucoin.com/docs-new/api-3470240
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 1       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def batch_cancel_orders(self, req: BatchCancelOrdersReq,
+                            **kwargs: Any) -> BatchCancelOrdersResp:
+        """
+        summary: Batch Cancel Orders
+        description: Cancel a bach of orders by client defined orderId or system generated orderId
+        documentation: https://www.kucoin.com/docs-new/api-3470241
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 20      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def cancel_all_orders_v3(self, req: CancelAllOrdersV3Req,
+                             **kwargs: Any) -> CancelAllOrdersV3Resp:
+        """
+        summary: Cancel All Orders
+        description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470242
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def cancel_all_stop_orders(self, req: CancelAllStopOrdersReq,
                                **kwargs: Any) -> CancelAllStopOrdersResp:
         """
@@ -345,6 +211,82 @@ class OrderAPI(ABC):
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
         | API-RATE-LIMIT      | 15      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
+                              **kwargs: Any) -> GetOrderByOrderIdResp:
+        """
+        summary: Get Order By OrderId
+        description: Get a single order by order id (including a stop order).
+        documentation: https://www.kucoin.com/docs-new/api-3470245
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
+                                **kwargs: Any) -> GetOrderByClientOidResp:
+        """
+        summary: Get Order By ClientOid
+        description: Get a single order by client order id (including a stop order).
+        documentation: https://www.kucoin.com/docs-new/api-3470352
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_order_list(self, req: GetOrderListReq,
+                       **kwargs: Any) -> GetOrderListResp:
+        """
+        summary: Get Order List
+        description: List your current orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470244
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_recent_closed_orders(self, req: GetRecentClosedOrdersReq,
+                                 **kwargs: Any) -> GetRecentClosedOrdersResp:
+        """
+        summary: Get Recent Closed Orders
+        description: Get a list of recent 1000 closed orders in the last 24 hours.  If you need to get your recent traded order history with low latency, you may query this endpoint.
+        documentation: https://www.kucoin.com/docs-new/api-3470246
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 5       |
         +---------------------+---------+
         """
         pass
@@ -369,12 +311,12 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def cancel_all_orders_v3(self, req: CancelAllOrdersV3Req,
-                             **kwargs: Any) -> CancelAllOrdersV3Resp:
+    def get_open_order_value(self, req: GetOpenOrderValueReq,
+                             **kwargs: Any) -> GetOpenOrderValueResp:
         """
-        summary: Cancel All Orders
-        description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
-        documentation: https://www.kucoin.com/docs-new/api-3470242
+        summary: Get Open Order Value
+        description: You can query this endpoint to get the the total number and value of the all your active orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470250
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -382,7 +324,65 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 30      |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_recent_trade_history(self, req: GetRecentTradeHistoryReq,
+                                 **kwargs: Any) -> GetRecentTradeHistoryResp:
+        """
+        summary: Get Recent Trade History
+        description: Get a list of recent 1000 fills in the last 24 hours. If you need to get your recent traded order history with low latency, you may query this endpoint.
+        documentation: https://www.kucoin.com/docs-new/api-3470249
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_trade_history(self, req: GetTradeHistoryReq,
+                          **kwargs: Any) -> GetTradeHistoryResp:
+        """
+        summary: Get Trade History
+        description: Get a list of recent fills. If you need to get your recent trade history with low latency, please query endpoint Get List of Orders Completed in 24h. The requested data is not real-time.
+        documentation: https://www.kucoin.com/docs-new/api-3470248
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def cancel_all_orders_v1(self, req: CancelAllOrdersV1Req,
+                             **kwargs: Any) -> CancelAllOrdersV1Resp:
+        """
+        summary: Cancel All Orders - V1
+        description: Cancel all open orders (excluding stop orders). The response is a list of orderIDs of the canceled orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470362
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 200     |
         +---------------------+---------+
         """
         pass
@@ -392,66 +392,6 @@ class OrderAPIImpl(OrderAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
-
-    def get_trade_history(self, req: GetTradeHistoryReq,
-                          **kwargs: Any) -> GetTradeHistoryResp:
-        return self.transport.call("futures", False, "GET", "/api/v1/fills",
-                                   req, GetTradeHistoryResp(), False, **kwargs)
-
-    def get_open_order_value(self, req: GetOpenOrderValueReq,
-                             **kwargs: Any) -> GetOpenOrderValueResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/openOrderStatistics", req,
-                                   GetOpenOrderValueResp(), False, **kwargs)
-
-    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
-                                **kwargs: Any) -> GetOrderByClientOidResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/orders/byClientOid", req,
-                                   GetOrderByClientOidResp(), False, **kwargs)
-
-    def cancel_order_by_client_oid(
-            self, req: CancelOrderByClientOidReq,
-            **kwargs: Any) -> CancelOrderByClientOidResp:
-        return self.transport.call("futures", False, "DELETE",
-                                   "/api/v1/orders/client-order/{clientOid}",
-                                   req, CancelOrderByClientOidResp(), False,
-                                   **kwargs)
-
-    def cancel_all_orders_v1(self, req: CancelAllOrdersV1Req,
-                             **kwargs: Any) -> CancelAllOrdersV1Resp:
-        return self.transport.call("futures", False, "DELETE",
-                                   "/api/v1/orders", req,
-                                   CancelAllOrdersV1Resp(), False, **kwargs)
-
-    def get_order_list(self, req: GetOrderListReq,
-                       **kwargs: Any) -> GetOrderListResp:
-        return self.transport.call("futures", False, "GET", "/api/v1/orders",
-                                   req, GetOrderListResp(), False, **kwargs)
-
-    def batch_cancel_orders(self, req: BatchCancelOrdersReq,
-                            **kwargs: Any) -> BatchCancelOrdersResp:
-        return self.transport.call("futures", False, "DELETE",
-                                   "/api/v1/orders/multi-cancel", req,
-                                   BatchCancelOrdersResp(), True, **kwargs)
-
-    def batch_add_orders(self, req: BatchAddOrdersReq,
-                         **kwargs: Any) -> BatchAddOrdersResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v1/orders/multi", req,
-                                   BatchAddOrdersResp(), False, **kwargs)
-
-    def cancel_order_by_id(self, req: CancelOrderByIdReq,
-                           **kwargs: Any) -> CancelOrderByIdResp:
-        return self.transport.call("futures", False, "DELETE",
-                                   "/api/v1/orders/{orderId}", req,
-                                   CancelOrderByIdResp(), False, **kwargs)
-
-    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
-                              **kwargs: Any) -> GetOrderByOrderIdResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/orders/{order-id}", req,
-                                   GetOrderByOrderIdResp(), False, **kwargs)
 
     def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
         return self.transport.call("futures", False, "POST", "/api/v1/orders",
@@ -463,12 +403,85 @@ class OrderAPIImpl(OrderAPI):
                                    "/api/v1/orders/test", req,
                                    AddOrderTestResp(), False, **kwargs)
 
+    def batch_add_orders(self, req: BatchAddOrdersReq,
+                         **kwargs: Any) -> BatchAddOrdersResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v1/orders/multi", req,
+                                   BatchAddOrdersResp(), False, **kwargs)
+
+    def add_tpsl_order(self, req: AddTpslOrderReq,
+                       **kwargs: Any) -> AddTpslOrderResp:
+        return self.transport.call("futures", False,
+                                   "POST", "/api/v1/st-orders", req,
+                                   AddTpslOrderResp(), False, **kwargs)
+
+    def cancel_order_by_id(self, req: CancelOrderByIdReq,
+                           **kwargs: Any) -> CancelOrderByIdResp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v1/orders/{orderId}", req,
+                                   CancelOrderByIdResp(), False, **kwargs)
+
+    def cancel_order_by_client_oid(
+            self, req: CancelOrderByClientOidReq,
+            **kwargs: Any) -> CancelOrderByClientOidResp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v1/orders/client-order/{clientOid}",
+                                   req, CancelOrderByClientOidResp(), False,
+                                   **kwargs)
+
+    def batch_cancel_orders(self, req: BatchCancelOrdersReq,
+                            **kwargs: Any) -> BatchCancelOrdersResp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v1/orders/multi-cancel", req,
+                                   BatchCancelOrdersResp(), True, **kwargs)
+
+    def cancel_all_orders_v3(self, req: CancelAllOrdersV3Req,
+                             **kwargs: Any) -> CancelAllOrdersV3Resp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v3/orders", req,
+                                   CancelAllOrdersV3Resp(), False, **kwargs)
+
+    def cancel_all_stop_orders(self, req: CancelAllStopOrdersReq,
+                               **kwargs: Any) -> CancelAllStopOrdersResp:
+        return self.transport.call("futures", False, "DELETE",
+                                   "/api/v1/stopOrders", req,
+                                   CancelAllStopOrdersResp(), False, **kwargs)
+
+    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
+                              **kwargs: Any) -> GetOrderByOrderIdResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/orders/{order-id}", req,
+                                   GetOrderByOrderIdResp(), False, **kwargs)
+
+    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
+                                **kwargs: Any) -> GetOrderByClientOidResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/orders/byClientOid", req,
+                                   GetOrderByClientOidResp(), False, **kwargs)
+
+    def get_order_list(self, req: GetOrderListReq,
+                       **kwargs: Any) -> GetOrderListResp:
+        return self.transport.call("futures", False, "GET", "/api/v1/orders",
+                                   req, GetOrderListResp(), False, **kwargs)
+
     def get_recent_closed_orders(self, req: GetRecentClosedOrdersReq,
                                  **kwargs: Any) -> GetRecentClosedOrdersResp:
         return self.transport.call("futures", False, "GET",
                                    "/api/v1/recentDoneOrders", req,
                                    GetRecentClosedOrdersResp(), False,
                                    **kwargs)
+
+    def get_stop_order_list(self, req: GetStopOrderListReq,
+                            **kwargs: Any) -> GetStopOrderListResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/stopOrders", req,
+                                   GetStopOrderListResp(), False, **kwargs)
+
+    def get_open_order_value(self, req: GetOpenOrderValueReq,
+                             **kwargs: Any) -> GetOpenOrderValueResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/openOrderStatistics", req,
+                                   GetOpenOrderValueResp(), False, **kwargs)
 
     def get_recent_trade_history(self, req: GetRecentTradeHistoryReq,
                                  **kwargs: Any) -> GetRecentTradeHistoryResp:
@@ -477,26 +490,13 @@ class OrderAPIImpl(OrderAPI):
                                    GetRecentTradeHistoryResp(), False,
                                    **kwargs)
 
-    def add_tpsl_order(self, req: AddTpslOrderReq,
-                       **kwargs: Any) -> AddTpslOrderResp:
-        return self.transport.call("futures", False,
-                                   "POST", "/api/v1/st-orders", req,
-                                   AddTpslOrderResp(), False, **kwargs)
+    def get_trade_history(self, req: GetTradeHistoryReq,
+                          **kwargs: Any) -> GetTradeHistoryResp:
+        return self.transport.call("futures", False, "GET", "/api/v1/fills",
+                                   req, GetTradeHistoryResp(), False, **kwargs)
 
-    def cancel_all_stop_orders(self, req: CancelAllStopOrdersReq,
-                               **kwargs: Any) -> CancelAllStopOrdersResp:
+    def cancel_all_orders_v1(self, req: CancelAllOrdersV1Req,
+                             **kwargs: Any) -> CancelAllOrdersV1Resp:
         return self.transport.call("futures", False, "DELETE",
-                                   "/api/v1/stopOrders", req,
-                                   CancelAllStopOrdersResp(), False, **kwargs)
-
-    def get_stop_order_list(self, req: GetStopOrderListReq,
-                            **kwargs: Any) -> GetStopOrderListResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/stopOrders", req,
-                                   GetStopOrderListResp(), False, **kwargs)
-
-    def cancel_all_orders_v3(self, req: CancelAllOrdersV3Req,
-                             **kwargs: Any) -> CancelAllOrdersV3Resp:
-        return self.transport.call("futures", False, "DELETE",
-                                   "/api/v3/orders", req,
-                                   CancelAllOrdersV3Resp(), False, **kwargs)
+                                   "/api/v1/orders", req,
+                                   CancelAllOrdersV1Resp(), False, **kwargs)

@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from kucoin_universal_sdk.generate.service.account_api import AccountService
 from kucoin_universal_sdk.generate.service.affiliate_api import AffiliateService
 from kucoin_universal_sdk.generate.service.broker_api import BrokerService
+from kucoin_universal_sdk.generate.service.copytrading_api import CopyTradingService
 from kucoin_universal_sdk.generate.service.earn_api import EarnService
 from kucoin_universal_sdk.generate.service.futures_api import FuturesService
 from kucoin_universal_sdk.generate.service.margin_api import MarginService
@@ -25,6 +26,11 @@ class KucoinRestService(ABC):
     @abstractmethod
     def get_broker_service(self) -> BrokerService:
         """Provides functions to access and manage broker-related data."""
+        pass
+
+    @abstractmethod
+    def get_copytrading_service(self) -> CopyTradingService:
+        """Provides functions to access and manage copy trading-related data."""
         pass
 
     @abstractmethod

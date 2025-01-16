@@ -9,6 +9,20 @@ import (
 
 type FundingFeesAPI interface {
 
+	// GetCurrentFundingRate Get Current Funding Rate
+	// Description: get Current Funding Rate
+	// Documentation: https://www.kucoin.com/docs-new/api-3470265
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | FUTURES |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | FUTURES |
+	// | API-RATE-LIMIT-POOL | PUBLIC  |
+	// | API-RATE-LIMIT      | 2       |
+	// +---------------------+---------+
+	GetCurrentFundingRate(req *GetCurrentFundingRateReq, ctx context.Context) (*GetCurrentFundingRateResp, error)
+
 	// GetPublicFundingHistory Get Public Funding History
 	// Description: Query the funding rate at each settlement time point within a certain time range of the corresponding contract
 	// Documentation: https://www.kucoin.com/docs-new/api-3470266
@@ -36,20 +50,6 @@ type FundingFeesAPI interface {
 	// | API-RATE-LIMIT      | 5       |
 	// +---------------------+---------+
 	GetPrivateFundingHistory(req *GetPrivateFundingHistoryReq, ctx context.Context) (*GetPrivateFundingHistoryResp, error)
-
-	// GetCurrentFundingRate Get Current Funding Rate
-	// Description: get Current Funding Rate
-	// Documentation: https://www.kucoin.com/docs-new/api-3470265
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | FUTURES |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | FUTURES |
-	// | API-RATE-LIMIT-POOL | PUBLIC  |
-	// | API-RATE-LIMIT      | 2       |
-	// +---------------------+---------+
-	GetCurrentFundingRate(req *GetCurrentFundingRateReq, ctx context.Context) (*GetCurrentFundingRateResp, error)
 }
 
 type FundingFeesAPIImpl struct {
@@ -58,6 +58,12 @@ type FundingFeesAPIImpl struct {
 
 func NewFundingFeesAPIImp(transport interfaces.Transport) *FundingFeesAPIImpl {
 	return &FundingFeesAPIImpl{transport: transport}
+}
+
+func (impl *FundingFeesAPIImpl) GetCurrentFundingRate(req *GetCurrentFundingRateReq, ctx context.Context) (*GetCurrentFundingRateResp, error) {
+	resp := &GetCurrentFundingRateResp{}
+	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/funding-rate/{symbol}/current", req, resp, false)
+	return resp, err
 }
 
 func (impl *FundingFeesAPIImpl) GetPublicFundingHistory(req *GetPublicFundingHistoryReq, ctx context.Context) (*GetPublicFundingHistoryResp, error) {
@@ -69,11 +75,5 @@ func (impl *FundingFeesAPIImpl) GetPublicFundingHistory(req *GetPublicFundingHis
 func (impl *FundingFeesAPIImpl) GetPrivateFundingHistory(req *GetPrivateFundingHistoryReq, ctx context.Context) (*GetPrivateFundingHistoryResp, error) {
 	resp := &GetPrivateFundingHistoryResp{}
 	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/funding-history", req, resp, false)
-	return resp, err
-}
-
-func (impl *FundingFeesAPIImpl) GetCurrentFundingRate(req *GetCurrentFundingRateReq, ctx context.Context) (*GetCurrentFundingRateResp, error) {
-	resp := &GetCurrentFundingRateResp{}
-	err := impl.transport.Call(ctx, "futures", false, "Get", "/api/v1/funding-rate/{symbol}/current", req, resp, false)
 	return resp, err
 }

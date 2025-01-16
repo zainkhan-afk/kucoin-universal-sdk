@@ -21,14 +21,12 @@ from typing_extensions import deprecated
 class WithdrawalAPI(ABC):
 
     @abstractmethod
-    @deprecated('')
-    def get_withdrawal_history_old(
-            self, req: GetWithdrawalHistoryOldReq,
-            **kwargs: Any) -> GetWithdrawalHistoryOldResp:
+    def get_withdrawal_quotas(self, req: GetWithdrawalQuotasReq,
+                              **kwargs: Any) -> GetWithdrawalQuotasResp:
         """
-        summary: Get Withdrawal History - Old
-        description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
-        documentation: https://www.kucoin.com/docs-new/api-3470308
+        summary: Get Withdrawal Quotas
+        description: This interface can obtain the withdrawal quotas information of this currency.
+        documentation: https://www.kucoin.com/docs-new/api-3470143
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -42,12 +40,71 @@ class WithdrawalAPI(ABC):
         pass
 
     @abstractmethod
+    def withdrawal_v3(self, req: WithdrawalV3Req,
+                      **kwargs: Any) -> WithdrawalV3Resp:
+        """
+        summary: Withdraw(V3)
+        description: Use this interface to withdraw the specified currency
+        documentation: https://www.kucoin.com/docs-new/api-3470146
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | WITHDRAWAL |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 5          |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def cancel_withdrawal(self, req: CancelWithdrawalReq,
+                          **kwargs: Any) -> CancelWithdrawalResp:
+        """
+        summary: Cancel Withdrawal
+        description: This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.
+        documentation: https://www.kucoin.com/docs-new/api-3470144
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | WITHDRAWAL |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 20         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
     def get_withdrawal_history(self, req: GetWithdrawalHistoryReq,
                                **kwargs: Any) -> GetWithdrawalHistoryResp:
         """
         summary: Get Withdrawal History
         description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
         documentation: https://www.kucoin.com/docs-new/api-3470145
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 20         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_withdrawal_history_old(
+            self, req: GetWithdrawalHistoryOldReq,
+            **kwargs: Any) -> GetWithdrawalHistoryOldResp:
+        """
+        summary: Get Withdrawal History - Old
+        description: Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        documentation: https://www.kucoin.com/docs-new/api-3470308
         +---------------------+------------+
         | Extra API Info      | Value      |
         +---------------------+------------+
@@ -80,68 +137,35 @@ class WithdrawalAPI(ABC):
         """
         pass
 
-    @abstractmethod
-    def get_withdrawal_quotas(self, req: GetWithdrawalQuotasReq,
-                              **kwargs: Any) -> GetWithdrawalQuotasResp:
-        """
-        summary: Get Withdrawal Quotas
-        description: This interface can obtain the withdrawal quotas information of this currency.
-        documentation: https://www.kucoin.com/docs-new/api-3470143
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_withdrawal(self, req: CancelWithdrawalReq,
-                          **kwargs: Any) -> CancelWithdrawalResp:
-        """
-        summary: Cancel Withdrawal
-        description: This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.
-        documentation: https://www.kucoin.com/docs-new/api-3470144
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | WITHDRAWAL |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def withdrawal_v3(self, req: WithdrawalV3Req,
-                      **kwargs: Any) -> WithdrawalV3Resp:
-        """
-        summary: Withdraw(V3)
-        description: Use this interface to withdraw the specified currency
-        documentation: https://www.kucoin.com/docs-new/api-3470146
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | WITHDRAWAL |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 5          |
-        +---------------------+------------+
-        """
-        pass
-
 
 class WithdrawalAPIImpl(WithdrawalAPI):
 
     def __init__(self, transport: Transport):
         self.transport = transport
+
+    def get_withdrawal_quotas(self, req: GetWithdrawalQuotasReq,
+                              **kwargs: Any) -> GetWithdrawalQuotasResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/withdrawals/quotas", req,
+                                   GetWithdrawalQuotasResp(), False, **kwargs)
+
+    def withdrawal_v3(self, req: WithdrawalV3Req,
+                      **kwargs: Any) -> WithdrawalV3Resp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v3/withdrawals", req,
+                                   WithdrawalV3Resp(), False, **kwargs)
+
+    def cancel_withdrawal(self, req: CancelWithdrawalReq,
+                          **kwargs: Any) -> CancelWithdrawalResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/withdrawals/{withdrawalId}", req,
+                                   CancelWithdrawalResp(), False, **kwargs)
+
+    def get_withdrawal_history(self, req: GetWithdrawalHistoryReq,
+                               **kwargs: Any) -> GetWithdrawalHistoryResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/withdrawals", req,
+                                   GetWithdrawalHistoryResp(), False, **kwargs)
 
     def get_withdrawal_history_old(
             self, req: GetWithdrawalHistoryOldReq,
@@ -151,32 +175,8 @@ class WithdrawalAPIImpl(WithdrawalAPI):
                                    GetWithdrawalHistoryOldResp(), False,
                                    **kwargs)
 
-    def get_withdrawal_history(self, req: GetWithdrawalHistoryReq,
-                               **kwargs: Any) -> GetWithdrawalHistoryResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/withdrawals", req,
-                                   GetWithdrawalHistoryResp(), False, **kwargs)
-
     def withdrawal_v1(self, req: WithdrawalV1Req,
                       **kwargs: Any) -> WithdrawalV1Resp:
         return self.transport.call("spot", False, "POST",
                                    "/api/v1/withdrawals", req,
                                    WithdrawalV1Resp(), False, **kwargs)
-
-    def get_withdrawal_quotas(self, req: GetWithdrawalQuotasReq,
-                              **kwargs: Any) -> GetWithdrawalQuotasResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/withdrawals/quotas", req,
-                                   GetWithdrawalQuotasResp(), False, **kwargs)
-
-    def cancel_withdrawal(self, req: CancelWithdrawalReq,
-                          **kwargs: Any) -> CancelWithdrawalResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/withdrawals/{withdrawalId}", req,
-                                   CancelWithdrawalResp(), False, **kwargs)
-
-    def withdrawal_v3(self, req: WithdrawalV3Req,
-                      **kwargs: Any) -> WithdrawalV3Resp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v3/withdrawals", req,
-                                   WithdrawalV3Resp(), False, **kwargs)

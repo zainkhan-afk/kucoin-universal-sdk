@@ -7,70 +7,29 @@ import (
 	"testing"
 )
 
-func TestMarketGetAllTickersReqModel(t *testing.T) {
-	// GetAllTickers
-	// Get All Tickers
-	// /api/v1/allTickers
+func TestMarketGetSymbolReqModel(t *testing.T) {
+	// GetSymbol
+	// Get Symbol
+	// /api/v1/contracts/{symbol}
 
+	data := "{\"symbol\": \"XBTUSDTM\"}"
+	req := &GetSymbolReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
 }
 
-func TestMarketGetAllTickersRespModel(t *testing.T) {
-	// GetAllTickers
-	// Get All Tickers
-	// /api/v1/allTickers
+func TestMarketGetSymbolRespModel(t *testing.T) {
+	// GetSymbol
+	// Get Symbol
+	// /api/v1/contracts/{symbol}
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"sequence\": 1707992727046,\n            \"symbol\": \"XBTUSDTM\",\n            \"side\": \"sell\",\n            \"size\": 21,\n            \"tradeId\": \"1784299761369\",\n            \"price\": \"67153\",\n            \"bestBidPrice\": \"67153\",\n            \"bestBidSize\": 2767,\n            \"bestAskPrice\": \"67153.1\",\n            \"bestAskSize\": 5368,\n            \"ts\": 1729163466659000000\n        },\n        {\n            \"sequence\": 1697895166299,\n            \"symbol\": \"XBTUSDM\",\n            \"side\": \"sell\",\n            \"size\": 1956,\n            \"tradeId\": \"1697901245065\",\n            \"price\": \"67145.2\",\n            \"bestBidPrice\": \"67135.3\",\n            \"bestBidSize\": 1,\n            \"bestAskPrice\": \"67135.8\",\n            \"bestAskSize\": 3,\n            \"ts\": 1729163445340000000\n        }\n    ]\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDM\",\n        \"rootSymbol\": \"XBT\",\n        \"type\": \"FFWCSX\",\n        \"firstOpenDate\": 1552638575000,\n        \"expireDate\": null,\n        \"settleDate\": null,\n        \"baseCurrency\": \"XBT\",\n        \"quoteCurrency\": \"USD\",\n        \"settleCurrency\": \"XBT\",\n        \"maxOrderQty\": 10000000,\n        \"maxPrice\": 1000000.0,\n        \"lotSize\": 1,\n        \"tickSize\": 0.1,\n        \"indexPriceTickSize\": 0.1,\n        \"multiplier\": -1.0,\n        \"initialMargin\": 0.014,\n        \"maintainMargin\": 0.007,\n        \"maxRiskLimit\": 1,\n        \"minRiskLimit\": 1,\n        \"riskStep\": 0,\n        \"makerFeeRate\": 2.0E-4,\n        \"takerFeeRate\": 6.0E-4,\n        \"takerFixFee\": 0.0,\n        \"makerFixFee\": 0.0,\n        \"settlementFee\": null,\n        \"isDeleverage\": true,\n        \"isQuanto\": false,\n        \"isInverse\": true,\n        \"markMethod\": \"FairPrice\",\n        \"fairMethod\": \"FundingRate\",\n        \"fundingBaseSymbol\": \".XBTINT8H\",\n        \"fundingQuoteSymbol\": \".USDINT8H\",\n        \"fundingRateSymbol\": \".XBTUSDMFPI8H\",\n        \"indexSymbol\": \".BXBT\",\n        \"settlementSymbol\": null,\n        \"status\": \"Open\",\n        \"fundingFeeRate\": 1.75E-4,\n        \"predictedFundingFeeRate\": 1.76E-4,\n        \"fundingRateGranularity\": 28800000,\n        \"openInterest\": \"61725904\",\n        \"turnoverOf24h\": 209.56303473,\n        \"volumeOf24h\": 1.4354731E7,\n        \"markPrice\": 68336.7,\n        \"indexPrice\": 68335.29,\n        \"lastTradePrice\": 68349.3,\n        \"nextFundingRateTime\": 17402942,\n        \"maxLeverage\": 75,\n        \"sourceExchanges\": [\n            \"kraken\",\n            \"bitstamp\",\n            \"crypto\"\n        ],\n        \"premiumsSymbol1M\": \".XBTUSDMPI\",\n        \"premiumsSymbol8H\": \".XBTUSDMPI8H\",\n        \"fundingBaseSymbol1M\": \".XBTINT\",\n        \"fundingQuoteSymbol1M\": \".USDINT\",\n        \"lowPrice\": 67436.7,\n        \"highPrice\": 69471.8,\n        \"priceChgPct\": 0.0097,\n        \"priceChg\": 658.7,\n        \"k\": 2645000.0,\n        \"m\": 1640000.0,\n        \"f\": 1.3,\n        \"mmrLimit\": 0.3,\n        \"mmrLevConstant\": 75.0,\n        \"supportCross\": true\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetAllTickersResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetPrivateTokenReqModel(t *testing.T) {
-	// GetPrivateToken
-	// Get Private Token - Futures
-	// /api/v1/bullet-private
-
-}
-
-func TestMarketGetPrivateTokenRespModel(t *testing.T) {
-	// GetPrivateToken
-	// Get Private Token - Futures
-	// /api/v1/bullet-private
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"token\": \"2neAiuYvAU737TOajb2U3uT8AEZqSWYe0fBD4LoHuXJDSC7gIzJiH4kNTWhCPISWo6nDpAe7aUaaHJ4fG8oRjFgMfUI2sM4IySWHrBceFocY8pKy2REU1HwZIngtMdMrjqPnP-biofFWbNaP1cl0X1pZc2SQ-33hDH1LgNP-yg8bktVoIG0dIxSN4m3uzO8u.ueCCihQ5_4GPpXKxWTDiFQ==\",\n        \"instanceServers\": [\n            {\n                \"endpoint\": \"wss://ws-api-futures.kucoin.com/\",\n                \"encrypt\": true,\n                \"protocol\": \"websocket\",\n                \"pingInterval\": 18000,\n                \"pingTimeout\": 10000\n            }\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetPrivateTokenResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetPublicTokenReqModel(t *testing.T) {
-	// GetPublicToken
-	// Get Public Token - Futures
-	// /api/v1/bullet-public
-
-}
-
-func TestMarketGetPublicTokenRespModel(t *testing.T) {
-	// GetPublicToken
-	// Get Public Token - Futures
-	// /api/v1/bullet-public
-
-	data := "{\"code\":\"200000\",\"data\":{\"token\":\"2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ6dACm4ny9vJtLTRq_YsRUlG5ADnAawegdiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEF-3bpfetLOAjsMMBS5qwTWJBvJHl5Vs9Y=.gJEIAywPXFr_4L-WG10eug==\",\"instanceServers\":[{\"endpoint\":\"wss://ws-api-futures.kucoin.com/\",\"encrypt\":true,\"protocol\":\"websocket\",\"pingInterval\":18000,\"pingTimeout\":10000}]}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetPublicTokenResp{}
+	resp := &GetSymbolResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -99,29 +58,192 @@ func TestMarketGetAllSymbolsRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestMarketGetSymbolReqModel(t *testing.T) {
-	// GetSymbol
-	// Get Symbol
-	// /api/v1/contracts/{symbol}
+func TestMarketGetTickerReqModel(t *testing.T) {
+	// GetTicker
+	// Get Ticker
+	// /api/v1/ticker
 
 	data := "{\"symbol\": \"XBTUSDTM\"}"
-	req := &GetSymbolReq{}
+	req := &GetTickerReq{}
 	err := json.Unmarshal([]byte(data), req)
 	req.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestMarketGetSymbolRespModel(t *testing.T) {
-	// GetSymbol
-	// Get Symbol
-	// /api/v1/contracts/{symbol}
+func TestMarketGetTickerRespModel(t *testing.T) {
+	// GetTicker
+	// Get Ticker
+	// /api/v1/ticker
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"XBTUSDM\",\n        \"rootSymbol\": \"XBT\",\n        \"type\": \"FFWCSX\",\n        \"firstOpenDate\": 1552638575000,\n        \"expireDate\": null,\n        \"settleDate\": null,\n        \"baseCurrency\": \"XBT\",\n        \"quoteCurrency\": \"USD\",\n        \"settleCurrency\": \"XBT\",\n        \"maxOrderQty\": 10000000,\n        \"maxPrice\": 1000000.0,\n        \"lotSize\": 1,\n        \"tickSize\": 0.1,\n        \"indexPriceTickSize\": 0.1,\n        \"multiplier\": -1.0,\n        \"initialMargin\": 0.014,\n        \"maintainMargin\": 0.007,\n        \"maxRiskLimit\": 1,\n        \"minRiskLimit\": 1,\n        \"riskStep\": 0,\n        \"makerFeeRate\": 2.0E-4,\n        \"takerFeeRate\": 6.0E-4,\n        \"takerFixFee\": 0.0,\n        \"makerFixFee\": 0.0,\n        \"settlementFee\": null,\n        \"isDeleverage\": true,\n        \"isQuanto\": false,\n        \"isInverse\": true,\n        \"markMethod\": \"FairPrice\",\n        \"fairMethod\": \"FundingRate\",\n        \"fundingBaseSymbol\": \".XBTINT8H\",\n        \"fundingQuoteSymbol\": \".USDINT8H\",\n        \"fundingRateSymbol\": \".XBTUSDMFPI8H\",\n        \"indexSymbol\": \".BXBT\",\n        \"settlementSymbol\": null,\n        \"status\": \"Open\",\n        \"fundingFeeRate\": 1.75E-4,\n        \"predictedFundingFeeRate\": 1.76E-4,\n        \"fundingRateGranularity\": 28800000,\n        \"openInterest\": \"61725904\",\n        \"turnoverOf24h\": 209.56303473,\n        \"volumeOf24h\": 1.4354731E7,\n        \"markPrice\": 68336.7,\n        \"indexPrice\": 68335.29,\n        \"lastTradePrice\": 68349.3,\n        \"nextFundingRateTime\": 17402942,\n        \"maxLeverage\": 75,\n        \"sourceExchanges\": [\n            \"kraken\",\n            \"bitstamp\",\n            \"crypto\"\n        ],\n        \"premiumsSymbol1M\": \".XBTUSDMPI\",\n        \"premiumsSymbol8H\": \".XBTUSDMPI8H\",\n        \"fundingBaseSymbol1M\": \".XBTINT\",\n        \"fundingQuoteSymbol1M\": \".USDINT\",\n        \"lowPrice\": 67436.7,\n        \"highPrice\": 69471.8,\n        \"priceChgPct\": 0.0097,\n        \"priceChg\": 658.7,\n        \"k\": 2645000.0,\n        \"m\": 1640000.0,\n        \"f\": 1.3,\n        \"mmrLimit\": 0.3,\n        \"mmrLevConstant\": 75.0,\n        \"supportCross\": true\n    }\n}"
+	data := "{\"code\":\"200000\",\"data\":{\"sequence\":1697895100310,\"symbol\":\"XBTUSDM\",\"side\":\"sell\",\"size\":2936,\"tradeId\":\"1697901180000\",\"price\":\"67158.4\",\"bestBidPrice\":\"67169.6\",\"bestBidSize\":32345,\"bestAskPrice\":\"67169.7\",\"bestAskSize\":7251,\"ts\":1729163001780000000}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetSymbolResp{}
+	resp := &GetTickerResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetAllTickersReqModel(t *testing.T) {
+	// GetAllTickers
+	// Get All Tickers
+	// /api/v1/allTickers
+
+}
+
+func TestMarketGetAllTickersRespModel(t *testing.T) {
+	// GetAllTickers
+	// Get All Tickers
+	// /api/v1/allTickers
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"sequence\": 1707992727046,\n            \"symbol\": \"XBTUSDTM\",\n            \"side\": \"sell\",\n            \"size\": 21,\n            \"tradeId\": \"1784299761369\",\n            \"price\": \"67153\",\n            \"bestBidPrice\": \"67153\",\n            \"bestBidSize\": 2767,\n            \"bestAskPrice\": \"67153.1\",\n            \"bestAskSize\": 5368,\n            \"ts\": 1729163466659000000\n        },\n        {\n            \"sequence\": 1697895166299,\n            \"symbol\": \"XBTUSDM\",\n            \"side\": \"sell\",\n            \"size\": 1956,\n            \"tradeId\": \"1697901245065\",\n            \"price\": \"67145.2\",\n            \"bestBidPrice\": \"67135.3\",\n            \"bestBidSize\": 1,\n            \"bestAskPrice\": \"67135.8\",\n            \"bestAskSize\": 3,\n            \"ts\": 1729163445340000000\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetAllTickersResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetFullOrderBookReqModel(t *testing.T) {
+	// GetFullOrderBook
+	// Get Full OrderBook
+	// /api/v1/level2/snapshot
+
+	data := "{\"symbol\": \"XBTUSDM\"}"
+	req := &GetFullOrderBookReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetFullOrderBookRespModel(t *testing.T) {
+	// GetFullOrderBook
+	// Get Full OrderBook
+	// /api/v1/level2/snapshot
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"sequence\": 1697895963339,\n        \"symbol\": \"XBTUSDM\",\n        \"bids\": [\n            [\n                66968,\n                2\n            ],\n            [\n                66964.8,\n                25596\n            ]\n        ],\n        \"asks\": [\n            [\n                66968.1,\n                13501\n            ],\n            [\n                66968.7,\n                2032\n            ]\n        ],\n        \"ts\": 1729168101216000000\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetFullOrderBookResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetPartOrderBookReqModel(t *testing.T) {
+	// GetPartOrderBook
+	// Get Part OrderBook
+	// /api/v1/level2/depth{size}
+
+	data := "{\"symbol\": \"XBTUSDM\", \"size\": \"20\"}"
+	req := &GetPartOrderBookReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetPartOrderBookRespModel(t *testing.T) {
+	// GetPartOrderBook
+	// Get Part OrderBook
+	// /api/v1/level2/depth{size}
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"sequence\": 1697895963339,\n        \"symbol\": \"XBTUSDM\",\n        \"bids\": [\n            [\n                66968,\n                2\n            ],\n            [\n                66964.8,\n                25596\n            ]\n        ],\n        \"asks\": [\n            [\n                66968.1,\n                13501\n            ],\n            [\n                66968.7,\n                2032\n            ]\n        ],\n        \"ts\": 1729168101216000000\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetPartOrderBookResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetTradeHistoryReqModel(t *testing.T) {
+	// GetTradeHistory
+	// Get Trade History
+	// /api/v1/trade/history
+
+	data := "{\"symbol\": \"XBTUSDM\"}"
+	req := &GetTradeHistoryReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetTradeHistoryRespModel(t *testing.T) {
+	// GetTradeHistory
+	// Get Trade History
+	// /api/v1/trade/history
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"sequence\": 1697915257909,\n            \"contractId\": 1,\n            \"tradeId\": \"1697915257909\",\n            \"makerOrderId\": \"236679665752801280\",\n            \"takerOrderId\": \"236679667975745536\",\n            \"ts\": 1729242032152000000,\n            \"size\": 1,\n            \"price\": \"67878\",\n            \"side\": \"sell\"\n        },\n        {\n            \"sequence\": 1697915257749,\n            \"contractId\": 1,\n            \"tradeId\": \"1697915257749\",\n            \"makerOrderId\": \"236679660971245570\",\n            \"takerOrderId\": \"236679665400492032\",\n            \"ts\": 1729242031535000000,\n            \"size\": 1,\n            \"price\": \"67867.8\",\n            \"side\": \"sell\"\n        },\n        {\n            \"sequence\": 1697915257701,\n            \"contractId\": 1,\n            \"tradeId\": \"1697915257701\",\n            \"makerOrderId\": \"236679660971245570\",\n            \"takerOrderId\": \"236679661919211521\",\n            \"ts\": 1729242030932000000,\n            \"size\": 1,\n            \"price\": \"67867.8\",\n            \"side\": \"sell\"\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetTradeHistoryResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetKlinesReqModel(t *testing.T) {
+	// GetKlines
+	// Get Klines
+	// /api/v1/kline/query
+
+	data := "{\"symbol\": \"XBTUSDTM\", \"granularity\": 1, \"from\": 1728552342000, \"to\": 1729243542000}"
+	req := &GetKlinesReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetKlinesRespModel(t *testing.T) {
+	// GetKlines
+	// Get Klines
+	// /api/v1/kline/query
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        [\n            1728576000000,\n            60791.1,\n            61035,\n            58940,\n            60300,\n            5501167\n        ],\n        [\n            1728604800000,\n            60299.9,\n            60924.1,\n            60077.4,\n            60666.1,\n            1220980\n        ],\n        [\n            1728633600000,\n            60665.7,\n            62436.8,\n            60650.1,\n            62255.1,\n            3386359\n        ]\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetKlinesResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetMarkPriceReqModel(t *testing.T) {
+	// GetMarkPrice
+	// Get Mark Price
+	// /api/v1/mark-price/{symbol}/current
+
+	data := "{\"symbol\": \"XBTUSDTM\"}"
+	req := &GetMarkPriceReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetMarkPriceRespModel(t *testing.T) {
+	// GetMarkPrice
+	// Get Mark Price
+	// /api/v1/mark-price/{symbol}/current
+
+	data := "{\"code\":\"200000\",\"data\":{\"symbol\":\"XBTUSDTM\",\"granularity\":1000,\"timePoint\":1729254307000,\"value\":67687.08,\"indexPrice\":67683.58}}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetMarkPriceResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -183,118 +305,6 @@ func TestMarketGetInterestRateIndexRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestMarketGetKlinesReqModel(t *testing.T) {
-	// GetKlines
-	// Get Klines
-	// /api/v1/kline/query
-
-	data := "{\"symbol\": \"XBTUSDTM\", \"granularity\": 1, \"from\": 1728552342000, \"to\": 1729243542000}"
-	req := &GetKlinesReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetKlinesRespModel(t *testing.T) {
-	// GetKlines
-	// Get Klines
-	// /api/v1/kline/query
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        [\n            1728576000000,\n            60791.1,\n            61035,\n            58940,\n            60300,\n            5501167\n        ],\n        [\n            1728604800000,\n            60299.9,\n            60924.1,\n            60077.4,\n            60666.1,\n            1220980\n        ],\n        [\n            1728633600000,\n            60665.7,\n            62436.8,\n            60650.1,\n            62255.1,\n            3386359\n        ]\n    ]\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetKlinesResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetPartOrderBookReqModel(t *testing.T) {
-	// GetPartOrderBook
-	// Get Part OrderBook
-	// /api/v1/level2/depth{size}
-
-	data := "{\"symbol\": \"XBTUSDM\", \"size\": \"20\"}"
-	req := &GetPartOrderBookReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetPartOrderBookRespModel(t *testing.T) {
-	// GetPartOrderBook
-	// Get Part OrderBook
-	// /api/v1/level2/depth{size}
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"sequence\": 1697895963339,\n        \"symbol\": \"XBTUSDM\",\n        \"bids\": [\n            [\n                66968,\n                2\n            ],\n            [\n                66964.8,\n                25596\n            ]\n        ],\n        \"asks\": [\n            [\n                66968.1,\n                13501\n            ],\n            [\n                66968.7,\n                2032\n            ]\n        ],\n        \"ts\": 1729168101216000000\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetPartOrderBookResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetFullOrderBookReqModel(t *testing.T) {
-	// GetFullOrderBook
-	// Get Full OrderBook
-	// /api/v1/level2/snapshot
-
-	data := "{\"symbol\": \"XBTUSDM\"}"
-	req := &GetFullOrderBookReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetFullOrderBookRespModel(t *testing.T) {
-	// GetFullOrderBook
-	// Get Full OrderBook
-	// /api/v1/level2/snapshot
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"sequence\": 1697895963339,\n        \"symbol\": \"XBTUSDM\",\n        \"bids\": [\n            [\n                66968,\n                2\n            ],\n            [\n                66964.8,\n                25596\n            ]\n        ],\n        \"asks\": [\n            [\n                66968.1,\n                13501\n            ],\n            [\n                66968.7,\n                2032\n            ]\n        ],\n        \"ts\": 1729168101216000000\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetFullOrderBookResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetMarkPriceReqModel(t *testing.T) {
-	// GetMarkPrice
-	// Get Mark Price
-	// /api/v1/mark-price/{symbol}/current
-
-	data := "{\"symbol\": \"XBTUSDTM\"}"
-	req := &GetMarkPriceReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetMarkPriceRespModel(t *testing.T) {
-	// GetMarkPrice
-	// Get Mark Price
-	// /api/v1/mark-price/{symbol}/current
-
-	data := "{\"code\":\"200000\",\"data\":{\"symbol\":\"XBTUSDTM\",\"granularity\":1000,\"timePoint\":1729254307000,\"value\":67687.08,\"indexPrice\":67683.58}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetMarkPriceResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
 func TestMarketGetPremiumIndexReqModel(t *testing.T) {
 	// GetPremiumIndex
 	// Get Premium Index
@@ -323,52 +333,24 @@ func TestMarketGetPremiumIndexRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestMarketGetServiceStatusReqModel(t *testing.T) {
-	// GetServiceStatus
-	// Get Service Status
-	// /api/v1/status
+func TestMarketGet24hrStatsReqModel(t *testing.T) {
+	// Get24hrStats
+	// Get 24hr Stats
+	// /api/v1/trade-statistics
 
 }
 
-func TestMarketGetServiceStatusRespModel(t *testing.T) {
-	// GetServiceStatus
-	// Get Service Status
-	// /api/v1/status
+func TestMarketGet24hrStatsRespModel(t *testing.T) {
+	// Get24hrStats
+	// Get 24hr Stats
+	// /api/v1/trade-statistics
 
-	data := "{\"code\":\"200000\",\"data\":{\"msg\":\"\",\"status\":\"open\"}}"
+	data := "{\"code\":\"200000\",\"data\":{\"turnoverOf24h\":1.1155733413273683E9}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetServiceStatusResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetTickerReqModel(t *testing.T) {
-	// GetTicker
-	// Get Ticker
-	// /api/v1/ticker
-
-	data := "{\"symbol\": \"XBTUSDTM\"}"
-	req := &GetTickerReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetTickerRespModel(t *testing.T) {
-	// GetTicker
-	// Get Ticker
-	// /api/v1/ticker
-
-	data := "{\"code\":\"200000\",\"data\":{\"sequence\":1697895100310,\"symbol\":\"XBTUSDM\",\"side\":\"sell\",\"size\":2936,\"tradeId\":\"1697901180000\",\"price\":\"67158.4\",\"bestBidPrice\":\"67169.6\",\"bestBidSize\":32345,\"bestAskPrice\":\"67169.7\",\"bestAskSize\":7251,\"ts\":1729163001780000000}}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetTickerResp{}
+	resp := &Get24hrStatsResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -397,52 +379,70 @@ func TestMarketGetServerTimeRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestMarketGetTradeHistoryReqModel(t *testing.T) {
-	// GetTradeHistory
-	// Get Trade History
-	// /api/v1/trade/history
+func TestMarketGetServiceStatusReqModel(t *testing.T) {
+	// GetServiceStatus
+	// Get Service Status
+	// /api/v1/status
 
-	data := "{\"symbol\": \"XBTUSDM\"}"
-	req := &GetTradeHistoryReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
 }
 
-func TestMarketGetTradeHistoryRespModel(t *testing.T) {
-	// GetTradeHistory
-	// Get Trade History
-	// /api/v1/trade/history
+func TestMarketGetServiceStatusRespModel(t *testing.T) {
+	// GetServiceStatus
+	// Get Service Status
+	// /api/v1/status
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"sequence\": 1697915257909,\n            \"contractId\": 1,\n            \"tradeId\": \"1697915257909\",\n            \"makerOrderId\": \"236679665752801280\",\n            \"takerOrderId\": \"236679667975745536\",\n            \"ts\": 1729242032152000000,\n            \"size\": 1,\n            \"price\": \"67878\",\n            \"side\": \"sell\"\n        },\n        {\n            \"sequence\": 1697915257749,\n            \"contractId\": 1,\n            \"tradeId\": \"1697915257749\",\n            \"makerOrderId\": \"236679660971245570\",\n            \"takerOrderId\": \"236679665400492032\",\n            \"ts\": 1729242031535000000,\n            \"size\": 1,\n            \"price\": \"67867.8\",\n            \"side\": \"sell\"\n        },\n        {\n            \"sequence\": 1697915257701,\n            \"contractId\": 1,\n            \"tradeId\": \"1697915257701\",\n            \"makerOrderId\": \"236679660971245570\",\n            \"takerOrderId\": \"236679661919211521\",\n            \"ts\": 1729242030932000000,\n            \"size\": 1,\n            \"price\": \"67867.8\",\n            \"side\": \"sell\"\n        }\n    ]\n}"
+	data := "{\"code\":\"200000\",\"data\":{\"msg\":\"\",\"status\":\"open\"}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetTradeHistoryResp{}
+	resp := &GetServiceStatusResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
 }
 
-func TestMarketGet24hrStatsReqModel(t *testing.T) {
-	// Get24hrStats
-	// Get 24hr Stats
-	// /api/v1/trade-statistics
+func TestMarketGetPublicTokenReqModel(t *testing.T) {
+	// GetPublicToken
+	// Get Public Token - Futures
+	// /api/v1/bullet-public
 
 }
 
-func TestMarketGet24hrStatsRespModel(t *testing.T) {
-	// Get24hrStats
-	// Get 24hr Stats
-	// /api/v1/trade-statistics
+func TestMarketGetPublicTokenRespModel(t *testing.T) {
+	// GetPublicToken
+	// Get Public Token - Futures
+	// /api/v1/bullet-public
 
-	data := "{\"code\":\"200000\",\"data\":{\"turnoverOf24h\":1.1155733413273683E9}}"
+	data := "{\"code\":\"200000\",\"data\":{\"token\":\"2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ6dACm4ny9vJtLTRq_YsRUlG5ADnAawegdiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEF-3bpfetLOAjsMMBS5qwTWJBvJHl5Vs9Y=.gJEIAywPXFr_4L-WG10eug==\",\"instanceServers\":[{\"endpoint\":\"wss://ws-api-futures.kucoin.com/\",\"encrypt\":true,\"protocol\":\"websocket\",\"pingInterval\":18000,\"pingTimeout\":10000}]}}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &Get24hrStatsResp{}
+	resp := &GetPublicTokenResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetPrivateTokenReqModel(t *testing.T) {
+	// GetPrivateToken
+	// Get Private Token - Futures
+	// /api/v1/bullet-private
+
+}
+
+func TestMarketGetPrivateTokenRespModel(t *testing.T) {
+	// GetPrivateToken
+	// Get Private Token - Futures
+	// /api/v1/bullet-private
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"token\": \"2neAiuYvAU737TOajb2U3uT8AEZqSWYe0fBD4LoHuXJDSC7gIzJiH4kNTWhCPISWo6nDpAe7aUaaHJ4fG8oRjFgMfUI2sM4IySWHrBceFocY8pKy2REU1HwZIngtMdMrjqPnP-biofFWbNaP1cl0X1pZc2SQ-33hDH1LgNP-yg8bktVoIG0dIxSN4m3uzO8u.ueCCihQ5_4GPpXKxWTDiFQ==\",\n        \"instanceServers\": [\n            {\n                \"endpoint\": \"wss://ws-api-futures.kucoin.com/\",\n                \"encrypt\": true,\n                \"protocol\": \"websocket\",\n                \"pingInterval\": 18000,\n                \"pingTimeout\": 10000\n            }\n        ]\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetPrivateTokenResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

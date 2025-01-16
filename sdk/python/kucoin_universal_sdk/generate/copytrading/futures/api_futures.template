@@ -1,0 +1,211 @@
+# API FUNCTION TEMPLATE
+
+
+def test_add_order_req(self):
+    """
+        add_order
+        Add Order
+        /api/v1/copy-trade/futures/orders
+    """
+
+    builder = AddOrderReqBuilder()
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_remark(?).set_stop(?).set_stop_price_type(?).set_stop_price(?).set_reduce_only(?).set_close_order(?).set_force_hold(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_order(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_order_test_req(self):
+    """
+        add_order_test
+        Add Order Test
+        /api/v1/copy-trade/futures/orders/test
+    """
+
+    builder = AddOrderTestReqBuilder()
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_remark(?).set_stop(?).set_stop_price_type(?).set_stop_price(?).set_reduce_only(?).set_close_order(?).set_force_hold(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_order_test(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_tpsl_order_req(self):
+    """
+        add_tpsl_order
+        Add Take Profit And Stop Loss Order
+        /api/v1/copy-trade/futures/st-orders
+    """
+
+    builder = AddTpslOrderReqBuilder()
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_leverage(?).set_type(?).set_remark(?).set_stop_price_type(?).set_reduce_only(?).set_close_order(?).set_force_hold(?).set_margin_mode(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_trigger_stop_up_price(?).set_trigger_stop_down_price(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_tpsl_order(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_cancel_order_by_id_req(self):
+    """
+        cancel_order_by_id
+        Cancel Order By OrderId
+        /api/v1/copy-trade/futures/orders
+    """
+
+    builder = CancelOrderByIdReqBuilder()
+    builder.set_order_id(?)
+    req = builder.build()
+    try:
+        resp = self.api.cancel_order_by_id(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_cancel_order_by_client_oid_req(self):
+    """
+        cancel_order_by_client_oid
+        Cancel Order By ClientOid
+        /api/v1/copy-trade/futures/orders/client-order
+    """
+
+    builder = CancelOrderByClientOidReqBuilder()
+    builder.set_symbol(?).set_client_oid(?)
+    req = builder.build()
+    try:
+        resp = self.api.cancel_order_by_client_oid(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_max_open_size_req(self):
+    """
+        get_max_open_size
+        Get Max Open Size
+        /api/v1/copy-trade/futures/get-max-open-size
+    """
+
+    builder = GetMaxOpenSizeReqBuilder()
+    builder.set_symbol(?).set_price(?).set_leverage(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_max_open_size(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_max_withdraw_margin_req(self):
+    """
+        get_max_withdraw_margin
+        Get Max Withdraw Margin
+        /api/v1/copy-trade/futures/position/margin/max-withdraw-margin
+    """
+
+    builder = GetMaxWithdrawMarginReqBuilder()
+    builder.set_symbol(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_max_withdraw_margin(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_isolated_margin_req(self):
+    """
+        add_isolated_margin
+        Add Isolated Margin
+        /api/v1/copy-trade/futures/position/margin/deposit-margin
+    """
+
+    builder = AddIsolatedMarginReqBuilder()
+    builder.set_symbol(?).set_margin(?).set_biz_no(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_isolated_margin(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_remove_isolated_margin_req(self):
+    """
+        remove_isolated_margin
+        Remove Isolated Margin
+        /api/v1/copy-trade/futures/position/margin/withdraw-margin
+    """
+
+    builder = RemoveIsolatedMarginReqBuilder()
+    builder.set_symbol(?).set_withdraw_amount(?)
+    req = builder.build()
+    try:
+        resp = self.api.remove_isolated_margin(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_modify_isolated_margin_risk_limt_req(self):
+    """
+        modify_isolated_margin_risk_limt
+        Modify Isolated Margin Risk Limit
+        /api/v1/copy-trade/futures/position/risk-limit-level/change
+    """
+
+    builder = ModifyIsolatedMarginRiskLimtReqBuilder()
+    builder.set_symbol(?).set_level(?)
+    req = builder.build()
+    try:
+        resp = self.api.modify_isolated_margin_risk_limt(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_modify_auto_deposit_status_req(self):
+    """
+        modify_auto_deposit_status
+        Modify Isolated Margin Auto-Deposit Status
+        /api/v1/copy-trade/futures/position/margin/auto-deposit-status
+    """
+
+    builder = ModifyAutoDepositStatusReqBuilder()
+    builder.set_symbol(?).set_status(?)
+    req = builder.build()
+    try:
+        resp = self.api.modify_auto_deposit_status(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e

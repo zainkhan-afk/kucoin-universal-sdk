@@ -1,29 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-func TestDebitGetBorrowHistoryReq(t *testing.T) {
-    // GetBorrowHistory
-    // Get Borrow History
-    // /api/v3/margin/borrow
-
-    builder := debit.NewGetBorrowHistoryReqBuilder()
-    builder.SetCurrency(?).SetIsIsolated(?).SetSymbol(?).SetOrderNo(?).SetStartTime(?).SetEndTime(?).SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
-
-    resp, err := debitApi.GetBorrowHistory(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestDebitBorrowReq(t *testing.T) {
     // Borrow
     // Borrow
@@ -47,16 +24,39 @@ func TestDebitBorrowReq(t *testing.T) {
 }
 
 
-func TestDebitGetInterestHistoryReq(t *testing.T) {
-    // GetInterestHistory
-    // Get Interest History
-    // /api/v3/margin/interest
+func TestDebitGetBorrowHistoryReq(t *testing.T) {
+    // GetBorrowHistory
+    // Get Borrow History
+    // /api/v3/margin/borrow
 
-    builder := debit.NewGetInterestHistoryReqBuilder()
-    builder.SetCurrency(?).SetIsIsolated(?).SetSymbol(?).SetStartTime(?).SetEndTime(?).SetCurrentPage(?).SetPageSize(?)
+    builder := debit.NewGetBorrowHistoryReqBuilder()
+    builder.SetCurrency(?).SetIsIsolated(?).SetSymbol(?).SetOrderNo(?).SetStartTime(?).SetEndTime(?).SetCurrentPage(?).SetPageSize(?)
     req := builder.Build()
 
-    resp, err := debitApi.GetInterestHistory(req, context.TODO())
+    resp, err := debitApi.GetBorrowHistory(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestDebitRepayReq(t *testing.T) {
+    // Repay
+    // Repay
+    // /api/v3/margin/repay
+
+    builder := debit.NewRepayReqBuilder()
+    builder.SetCurrency(?).SetSize(?).SetSymbol(?).SetIsIsolated(?).SetIsHf(?)
+    req := builder.Build()
+
+    resp, err := debitApi.Repay(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -93,16 +93,16 @@ func TestDebitGetRepayHistoryReq(t *testing.T) {
 }
 
 
-func TestDebitRepayReq(t *testing.T) {
-    // Repay
-    // Repay
-    // /api/v3/margin/repay
+func TestDebitGetInterestHistoryReq(t *testing.T) {
+    // GetInterestHistory
+    // Get Interest History
+    // /api/v3/margin/interest
 
-    builder := debit.NewRepayReqBuilder()
-    builder.SetCurrency(?).SetSize(?).SetSymbol(?).SetIsIsolated(?).SetIsHf(?)
+    builder := debit.NewGetInterestHistoryReqBuilder()
+    builder.SetCurrency(?).SetIsIsolated(?).SetSymbol(?).SetStartTime(?).SetEndTime(?).SetCurrentPage(?).SetPageSize(?)
     req := builder.Build()
 
-    resp, err := debitApi.Repay(req, context.TODO())
+    resp, err := debitApi.GetInterestHistory(req, context.TODO())
     if err != nil {
         panic(err)
     }

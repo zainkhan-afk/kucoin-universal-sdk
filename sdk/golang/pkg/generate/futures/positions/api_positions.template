@@ -1,16 +1,108 @@
 # API FUNCTION TEMPLATE
 
 
-func TestPositionsGetIsolatedMarginRiskLimitReq(t *testing.T) {
-    // GetIsolatedMarginRiskLimit
-    // Get Isolated Margin Risk Limit
-    // /api/v1/contracts/risk-limit/{symbol}
+func TestPositionsGetMarginModeReq(t *testing.T) {
+    // GetMarginMode
+    // Get Margin Mode
+    // /api/v2/position/getMarginMode
 
-    builder := positions.NewGetIsolatedMarginRiskLimitReqBuilder()
+    builder := positions.NewGetMarginModeReqBuilder()
     builder.SetSymbol(?)
     req := builder.Build()
 
-    resp, err := positionsApi.GetIsolatedMarginRiskLimit(req, context.TODO())
+    resp, err := positionsApi.GetMarginMode(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsSwitchMarginModeReq(t *testing.T) {
+    // SwitchMarginMode
+    // Switch Margin Mode
+    // /api/v2/position/changeMarginMode
+
+    builder := positions.NewSwitchMarginModeReqBuilder()
+    builder.SetSymbol(?).SetMarginMode(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.SwitchMarginMode(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsGetMaxOpenSizeReq(t *testing.T) {
+    // GetMaxOpenSize
+    // Get Max Open Size
+    // /api/v2/getMaxOpenSize
+
+    builder := positions.NewGetMaxOpenSizeReqBuilder()
+    builder.SetSymbol(?).SetPrice(?).SetLeverage(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.GetMaxOpenSize(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsGetPositionDetailsReq(t *testing.T) {
+    // GetPositionDetails
+    // Get Position Details
+    // /api/v1/position
+
+    builder := positions.NewGetPositionDetailsReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.GetPositionDetails(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsGetPositionListReq(t *testing.T) {
+    // GetPositionList
+    // Get Position List
+    // /api/v1/positions
+
+    builder := positions.NewGetPositionListReqBuilder()
+    builder.SetCurrency(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.GetPositionList(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -70,131 +162,16 @@ func TestPositionsGetMaxWithdrawMarginReq(t *testing.T) {
 }
 
 
-func TestPositionsRemoveIsolatedMarginReq(t *testing.T) {
-    // RemoveIsolatedMargin
-    // Remove Isolated Margin
-    // /api/v1/margin/withdrawMargin
+func TestPositionsGetCrossMarginLeverageReq(t *testing.T) {
+    // GetCrossMarginLeverage
+    // Get Cross Margin Leverage
+    // /api/v2/getCrossUserLeverage
 
-    builder := positions.NewRemoveIsolatedMarginReqBuilder()
-    builder.SetSymbol(?).SetWithdrawAmount(?)
-    req := builder.Build()
-
-    resp, err := positionsApi.RemoveIsolatedMargin(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestPositionsGetPositionDetailsReq(t *testing.T) {
-    // GetPositionDetails
-    // Get Position Details
-    // /api/v1/position
-
-    builder := positions.NewGetPositionDetailsReqBuilder()
+    builder := positions.NewGetCrossMarginLeverageReqBuilder()
     builder.SetSymbol(?)
     req := builder.Build()
 
-    resp, err := positionsApi.GetPositionDetails(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestPositionsModifyAutoDepositStatusReq(t *testing.T) {
-    // ModifyAutoDepositStatus
-    // Modify Isolated Margin Auto-Deposit Status
-    // /api/v1/position/margin/auto-deposit-status
-
-    builder := positions.NewModifyAutoDepositStatusReqBuilder()
-    builder.SetSymbol(?).SetStatus(?)
-    req := builder.Build()
-
-    resp, err := positionsApi.ModifyAutoDepositStatus(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestPositionsAddIsolatedMarginReq(t *testing.T) {
-    // AddIsolatedMargin
-    // Add Isolated Margin
-    // /api/v1/position/margin/deposit-margin
-
-    builder := positions.NewAddIsolatedMarginReqBuilder()
-    builder.SetSymbol(?).SetMargin(?).SetBizNo(?)
-    req := builder.Build()
-
-    resp, err := positionsApi.AddIsolatedMargin(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestPositionsModifyIsolatedMarginRiskLimtReq(t *testing.T) {
-    // ModifyIsolatedMarginRiskLimt
-    // Modify Isolated Margin Risk Limit
-    // /api/v1/position/risk-limit-level/change
-
-    builder := positions.NewModifyIsolatedMarginRiskLimtReqBuilder()
-    builder.SetSymbol(?).SetLevel(?)
-    req := builder.Build()
-
-    resp, err := positionsApi.ModifyIsolatedMarginRiskLimt(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestPositionsGetPositionListReq(t *testing.T) {
-    // GetPositionList
-    // Get Position List
-    // /api/v1/positions
-
-    builder := positions.NewGetPositionListReqBuilder()
-    builder.SetCurrency(?)
-    req := builder.Build()
-
-    resp, err := positionsApi.GetPositionList(req, context.TODO())
+    resp, err := positionsApi.GetCrossMarginLeverage(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -231,16 +208,62 @@ func TestPositionsModifyMarginLeverageReq(t *testing.T) {
 }
 
 
-func TestPositionsGetCrossMarginLeverageReq(t *testing.T) {
-    // GetCrossMarginLeverage
-    // Get Cross Margin Leverage
-    // /api/v2/getCrossUserLeverage
+func TestPositionsAddIsolatedMarginReq(t *testing.T) {
+    // AddIsolatedMargin
+    // Add Isolated Margin
+    // /api/v1/position/margin/deposit-margin
 
-    builder := positions.NewGetCrossMarginLeverageReqBuilder()
+    builder := positions.NewAddIsolatedMarginReqBuilder()
+    builder.SetSymbol(?).SetMargin(?).SetBizNo(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.AddIsolatedMargin(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsRemoveIsolatedMarginReq(t *testing.T) {
+    // RemoveIsolatedMargin
+    // Remove Isolated Margin
+    // /api/v1/margin/withdrawMargin
+
+    builder := positions.NewRemoveIsolatedMarginReqBuilder()
+    builder.SetSymbol(?).SetWithdrawAmount(?)
+    req := builder.Build()
+
+    resp, err := positionsApi.RemoveIsolatedMargin(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestPositionsGetIsolatedMarginRiskLimitReq(t *testing.T) {
+    // GetIsolatedMarginRiskLimit
+    // Get Isolated Margin Risk Limit
+    // /api/v1/contracts/risk-limit/{symbol}
+
+    builder := positions.NewGetIsolatedMarginRiskLimitReqBuilder()
     builder.SetSymbol(?)
     req := builder.Build()
 
-    resp, err := positionsApi.GetCrossMarginLeverage(req, context.TODO())
+    resp, err := positionsApi.GetIsolatedMarginRiskLimit(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -254,16 +277,16 @@ func TestPositionsGetCrossMarginLeverageReq(t *testing.T) {
 }
 
 
-func TestPositionsGetMaxOpenSizeReq(t *testing.T) {
-    // GetMaxOpenSize
-    // Get Max Open Size
-    // /api/v2/getMaxOpenSize
+func TestPositionsModifyIsolatedMarginRiskLimtReq(t *testing.T) {
+    // ModifyIsolatedMarginRiskLimt
+    // Modify Isolated Margin Risk Limit
+    // /api/v1/position/risk-limit-level/change
 
-    builder := positions.NewGetMaxOpenSizeReqBuilder()
-    builder.SetSymbol(?).SetPrice(?).SetLeverage(?)
+    builder := positions.NewModifyIsolatedMarginRiskLimtReqBuilder()
+    builder.SetSymbol(?).SetLevel(?)
     req := builder.Build()
 
-    resp, err := positionsApi.GetMaxOpenSize(req, context.TODO())
+    resp, err := positionsApi.ModifyIsolatedMarginRiskLimt(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -277,39 +300,16 @@ func TestPositionsGetMaxOpenSizeReq(t *testing.T) {
 }
 
 
-func TestPositionsSwitchMarginModeReq(t *testing.T) {
-    // SwitchMarginMode
-    // Switch Margin Mode
-    // /api/v2/position/changeMarginMode
+func TestPositionsModifyAutoDepositStatusReq(t *testing.T) {
+    // ModifyAutoDepositStatus
+    // Modify Isolated Margin Auto-Deposit Status
+    // /api/v1/position/margin/auto-deposit-status
 
-    builder := positions.NewSwitchMarginModeReqBuilder()
-    builder.SetSymbol(?).SetMarginMode(?)
+    builder := positions.NewModifyAutoDepositStatusReqBuilder()
+    builder.SetSymbol(?).SetStatus(?)
     req := builder.Build()
 
-    resp, err := positionsApi.SwitchMarginMode(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestPositionsGetMarginModeReq(t *testing.T) {
-    // GetMarginMode
-    // Get Margin Mode
-    // /api/v2/position/getMarginMode
-
-    builder := positions.NewGetMarginModeReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := positionsApi.GetMarginMode(req, context.TODO())
+    resp, err := positionsApi.ModifyAutoDepositStatus(req, context.TODO())
     if err != nil {
         panic(err)
     }

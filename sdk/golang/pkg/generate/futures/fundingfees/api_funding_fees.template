@@ -1,6 +1,29 @@
 # API FUNCTION TEMPLATE
 
 
+func TestFundingFeesGetCurrentFundingRateReq(t *testing.T) {
+    // GetCurrentFundingRate
+    // Get Current Funding Rate
+    // /api/v1/funding-rate/{symbol}/current
+
+    builder := fundingfees.NewGetCurrentFundingRateReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := fundingfeesApi.GetCurrentFundingRate(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
 func TestFundingFeesGetPublicFundingHistoryReq(t *testing.T) {
     // GetPublicFundingHistory
     // Get Public Funding History
@@ -34,29 +57,6 @@ func TestFundingFeesGetPrivateFundingHistoryReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := fundingfeesApi.GetPrivateFundingHistory(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestFundingFeesGetCurrentFundingRateReq(t *testing.T) {
-    // GetCurrentFundingRate
-    // Get Current Funding Rate
-    // /api/v1/funding-rate/{symbol}/current
-
-    builder := fundingfees.NewGetCurrentFundingRateReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := fundingfeesApi.GetCurrentFundingRate(req, context.TODO())
     if err != nil {
         panic(err)
     }

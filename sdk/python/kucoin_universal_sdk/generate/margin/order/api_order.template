@@ -1,82 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-def test_add_order_v1_req(self):
-    """
-        add_order_v1
-        Add Order - V1
-        /api/v1/margin/order
-    """
-
-    builder = AddOrderV1ReqBuilder()
-    builder.set_client_oid(?).set_side(?).set_symbol(?).set_type(?).set_stp(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_cancel_after(?).set_funds(?).set_auto_borrow(?).set_auto_repay(?).set_margin_model(?)
-    req = builder.build()
-    try:
-        resp = self.api.add_order_v1(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_add_order_test_v1_req(self):
-    """
-        add_order_test_v1
-        Add Order Test - V1
-        /api/v1/margin/order/test
-    """
-
-    builder = AddOrderTestV1ReqBuilder()
-    builder.set_client_oid(?).set_side(?).set_symbol(?).set_type(?).set_stp(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_cancel_after(?).set_funds(?).set_auto_borrow(?).set_auto_repay(?).set_margin_model(?)
-    req = builder.build()
-    try:
-        resp = self.api.add_order_test_v1(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_trade_history_req(self):
-    """
-        get_trade_history
-        Get Trade History
-        /api/v3/hf/margin/fills
-    """
-
-    builder = GetTradeHistoryReqBuilder()
-    builder.set_symbol(?).set_trade_type(?).set_order_id(?).set_side(?).set_type(?).set_last_id(?).set_limit(?).set_start_at(?).set_end_at(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_trade_history(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_symbols_with_open_order_req(self):
-    """
-        get_symbols_with_open_order
-        Get Symbols With Open Order
-        /api/v3/hf/margin/order/active/symbols
-    """
-
-    builder = GetSymbolsWithOpenOrderReqBuilder()
-    builder.set_trade_type(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_symbols_with_open_order(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_add_order_req(self):
     """
         add_order
@@ -115,18 +39,18 @@ def test_add_order_test_req(self):
         print("error: ", e)
         raise e
 
-def test_get_open_orders_req(self):
+def test_cancel_order_by_order_id_req(self):
     """
-        get_open_orders
-        Get Open Orders
-        /api/v3/hf/margin/orders/active
+        cancel_order_by_order_id
+        Cancel Order By OrderId
+        /api/v3/hf/margin/orders/{orderId}
     """
 
-    builder = GetOpenOrdersReqBuilder()
-    builder.set_symbol(?).set_trade_type(?)
+    builder = CancelOrderByOrderIdReqBuilder()
+    builder.set_order_id(?).set_symbol(?)
     req = builder.build()
     try:
-        resp = self.api.get_open_orders(req)
+        resp = self.api.cancel_order_by_order_id(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -153,25 +77,6 @@ def test_cancel_order_by_client_oid_req(self):
         print("error: ", e)
         raise e
 
-def test_get_order_by_client_oid_req(self):
-    """
-        get_order_by_client_oid
-        Get Order By ClientOid
-        /api/v3/hf/margin/orders/client-order/{clientOid}
-    """
-
-    builder = GetOrderByClientOidReqBuilder()
-    builder.set_symbol(?).set_client_oid(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_order_by_client_oid(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_cancel_all_orders_by_symbol_req(self):
     """
         cancel_all_orders_by_symbol
@@ -184,6 +89,44 @@ def test_cancel_all_orders_by_symbol_req(self):
     req = builder.build()
     try:
         resp = self.api.cancel_all_orders_by_symbol(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_symbols_with_open_order_req(self):
+    """
+        get_symbols_with_open_order
+        Get Symbols With Open Order
+        /api/v3/hf/margin/order/active/symbols
+    """
+
+    builder = GetSymbolsWithOpenOrderReqBuilder()
+    builder.set_trade_type(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_symbols_with_open_order(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_open_orders_req(self):
+    """
+        get_open_orders
+        Get Open Orders
+        /api/v3/hf/margin/orders/active
+    """
+
+    builder = GetOpenOrdersReqBuilder()
+    builder.set_symbol(?).set_trade_type(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_open_orders(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -210,18 +153,18 @@ def test_get_closed_orders_req(self):
         print("error: ", e)
         raise e
 
-def test_cancel_order_by_order_id_req(self):
+def test_get_trade_history_req(self):
     """
-        cancel_order_by_order_id
-        Cancel Order By OrderId
-        /api/v3/hf/margin/orders/{orderId}
+        get_trade_history
+        Get Trade History
+        /api/v3/hf/margin/fills
     """
 
-    builder = CancelOrderByOrderIdReqBuilder()
-    builder.set_order_id(?).set_symbol(?)
+    builder = GetTradeHistoryReqBuilder()
+    builder.set_symbol(?).set_trade_type(?).set_order_id(?).set_side(?).set_type(?).set_last_id(?).set_limit(?).set_start_at(?).set_end_at(?)
     req = builder.build()
     try:
-        resp = self.api.cancel_order_by_order_id(req)
+        resp = self.api.get_trade_history(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -241,6 +184,63 @@ def test_get_order_by_order_id_req(self):
     req = builder.build()
     try:
         resp = self.api.get_order_by_order_id(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_order_by_client_oid_req(self):
+    """
+        get_order_by_client_oid
+        Get Order By ClientOid
+        /api/v3/hf/margin/orders/client-order/{clientOid}
+    """
+
+    builder = GetOrderByClientOidReqBuilder()
+    builder.set_symbol(?).set_client_oid(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_order_by_client_oid(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_order_v1_req(self):
+    """
+        add_order_v1
+        Add Order - V1
+        /api/v1/margin/order
+    """
+
+    builder = AddOrderV1ReqBuilder()
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_type(?).set_stp(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_cancel_after(?).set_funds(?).set_auto_borrow(?).set_auto_repay(?).set_margin_model(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_order_v1(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_add_order_test_v1_req(self):
+    """
+        add_order_test_v1
+        Add Order Test - V1
+        /api/v1/margin/order/test
+    """
+
+    builder = AddOrderTestV1ReqBuilder()
+    builder.set_client_oid(?).set_side(?).set_symbol(?).set_type(?).set_stp(?).set_price(?).set_size(?).set_time_in_force(?).set_post_only(?).set_hidden(?).set_iceberg(?).set_visible_size(?).set_cancel_after(?).set_funds(?).set_auto_borrow(?).set_auto_repay(?).set_margin_model(?)
+    req = builder.build()
+    try:
+        resp = self.api.add_order_test_v1(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

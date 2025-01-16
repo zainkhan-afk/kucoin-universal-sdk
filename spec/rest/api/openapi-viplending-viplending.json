@@ -160,7 +160,8 @@
                 "x-sdk-method-name": "getAccountDetail",
                 "x-sdk-method-description": "The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.",
                 "x-api-rate-limit": 1,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"parentUid\\\": \\\"1260004199\\\",\\n        \\\"orders\\\": [{\\n            \\\"orderId\\\": \\\"671a2be815f4140007a588e1\\\",\\n            \\\"principal\\\": \\\"100\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"currency\\\": \\\"USDT\\\"\\n        }],\\n        \\\"ltv\\\": {\\n            \\\"transferLtv\\\": \\\"0.6000\\\",\\n            \\\"onlyClosePosLtv\\\": \\\"0.7500\\\",\\n            \\\"delayedLiquidationLtv\\\": \\\"0.7500\\\",\\n            \\\"instantLiquidationLtv\\\": \\\"0.8000\\\",\\n            \\\"currentLtv\\\": \\\"0.1111\\\"\\n        },\\n        \\\"totalMarginAmount\\\": \\\"900.00000000\\\",\\n        \\\"transferMarginAmount\\\": \\\"166.66666666\\\",\\n        \\\"margins\\\": [{\\n            \\\"marginCcy\\\": \\\"USDT\\\",\\n            \\\"marginQty\\\": \\\"1000.00000000\\\",\\n            \\\"marginFactor\\\": \\\"0.9000000000\\\"\\n        }]\\n    }\\n}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"parentUid\\\": \\\"1260004199\\\",\\n        \\\"orders\\\": [{\\n            \\\"orderId\\\": \\\"671a2be815f4140007a588e1\\\",\\n            \\\"principal\\\": \\\"100\\\",\\n            \\\"interest\\\": \\\"0\\\",\\n            \\\"currency\\\": \\\"USDT\\\"\\n        }],\\n        \\\"ltv\\\": {\\n            \\\"transferLtv\\\": \\\"0.6000\\\",\\n            \\\"onlyClosePosLtv\\\": \\\"0.7500\\\",\\n            \\\"delayedLiquidationLtv\\\": \\\"0.7500\\\",\\n            \\\"instantLiquidationLtv\\\": \\\"0.8000\\\",\\n            \\\"currentLtv\\\": \\\"0.1111\\\"\\n        },\\n        \\\"totalMarginAmount\\\": \\\"900.00000000\\\",\\n        \\\"transferMarginAmount\\\": \\\"166.66666666\\\",\\n        \\\"margins\\\": [{\\n            \\\"marginCcy\\\": \\\"USDT\\\",\\n            \\\"marginQty\\\": \\\"1000.00000000\\\",\\n            \\\"marginFactor\\\": \\\"0.9000000000\\\"\\n        }]\\n    }\\n}",
+                "operationId": "001"
             }
         },
         "/api/v1/otc-loan/accounts": {
@@ -242,7 +243,8 @@
                 "x-sdk-method-name": "getAccounts",
                 "x-sdk-method-description": "Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.",
                 "x-api-rate-limit": 1,
-                "x-response-example": "\\n{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [{\\n        \\\"uid\\\": \\\"1260004199\\\",\\n        \\\"marginCcy\\\": \\\"USDT\\\",\\n        \\\"marginQty\\\": \\\"900\\\",\\n        \\\"marginFactor\\\": \\\"0.9000000000\\\",\\n        \\\"accountType\\\": \\\"TRADE\\\",\\n        \\\"isParent\\\": true\\n    }]\\n}"
+                "x-response-example": "\\n{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [{\\n        \\\"uid\\\": \\\"1260004199\\\",\\n        \\\"marginCcy\\\": \\\"USDT\\\",\\n        \\\"marginQty\\\": \\\"900\\\",\\n        \\\"marginFactor\\\": \\\"0.9000000000\\\",\\n        \\\"accountType\\\": \\\"TRADE\\\",\\n        \\\"isParent\\\": true\\n    }]\\n}",
+                "operationId": "002"
             }
         }
     },
