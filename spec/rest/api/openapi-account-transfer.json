@@ -7,6 +7,154 @@
     },
     "tags": [],
     "paths": {
+        "/api/v1/accounts/transferable": {
+            "get": {
+                "summary": "Get Transfer Quotas",
+                "deprecated": false,
+                "description": "This endpoint returns the transferable balance of a specified account.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "currency",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": [
+                                "BTC",
+                                "ETH",
+                                "USDT"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "The account type:MAIN、TRADE、MARGIN、ISOLATED",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "MAIN",
+                                "TRADE",
+                                "MARGIN",
+                                "ISOLATED",
+                                "OPTION"
+                            ],
+                            "x-api-enum": [
+                                {
+                                    "value": "MAIN",
+                                    "name": "MAIN",
+                                    "description": "Funding account"
+                                },
+                                {
+                                    "value": "TRADE",
+                                    "name": "TRADE",
+                                    "description": "Spot account"
+                                },
+                                {
+                                    "value": "MARGIN",
+                                    "name": "MARGIN",
+                                    "description": "Cross margin account"
+                                },
+                                {
+                                    "value": "ISOLATED",
+                                    "name": "ISOLATED",
+                                    "description": "Isolated margin account"
+                                },
+                                {
+                                    "value": "OPTION",
+                                    "name": "OPTION",
+                                    "description": "Option account"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "BTC-USDT",
+                            "example": [
+                                "ETH-USDT",
+                                "KCS-USDT"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "currency": {
+                                                    "type": "string",
+                                                    "description": "Currency"
+                                                },
+                                                "balance": {
+                                                    "type": "string",
+                                                    "description": "Total funds in an account."
+                                                },
+                                                "available": {
+                                                    "type": "string",
+                                                    "description": "Funds available to withdraw or trade."
+                                                },
+                                                "holds": {
+                                                    "type": "string",
+                                                    "description": "Funds on hold (not available for use)."
+                                                },
+                                                "transferable": {
+                                                    "type": "string",
+                                                    "description": "Funds available to transfer."
+                                                }
+                                            },
+                                            "required": [
+                                                "currency",
+                                                "balance",
+                                                "available",
+                                                "holds",
+                                                "transferable"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470148",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "General",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Transfer",
+                "x-sdk-method-name": "getTransferQuotas",
+                "x-sdk-method-description": "This endpoint returns the transferable balance of a specified account.",
+                "x-api-rate-limit": 20,
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"USDT\\\",\\\"balance\\\":\\\"10.5\\\",\\\"available\\\":\\\"10.5\\\",\\\"holds\\\":\\\"0\\\",\\\"transferable\\\":\\\"10.5\\\"}}",
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": \\\"ETH-USDT\\\"}",
+                "operationId": "001"
+            }
+        },
         "/api/v3/accounts/universal-transfer": {
             "post": {
                 "summary": "Flex Transfer",
@@ -246,154 +394,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"orderId\\\": \\\"6705f7248c6954000733ecac\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"type\\\": \\\"PARENT_TO_SUB\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"fromAccountType\\\": \\\"TRADE\\\", \\\"toUserId\\\": \\\"63743f07e0c5230001761d08\\\", \\\"toAccountType\\\": \\\"TRADE\\\"}"
-            }
-        },
-        "/api/v1/accounts/transferable": {
-            "get": {
-                "summary": "Get Transfer Quotas",
-                "deprecated": false,
-                "description": "This endpoint returns the transferable balance of a specified account.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "currency",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": [
-                                "BTC",
-                                "ETH",
-                                "USDT"
-                            ]
-                        }
-                    },
-                    {
-                        "name": "type",
-                        "in": "query",
-                        "description": "The account type:MAIN、TRADE、MARGIN、ISOLATED",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "MAIN",
-                                "TRADE",
-                                "MARGIN",
-                                "ISOLATED",
-                                "OPTION"
-                            ],
-                            "x-api-enum": [
-                                {
-                                    "value": "MAIN",
-                                    "name": "MAIN",
-                                    "description": "Funding account"
-                                },
-                                {
-                                    "value": "TRADE",
-                                    "name": "TRADE",
-                                    "description": "Spot account"
-                                },
-                                {
-                                    "value": "MARGIN",
-                                    "name": "MARGIN",
-                                    "description": "Cross margin account"
-                                },
-                                {
-                                    "value": "ISOLATED",
-                                    "name": "ISOLATED",
-                                    "description": "Isolated margin account"
-                                },
-                                {
-                                    "value": "OPTION",
-                                    "name": "OPTION",
-                                    "description": "Option account"
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "tag",
-                        "in": "query",
-                        "description": "Trading pair, required when the account type is ISOLATED; other types are not passed, e.g.: BTC-USDT",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "default": "BTC-USDT",
-                            "example": [
-                                "ETH-USDT",
-                                "KCS-USDT"
-                            ]
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "currency": {
-                                                    "type": "string",
-                                                    "description": "Currency"
-                                                },
-                                                "balance": {
-                                                    "type": "string",
-                                                    "description": "Total funds in an account."
-                                                },
-                                                "available": {
-                                                    "type": "string",
-                                                    "description": "Funds available to withdraw or trade."
-                                                },
-                                                "holds": {
-                                                    "type": "string",
-                                                    "description": "Funds on hold (not available for use)."
-                                                },
-                                                "transferable": {
-                                                    "type": "string",
-                                                    "description": "Funds available to transfer."
-                                                }
-                                            },
-                                            "required": [
-                                                "currency",
-                                                "balance",
-                                                "available",
-                                                "holds",
-                                                "transferable"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470148",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "General",
-                "x-api-rate-limit-pool": "Management",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "Transfer",
-                "x-sdk-method-name": "getTransferQuotas",
-                "x-sdk-method-description": "This endpoint returns the transferable balance of a specified account.",
-                "x-api-rate-limit": 20,
-                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"USDT\\\",\\\"balance\\\":\\\"10.5\\\",\\\"available\\\":\\\"10.5\\\",\\\"holds\\\":\\\"0\\\",\\\"transferable\\\":\\\"10.5\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": \\\"ETH-USDT\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"type\\\": \\\"PARENT_TO_SUB\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"fromAccountType\\\": \\\"TRADE\\\", \\\"toUserId\\\": \\\"63743f07e0c5230001761d08\\\", \\\"toAccountType\\\": \\\"TRADE\\\"}",
+                "operationId": "002"
             }
         },
         "/api/v2/accounts/sub-transfer": {
@@ -575,7 +577,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"670be6b0b1b9080007040a9b\\\"}}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"direction\\\": \\\"OUT\\\", \\\"accountType\\\": \\\"MAIN\\\", \\\"subAccountType\\\": \\\"MAIN\\\", \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"direction\\\": \\\"OUT\\\", \\\"accountType\\\": \\\"MAIN\\\", \\\"subAccountType\\\": \\\"MAIN\\\", \\\"subUserId\\\": \\\"63743f07e0c5230001761d08\\\"}",
+                "operationId": "003"
             }
         },
         "/api/v2/accounts/inner-transfer": {
@@ -770,7 +773,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"orderId\\\":\\\"670beb3482a1bb0007dec644\\\"}}",
-                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"from\\\": \\\"main\\\", \\\"to\\\": \\\"trade\\\"}"
+                "x-request-example": "{\\\"clientOid\\\": \\\"64ccc0f164781800010d8c09\\\", \\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": \\\"0.01\\\", \\\"from\\\": \\\"main\\\", \\\"to\\\": \\\"trade\\\"}",
+                "operationId": "004"
             }
         },
         "/api/v3/transfer-out": {
@@ -960,7 +964,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"applyId\\\": \\\"670bf84c577f6c00017a1c48\\\",\\n        \\\"bizNo\\\": \\\"670bf84c577f6c00017a1c47\\\",\\n        \\\"payAccountType\\\": \\\"CONTRACT\\\",\\n        \\\"payTag\\\": \\\"DEFAULT\\\",\\n        \\\"remark\\\": \\\"\\\",\\n        \\\"recAccountType\\\": \\\"MAIN\\\",\\n        \\\"recTag\\\": \\\"DEFAULT\\\",\\n        \\\"recRemark\\\": \\\"\\\",\\n        \\\"recSystem\\\": \\\"KUCOIN\\\",\\n        \\\"status\\\": \\\"PROCESSING\\\",\\n        \\\"currency\\\": \\\"USDT\\\",\\n        \\\"amount\\\": \\\"0.01\\\",\\n        \\\"fee\\\": \\\"0\\\",\\n        \\\"sn\\\": 1519769124134806,\\n        \\\"reason\\\": \\\"\\\",\\n        \\\"createdAt\\\": 1728837708000,\\n        \\\"updatedAt\\\": 1728837708000\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"recAccountType\\\": \\\"MAIN\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"recAccountType\\\": \\\"MAIN\\\"}",
+                "operationId": "005"
             }
         },
         "/api/v1/transfer-in": {
@@ -1057,7 +1062,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"payAccountType\\\": \\\"MAIN\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"amount\\\": 0.01, \\\"payAccountType\\\": \\\"MAIN\\\"}",
+                "operationId": "006"
             }
         },
         "/api/v1/transfer-list": {
@@ -1306,7 +1312,8 @@
                 "x-sdk-method-description": "This endpoint can get futures account transfer out ledger",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currentPage\\\":1,\\\"pageSize\\\":50,\\\"totalNum\\\":1,\\\"totalPage\\\":1,\\\"items\\\":[{\\\"applyId\\\":\\\"670bf84c577f6c00017a1c48\\\",\\\"currency\\\":\\\"USDT\\\",\\\"recRemark\\\":\\\"\\\",\\\"recSystem\\\":\\\"KUCOIN\\\",\\\"status\\\":\\\"SUCCESS\\\",\\\"amount\\\":\\\"0.01\\\",\\\"reason\\\":\\\"\\\",\\\"offset\\\":1519769124134806,\\\"createdAt\\\":1728837708000,\\\"remark\\\":\\\"\\\"}]}}",
-                "x-request-example": "{\\\"currency\\\": \\\"XBT\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": [\\\"mock_a\\\", \\\"mock_b\\\"], \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"XBT\\\", \\\"type\\\": \\\"MAIN\\\", \\\"tag\\\": [\\\"mock_a\\\", \\\"mock_b\\\"], \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "007"
             }
         }
     },

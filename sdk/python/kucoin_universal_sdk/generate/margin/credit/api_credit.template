@@ -1,25 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-def test_modify_purchase_req(self):
-    """
-        modify_purchase
-        Modify Purchase
-        /api/v3/lend/purchase/update
-    """
-
-    builder = ModifyPurchaseReqBuilder()
-    builder.set_currency(?).set_interest_rate(?).set_purchase_order_no(?)
-    req = builder.build()
-    try:
-        resp = self.api.modify_purchase(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_get_loan_market_req(self):
     """
         get_loan_market
@@ -58,25 +39,6 @@ def test_get_loan_market_interest_rate_req(self):
         print("error: ", e)
         raise e
 
-def test_get_purchase_orders_req(self):
-    """
-        get_purchase_orders
-        Get Purchase Orders
-        /api/v3/purchase/orders
-    """
-
-    builder = GetPurchaseOrdersReqBuilder()
-    builder.set_currency(?).set_status(?).set_purchase_order_no(?).set_current_page(?).set_page_size(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_purchase_orders(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_purchase_req(self):
     """
         purchase
@@ -96,18 +58,37 @@ def test_purchase_req(self):
         print("error: ", e)
         raise e
 
-def test_get_redeem_orders_req(self):
+def test_modify_purchase_req(self):
     """
-        get_redeem_orders
-        Get Redeem Orders
-        /api/v3/redeem/orders
+        modify_purchase
+        Modify Purchase
+        /api/v3/lend/purchase/update
     """
 
-    builder = GetRedeemOrdersReqBuilder()
-    builder.set_currency(?).set_status(?).set_redeem_order_no(?).set_current_page(?).set_page_size(?)
+    builder = ModifyPurchaseReqBuilder()
+    builder.set_currency(?).set_interest_rate(?).set_purchase_order_no(?)
     req = builder.build()
     try:
-        resp = self.api.get_redeem_orders(req)
+        resp = self.api.modify_purchase(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_purchase_orders_req(self):
+    """
+        get_purchase_orders
+        Get Purchase Orders
+        /api/v3/purchase/orders
+    """
+
+    builder = GetPurchaseOrdersReqBuilder()
+    builder.set_currency(?).set_status(?).set_purchase_order_no(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_purchase_orders(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -127,6 +108,25 @@ def test_redeem_req(self):
     req = builder.build()
     try:
         resp = self.api.redeem(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_redeem_orders_req(self):
+    """
+        get_redeem_orders
+        Get Redeem Orders
+        /api/v3/redeem/orders
+    """
+
+    builder = GetRedeemOrdersReqBuilder()
+    builder.set_currency(?).set_status(?).set_redeem_order_no(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_redeem_orders(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

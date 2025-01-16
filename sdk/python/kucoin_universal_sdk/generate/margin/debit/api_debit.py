@@ -20,6 +20,24 @@ from .model_repay_resp import RepayResp
 class DebitAPI(ABC):
 
     @abstractmethod
+    def borrow(self, req: BorrowReq, **kwargs: Any) -> BorrowResp:
+        """
+        summary: Borrow
+        description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
+        documentation: https://www.kucoin.com/docs-new/api-3470206
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | MARGIN  |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 15      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
     def get_borrow_history(self, req: GetBorrowHistoryReq,
                            **kwargs: Any) -> GetBorrowHistoryResp:
         """
@@ -39,11 +57,30 @@ class DebitAPI(ABC):
         pass
 
     @abstractmethod
-    def borrow(self, req: BorrowReq, **kwargs: Any) -> BorrowResp:
+    def repay(self, req: RepayReq, **kwargs: Any) -> RepayResp:
         """
-        summary: Borrow
-        description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
-        documentation: https://www.kucoin.com/docs-new/api-3470206
+        summary: Repay
+        description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
+        documentation: https://www.kucoin.com/docs-new/api-3470210
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | MARGIN  |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_repay_history(self, req: GetRepayHistoryReq,
+                          **kwargs: Any) -> GetRepayHistoryResp:
+        """
+        summary: Get Repay History
+        description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+        documentation: https://www.kucoin.com/docs-new/api-3470208
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -76,43 +113,6 @@ class DebitAPI(ABC):
         pass
 
     @abstractmethod
-    def get_repay_history(self, req: GetRepayHistoryReq,
-                          **kwargs: Any) -> GetRepayHistoryResp:
-        """
-        summary: Get Repay History
-        description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
-        documentation: https://www.kucoin.com/docs-new/api-3470208
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def repay(self, req: RepayReq, **kwargs: Any) -> RepayResp:
-        """
-        summary: Repay
-        description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
-        documentation: https://www.kucoin.com/docs-new/api-3470210
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | MARGIN  |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
     def modify_leverage(self, req: ModifyLeverageReq,
                         **kwargs: Any) -> ModifyLeverageResp:
         """
@@ -137,22 +137,21 @@ class DebitAPIImpl(DebitAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
+    def borrow(self, req: BorrowReq, **kwargs: Any) -> BorrowResp:
+        return self.transport.call("spot", False,
+                                   "POST", "/api/v3/margin/borrow", req,
+                                   BorrowResp(), False, **kwargs)
+
     def get_borrow_history(self, req: GetBorrowHistoryReq,
                            **kwargs: Any) -> GetBorrowHistoryResp:
         return self.transport.call("spot", False, "GET",
                                    "/api/v3/margin/borrow", req,
                                    GetBorrowHistoryResp(), False, **kwargs)
 
-    def borrow(self, req: BorrowReq, **kwargs: Any) -> BorrowResp:
+    def repay(self, req: RepayReq, **kwargs: Any) -> RepayResp:
         return self.transport.call("spot", False,
-                                   "POST", "/api/v3/margin/borrow", req,
-                                   BorrowResp(), False, **kwargs)
-
-    def get_interest_history(self, req: GetInterestHistoryReq,
-                             **kwargs: Any) -> GetInterestHistoryResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v3/margin/interest", req,
-                                   GetInterestHistoryResp(), False, **kwargs)
+                                   "POST", "/api/v3/margin/repay", req,
+                                   RepayResp(), False, **kwargs)
 
     def get_repay_history(self, req: GetRepayHistoryReq,
                           **kwargs: Any) -> GetRepayHistoryResp:
@@ -160,10 +159,11 @@ class DebitAPIImpl(DebitAPI):
                                    "/api/v3/margin/repay", req,
                                    GetRepayHistoryResp(), False, **kwargs)
 
-    def repay(self, req: RepayReq, **kwargs: Any) -> RepayResp:
-        return self.transport.call("spot", False,
-                                   "POST", "/api/v3/margin/repay", req,
-                                   RepayResp(), False, **kwargs)
+    def get_interest_history(self, req: GetInterestHistoryReq,
+                             **kwargs: Any) -> GetInterestHistoryResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v3/margin/interest", req,
+                                   GetInterestHistoryResp(), False, **kwargs)
 
     def modify_leverage(self, req: ModifyLeverageReq,
                         **kwargs: Any) -> ModifyLeverageResp:

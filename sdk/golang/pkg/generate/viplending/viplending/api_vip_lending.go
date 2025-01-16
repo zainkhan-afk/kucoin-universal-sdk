@@ -9,20 +9,6 @@ import (
 
 type VIPLendingAPI interface {
 
-	// GetAccounts Get Accounts
-	// Description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470278
-	// +---------------------+------------+
-	// | Extra API Info      | Value      |
-	// +---------------------+------------+
-	// | API-DOMAIN          | SPOT       |
-	// | API-CHANNEL         | PRIVATE    |
-	// | API-PERMISSION      | GENERAL    |
-	// | API-RATE-LIMIT-POOL | MANAGEMENT |
-	// | API-RATE-LIMIT      | 1          |
-	// +---------------------+------------+
-	GetAccounts(ctx context.Context) (*GetAccountsResp, error)
-
 	// GetAccountDetail Get Account Detail
 	// Description: The following information is only applicable to loans.  Get information on off-exchange funding and loans, This endpoint is only for querying accounts that are currently involved in loans.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470277
@@ -36,6 +22,20 @@ type VIPLendingAPI interface {
 	// | API-RATE-LIMIT      | 1          |
 	// +---------------------+------------+
 	GetAccountDetail(ctx context.Context) (*GetAccountDetailResp, error)
+
+	// GetAccounts Get Accounts
+	// Description: Accounts participating in OTC lending, This interface is only for querying accounts currently running OTC lending.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470278
+	// +---------------------+------------+
+	// | Extra API Info      | Value      |
+	// +---------------------+------------+
+	// | API-DOMAIN          | SPOT       |
+	// | API-CHANNEL         | PRIVATE    |
+	// | API-PERMISSION      | GENERAL    |
+	// | API-RATE-LIMIT-POOL | MANAGEMENT |
+	// | API-RATE-LIMIT      | 1          |
+	// +---------------------+------------+
+	GetAccounts(ctx context.Context) (*GetAccountsResp, error)
 }
 
 type VIPLendingAPIImpl struct {
@@ -46,14 +46,14 @@ func NewVIPLendingAPIImp(transport interfaces.Transport) *VIPLendingAPIImpl {
 	return &VIPLendingAPIImpl{transport: transport}
 }
 
-func (impl *VIPLendingAPIImpl) GetAccounts(ctx context.Context) (*GetAccountsResp, error) {
-	resp := &GetAccountsResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/otc-loan/accounts", nil, resp, false)
-	return resp, err
-}
-
 func (impl *VIPLendingAPIImpl) GetAccountDetail(ctx context.Context) (*GetAccountDetailResp, error) {
 	resp := &GetAccountDetailResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/otc-loan/loan", nil, resp, false)
+	return resp, err
+}
+
+func (impl *VIPLendingAPIImpl) GetAccounts(ctx context.Context) (*GetAccountsResp, error) {
+	resp := &GetAccountsResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v1/otc-loan/accounts", nil, resp, false)
 	return resp, err
 }

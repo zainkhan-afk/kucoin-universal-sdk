@@ -1,29 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-func TestCreditModifyPurchaseReq(t *testing.T) {
-    // ModifyPurchase
-    // Modify Purchase
-    // /api/v3/lend/purchase/update
-
-    builder := credit.NewModifyPurchaseReqBuilder()
-    builder.SetCurrency(?).SetInterestRate(?).SetPurchaseOrderNo(?)
-    req := builder.Build()
-
-    resp, err := creditApi.ModifyPurchase(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestCreditGetLoanMarketReq(t *testing.T) {
     // GetLoanMarket
     // Get Loan Market
@@ -70,29 +47,6 @@ func TestCreditGetLoanMarketInterestRateReq(t *testing.T) {
 }
 
 
-func TestCreditGetPurchaseOrdersReq(t *testing.T) {
-    // GetPurchaseOrders
-    // Get Purchase Orders
-    // /api/v3/purchase/orders
-
-    builder := credit.NewGetPurchaseOrdersReqBuilder()
-    builder.SetCurrency(?).SetStatus(?).SetPurchaseOrderNo(?).SetCurrentPage(?).SetPageSize(?)
-    req := builder.Build()
-
-    resp, err := creditApi.GetPurchaseOrders(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestCreditPurchaseReq(t *testing.T) {
     // Purchase
     // Purchase
@@ -116,16 +70,39 @@ func TestCreditPurchaseReq(t *testing.T) {
 }
 
 
-func TestCreditGetRedeemOrdersReq(t *testing.T) {
-    // GetRedeemOrders
-    // Get Redeem Orders
-    // /api/v3/redeem/orders
+func TestCreditModifyPurchaseReq(t *testing.T) {
+    // ModifyPurchase
+    // Modify Purchase
+    // /api/v3/lend/purchase/update
 
-    builder := credit.NewGetRedeemOrdersReqBuilder()
-    builder.SetCurrency(?).SetStatus(?).SetRedeemOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    builder := credit.NewModifyPurchaseReqBuilder()
+    builder.SetCurrency(?).SetInterestRate(?).SetPurchaseOrderNo(?)
     req := builder.Build()
 
-    resp, err := creditApi.GetRedeemOrders(req, context.TODO())
+    resp, err := creditApi.ModifyPurchase(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditGetPurchaseOrdersReq(t *testing.T) {
+    // GetPurchaseOrders
+    // Get Purchase Orders
+    // /api/v3/purchase/orders
+
+    builder := credit.NewGetPurchaseOrdersReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetPurchaseOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := creditApi.GetPurchaseOrders(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -149,6 +126,29 @@ func TestCreditRedeemReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := creditApi.Redeem(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestCreditGetRedeemOrdersReq(t *testing.T) {
+    // GetRedeemOrders
+    // Get Redeem Orders
+    // /api/v3/redeem/orders
+
+    builder := credit.NewGetRedeemOrdersReqBuilder()
+    builder.SetCurrency(?).SetStatus(?).SetRedeemOrderNo(?).SetCurrentPage(?).SetPageSize(?)
+    req := builder.Build()
+
+    resp, err := creditApi.GetRedeemOrders(req, context.TODO())
     if err != nil {
         panic(err)
     }

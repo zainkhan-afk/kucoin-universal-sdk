@@ -35,21 +35,75 @@ from typing_extensions import deprecated
 class AccountAPI(ABC):
 
     @abstractmethod
-    def get_futures_account(self, req: GetFuturesAccountReq,
-                            **kwargs: Any) -> GetFuturesAccountResp:
+    def get_account_info(self, **kwargs: Any) -> GetAccountInfoResp:
         """
-        summary: Get Account - Futures
-        description: Request via this endpoint to get the info of the futures account.
-        documentation: https://www.kucoin.com/docs-new/api-3470129
+        summary: Get Account Summary Info
+        description: This endpoint can be used to obtain account summary information.
+        documentation: https://www.kucoin.com/docs-new/api-3470119
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 20         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def get_apikey_info(self, **kwargs: Any) -> GetApikeyInfoResp:
+        """
+        summary: Get Apikey Info
+        description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
+        documentation: https://www.kucoin.com/docs-new/api-3470130
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 20         |
+        +---------------------+------------+
+        """
+        pass
+
+    @abstractmethod
+    def get_spot_account_type(self, **kwargs: Any) -> GetSpotAccountTypeResp:
+        """
+        summary: Get Account Type - Spot 
+        description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
+        documentation: https://www.kucoin.com/docs-new/api-3470120
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
+        | API-DOMAIN          | SPOT    |
         | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 30      |
         +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_spot_account_list(self, req: GetSpotAccountListReq,
+                              **kwargs: Any) -> GetSpotAccountListResp:
+        """
+        summary: Get Account List - Spot
+        description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
+        documentation: https://www.kucoin.com/docs-new/api-3470125
+        +---------------------+------------+
+        | Extra API Info      | Value      |
+        +---------------------+------------+
+        | API-DOMAIN          | SPOT       |
+        | API-CHANNEL         | PRIVATE    |
+        | API-PERMISSION      | GENERAL    |
+        | API-RATE-LIMIT-POOL | MANAGEMENT |
+        | API-RATE-LIMIT      | 5          |
+        +---------------------+------------+
         """
         pass
 
@@ -73,21 +127,60 @@ class AccountAPI(ABC):
         pass
 
     @abstractmethod
-    def get_spot_account_list(self, req: GetSpotAccountListReq,
-                              **kwargs: Any) -> GetSpotAccountListResp:
+    def get_cross_margin_account(self, req: GetCrossMarginAccountReq,
+                                 **kwargs: Any) -> GetCrossMarginAccountResp:
         """
-        summary: Get Account List - Spot
-        description: Get a list of accounts. Please Deposit to the main account firstly, then transfer the funds to the trade account via Inner Transfer before transaction.
-        documentation: https://www.kucoin.com/docs-new/api-3470125
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 5          |
-        +---------------------+------------+
+        summary: Get Account - Cross Margin
+        description: Request via this endpoint to get the info of the cross margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470127
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 15      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_isolated_margin_account(
+            self, req: GetIsolatedMarginAccountReq,
+            **kwargs: Any) -> GetIsolatedMarginAccountResp:
+        """
+        summary: Get Account - Isolated Margin
+        description: Request via this endpoint to get the info of the isolated margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470128
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 15      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_futures_account(self, req: GetFuturesAccountReq,
+                            **kwargs: Any) -> GetFuturesAccountResp:
+        """
+        summary: Get Account - Futures
+        description: Request via this endpoint to get the info of the futures account.
+        documentation: https://www.kucoin.com/docs-new/api-3470129
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
         """
         pass
 
@@ -130,11 +223,12 @@ class AccountAPI(ABC):
         pass
 
     @abstractmethod
-    def get_spot_account_type(self, **kwargs: Any) -> GetSpotAccountTypeResp:
+    def get_margin_hf_ledger(self, req: GetMarginHfLedgerReq,
+                             **kwargs: Any) -> GetMarginHfLedgerResp:
         """
-        summary: Get Account Type - Spot 
-        description: This interface determines whether the current user is a spot high-frequency user or a spot low-frequency user.
-        documentation: https://www.kucoin.com/docs-new/api-3470120
+        summary: Get Account Ledgers - Margin_hf
+        description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
+        documentation: https://www.kucoin.com/docs-new/api-3470123
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -142,20 +236,38 @@ class AccountAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 30      |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_futures_ledger(self, req: GetFuturesLedgerReq,
+                           **kwargs: Any) -> GetFuturesLedgerResp:
+        """
+        summary: Get Account Ledgers - Futures
+        description: This interface can query the ledger records of the futures business line
+        documentation: https://www.kucoin.com/docs-new/api-3470124
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
     @deprecated('')
-    def get_isolated_margin_account_detail_v1(
-            self, req: GetIsolatedMarginAccountDetailV1Req,
-            **kwargs: Any) -> GetIsolatedMarginAccountDetailV1Resp:
+    def get_margin_account_detail(self,
+                                  **kwargs: Any) -> GetMarginAccountDetailResp:
         """
-        summary: Get Account Detail - Isolated Margin - V1
-        description: Request via this endpoint to get the info of the isolated margin account.
-        documentation: https://www.kucoin.com/docs-new/api-3470315
+        summary: Get Account Detail - Margin
+        description: Request via this endpoint to get the info of the margin account.
+        documentation: https://www.kucoin.com/docs-new/api-3470311
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -163,7 +275,7 @@ class AccountAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 50      |
+        | API-RATE-LIMIT      | 40      |
         +---------------------+---------+
         """
         pass
@@ -191,106 +303,13 @@ class AccountAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def get_margin_account_detail(self,
-                                  **kwargs: Any) -> GetMarginAccountDetailResp:
+    def get_isolated_margin_account_detail_v1(
+            self, req: GetIsolatedMarginAccountDetailV1Req,
+            **kwargs: Any) -> GetIsolatedMarginAccountDetailV1Resp:
         """
-        summary: Get Account Detail - Margin
-        description: Request via this endpoint to get the info of the margin account.
-        documentation: https://www.kucoin.com/docs-new/api-3470311
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 40      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_futures_ledger(self, req: GetFuturesLedgerReq,
-                           **kwargs: Any) -> GetFuturesLedgerResp:
-        """
-        summary: Get Account Ledgers - Futures
-        description: This interface can query the ledger records of the futures business line
-        documentation: https://www.kucoin.com/docs-new/api-3470124
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_apikey_info(self, **kwargs: Any) -> GetApikeyInfoResp:
-        """
-        summary: Get Apikey Info
-        description: Get the information of the api key. Use the api key pending to be checked to call the endpoint. Both master and sub user&#39;s api key are applicable.
-        documentation: https://www.kucoin.com/docs-new/api-3470130
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def get_account_info(self, **kwargs: Any) -> GetAccountInfoResp:
-        """
-        summary: Get Account Summary Info
-        description: This endpoint can be used to obtain account summary information.
-        documentation: https://www.kucoin.com/docs-new/api-3470119
-        +---------------------+------------+
-        | Extra API Info      | Value      |
-        +---------------------+------------+
-        | API-DOMAIN          | SPOT       |
-        | API-CHANNEL         | PRIVATE    |
-        | API-PERMISSION      | GENERAL    |
-        | API-RATE-LIMIT-POOL | MANAGEMENT |
-        | API-RATE-LIMIT      | 20         |
-        +---------------------+------------+
-        """
-        pass
-
-    @abstractmethod
-    def get_margin_hf_ledger(self, req: GetMarginHfLedgerReq,
-                             **kwargs: Any) -> GetMarginHfLedgerResp:
-        """
-        summary: Get Account Ledgers - Margin_hf
-        description: This API endpoint returns all transfer (in and out) records in high-frequency margin trading account and supports multi-coin queries. The query results are sorted in descending order by createdAt and id.
-        documentation: https://www.kucoin.com/docs-new/api-3470123
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_isolated_margin_account(
-            self, req: GetIsolatedMarginAccountReq,
-            **kwargs: Any) -> GetIsolatedMarginAccountResp:
-        """
-        summary: Get Account - Isolated Margin
+        summary: Get Account Detail - Isolated Margin - V1
         description: Request via this endpoint to get the info of the isolated margin account.
-        documentation: https://www.kucoin.com/docs-new/api-3470128
+        documentation: https://www.kucoin.com/docs-new/api-3470315
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -298,26 +317,7 @@ class AccountAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_cross_margin_account(self, req: GetCrossMarginAccountReq,
-                                 **kwargs: Any) -> GetCrossMarginAccountResp:
-        """
-        summary: Get Account - Cross Margin
-        description: Request via this endpoint to get the info of the cross margin account.
-        documentation: https://www.kucoin.com/docs-new/api-3470127
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 15      |
+        | API-RATE-LIMIT      | 50      |
         +---------------------+---------+
         """
         pass
@@ -328,11 +328,25 @@ class AccountAPIImpl(AccountAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_futures_account(self, req: GetFuturesAccountReq,
-                            **kwargs: Any) -> GetFuturesAccountResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/account-overview", req,
-                                   GetFuturesAccountResp(), False, **kwargs)
+    def get_account_info(self, **kwargs: Any) -> GetAccountInfoResp:
+        return self.transport.call("spot", False, "GET", "/api/v2/user-info",
+                                   None, GetAccountInfoResp(), False, **kwargs)
+
+    def get_apikey_info(self, **kwargs: Any) -> GetApikeyInfoResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/user/api-key", None,
+                                   GetApikeyInfoResp(), False, **kwargs)
+
+    def get_spot_account_type(self, **kwargs: Any) -> GetSpotAccountTypeResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/hf/accounts/opened", None,
+                                   GetSpotAccountTypeResp(), False, **kwargs)
+
+    def get_spot_account_list(self, req: GetSpotAccountListReq,
+                              **kwargs: Any) -> GetSpotAccountListResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/accounts", req,
+                                   GetSpotAccountListResp(), False, **kwargs)
 
     def get_spot_account_detail(self, req: GetSpotAccountDetailReq,
                                 **kwargs: Any) -> GetSpotAccountDetailResp:
@@ -340,11 +354,26 @@ class AccountAPIImpl(AccountAPI):
                                    "/api/v1/accounts/{accountId}", req,
                                    GetSpotAccountDetailResp(), False, **kwargs)
 
-    def get_spot_account_list(self, req: GetSpotAccountListReq,
-                              **kwargs: Any) -> GetSpotAccountListResp:
+    def get_cross_margin_account(self, req: GetCrossMarginAccountReq,
+                                 **kwargs: Any) -> GetCrossMarginAccountResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/accounts", req,
-                                   GetSpotAccountListResp(), False, **kwargs)
+                                   "/api/v3/margin/accounts", req,
+                                   GetCrossMarginAccountResp(), False,
+                                   **kwargs)
+
+    def get_isolated_margin_account(
+            self, req: GetIsolatedMarginAccountReq,
+            **kwargs: Any) -> GetIsolatedMarginAccountResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v3/isolated/accounts", req,
+                                   GetIsolatedMarginAccountResp(), False,
+                                   **kwargs)
+
+    def get_futures_account(self, req: GetFuturesAccountReq,
+                            **kwargs: Any) -> GetFuturesAccountResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/account-overview", req,
+                                   GetFuturesAccountResp(), False, **kwargs)
 
     def get_spot_ledger(self, req: GetSpotLedgerReq,
                         **kwargs: Any) -> GetSpotLedgerResp:
@@ -358,18 +387,24 @@ class AccountAPIImpl(AccountAPI):
                                    "/api/v1/hf/accounts/ledgers", req,
                                    GetSpotHfLedgerResp(), False, **kwargs)
 
-    def get_spot_account_type(self, **kwargs: Any) -> GetSpotAccountTypeResp:
+    def get_margin_hf_ledger(self, req: GetMarginHfLedgerReq,
+                             **kwargs: Any) -> GetMarginHfLedgerResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/hf/accounts/opened", None,
-                                   GetSpotAccountTypeResp(), False, **kwargs)
+                                   "/api/v3/hf/margin/account/ledgers", req,
+                                   GetMarginHfLedgerResp(), False, **kwargs)
 
-    def get_isolated_margin_account_detail_v1(
-            self, req: GetIsolatedMarginAccountDetailV1Req,
-            **kwargs: Any) -> GetIsolatedMarginAccountDetailV1Resp:
+    def get_futures_ledger(self, req: GetFuturesLedgerReq,
+                           **kwargs: Any) -> GetFuturesLedgerResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/transaction-history", req,
+                                   GetFuturesLedgerResp(), False, **kwargs)
+
+    def get_margin_account_detail(self,
+                                  **kwargs: Any) -> GetMarginAccountDetailResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/isolated/account/{symbol}", req,
-                                   GetIsolatedMarginAccountDetailV1Resp(),
-                                   False, **kwargs)
+                                   "/api/v1/margin/account", None,
+                                   GetMarginAccountDetailResp(), False,
+                                   **kwargs)
 
     def get_isolated_margin_account_list_v1(
             self, req: GetIsolatedMarginAccountListV1Req,
@@ -379,45 +414,10 @@ class AccountAPIImpl(AccountAPI):
                                    GetIsolatedMarginAccountListV1Resp(), False,
                                    **kwargs)
 
-    def get_margin_account_detail(self,
-                                  **kwargs: Any) -> GetMarginAccountDetailResp:
+    def get_isolated_margin_account_detail_v1(
+            self, req: GetIsolatedMarginAccountDetailV1Req,
+            **kwargs: Any) -> GetIsolatedMarginAccountDetailV1Resp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/margin/account", None,
-                                   GetMarginAccountDetailResp(), False,
-                                   **kwargs)
-
-    def get_futures_ledger(self, req: GetFuturesLedgerReq,
-                           **kwargs: Any) -> GetFuturesLedgerResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/transaction-history", req,
-                                   GetFuturesLedgerResp(), False, **kwargs)
-
-    def get_apikey_info(self, **kwargs: Any) -> GetApikeyInfoResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/user/api-key", None,
-                                   GetApikeyInfoResp(), False, **kwargs)
-
-    def get_account_info(self, **kwargs: Any) -> GetAccountInfoResp:
-        return self.transport.call("spot", False, "GET", "/api/v2/user-info",
-                                   None, GetAccountInfoResp(), False, **kwargs)
-
-    def get_margin_hf_ledger(self, req: GetMarginHfLedgerReq,
-                             **kwargs: Any) -> GetMarginHfLedgerResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v3/hf/margin/account/ledgers", req,
-                                   GetMarginHfLedgerResp(), False, **kwargs)
-
-    def get_isolated_margin_account(
-            self, req: GetIsolatedMarginAccountReq,
-            **kwargs: Any) -> GetIsolatedMarginAccountResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v3/isolated/accounts", req,
-                                   GetIsolatedMarginAccountResp(), False,
-                                   **kwargs)
-
-    def get_cross_margin_account(self, req: GetCrossMarginAccountReq,
-                                 **kwargs: Any) -> GetCrossMarginAccountResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v3/margin/accounts", req,
-                                   GetCrossMarginAccountResp(), False,
-                                   **kwargs)
+                                   "/api/v1/isolated/account/{symbol}", req,
+                                   GetIsolatedMarginAccountDetailV1Resp(),
+                                   False, **kwargs)

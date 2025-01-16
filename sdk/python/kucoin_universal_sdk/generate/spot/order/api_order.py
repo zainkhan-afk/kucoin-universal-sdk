@@ -102,146 +102,11 @@ from typing_extensions import deprecated
 class OrderAPI(ABC):
 
     @abstractmethod
-    @deprecated('')
-    def get_trade_history_old(self, req: GetTradeHistoryOldReq,
-                              **kwargs: Any) -> GetTradeHistoryOldResp:
+    def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
         """
-        summary: Get Trade History - Old
-        description: Request via this endpoint to get the recent fills. The return value is the data after Pagination, sorted in descending order according to time.
-        documentation: https://www.kucoin.com/docs-new/api-3470350
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_trade_history(self, req: GetTradeHistoryReq,
-                          **kwargs: Any) -> GetTradeHistoryResp:
-        """
-        summary: Get Trade History
-        description: This endpoint can be used to obtain a list of the latest Spot transaction details.  The returned data is sorted in descending order according to the latest update time of the order.
-        documentation: https://www.kucoin.com/docs-new/api-3470180
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_open_orders(self, req: GetOpenOrdersReq,
-                        **kwargs: Any) -> GetOpenOrdersResp:
-        """
-        summary: Get Open Orders
-        description: This interface is to obtain all Spot active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
-        documentation: https://www.kucoin.com/docs-new/api-3470178
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_symbols_with_open_order(
-            self, **kwargs: Any) -> GetSymbolsWithOpenOrderResp:
-        """
-        summary: Get Symbols With Open Order
-        description: This interface can query all spot symbol that has active orders
-        documentation: https://www.kucoin.com/docs-new/api-3470177
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def modify_order(self, req: ModifyOrderReq,
-                     **kwargs: Any) -> ModifyOrderResp:
-        """
-        summary: Modify Order
-        description: This interface can modify the price and quantity of the order according to orderId or clientOid.  The implementation of this interface is: cancel the order and place a new order on the same trading pair, and return the modification result to the client synchronously  When the quantity of the new order updated by the user is less than the filled quantity of this order, the order will be considered as completed, and the order will be cancelled, and no new order will be placed
-        documentation: https://www.kucoin.com/docs-new/api-3470171
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_all_orders(self, **kwargs: Any) -> CancelAllOrdersResp:
-        """
-        summary: Cancel All Orders
-        description: This endpoint can cancel all spot orders for all symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470176
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 30      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_partial_order(self, req: CancelPartialOrderReq,
-                             **kwargs: Any) -> CancelPartialOrderResp:
-        """
-        summary: Cancel Partial Order
-        description: This interface can cancel the specified quantity of the order according to the orderId. The order execution order is: price first, time first, this interface will not change the queue order
-        documentation: https://www.kucoin.com/docs-new/api-3470183
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_order_by_client_oid(
-            self, req: CancelOrderByClientOidReq,
-            **kwargs: Any) -> CancelOrderByClientOidResp:
-        """
-        summary: Cancel Order By ClientOid
-        description: This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470184
+        summary: Add Order
+        description: Place order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+        documentation: https://www.kucoin.com/docs-new/api-3470188
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -255,30 +120,12 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
-                                **kwargs: Any) -> GetOrderByClientOidResp:
+    def add_order_sync(self, req: AddOrderSyncReq,
+                       **kwargs: Any) -> AddOrderSyncResp:
         """
-        summary: Get Order By ClientOid
-        description: This endpoint can be used to obtain information for a single Spot order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
-        documentation: https://www.kucoin.com/docs-new/api-3470182
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def set_dcp(self, req: SetDcpReq, **kwargs: Any) -> SetDcpResp:
-        """
-        summary: Set DCP
-        description: Set Disconnection Protect(Deadman Swich)Through this interface, Call this interface to automatically cancel all orders of the set trading pair after the specified time. If this interface is not called again for renewal or cancellation before the set time, the system will help the user to cancel the order of the corresponding trading pair. Otherwise it will not.
-        documentation: https://www.kucoin.com/docs-new/api-3470173
+        summary: Add Order Sync
+        description: Place order to the spot trading system  The difference between this interface and \&quot;Add order\&quot; is that this interface will synchronously return the order information after the order matching is completed.  For higher latency requirements, please select the \&quot;Add order\&quot; interface. If there is a requirement for returning data integrity, please select this interface
+        documentation: https://www.kucoin.com/docs-new/api-3470170
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -286,17 +133,18 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT      | 1       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def get_dcp(self, **kwargs: Any) -> GetDcpResp:
+    def add_order_test(self, req: AddOrderTestReq,
+                       **kwargs: Any) -> AddOrderTestResp:
         """
-        summary: Get DCP
-        description: Get Disconnection Protect(Deadman Swich)Through this interface, you can query the settings of automatic order cancellation
-        documentation: https://www.kucoin.com/docs-new/api-3470172
+        summary: Add Order Test
+        description: Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.
+        documentation: https://www.kucoin.com/docs-new/api-3470187
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -304,46 +152,7 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_all_orders_by_symbol(
-            self, req: CancelAllOrdersBySymbolReq,
-            **kwargs: Any) -> CancelAllOrdersBySymbolResp:
-        """
-        summary: Cancel All Orders By Symbol
-        description: This endpoint can cancel all spot orders for specific symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470175
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_closed_orders(self, req: GetClosedOrdersReq,
-                          **kwargs: Any) -> GetClosedOrdersResp:
-        """
-        summary: Get Closed Orders
-        description: This interface is to obtain all Spot closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
-        documentation: https://www.kucoin.com/docs-new/api-3470179
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT      | 1       |
         +---------------------+---------+
         """
         pass
@@ -406,30 +215,33 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
-                              **kwargs: Any) -> GetOrderByOrderIdResp:
+    def cancel_order_by_order_id_sync(
+            self, req: CancelOrderByOrderIdSyncReq,
+            **kwargs: Any) -> CancelOrderByOrderIdSyncResp:
         """
-        summary: Get Order By OrderId
-        description: This endpoint can be used to obtain information for a single Spot order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
-        documentation: https://www.kucoin.com/docs-new/api-3470181
+        summary: Cancel Order By OrderId Sync
+        description: This endpoint can be used to cancel a spot order by orderId.
+        documentation: https://www.kucoin.com/docs-new/api-3470185
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | SPOT    |
         | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
+        | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT      | 1       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
+    def cancel_order_by_client_oid(
+            self, req: CancelOrderByClientOidReq,
+            **kwargs: Any) -> CancelOrderByClientOidResp:
         """
-        summary: Add Order
-        description: Place order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
-        documentation: https://www.kucoin.com/docs-new/api-3470188
+        summary: Cancel Order By ClientOid
+        description: This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470184
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -463,13 +275,12 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def cancel_order_by_order_id_sync(
-            self, req: CancelOrderByOrderIdSyncReq,
-            **kwargs: Any) -> CancelOrderByOrderIdSyncResp:
+    def cancel_partial_order(self, req: CancelPartialOrderReq,
+                             **kwargs: Any) -> CancelPartialOrderResp:
         """
-        summary: Cancel Order By OrderId Sync
-        description: This endpoint can be used to cancel a spot order by orderId.
-        documentation: https://www.kucoin.com/docs-new/api-3470185
+        summary: Cancel Partial Order
+        description: This interface can cancel the specified quantity of the order according to the orderId. The order execution order is: price first, time first, this interface will not change the queue order
+        documentation: https://www.kucoin.com/docs-new/api-3470183
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -477,18 +288,19 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 1       |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def add_order_sync(self, req: AddOrderSyncReq,
-                       **kwargs: Any) -> AddOrderSyncResp:
+    def cancel_all_orders_by_symbol(
+            self, req: CancelAllOrdersBySymbolReq,
+            **kwargs: Any) -> CancelAllOrdersBySymbolResp:
         """
-        summary: Add Order Sync
-        description: Place order to the spot trading system  The difference between this interface and \&quot;Add order\&quot; is that this interface will synchronously return the order information after the order matching is completed.  For higher latency requirements, please select the \&quot;Add order\&quot; interface. If there is a requirement for returning data integrity, please select this interface
-        documentation: https://www.kucoin.com/docs-new/api-3470170
+        summary: Cancel All Orders By Symbol
+        description: This endpoint can cancel all spot orders for specific symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470175
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -496,18 +308,17 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 1       |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def add_order_test(self, req: AddOrderTestReq,
-                       **kwargs: Any) -> AddOrderTestResp:
+    def cancel_all_orders(self, **kwargs: Any) -> CancelAllOrdersResp:
         """
-        summary: Add Order Test
-        description: Order test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.
-        documentation: https://www.kucoin.com/docs-new/api-3470187
+        summary: Cancel All Orders
+        description: This endpoint can cancel all spot orders for all symbol. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470176
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -515,61 +326,18 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 1       |
+        | API-RATE-LIMIT      | 30      |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    @deprecated('')
-    def get_recent_trade_history_old(
-            self, req: GetRecentTradeHistoryOldReq,
-            **kwargs: Any) -> GetRecentTradeHistoryOldResp:
+    def modify_order(self, req: ModifyOrderReq,
+                     **kwargs: Any) -> ModifyOrderResp:
         """
-        summary: Get Recent Trade History - Old
-        description: Request via this endpoint to get a list of 1000 fills in the last 24 hours. The return value is the data after Pagination, sorted in descending order according to time.
-        documentation: https://www.kucoin.com/docs-new/api-3470351
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 20      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def get_recent_orders_list_old(
-            self, req: GetRecentOrdersListOldReq,
-            **kwargs: Any) -> GetRecentOrdersListOldResp:
-        """
-        summary: Get Recent Orders List - Old
-        description: Request via this endpoint to get your current order list. The return value is the data after Pagination, sorted in descending order according to time.
-        documentation: https://www.kucoin.com/docs-new/api-3470347
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def cancel_order_by_client_oid_old(
-            self, req: CancelOrderByClientOidOldReq,
-            **kwargs: Any) -> CancelOrderByClientOidOldResp:
-        """
-        summary: Cancel Order By ClientOid - Old
-        description: This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470344
+        summary: Modify Order
+        description: This interface can modify the price and quantity of the order according to orderId or clientOid.  The implementation of this interface is: cancel the order and place a new order on the same trading pair, and return the modification result to the client synchronously  When the quantity of the new order updated by the user is less than the filled quantity of this order, the order will be considered as completed, and the order will be cancelled, and no new order will be placed
+        documentation: https://www.kucoin.com/docs-new/api-3470171
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -583,14 +351,282 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    @deprecated('')
-    def get_order_by_client_oid_old(
-            self, req: GetOrderByClientOidOldReq,
-            **kwargs: Any) -> GetOrderByClientOidOldResp:
+    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
+                              **kwargs: Any) -> GetOrderByOrderIdResp:
         """
-        summary: Get Order By ClientOid - Old
-        description: Request via this interface to check the information of a single active order via clientOid. The system will prompt that the order does not exists if the order does not exist or has been settled.
-        documentation: https://www.kucoin.com/docs-new/api-3470349
+        summary: Get Order By OrderId
+        description: This endpoint can be used to obtain information for a single Spot order using the order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470181
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
+                                **kwargs: Any) -> GetOrderByClientOidResp:
+        """
+        summary: Get Order By ClientOid
+        description: This endpoint can be used to obtain information for a single Spot order using the client order id.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470182
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_symbols_with_open_order(
+            self, **kwargs: Any) -> GetSymbolsWithOpenOrderResp:
+        """
+        summary: Get Symbols With Open Order
+        description: This interface can query all spot symbol that has active orders
+        documentation: https://www.kucoin.com/docs-new/api-3470177
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_open_orders(self, req: GetOpenOrdersReq,
+                        **kwargs: Any) -> GetOpenOrdersResp:
+        """
+        summary: Get Open Orders
+        description: This interface is to obtain all Spot active order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470178
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_closed_orders(self, req: GetClosedOrdersReq,
+                          **kwargs: Any) -> GetClosedOrdersResp:
+        """
+        summary: Get Closed Orders
+        description: This interface is to obtain all Spot closed order lists, and the return value of the active order interface is the paged data of all uncompleted order lists. The returned data is sorted in descending order according to the latest update time of the order.  After the user successfully places an order, the order is in Active state, and the user can use inOrderBook to determine whether the order has entered the order. Canceled or fully filled orders are marked as completed Done status.
+        documentation: https://www.kucoin.com/docs-new/api-3470179
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_trade_history(self, req: GetTradeHistoryReq,
+                          **kwargs: Any) -> GetTradeHistoryResp:
+        """
+        summary: Get Trade History
+        description: This endpoint can be used to obtain a list of the latest Spot transaction details.  The returned data is sorted in descending order according to the latest update time of the order.
+        documentation: https://www.kucoin.com/docs-new/api-3470180
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_dcp(self, **kwargs: Any) -> GetDcpResp:
+        """
+        summary: Get DCP
+        description: Get Disconnection Protect(Deadman Swich)Through this interface, you can query the settings of automatic order cancellation
+        documentation: https://www.kucoin.com/docs-new/api-3470172
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def set_dcp(self, req: SetDcpReq, **kwargs: Any) -> SetDcpResp:
+        """
+        summary: Set DCP
+        description: Set Disconnection Protect(Deadman Swich)Through this interface, Call this interface to automatically cancel all orders of the set trading pair after the specified time. If this interface is not called again for renewal or cancellation before the set time, the system will help the user to cancel the order of the corresponding trading pair. Otherwise it will not.
+        documentation: https://www.kucoin.com/docs-new/api-3470173
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def add_stop_order(self, req: AddStopOrderReq,
+                       **kwargs: Any) -> AddStopOrderResp:
+        """
+        summary: Add Stop Order
+        description: Place stop order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
+        documentation: https://www.kucoin.com/docs-new/api-3470334
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 1       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def cancel_stop_order_by_client_oid(
+            self, req: CancelStopOrderByClientOidReq,
+            **kwargs: Any) -> CancelStopOrderByClientOidResp:
+        """
+        summary: Cancel Stop Order By ClientOid
+        description: This endpoint can be used to cancel a spot  stop order by clientOid. 
+        documentation: https://www.kucoin.com/docs-new/api-3470336
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def cancel_stop_order_by_order_id(
+            self, req: CancelStopOrderByOrderIdReq,
+            **kwargs: Any) -> CancelStopOrderByOrderIdResp:
+        """
+        summary: Cancel Stop Order By OrderId
+        description: This endpoint can be used to cancel a spot stop order by orderId. 
+        documentation: https://www.kucoin.com/docs-new/api-3470335
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def batch_cancel_stop_order(self, req: BatchCancelStopOrderReq,
+                                **kwargs: Any) -> BatchCancelStopOrderResp:
+        """
+        summary: Batch Cancel Stop Orders
+        description: This endpoint can be used to cancel a spot stop orders by batch.
+        documentation: https://www.kucoin.com/docs-new/api-3470337
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_stop_orders_list(self, req: GetStopOrdersListReq,
+                             **kwargs: Any) -> GetStopOrdersListResp:
+        """
+        summary: Get Stop Orders List
+        description: This interface is to obtain all Spot active stop order lists
+        documentation: https://www.kucoin.com/docs-new/api-3470338
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 8       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_stop_order_by_order_id(self, req: GetStopOrderByOrderIdReq,
+                                   **kwargs: Any) -> GetStopOrderByOrderIdResp:
+        """
+        summary: Get Stop Order By OrderId
+        description: This interface is to obtain Spot stop order details by orderId
+        documentation: https://www.kucoin.com/docs-new/api-3470339
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_stop_order_by_client_oid(
+            self, req: GetStopOrderByClientOidReq,
+            **kwargs: Any) -> GetStopOrderByClientOidResp:
+        """
+        summary: Get Stop Order By ClientOid
+        description: This interface is to obtain Spot stop order details by orderId
+        documentation: https://www.kucoin.com/docs-new/api-3470340
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -605,12 +641,12 @@ class OrderAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def batch_cancel_order_old(self, req: BatchCancelOrderOldReq,
-                               **kwargs: Any) -> BatchCancelOrderOldResp:
+    def add_oco_order(self, req: AddOcoOrderReq,
+                      **kwargs: Any) -> AddOcoOrderResp:
         """
-        summary: Batch Cancel Order - Old
-        description: Request via this endpoint to cancel all open orders. The response is a list of ids of the canceled orders.
-        documentation: https://www.kucoin.com/docs-new/api-3470345
+        summary: Add OCO Order
+        description: Place OCO order to the Spot trading system
+        documentation: https://www.kucoin.com/docs-new/api-3470353
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -618,19 +654,81 @@ class OrderAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | SPOT    |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 20      |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
     @deprecated('')
-    def get_orders_list_old(self, req: GetOrdersListOldReq,
-                            **kwargs: Any) -> GetOrdersListOldResp:
+    def cancel_oco_order_by_order_id(
+            self, req: CancelOcoOrderByOrderIdReq,
+            **kwargs: Any) -> CancelOcoOrderByOrderIdResp:
         """
-        summary: Get Orders List - Old
-        description: Request via this endpoint to get your current order list. The return value is the data after Pagination, sorted in descending order according to time.
-        documentation: https://www.kucoin.com/docs-new/api-3470346
+        summary: Cancel OCO Order By OrderId
+        description: This endpoint can be used to cancel a spot order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470354
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def cancel_oco_order_by_client_oid(
+            self, req: CancelOcoOrderByClientOidReq,
+            **kwargs: Any) -> CancelOcoOrderByClientOidResp:
+        """
+        summary: Cancel OCO Order By ClientOid
+        description: Request via this interface to cancel a stop order via the clientOid.  You will receive cancelledOrderIds field once the system has received the cancellation request. The cancellation request will be processed by the matching engine in sequence. To know if the request is processed (successfully or not), you may check the order status or the update message from the pushes.
+        documentation: https://www.kucoin.com/docs-new/api-3470355
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def batch_cancel_oco_orders(self, req: BatchCancelOcoOrdersReq,
+                                **kwargs: Any) -> BatchCancelOcoOrdersResp:
+        """
+        summary: Batch Cancel OCO Order
+        description: This interface can batch cancel OCO orders through orderIds.  You will receive cancelledOrderIds field once the system has received the cancellation request. The cancellation request will be processed by the matching engine in sequence. To know if the request is processed (successfully or not), you may check the order status or the update message from the pushes.
+        documentation: https://www.kucoin.com/docs-new/api-3470356
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_oco_order_by_order_id(self, req: GetOcoOrderByOrderIdReq,
+                                  **kwargs: Any) -> GetOcoOrderByOrderIdResp:
+        """
+        summary: Get OCO Order By OrderId
+        description: Request via this interface to get a oco order information via the order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470357
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -645,53 +743,54 @@ class OrderAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def batch_add_orders_old(self, req: BatchAddOrdersOldReq,
-                             **kwargs: Any) -> BatchAddOrdersOldResp:
+    def get_oco_order_by_client_oid(
+            self, req: GetOcoOrderByClientOidReq,
+            **kwargs: Any) -> GetOcoOrderByClientOidResp:
         """
-        summary: Batch Add Orders - Old
-        description: Request via this endpoint to place 5 orders at the same time. The order type must be a limit order of the same symbol.
-        documentation: https://www.kucoin.com/docs-new/api-3470342
+        summary: Get OCO Order By ClientOid
+        description: Request via this interface to get a oco order information via the client order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470358
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | SPOT    |
         | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
+        | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
     @deprecated('')
-    def cancel_order_by_order_id_old(
-            self, req: CancelOrderByOrderIdOldReq,
-            **kwargs: Any) -> CancelOrderByOrderIdOldResp:
+    def get_oco_order_detail_by_order_id(
+            self, req: GetOcoOrderDetailByOrderIdReq,
+            **kwargs: Any) -> GetOcoOrderDetailByOrderIdResp:
         """
-        summary: Cancel Order By OrderId - Old
-        description: This endpoint can be used to cancel a spot order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470343
+        summary: Get OCO Order Detail By OrderId
+        description: Request via this interface to get a oco order detail via the order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470359
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | SPOT    |
         | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
+        | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
     @deprecated('')
-    def get_order_by_order_id_old(self, req: GetOrderByOrderIdOldReq,
-                                  **kwargs: Any) -> GetOrderByOrderIdOldResp:
+    def get_oco_order_list(self, req: GetOcoOrderListReq,
+                           **kwargs: Any) -> GetOcoOrderListResp:
         """
-        summary: Get Order By OrderId - Old
-        description: Request via this endpoint to get a single order info by order ID.
-        documentation: https://www.kucoin.com/docs-new/api-3470348
+        summary: Get OCO Order List
+        description: Request via this endpoint to get your current OCO order list. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
+        documentation: https://www.kucoin.com/docs-new/api-3470360
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -745,12 +844,13 @@ class OrderAPI(ABC):
         pass
 
     @abstractmethod
-    def batch_cancel_stop_order(self, req: BatchCancelStopOrderReq,
-                                **kwargs: Any) -> BatchCancelStopOrderResp:
+    @deprecated('')
+    def batch_add_orders_old(self, req: BatchAddOrdersOldReq,
+                             **kwargs: Any) -> BatchAddOrdersOldResp:
         """
-        summary: Batch Cancel Stop Orders
-        description: This endpoint can be used to cancel a spot stop orders by batch.
-        documentation: https://www.kucoin.com/docs-new/api-3470337
+        summary: Batch Add Orders - Old
+        description: Request via this endpoint to place 5 orders at the same time. The order type must be a limit order of the same symbol.
+        documentation: https://www.kucoin.com/docs-new/api-3470342
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -765,196 +865,33 @@ class OrderAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def cancel_stop_order_by_client_oid(
-            self, req: CancelStopOrderByClientOidReq,
-            **kwargs: Any) -> CancelStopOrderByClientOidResp:
+    def cancel_order_by_order_id_old(
+            self, req: CancelOrderByOrderIdOldReq,
+            **kwargs: Any) -> CancelOrderByOrderIdOldResp:
         """
-        summary: Cancel Stop Order By ClientOid
-        description: This endpoint can be used to cancel a spot  stop order by clientOid. 
-        documentation: https://www.kucoin.com/docs-new/api-3470336
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_stop_orders_list(self, req: GetStopOrdersListReq,
-                             **kwargs: Any) -> GetStopOrdersListResp:
-        """
-        summary: Get Stop Orders List
-        description: This interface is to obtain all Spot active stop order lists
-        documentation: https://www.kucoin.com/docs-new/api-3470338
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 8       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def cancel_stop_order_by_order_id(
-            self, req: CancelStopOrderByOrderIdReq,
-            **kwargs: Any) -> CancelStopOrderByOrderIdResp:
-        """
-        summary: Cancel Stop Order By OrderId
-        description: This endpoint can be used to cancel a spot stop order by orderId. 
-        documentation: https://www.kucoin.com/docs-new/api-3470335
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_stop_order_by_order_id(self, req: GetStopOrderByOrderIdReq,
-                                   **kwargs: Any) -> GetStopOrderByOrderIdResp:
-        """
-        summary: Get Stop Order By OrderId
-        description: This interface is to obtain Spot stop order details by orderId
-        documentation: https://www.kucoin.com/docs-new/api-3470339
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def add_stop_order(self, req: AddStopOrderReq,
-                       **kwargs: Any) -> AddStopOrderResp:
-        """
-        summary: Add Stop Order
-        description: Place stop order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.
-        documentation: https://www.kucoin.com/docs-new/api-3470334
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 1       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_stop_order_by_client_oid(
-            self, req: GetStopOrderByClientOidReq,
-            **kwargs: Any) -> GetStopOrderByClientOidResp:
-        """
-        summary: Get Stop Order By ClientOid
-        description: This interface is to obtain Spot stop order details by orderId
-        documentation: https://www.kucoin.com/docs-new/api-3470340
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def cancel_oco_order_by_client_oid(
-            self, req: CancelOcoOrderByClientOidReq,
-            **kwargs: Any) -> CancelOcoOrderByClientOidResp:
-        """
-        summary: Cancel OCO Order By ClientOid
-        description: Request via this interface to cancel a stop order via the clientOid.  You will receive cancelledOrderIds field once the system has received the cancellation request. The cancellation request will be processed by the matching engine in sequence. To know if the request is processed (successfully or not), you may check the order status or the update message from the pushes.
-        documentation: https://www.kucoin.com/docs-new/api-3470355
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 3       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def get_oco_order_by_client_oid(
-            self, req: GetOcoOrderByClientOidReq,
-            **kwargs: Any) -> GetOcoOrderByClientOidResp:
-        """
-        summary: Get OCO Order By ClientOid
-        description: Request via this interface to get a oco order information via the client order ID.
-        documentation: https://www.kucoin.com/docs-new/api-3470358
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def get_oco_order_detail_by_order_id(
-            self, req: GetOcoOrderDetailByOrderIdReq,
-            **kwargs: Any) -> GetOcoOrderDetailByOrderIdResp:
-        """
-        summary: Get OCO Order Detail By OrderId
-        description: Request via this interface to get a oco order detail via the order ID.
-        documentation: https://www.kucoin.com/docs-new/api-3470359
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | GENERAL |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def cancel_oco_order_by_order_id(
-            self, req: CancelOcoOrderByOrderIdReq,
-            **kwargs: Any) -> CancelOcoOrderByOrderIdResp:
-        """
-        summary: Cancel OCO Order By OrderId
+        summary: Cancel Order By OrderId - Old
         description: This endpoint can be used to cancel a spot order by orderId. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
-        documentation: https://www.kucoin.com/docs-new/api-3470354
+        documentation: https://www.kucoin.com/docs-new/api-3470343
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def cancel_order_by_client_oid_old(
+            self, req: CancelOrderByClientOidOldReq,
+            **kwargs: Any) -> CancelOrderByClientOidOldResp:
+        """
+        summary: Cancel Order By ClientOid - Old
+        description: This endpoint can be used to cancel a spot order by clientOid. This endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.
+        documentation: https://www.kucoin.com/docs-new/api-3470344
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -969,12 +906,32 @@ class OrderAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def get_oco_order_by_order_id(self, req: GetOcoOrderByOrderIdReq,
-                                  **kwargs: Any) -> GetOcoOrderByOrderIdResp:
+    def batch_cancel_order_old(self, req: BatchCancelOrderOldReq,
+                               **kwargs: Any) -> BatchCancelOrderOldResp:
         """
-        summary: Get OCO Order By OrderId
-        description: Request via this interface to get a oco order information via the order ID.
-        documentation: https://www.kucoin.com/docs-new/api-3470357
+        summary: Batch Cancel Order - Old
+        description: Request via this endpoint to cancel all open orders. The response is a list of ids of the canceled orders.
+        documentation: https://www.kucoin.com/docs-new/api-3470345
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | SPOT    |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 20      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_orders_list_old(self, req: GetOrdersListOldReq,
+                            **kwargs: Any) -> GetOrdersListOldResp:
+        """
+        summary: Get Orders List - Old
+        description: Request via this endpoint to get your current order list. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470346
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -989,38 +946,19 @@ class OrderAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def add_oco_order(self, req: AddOcoOrderReq,
-                      **kwargs: Any) -> AddOcoOrderResp:
+    def get_recent_orders_list_old(
+            self, req: GetRecentOrdersListOldReq,
+            **kwargs: Any) -> GetRecentOrdersListOldResp:
         """
-        summary: Add OCO Order
-        description: Place OCO order to the Spot trading system
-        documentation: https://www.kucoin.com/docs-new/api-3470353
+        summary: Get Recent Orders List - Old
+        description: Request via this endpoint to get your current order list. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470347
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | SPOT    |
         | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
-        | API-RATE-LIMIT-POOL | SPOT    |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def batch_cancel_oco_orders(self, req: BatchCancelOcoOrdersReq,
-                                **kwargs: Any) -> BatchCancelOcoOrdersResp:
-        """
-        summary: Batch Cancel OCO Order
-        description: This interface can batch cancel OCO orders through orderIds.  You will receive cancelledOrderIds field once the system has received the cancellation request. The cancellation request will be processed by the matching engine in sequence. To know if the request is processed (successfully or not), you may check the order status or the update message from the pushes.
-        documentation: https://www.kucoin.com/docs-new/api-3470356
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | SPOT    |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | SPOT    |
+        | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
         | API-RATE-LIMIT      | 3       |
         +---------------------+---------+
@@ -1029,12 +967,12 @@ class OrderAPI(ABC):
 
     @abstractmethod
     @deprecated('')
-    def get_oco_order_list(self, req: GetOcoOrderListReq,
-                           **kwargs: Any) -> GetOcoOrderListResp:
+    def get_order_by_order_id_old(self, req: GetOrderByOrderIdOldReq,
+                                  **kwargs: Any) -> GetOrderByOrderIdOldResp:
         """
-        summary: Get OCO Order List
-        description: Request via this endpoint to get your current OCO order list. Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.
-        documentation: https://www.kucoin.com/docs-new/api-3470360
+        summary: Get Order By OrderId - Old
+        description: Request via this endpoint to get a single order info by order ID.
+        documentation: https://www.kucoin.com/docs-new/api-3470348
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -1043,6 +981,68 @@ class OrderAPI(ABC):
         | API-PERMISSION      | GENERAL |
         | API-RATE-LIMIT-POOL | SPOT    |
         | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_order_by_client_oid_old(
+            self, req: GetOrderByClientOidOldReq,
+            **kwargs: Any) -> GetOrderByClientOidOldResp:
+        """
+        summary: Get Order By ClientOid - Old
+        description: Request via this interface to check the information of a single active order via clientOid. The system will prompt that the order does not exists if the order does not exist or has been settled.
+        documentation: https://www.kucoin.com/docs-new/api-3470349
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 3       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_trade_history_old(self, req: GetTradeHistoryOldReq,
+                              **kwargs: Any) -> GetTradeHistoryOldResp:
+        """
+        summary: Get Trade History - Old
+        description: Request via this endpoint to get the recent fills. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470350
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 10      |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def get_recent_trade_history_old(
+            self, req: GetRecentTradeHistoryOldReq,
+            **kwargs: Any) -> GetRecentTradeHistoryOldResp:
+        """
+        summary: Get Recent Trade History - Old
+        description: Request via this endpoint to get a list of 1000 fills in the last 24 hours. The return value is the data after Pagination, sorted in descending order according to time.
+        documentation: https://www.kucoin.com/docs-new/api-3470351
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | SPOT    |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | GENERAL |
+        | API-RATE-LIMIT-POOL | SPOT    |
+        | API-RATE-LIMIT      | 20      |
         +---------------------+---------+
         """
         pass
@@ -1053,83 +1053,21 @@ class OrderAPIImpl(OrderAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_trade_history_old(self, req: GetTradeHistoryOldReq,
-                              **kwargs: Any) -> GetTradeHistoryOldResp:
-        return self.transport.call("spot", False, "GET", "/api/v1/fills", req,
-                                   GetTradeHistoryOldResp(), False, **kwargs)
+    def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
+        return self.transport.call("spot", False, "POST", "/api/v1/hf/orders",
+                                   req, AddOrderResp(), False, **kwargs)
 
-    def get_trade_history(self, req: GetTradeHistoryReq,
-                          **kwargs: Any) -> GetTradeHistoryResp:
-        return self.transport.call("spot", False, "GET", "/api/v1/hf/fills",
-                                   req, GetTradeHistoryResp(), False, **kwargs)
-
-    def get_open_orders(self, req: GetOpenOrdersReq,
-                        **kwargs: Any) -> GetOpenOrdersResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/hf/orders/active", req,
-                                   GetOpenOrdersResp(), False, **kwargs)
-
-    def get_symbols_with_open_order(
-            self, **kwargs: Any) -> GetSymbolsWithOpenOrderResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/hf/orders/active/symbols", None,
-                                   GetSymbolsWithOpenOrderResp(), False,
-                                   **kwargs)
-
-    def modify_order(self, req: ModifyOrderReq,
-                     **kwargs: Any) -> ModifyOrderResp:
+    def add_order_sync(self, req: AddOrderSyncReq,
+                       **kwargs: Any) -> AddOrderSyncResp:
         return self.transport.call("spot", False, "POST",
-                                   "/api/v1/hf/orders/alter", req,
-                                   ModifyOrderResp(), False, **kwargs)
+                                   "/api/v1/hf/orders/sync", req,
+                                   AddOrderSyncResp(), False, **kwargs)
 
-    def cancel_all_orders(self, **kwargs: Any) -> CancelAllOrdersResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/hf/orders/cancelAll", None,
-                                   CancelAllOrdersResp(), False, **kwargs)
-
-    def cancel_partial_order(self, req: CancelPartialOrderReq,
-                             **kwargs: Any) -> CancelPartialOrderResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/hf/orders/cancel/{orderId}", req,
-                                   CancelPartialOrderResp(), False, **kwargs)
-
-    def cancel_order_by_client_oid(
-            self, req: CancelOrderByClientOidReq,
-            **kwargs: Any) -> CancelOrderByClientOidResp:
-        return self.transport.call(
-            "spot", False, "DELETE",
-            "/api/v1/hf/orders/client-order/{clientOid}", req,
-            CancelOrderByClientOidResp(), False, **kwargs)
-
-    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
-                                **kwargs: Any) -> GetOrderByClientOidResp:
-        return self.transport.call(
-            "spot", False, "GET", "/api/v1/hf/orders/client-order/{clientOid}",
-            req, GetOrderByClientOidResp(), False, **kwargs)
-
-    def set_dcp(self, req: SetDcpReq, **kwargs: Any) -> SetDcpResp:
+    def add_order_test(self, req: AddOrderTestReq,
+                       **kwargs: Any) -> AddOrderTestResp:
         return self.transport.call("spot", False, "POST",
-                                   "/api/v1/hf/orders/dead-cancel-all", req,
-                                   SetDcpResp(), False, **kwargs)
-
-    def get_dcp(self, **kwargs: Any) -> GetDcpResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/hf/orders/dead-cancel-all/query",
-                                   None, GetDcpResp(), False, **kwargs)
-
-    def cancel_all_orders_by_symbol(
-            self, req: CancelAllOrdersBySymbolReq,
-            **kwargs: Any) -> CancelAllOrdersBySymbolResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/hf/orders", req,
-                                   CancelAllOrdersBySymbolResp(), False,
-                                   **kwargs)
-
-    def get_closed_orders(self, req: GetClosedOrdersReq,
-                          **kwargs: Any) -> GetClosedOrdersResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/hf/orders/done", req,
-                                   GetClosedOrdersResp(), False, **kwargs)
+                                   "/api/v1/hf/orders/test", req,
+                                   AddOrderTestResp(), False, **kwargs)
 
     def batch_add_orders(self, req: BatchAddOrdersReq,
                          **kwargs: Any) -> BatchAddOrdersResp:
@@ -1149,15 +1087,21 @@ class OrderAPIImpl(OrderAPI):
                                    "/api/v1/hf/orders/{orderId}", req,
                                    CancelOrderByOrderIdResp(), False, **kwargs)
 
-    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
-                              **kwargs: Any) -> GetOrderByOrderIdResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/hf/orders/{orderId}", req,
-                                   GetOrderByOrderIdResp(), False, **kwargs)
+    def cancel_order_by_order_id_sync(
+            self, req: CancelOrderByOrderIdSyncReq,
+            **kwargs: Any) -> CancelOrderByOrderIdSyncResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/hf/orders/sync/{orderId}", req,
+                                   CancelOrderByOrderIdSyncResp(), False,
+                                   **kwargs)
 
-    def add_order(self, req: AddOrderReq, **kwargs: Any) -> AddOrderResp:
-        return self.transport.call("spot", False, "POST", "/api/v1/hf/orders",
-                                   req, AddOrderResp(), False, **kwargs)
+    def cancel_order_by_client_oid(
+            self, req: CancelOrderByClientOidReq,
+            **kwargs: Any) -> CancelOrderByClientOidResp:
+        return self.transport.call(
+            "spot", False, "DELETE",
+            "/api/v1/hf/orders/client-order/{clientOid}", req,
+            CancelOrderByClientOidResp(), False, **kwargs)
 
     def cancel_order_by_client_oid_sync(
             self, req: CancelOrderByClientOidSyncReq,
@@ -1167,104 +1111,81 @@ class OrderAPIImpl(OrderAPI):
             "/api/v1/hf/orders/sync/client-order/{clientOid}", req,
             CancelOrderByClientOidSyncResp(), False, **kwargs)
 
-    def cancel_order_by_order_id_sync(
-            self, req: CancelOrderByOrderIdSyncReq,
-            **kwargs: Any) -> CancelOrderByOrderIdSyncResp:
+    def cancel_partial_order(self, req: CancelPartialOrderReq,
+                             **kwargs: Any) -> CancelPartialOrderResp:
         return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/hf/orders/sync/{orderId}", req,
-                                   CancelOrderByOrderIdSyncResp(), False,
+                                   "/api/v1/hf/orders/cancel/{orderId}", req,
+                                   CancelPartialOrderResp(), False, **kwargs)
+
+    def cancel_all_orders_by_symbol(
+            self, req: CancelAllOrdersBySymbolReq,
+            **kwargs: Any) -> CancelAllOrdersBySymbolResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/hf/orders", req,
+                                   CancelAllOrdersBySymbolResp(), False,
                                    **kwargs)
 
-    def add_order_sync(self, req: AddOrderSyncReq,
-                       **kwargs: Any) -> AddOrderSyncResp:
+    def cancel_all_orders(self, **kwargs: Any) -> CancelAllOrdersResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/hf/orders/cancelAll", None,
+                                   CancelAllOrdersResp(), False, **kwargs)
+
+    def modify_order(self, req: ModifyOrderReq,
+                     **kwargs: Any) -> ModifyOrderResp:
         return self.transport.call("spot", False, "POST",
-                                   "/api/v1/hf/orders/sync", req,
-                                   AddOrderSyncResp(), False, **kwargs)
+                                   "/api/v1/hf/orders/alter", req,
+                                   ModifyOrderResp(), False, **kwargs)
 
-    def add_order_test(self, req: AddOrderTestReq,
-                       **kwargs: Any) -> AddOrderTestResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v1/hf/orders/test", req,
-                                   AddOrderTestResp(), False, **kwargs)
-
-    def get_recent_trade_history_old(
-            self, req: GetRecentTradeHistoryOldReq,
-            **kwargs: Any) -> GetRecentTradeHistoryOldResp:
-        return self.transport.call("spot", False, "GET", "/api/v1/limit/fills",
-                                   req, GetRecentTradeHistoryOldResp(), False,
-                                   **kwargs)
-
-    def get_recent_orders_list_old(
-            self, req: GetRecentOrdersListOldReq,
-            **kwargs: Any) -> GetRecentOrdersListOldResp:
+    def get_order_by_order_id(self, req: GetOrderByOrderIdReq,
+                              **kwargs: Any) -> GetOrderByOrderIdResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/limit/orders", req,
-                                   GetRecentOrdersListOldResp(), False,
-                                   **kwargs)
+                                   "/api/v1/hf/orders/{orderId}", req,
+                                   GetOrderByOrderIdResp(), False, **kwargs)
 
-    def cancel_order_by_client_oid_old(
-            self, req: CancelOrderByClientOidOldReq,
-            **kwargs: Any) -> CancelOrderByClientOidOldResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/order/client-order/{clientOid}",
-                                   req, CancelOrderByClientOidOldResp(), False,
-                                   **kwargs)
+    def get_order_by_client_oid(self, req: GetOrderByClientOidReq,
+                                **kwargs: Any) -> GetOrderByClientOidResp:
+        return self.transport.call(
+            "spot", False, "GET", "/api/v1/hf/orders/client-order/{clientOid}",
+            req, GetOrderByClientOidResp(), False, **kwargs)
 
-    def get_order_by_client_oid_old(
-            self, req: GetOrderByClientOidOldReq,
-            **kwargs: Any) -> GetOrderByClientOidOldResp:
+    def get_symbols_with_open_order(
+            self, **kwargs: Any) -> GetSymbolsWithOpenOrderResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/order/client-order/{clientOid}",
-                                   req, GetOrderByClientOidOldResp(), False,
+                                   "/api/v1/hf/orders/active/symbols", None,
+                                   GetSymbolsWithOpenOrderResp(), False,
                                    **kwargs)
 
-    def batch_cancel_order_old(self, req: BatchCancelOrderOldReq,
-                               **kwargs: Any) -> BatchCancelOrderOldResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/orders", req,
-                                   BatchCancelOrderOldResp(), False, **kwargs)
-
-    def get_orders_list_old(self, req: GetOrdersListOldReq,
-                            **kwargs: Any) -> GetOrdersListOldResp:
-        return self.transport.call("spot", False, "GET", "/api/v1/orders", req,
-                                   GetOrdersListOldResp(), False, **kwargs)
-
-    def batch_add_orders_old(self, req: BatchAddOrdersOldReq,
-                             **kwargs: Any) -> BatchAddOrdersOldResp:
-        return self.transport.call("spot", False, "POST",
-                                   "/api/v1/orders/multi", req,
-                                   BatchAddOrdersOldResp(), False, **kwargs)
-
-    def cancel_order_by_order_id_old(
-            self, req: CancelOrderByOrderIdOldReq,
-            **kwargs: Any) -> CancelOrderByOrderIdOldResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/orders/{orderId}", req,
-                                   CancelOrderByOrderIdOldResp(), False,
-                                   **kwargs)
-
-    def get_order_by_order_id_old(self, req: GetOrderByOrderIdOldReq,
-                                  **kwargs: Any) -> GetOrderByOrderIdOldResp:
+    def get_open_orders(self, req: GetOpenOrdersReq,
+                        **kwargs: Any) -> GetOpenOrdersResp:
         return self.transport.call("spot", False, "GET",
-                                   "/api/v1/orders/{orderId}", req,
-                                   GetOrderByOrderIdOldResp(), False, **kwargs)
+                                   "/api/v1/hf/orders/active", req,
+                                   GetOpenOrdersResp(), False, **kwargs)
 
-    def add_order_old(self, req: AddOrderOldReq,
-                      **kwargs: Any) -> AddOrderOldResp:
-        return self.transport.call("spot", False, "POST", "/api/v1/orders",
-                                   req, AddOrderOldResp(), False, **kwargs)
+    def get_closed_orders(self, req: GetClosedOrdersReq,
+                          **kwargs: Any) -> GetClosedOrdersResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/hf/orders/done", req,
+                                   GetClosedOrdersResp(), False, **kwargs)
 
-    def add_order_test_old(self, req: AddOrderTestOldReq,
-                           **kwargs: Any) -> AddOrderTestOldResp:
+    def get_trade_history(self, req: GetTradeHistoryReq,
+                          **kwargs: Any) -> GetTradeHistoryResp:
+        return self.transport.call("spot", False, "GET", "/api/v1/hf/fills",
+                                   req, GetTradeHistoryResp(), False, **kwargs)
+
+    def get_dcp(self, **kwargs: Any) -> GetDcpResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/hf/orders/dead-cancel-all/query",
+                                   None, GetDcpResp(), False, **kwargs)
+
+    def set_dcp(self, req: SetDcpReq, **kwargs: Any) -> SetDcpResp:
         return self.transport.call("spot", False, "POST",
-                                   "/api/v1/orders/test", req,
-                                   AddOrderTestOldResp(), False, **kwargs)
+                                   "/api/v1/hf/orders/dead-cancel-all", req,
+                                   SetDcpResp(), False, **kwargs)
 
-    def batch_cancel_stop_order(self, req: BatchCancelStopOrderReq,
-                                **kwargs: Any) -> BatchCancelStopOrderResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v1/stop-order/cancel", req,
-                                   BatchCancelStopOrderResp(), False, **kwargs)
+    def add_stop_order(self, req: AddStopOrderReq,
+                       **kwargs: Any) -> AddStopOrderResp:
+        return self.transport.call("spot", False, "POST", "/api/v1/stop-order",
+                                   req, AddStopOrderResp(), False, **kwargs)
 
     def cancel_stop_order_by_client_oid(
             self, req: CancelStopOrderByClientOidReq,
@@ -1274,12 +1195,6 @@ class OrderAPIImpl(OrderAPI):
             "/api/v1/stop-order/cancelOrderByClientOid", req,
             CancelStopOrderByClientOidResp(), False, **kwargs)
 
-    def get_stop_orders_list(self, req: GetStopOrdersListReq,
-                             **kwargs: Any) -> GetStopOrdersListResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v1/stop-order", req,
-                                   GetStopOrdersListResp(), True, **kwargs)
-
     def cancel_stop_order_by_order_id(
             self, req: CancelStopOrderByOrderIdReq,
             **kwargs: Any) -> CancelStopOrderByOrderIdResp:
@@ -1288,17 +1203,24 @@ class OrderAPIImpl(OrderAPI):
                                    CancelStopOrderByOrderIdResp(), False,
                                    **kwargs)
 
+    def batch_cancel_stop_order(self, req: BatchCancelStopOrderReq,
+                                **kwargs: Any) -> BatchCancelStopOrderResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/stop-order/cancel", req,
+                                   BatchCancelStopOrderResp(), False, **kwargs)
+
+    def get_stop_orders_list(self, req: GetStopOrdersListReq,
+                             **kwargs: Any) -> GetStopOrdersListResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/stop-order", req,
+                                   GetStopOrdersListResp(), True, **kwargs)
+
     def get_stop_order_by_order_id(self, req: GetStopOrderByOrderIdReq,
                                    **kwargs: Any) -> GetStopOrderByOrderIdResp:
         return self.transport.call("spot", False, "GET",
                                    "/api/v1/stop-order/{orderId}", req,
                                    GetStopOrderByOrderIdResp(), False,
                                    **kwargs)
-
-    def add_stop_order(self, req: AddStopOrderReq,
-                       **kwargs: Any) -> AddStopOrderResp:
-        return self.transport.call("spot", False, "POST", "/api/v1/stop-order",
-                                   req, AddStopOrderResp(), False, **kwargs)
 
     def get_stop_order_by_client_oid(
             self, req: GetStopOrderByClientOidReq,
@@ -1308,6 +1230,19 @@ class OrderAPIImpl(OrderAPI):
                                    req, GetStopOrderByClientOidResp(), False,
                                    **kwargs)
 
+    def add_oco_order(self, req: AddOcoOrderReq,
+                      **kwargs: Any) -> AddOcoOrderResp:
+        return self.transport.call("spot", False, "POST", "/api/v3/oco/order",
+                                   req, AddOcoOrderResp(), False, **kwargs)
+
+    def cancel_oco_order_by_order_id(
+            self, req: CancelOcoOrderByOrderIdReq,
+            **kwargs: Any) -> CancelOcoOrderByOrderIdResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v3/oco/order/{orderId}", req,
+                                   CancelOcoOrderByOrderIdResp(), False,
+                                   **kwargs)
+
     def cancel_oco_order_by_client_oid(
             self, req: CancelOcoOrderByClientOidReq,
             **kwargs: Any) -> CancelOcoOrderByClientOidResp:
@@ -1315,6 +1250,18 @@ class OrderAPIImpl(OrderAPI):
                                    "/api/v3/oco/client-order/{clientOid}", req,
                                    CancelOcoOrderByClientOidResp(), False,
                                    **kwargs)
+
+    def batch_cancel_oco_orders(self, req: BatchCancelOcoOrdersReq,
+                                **kwargs: Any) -> BatchCancelOcoOrdersResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v3/oco/orders", req,
+                                   BatchCancelOcoOrdersResp(), False, **kwargs)
+
+    def get_oco_order_by_order_id(self, req: GetOcoOrderByOrderIdReq,
+                                  **kwargs: Any) -> GetOcoOrderByOrderIdResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v3/oco/order/{orderId}", req,
+                                   GetOcoOrderByOrderIdResp(), False, **kwargs)
 
     def get_oco_order_by_client_oid(
             self, req: GetOcoOrderByClientOidReq,
@@ -1332,32 +1279,85 @@ class OrderAPIImpl(OrderAPI):
                                    GetOcoOrderDetailByOrderIdResp(), False,
                                    **kwargs)
 
-    def cancel_oco_order_by_order_id(
-            self, req: CancelOcoOrderByOrderIdReq,
-            **kwargs: Any) -> CancelOcoOrderByOrderIdResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v3/oco/order/{orderId}", req,
-                                   CancelOcoOrderByOrderIdResp(), False,
-                                   **kwargs)
-
-    def get_oco_order_by_order_id(self, req: GetOcoOrderByOrderIdReq,
-                                  **kwargs: Any) -> GetOcoOrderByOrderIdResp:
-        return self.transport.call("spot", False, "GET",
-                                   "/api/v3/oco/order/{orderId}", req,
-                                   GetOcoOrderByOrderIdResp(), False, **kwargs)
-
-    def add_oco_order(self, req: AddOcoOrderReq,
-                      **kwargs: Any) -> AddOcoOrderResp:
-        return self.transport.call("spot", False, "POST", "/api/v3/oco/order",
-                                   req, AddOcoOrderResp(), False, **kwargs)
-
-    def batch_cancel_oco_orders(self, req: BatchCancelOcoOrdersReq,
-                                **kwargs: Any) -> BatchCancelOcoOrdersResp:
-        return self.transport.call("spot", False, "DELETE",
-                                   "/api/v3/oco/orders", req,
-                                   BatchCancelOcoOrdersResp(), False, **kwargs)
-
     def get_oco_order_list(self, req: GetOcoOrderListReq,
                            **kwargs: Any) -> GetOcoOrderListResp:
         return self.transport.call("spot", False, "GET", "/api/v3/oco/orders",
                                    req, GetOcoOrderListResp(), False, **kwargs)
+
+    def add_order_old(self, req: AddOrderOldReq,
+                      **kwargs: Any) -> AddOrderOldResp:
+        return self.transport.call("spot", False, "POST", "/api/v1/orders",
+                                   req, AddOrderOldResp(), False, **kwargs)
+
+    def add_order_test_old(self, req: AddOrderTestOldReq,
+                           **kwargs: Any) -> AddOrderTestOldResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v1/orders/test", req,
+                                   AddOrderTestOldResp(), False, **kwargs)
+
+    def batch_add_orders_old(self, req: BatchAddOrdersOldReq,
+                             **kwargs: Any) -> BatchAddOrdersOldResp:
+        return self.transport.call("spot", False, "POST",
+                                   "/api/v1/orders/multi", req,
+                                   BatchAddOrdersOldResp(), False, **kwargs)
+
+    def cancel_order_by_order_id_old(
+            self, req: CancelOrderByOrderIdOldReq,
+            **kwargs: Any) -> CancelOrderByOrderIdOldResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/orders/{orderId}", req,
+                                   CancelOrderByOrderIdOldResp(), False,
+                                   **kwargs)
+
+    def cancel_order_by_client_oid_old(
+            self, req: CancelOrderByClientOidOldReq,
+            **kwargs: Any) -> CancelOrderByClientOidOldResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/order/client-order/{clientOid}",
+                                   req, CancelOrderByClientOidOldResp(), False,
+                                   **kwargs)
+
+    def batch_cancel_order_old(self, req: BatchCancelOrderOldReq,
+                               **kwargs: Any) -> BatchCancelOrderOldResp:
+        return self.transport.call("spot", False, "DELETE",
+                                   "/api/v1/orders", req,
+                                   BatchCancelOrderOldResp(), False, **kwargs)
+
+    def get_orders_list_old(self, req: GetOrdersListOldReq,
+                            **kwargs: Any) -> GetOrdersListOldResp:
+        return self.transport.call("spot", False, "GET", "/api/v1/orders", req,
+                                   GetOrdersListOldResp(), False, **kwargs)
+
+    def get_recent_orders_list_old(
+            self, req: GetRecentOrdersListOldReq,
+            **kwargs: Any) -> GetRecentOrdersListOldResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/limit/orders", req,
+                                   GetRecentOrdersListOldResp(), False,
+                                   **kwargs)
+
+    def get_order_by_order_id_old(self, req: GetOrderByOrderIdOldReq,
+                                  **kwargs: Any) -> GetOrderByOrderIdOldResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/orders/{orderId}", req,
+                                   GetOrderByOrderIdOldResp(), False, **kwargs)
+
+    def get_order_by_client_oid_old(
+            self, req: GetOrderByClientOidOldReq,
+            **kwargs: Any) -> GetOrderByClientOidOldResp:
+        return self.transport.call("spot", False, "GET",
+                                   "/api/v1/order/client-order/{clientOid}",
+                                   req, GetOrderByClientOidOldResp(), False,
+                                   **kwargs)
+
+    def get_trade_history_old(self, req: GetTradeHistoryOldReq,
+                              **kwargs: Any) -> GetTradeHistoryOldResp:
+        return self.transport.call("spot", False, "GET", "/api/v1/fills", req,
+                                   GetTradeHistoryOldResp(), False, **kwargs)
+
+    def get_recent_trade_history_old(
+            self, req: GetRecentTradeHistoryOldReq,
+            **kwargs: Any) -> GetRecentTradeHistoryOldResp:
+        return self.transport.call("spot", False, "GET", "/api/v1/limit/fills",
+                                   req, GetRecentTradeHistoryOldResp(), False,
+                                   **kwargs)

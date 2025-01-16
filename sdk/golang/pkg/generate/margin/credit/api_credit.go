@@ -9,20 +9,6 @@ import (
 
 type CreditAPI interface {
 
-	// ModifyPurchase Modify Purchase
-	// Description: This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account
-	// Documentation: https://www.kucoin.com/docs-new/api-3470217
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | MARGIN  |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
-	ModifyPurchase(req *ModifyPurchaseReq, ctx context.Context) (*ModifyPurchaseResp, error)
-
 	// GetLoanMarket Get Loan Market
 	// Description: This API endpoint is used to get the information about the currencies available for lending.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470212
@@ -51,20 +37,6 @@ type CreditAPI interface {
 	// +---------------------+--------+
 	GetLoanMarketInterestRate(req *GetLoanMarketInterestRateReq, ctx context.Context) (*GetLoanMarketInterestRateResp, error)
 
-	// GetPurchaseOrders Get Purchase Orders
-	// Description: This API endpoint provides pagination query for the purchase orders.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470213
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | GENERAL |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 10      |
-	// +---------------------+---------+
-	GetPurchaseOrders(req *GetPurchaseOrdersReq, ctx context.Context) (*GetPurchaseOrdersResp, error)
-
 	// Purchase Purchase
 	// Description: Invest credit in the market and earn interest
 	// Documentation: https://www.kucoin.com/docs-new/api-3470216
@@ -79,9 +51,23 @@ type CreditAPI interface {
 	// +---------------------+---------+
 	Purchase(req *PurchaseReq, ctx context.Context) (*PurchaseResp, error)
 
-	// GetRedeemOrders Get Redeem Orders
-	// Description: This API endpoint provides pagination query for the redeem orders.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470214
+	// ModifyPurchase Modify Purchase
+	// Description: This API endpoint is used to update the interest rates of subscription orders, which will take effect at the beginning of the next hour.,Please ensure that the funds are in the main(funding) account
+	// Documentation: https://www.kucoin.com/docs-new/api-3470217
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | SPOT    |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | MARGIN  |
+	// | API-RATE-LIMIT-POOL | SPOT    |
+	// | API-RATE-LIMIT      | 10      |
+	// +---------------------+---------+
+	ModifyPurchase(req *ModifyPurchaseReq, ctx context.Context) (*ModifyPurchaseResp, error)
+
+	// GetPurchaseOrders Get Purchase Orders
+	// Description: This API endpoint provides pagination query for the purchase orders.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470213
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -91,7 +77,7 @@ type CreditAPI interface {
 	// | API-RATE-LIMIT-POOL | SPOT    |
 	// | API-RATE-LIMIT      | 10      |
 	// +---------------------+---------+
-	GetRedeemOrders(req *GetRedeemOrdersReq, ctx context.Context) (*GetRedeemOrdersResp, error)
+	GetPurchaseOrders(req *GetPurchaseOrdersReq, ctx context.Context) (*GetPurchaseOrdersResp, error)
 
 	// Redeem Redeem
 	// Description: Redeem your loan order
@@ -106,6 +92,20 @@ type CreditAPI interface {
 	// | API-RATE-LIMIT      | 15      |
 	// +---------------------+---------+
 	Redeem(req *RedeemReq, ctx context.Context) (*RedeemResp, error)
+
+	// GetRedeemOrders Get Redeem Orders
+	// Description: This API endpoint provides pagination query for the redeem orders.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470214
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | SPOT    |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | GENERAL |
+	// | API-RATE-LIMIT-POOL | SPOT    |
+	// | API-RATE-LIMIT      | 10      |
+	// +---------------------+---------+
+	GetRedeemOrders(req *GetRedeemOrdersReq, ctx context.Context) (*GetRedeemOrdersResp, error)
 }
 
 type CreditAPIImpl struct {
@@ -114,12 +114,6 @@ type CreditAPIImpl struct {
 
 func NewCreditAPIImp(transport interfaces.Transport) *CreditAPIImpl {
 	return &CreditAPIImpl{transport: transport}
-}
-
-func (impl *CreditAPIImpl) ModifyPurchase(req *ModifyPurchaseReq, ctx context.Context) (*ModifyPurchaseResp, error) {
-	resp := &ModifyPurchaseResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/lend/purchase/update", req, resp, false)
-	return resp, err
 }
 
 func (impl *CreditAPIImpl) GetLoanMarket(req *GetLoanMarketReq, ctx context.Context) (*GetLoanMarketResp, error) {
@@ -134,26 +128,32 @@ func (impl *CreditAPIImpl) GetLoanMarketInterestRate(req *GetLoanMarketInterestR
 	return resp, err
 }
 
-func (impl *CreditAPIImpl) GetPurchaseOrders(req *GetPurchaseOrdersReq, ctx context.Context) (*GetPurchaseOrdersResp, error) {
-	resp := &GetPurchaseOrdersResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/purchase/orders", req, resp, false)
-	return resp, err
-}
-
 func (impl *CreditAPIImpl) Purchase(req *PurchaseReq, ctx context.Context) (*PurchaseResp, error) {
 	resp := &PurchaseResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/purchase", req, resp, false)
 	return resp, err
 }
 
-func (impl *CreditAPIImpl) GetRedeemOrders(req *GetRedeemOrdersReq, ctx context.Context) (*GetRedeemOrdersResp, error) {
-	resp := &GetRedeemOrdersResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/redeem/orders", req, resp, false)
+func (impl *CreditAPIImpl) ModifyPurchase(req *ModifyPurchaseReq, ctx context.Context) (*ModifyPurchaseResp, error) {
+	resp := &ModifyPurchaseResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/lend/purchase/update", req, resp, false)
+	return resp, err
+}
+
+func (impl *CreditAPIImpl) GetPurchaseOrders(req *GetPurchaseOrdersReq, ctx context.Context) (*GetPurchaseOrdersResp, error) {
+	resp := &GetPurchaseOrdersResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/purchase/orders", req, resp, false)
 	return resp, err
 }
 
 func (impl *CreditAPIImpl) Redeem(req *RedeemReq, ctx context.Context) (*RedeemResp, error) {
 	resp := &RedeemResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/redeem", req, resp, false)
+	return resp, err
+}
+
+func (impl *CreditAPIImpl) GetRedeemOrders(req *GetRedeemOrdersReq, ctx context.Context) (*GetRedeemOrdersResp, error) {
+	resp := &GetRedeemOrdersResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/redeem/orders", req, resp, false)
 	return resp, err
 }

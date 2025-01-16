@@ -8,7 +8,7 @@ For an overview of the project and SDKs in other languages, refer to the [Main R
 
 ## 📦 Installation
 
-### Latest Version: `1.0.0`
+### Latest Version: `1.1.0`
 Install the Python SDK using `pip`:
 
 ```bash
@@ -89,6 +89,9 @@ Official Documentation: [KuCoin API Docs](https://www.kucoin.com/docs-new)
 
 Explore more examples in the [example/](example/) directory for advanced usage.
 
+## 📋 Changelog
+
+For a detailed list of changes, see the [Changelog](./CHANGELOG.md).
 
 ## 📌 Special Notes on APIs
 

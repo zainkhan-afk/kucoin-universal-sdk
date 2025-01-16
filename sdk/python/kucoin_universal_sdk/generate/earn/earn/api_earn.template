@@ -1,82 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-def test_get_eth_staking_products_req(self):
-    """
-        get_eth_staking_products
-        Get ETH Staking Products
-        /api/v1/earn/eth-staking/products
-    """
-
-    builder = GetEthStakingProductsReqBuilder()
-    builder.set_currency(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_eth_staking_products(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_account_holding_req(self):
-    """
-        get_account_holding
-        Get Account Holding
-        /api/v1/earn/hold-assets
-    """
-
-    builder = GetAccountHoldingReqBuilder()
-    builder.set_currency(?).set_product_id(?).set_product_category(?).set_current_page(?).set_page_size(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_account_holding(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_kcs_staking_products_req(self):
-    """
-        get_kcs_staking_products
-        Get KCS Staking Products
-        /api/v1/earn/kcs-staking/products
-    """
-
-    builder = GetKcsStakingProductsReqBuilder()
-    builder.set_currency(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_kcs_staking_products(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_redeem_req(self):
-    """
-        redeem
-        Redeem
-        /api/v1/earn/orders
-    """
-
-    builder = RedeemReqBuilder()
-    builder.set_order_id(?).set_amount(?).set_from_account_type(?).set_confirm_punish_redeem(?)
-    req = builder.build()
-    try:
-        resp = self.api.redeem(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_purchase_req(self):
     """
         purchase
@@ -89,25 +13,6 @@ def test_purchase_req(self):
     req = builder.build()
     try:
         resp = self.api.purchase(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_promotion_products_req(self):
-    """
-        get_promotion_products
-        Get Promotion Products
-        /api/v1/earn/promotion/products
-    """
-
-    builder = GetPromotionProductsReqBuilder()
-    builder.set_currency(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_promotion_products(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -134,6 +39,25 @@ def test_get_redeem_preview_req(self):
         print("error: ", e)
         raise e
 
+def test_redeem_req(self):
+    """
+        redeem
+        Redeem
+        /api/v1/earn/orders
+    """
+
+    builder = RedeemReqBuilder()
+    builder.set_order_id(?).set_amount(?).set_from_account_type(?).set_confirm_punish_redeem(?)
+    req = builder.build()
+    try:
+        resp = self.api.redeem(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_savings_products_req(self):
     """
         get_savings_products
@@ -153,6 +77,44 @@ def test_get_savings_products_req(self):
         print("error: ", e)
         raise e
 
+def test_get_promotion_products_req(self):
+    """
+        get_promotion_products
+        Get Promotion Products
+        /api/v1/earn/promotion/products
+    """
+
+    builder = GetPromotionProductsReqBuilder()
+    builder.set_currency(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_promotion_products(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_account_holding_req(self):
+    """
+        get_account_holding
+        Get Account Holding
+        /api/v1/earn/hold-assets
+    """
+
+    builder = GetAccountHoldingReqBuilder()
+    builder.set_currency(?).set_product_id(?).set_product_category(?).set_current_page(?).set_page_size(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_account_holding(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
 def test_get_staking_products_req(self):
     """
         get_staking_products
@@ -165,6 +127,44 @@ def test_get_staking_products_req(self):
     req = builder.build()
     try:
         resp = self.api.get_staking_products(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_kcs_staking_products_req(self):
+    """
+        get_kcs_staking_products
+        Get KCS Staking Products
+        /api/v1/earn/kcs-staking/products
+    """
+
+    builder = GetKcsStakingProductsReqBuilder()
+    builder.set_currency(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_kcs_staking_products(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_eth_staking_products_req(self):
+    """
+        get_eth_staking_products
+        Get ETH Staking Products
+        /api/v1/earn/eth-staking/products
+    """
+
+    builder = GetEthStakingProductsReqBuilder()
+    builder.set_currency(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_eth_staking_products(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

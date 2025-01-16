@@ -7,24 +7,29 @@ import (
 	"testing"
 )
 
-func TestMarketGetIsolatedMarginSymbolsReqModel(t *testing.T) {
-	// GetIsolatedMarginSymbols
-	// Get Symbols - Isolated Margin
-	// /api/v1/isolated/symbols
+func TestMarketGetCrossMarginSymbolsReqModel(t *testing.T) {
+	// GetCrossMarginSymbols
+	// Get Symbols - Cross Margin
+	// /api/v3/margin/symbols
 
+	data := "{\"symbol\": \"BTC-USDT\"}"
+	req := &GetCrossMarginSymbolsReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
 }
 
-func TestMarketGetIsolatedMarginSymbolsRespModel(t *testing.T) {
-	// GetIsolatedMarginSymbols
-	// Get Symbols - Isolated Margin
-	// /api/v1/isolated/symbols
+func TestMarketGetCrossMarginSymbolsRespModel(t *testing.T) {
+	// GetCrossMarginSymbols
+	// Get Symbols - Cross Margin
+	// /api/v3/margin/symbols
 
-	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"symbolName\": \"BTC-USDT\",\n            \"baseCurrency\": \"BTC\",\n            \"quoteCurrency\": \"USDT\",\n            \"maxLeverage\": 10,\n            \"flDebtRatio\": \"0.97\",\n            \"tradeEnable\": true,\n            \"autoRenewMaxDebtRatio\": \"0.96\",\n            \"baseBorrowEnable\": true,\n            \"quoteBorrowEnable\": true,\n            \"baseTransferInEnable\": true,\n            \"quoteTransferInEnable\": true,\n            \"baseBorrowCoefficient\": \"1\",\n            \"quoteBorrowCoefficient\": \"1\"\n        }\n    ]\n}"
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"timestamp\": 1729665839353,\n        \"items\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"name\": \"BTC-USDT\",\n                \"enableTrading\": true,\n                \"market\": \"USDS\",\n                \"baseCurrency\": \"BTC\",\n                \"quoteCurrency\": \"USDT\",\n                \"baseIncrement\": \"0.00000001\",\n                \"baseMinSize\": \"0.00001\",\n                \"baseMaxSize\": \"10000000000\",\n                \"quoteIncrement\": \"0.000001\",\n                \"quoteMinSize\": \"0.1\",\n                \"quoteMaxSize\": \"99999999\",\n                \"priceIncrement\": \"0.1\",\n                \"feeCurrency\": \"USDT\",\n                \"priceLimitRate\": \"0.1\",\n                \"minFunds\": \"0.1\"\n            }\n        ]\n    }\n}"
 	commonResp := &types.RestResponse{}
 	err := json.Unmarshal([]byte(data), commonResp)
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
-	resp := &GetIsolatedMarginSymbolsResp{}
+	resp := &GetCrossMarginSymbolsResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -48,34 +53,6 @@ func TestMarketGetMarginConfigRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetMarginConfigResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetMarkPriceDetailReqModel(t *testing.T) {
-	// GetMarkPriceDetail
-	// Get Mark Price Detail
-	// /api/v1/mark-price/{symbol}/current
-
-	data := "{\"symbol\": \"USDT-BTC\"}"
-	req := &GetMarkPriceDetailReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetMarkPriceDetailRespModel(t *testing.T) {
-	// GetMarkPriceDetail
-	// Get Mark Price Detail
-	// /api/v1/mark-price/{symbol}/current
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"USDT-BTC\",\n        \"timePoint\": 1729676888000,\n        \"value\": 1.5045E-5\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetMarkPriceDetailResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)
@@ -109,34 +86,6 @@ func TestMarketGetETFInfoRespModel(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestMarketGetCrossMarginSymbolsReqModel(t *testing.T) {
-	// GetCrossMarginSymbols
-	// Get Symbols - Cross Margin
-	// /api/v3/margin/symbols
-
-	data := "{\"symbol\": \"BTC-USDT\"}"
-	req := &GetCrossMarginSymbolsReq{}
-	err := json.Unmarshal([]byte(data), req)
-	req.ToMap()
-	assert.Nil(t, err)
-}
-
-func TestMarketGetCrossMarginSymbolsRespModel(t *testing.T) {
-	// GetCrossMarginSymbols
-	// Get Symbols - Cross Margin
-	// /api/v3/margin/symbols
-
-	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"timestamp\": 1729665839353,\n        \"items\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"name\": \"BTC-USDT\",\n                \"enableTrading\": true,\n                \"market\": \"USDS\",\n                \"baseCurrency\": \"BTC\",\n                \"quoteCurrency\": \"USDT\",\n                \"baseIncrement\": \"0.00000001\",\n                \"baseMinSize\": \"0.00001\",\n                \"baseMaxSize\": \"10000000000\",\n                \"quoteIncrement\": \"0.000001\",\n                \"quoteMinSize\": \"0.1\",\n                \"quoteMaxSize\": \"99999999\",\n                \"priceIncrement\": \"0.1\",\n                \"feeCurrency\": \"USDT\",\n                \"priceLimitRate\": \"0.1\",\n                \"minFunds\": \"0.1\"\n            }\n        ]\n    }\n}"
-	commonResp := &types.RestResponse{}
-	err := json.Unmarshal([]byte(data), commonResp)
-	assert.Nil(t, err)
-	assert.NotNil(t, commonResp.Data)
-	resp := &GetCrossMarginSymbolsResp{}
-	err = json.Unmarshal([]byte(commonResp.Data), resp)
-	resp.ToMap()
-	assert.Nil(t, err)
-}
-
 func TestMarketGetMarkPriceListReqModel(t *testing.T) {
 	// GetMarkPriceList
 	// Get Mark Price List
@@ -155,6 +104,57 @@ func TestMarketGetMarkPriceListRespModel(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, commonResp.Data)
 	resp := &GetMarkPriceListResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetMarkPriceDetailReqModel(t *testing.T) {
+	// GetMarkPriceDetail
+	// Get Mark Price Detail
+	// /api/v1/mark-price/{symbol}/current
+
+	data := "{\"symbol\": \"USDT-BTC\"}"
+	req := &GetMarkPriceDetailReq{}
+	err := json.Unmarshal([]byte(data), req)
+	req.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetMarkPriceDetailRespModel(t *testing.T) {
+	// GetMarkPriceDetail
+	// Get Mark Price Detail
+	// /api/v1/mark-price/{symbol}/current
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"symbol\": \"USDT-BTC\",\n        \"timePoint\": 1729676888000,\n        \"value\": 1.5045E-5\n    }\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetMarkPriceDetailResp{}
+	err = json.Unmarshal([]byte(commonResp.Data), resp)
+	resp.ToMap()
+	assert.Nil(t, err)
+}
+
+func TestMarketGetIsolatedMarginSymbolsReqModel(t *testing.T) {
+	// GetIsolatedMarginSymbols
+	// Get Symbols - Isolated Margin
+	// /api/v1/isolated/symbols
+
+}
+
+func TestMarketGetIsolatedMarginSymbolsRespModel(t *testing.T) {
+	// GetIsolatedMarginSymbols
+	// Get Symbols - Isolated Margin
+	// /api/v1/isolated/symbols
+
+	data := "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"symbolName\": \"BTC-USDT\",\n            \"baseCurrency\": \"BTC\",\n            \"quoteCurrency\": \"USDT\",\n            \"maxLeverage\": 10,\n            \"flDebtRatio\": \"0.97\",\n            \"tradeEnable\": true,\n            \"autoRenewMaxDebtRatio\": \"0.96\",\n            \"baseBorrowEnable\": true,\n            \"quoteBorrowEnable\": true,\n            \"baseTransferInEnable\": true,\n            \"quoteTransferInEnable\": true,\n            \"baseBorrowCoefficient\": \"1\",\n            \"quoteBorrowCoefficient\": \"1\"\n        }\n    ]\n}"
+	commonResp := &types.RestResponse{}
+	err := json.Unmarshal([]byte(data), commonResp)
+	assert.Nil(t, err)
+	assert.NotNil(t, commonResp.Data)
+	resp := &GetIsolatedMarginSymbolsResp{}
 	err = json.Unmarshal([]byte(commonResp.Data), resp)
 	resp.ToMap()
 	assert.Nil(t, err)

@@ -178,7 +178,172 @@
                 "x-sdk-method-description": "This interface can obtain the withdrawal quotas information of this currency.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"currency\\\":\\\"BTC\\\",\\\"limitBTCAmount\\\":\\\"15.79590095\\\",\\\"usedBTCAmount\\\":\\\"0.00000000\\\",\\\"quotaCurrency\\\":\\\"USDT\\\",\\\"limitQuotaCurrencyAmount\\\":\\\"999999.00000000\\\",\\\"usedQuotaCurrencyAmount\\\":\\\"0\\\",\\\"remainAmount\\\":\\\"15.79590095\\\",\\\"availableAmount\\\":\\\"0\\\",\\\"withdrawMinFee\\\":\\\"0.0005\\\",\\\"innerWithdrawMinFee\\\":\\\"0\\\",\\\"withdrawMinSize\\\":\\\"0.001\\\",\\\"isWithdrawEnabled\\\":true,\\\"precision\\\":8,\\\"chain\\\":\\\"BTC\\\",\\\"reason\\\":null,\\\"lockedAmount\\\":\\\"0\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"chain\\\": \\\"eth\\\"}",
+                "operationId": "001"
+            }
+        },
+        "/api/v3/withdrawals": {
+            "post": {
+                "summary": "Withdraw(V3)",
+                "deprecated": false,
+                "description": "Use this interface to withdraw the specified currency",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "withdrawalId": {
+                                                    "type": "string",
+                                                    "description": "Withdrawal id, a unique ID for a withdrawal"
+                                                }
+                                            },
+                                            "required": [
+                                                "withdrawalId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470146",
+                "x-abandon": "normal",
+                "x-domain": "Spot",
+                "x-api-channel": "Private",
+                "x-api-permission": "Withdrawal",
+                "x-api-rate-limit-pool": "Management",
+                "x-sdk-service": "Account",
+                "x-sdk-sub-service": "Withdrawal",
+                "x-sdk-method-name": "withdrawalV3",
+                "x-sdk-method-description": "Use this interface to withdraw the specified currency",
+                "x-api-rate-limit": 5,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "",
+                                "type": "object",
+                                "properties": {
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "currency",
+                                        "example": [
+                                            "BTC",
+                                            "ETH",
+                                            "USDT"
+                                        ]
+                                    },
+                                    "chain": {
+                                        "type": "string",
+                                        "description": "The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.",
+                                        "default": "eth",
+                                        "example": [
+                                            "eth",
+                                            "bech32",
+                                            "btc",
+                                            "kcc",
+                                            "trx",
+                                            "bsc",
+                                            "arbitrum",
+                                            "ton",
+                                            "optimism"
+                                        ]
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "Withdrawal amount, a positive number which is a multiple of the amount precision"
+                                    },
+                                    "memo": {
+                                        "type": "string",
+                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
+                                    },
+                                    "isInner": {
+                                        "type": "boolean",
+                                        "description": "Internal withdrawal or not. Default : false",
+                                        "default": false
+                                    },
+                                    "remark": {
+                                        "type": "string",
+                                        "description": "remark"
+                                    },
+                                    "feeDeductType": {
+                                        "type": "string",
+                                        "description": "Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified\n\n1. INTERNAL- deduct the transaction fees from your withdrawal amount\n2. EXTERNAL- deduct the transaction fees from your main account\n3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC."
+                                    },
+                                    "toAddress": {
+                                        "type": "string",
+                                        "description": "Withdrawal address",
+                                        "example": [
+                                            "0x023****2355",
+                                            "1572**401",
+                                            "a431***1e@gmail.com",
+                                            "55-12341234"
+                                        ]
+                                    },
+                                    "withdrawType": {
+                                        "type": "string",
+                                        "description": "Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)",
+                                        "enum": [
+                                            "ADDRESS",
+                                            "UID",
+                                            "MAIL",
+                                            "PHONE"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "ADDRESS",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "UID",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "MAIL",
+                                                "name": "",
+                                                "description": ""
+                                            },
+                                            {
+                                                "value": "PHONE",
+                                                "name": "",
+                                                "description": ""
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "currency",
+                                    "toAddress",
+                                    "amount",
+                                    "withdrawType"
+                                ]
+                            },
+                            "example": "{\n    \"currency\": \"USDT\",\n    \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\",\n    \"amount\": 3,\n    \"withdrawType\": \"ADDRESS\",\n    \"chain\": \"trx\",\n    \"isInner\": true,\n    \"remark\": \"this is Remark\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670deec84d64da0007d7c946\\\"}}",
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"toAddress\\\": \\\"TKFRQXSDcY****GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"withdrawType\\\": \\\"ADDRESS\\\", \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true, \\\"remark\\\": \\\"this is Remark\\\"}",
+                "operationId": "002"
             }
         },
         "/api/v1/withdrawals/{withdrawalId}": {
@@ -234,7 +399,8 @@
                 "x-sdk-method-description": "This interface can cancel the withdrawal, Only withdrawals requests of PROCESSING status could be canceled.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":null}",
-                "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}"
+                "x-request-example": "{\\\"withdrawalId\\\": \\\"670b891f7e0f440007730692\\\"}",
+                "operationId": "003"
             }
         },
         "/api/v1/withdrawals": {
@@ -500,7 +666,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 5,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"a435*****@gmail.com\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"1.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1728555875000,\\n                \\\"updatedAt\\\": 1728555875000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            },\\n            {\\n                \\\"currency\\\": \\\"USDT\\\",\\n                \\\"chain\\\": \\\"trx\\\",\\n                \\\"status\\\": \\\"SUCCESS\\\",\\n                \\\"address\\\": \\\"TSv3L1fS7******X4nLP6rqNxYz\\\",\\n                \\\"memo\\\": \\\"\\\",\\n                \\\"isInner\\\": true,\\n                \\\"amount\\\": \\\"6.00000000\\\",\\n                \\\"fee\\\": \\\"0.00000000\\\",\\n                \\\"walletTxId\\\": null,\\n                \\\"createdAt\\\": 1721730920000,\\n                \\\"updatedAt\\\": 1721730920000,\\n                \\\"remark\\\": \\\"\\\",\\n                \\\"arrears\\\": false\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "004"
             },
             "post": {
                 "summary": "Withdraw - V1",
@@ -622,170 +789,8 @@
                     }
                 },
                 "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670a973cf07b3800070e216c\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"address\\\": \\\"TKFRQXSDc****16GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true}"
-            }
-        },
-        "/api/v3/withdrawals": {
-            "post": {
-                "summary": "Withdraw(V3)",
-                "deprecated": false,
-                "description": "Use this interface to withdraw the specified currency",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "withdrawalId": {
-                                                    "type": "string",
-                                                    "description": "Withdrawal id, a unique ID for a withdrawal"
-                                                }
-                                            },
-                                            "required": [
-                                                "withdrawalId"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470146",
-                "x-abandon": "normal",
-                "x-domain": "Spot",
-                "x-api-channel": "Private",
-                "x-api-permission": "Withdrawal",
-                "x-api-rate-limit-pool": "Management",
-                "x-sdk-service": "Account",
-                "x-sdk-sub-service": "Withdrawal",
-                "x-sdk-method-name": "withdrawalV3",
-                "x-sdk-method-description": "Use this interface to withdraw the specified currency",
-                "x-api-rate-limit": 5,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "title": "",
-                                "type": "object",
-                                "properties": {
-                                    "currency": {
-                                        "type": "string",
-                                        "description": "currency",
-                                        "example": [
-                                            "BTC",
-                                            "ETH",
-                                            "USDT"
-                                        ]
-                                    },
-                                    "chain": {
-                                        "type": "string",
-                                        "description": "The chainId of currency, For a currency with multiple chains, it is recommended to specify chain parameter instead of using the default chain; you can query the chainId through the response of the GET /api/v3/currencies/{currency} interface.",
-                                        "default": "eth",
-                                        "example": [
-                                            "eth",
-                                            "bech32",
-                                            "btc",
-                                            "kcc",
-                                            "trx",
-                                            "bsc",
-                                            "arbitrum",
-                                            "ton",
-                                            "optimism"
-                                        ]
-                                    },
-                                    "amount": {
-                                        "type": "integer",
-                                        "format": "int64",
-                                        "description": "Withdrawal amount, a positive number which is a multiple of the amount precision"
-                                    },
-                                    "memo": {
-                                        "type": "string",
-                                        "description": "Address remark. If there’s no remark, it is empty. When you withdraw from other platforms to the KuCoin, you need to fill in memo(tag). If you do not fill memo (tag), your deposit may not be available, please be cautious."
-                                    },
-                                    "isInner": {
-                                        "type": "boolean",
-                                        "description": "Internal withdrawal or not. Default : false",
-                                        "default": false
-                                    },
-                                    "remark": {
-                                        "type": "string",
-                                        "description": "remark"
-                                    },
-                                    "feeDeductType": {
-                                        "type": "string",
-                                        "description": "Withdrawal fee deduction type: INTERNAL or EXTERNAL or not specified\n\n1. INTERNAL- deduct the transaction fees from your withdrawal amount\n2. EXTERNAL- deduct the transaction fees from your main account\n3. If you don't specify the feeDeductType parameter, when the balance in your main account is sufficient to support the withdrawal, the system will initially deduct the transaction fees from your main account. But if the balance in your main account is not sufficient to support the withdrawal, the system will deduct the fees from your withdrawal amount. For example: Suppose you are going to withdraw 1 BTC from the KuCoin platform (transaction fee: 0.0001BTC), if the balance in your main account is insufficient, the system will deduct the transaction fees from your withdrawal amount. In this case, you will be receiving 0.9999BTC."
-                                    },
-                                    "toAddress": {
-                                        "type": "string",
-                                        "description": "Withdrawal address",
-                                        "example": [
-                                            "0x023****2355",
-                                            "1572**401",
-                                            "a431***1e@gmail.com",
-                                            "55-12341234"
-                                        ]
-                                    },
-                                    "withdrawType": {
-                                        "type": "string",
-                                        "description": "Withdrawal type, ADDRESS (withdrawal address), UID, MAIL (email), PHONE (mobile phone number). Note: If you withdraw by uid/mail/phone, there will have rate limited: 3 times/10 seconds, 50 times/24 hours (calculated on a rolling basis based on the first request time)",
-                                        "enum": [
-                                            "ADDRESS",
-                                            "UID",
-                                            "MAIL",
-                                            "PHONE"
-                                        ],
-                                        "x-api-enum": [
-                                            {
-                                                "value": "ADDRESS",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "UID",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "MAIL",
-                                                "name": "",
-                                                "description": ""
-                                            },
-                                            {
-                                                "value": "PHONE",
-                                                "name": "",
-                                                "description": ""
-                                            }
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "currency",
-                                    "toAddress",
-                                    "amount",
-                                    "withdrawType"
-                                ]
-                            },
-                            "example": "{\n    \"currency\": \"USDT\",\n    \"toAddress\": \"TKFRQXSDcY****GmLrjJggwX8\",\n    \"amount\": 3,\n    \"withdrawType\": \"ADDRESS\",\n    \"chain\": \"trx\",\n    \"isInner\": true,\n    \"remark\": \"this is Remark\"\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\\"code\\\":\\\"200000\\\",\\\"data\\\":{\\\"withdrawalId\\\":\\\"670deec84d64da0007d7c946\\\"}}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"toAddress\\\": \\\"TKFRQXSDcY****GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"withdrawType\\\": \\\"ADDRESS\\\", \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true, \\\"remark\\\": \\\"this is Remark\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\", \\\"address\\\": \\\"TKFRQXSDc****16GmLrjJggwX8\\\", \\\"amount\\\": 3, \\\"chain\\\": \\\"trx\\\", \\\"isInner\\\": true}",
+                "operationId": "006"
             }
         },
         "/api/v1/hist-withdrawals": {
@@ -1002,7 +1007,8 @@
                 "x-sdk-method-description": "Request via this endpoint to get deposit list Items are paginated and sorted to show the latest first. See the Pagination section for retrieving additional entries after the first page.",
                 "x-api-rate-limit": 20,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 50,\\n        \\\"totalNum\\\": 1,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"currency\\\": \\\"BTC\\\",\\n                \\\"createAt\\\": 1526723468,\\n                \\\"amount\\\": \\\"0.534\\\",\\n                \\\"address\\\": \\\"33xW37ZSW4tQvg443Pc7NLCAs167Yc2XUV\\\",\\n                \\\"walletTxId\\\": \\\"aeacea864c020acf58e51606169240e96774838dcd4f7ce48acf38e3651323f4\\\",\\n                \\\"isInner\\\": false,\\n                \\\"status\\\": \\\"SUCCESS\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}"
+                "x-request-example": "{\\\"currency\\\": \\\"BTC\\\", \\\"status\\\": \\\"SUCCESS\\\", \\\"startAt\\\": 1728663338000, \\\"endAt\\\": 1728692138000, \\\"currentPage\\\": 1, \\\"pageSize\\\": 50}",
+                "operationId": "005"
             }
         }
     },

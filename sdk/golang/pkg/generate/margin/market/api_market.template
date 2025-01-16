@@ -1,13 +1,16 @@
 # API FUNCTION TEMPLATE
 
 
-func TestMarketGetIsolatedMarginSymbolsReq(t *testing.T) {
-    // GetIsolatedMarginSymbols
-    // Get Symbols - Isolated Margin
-    // /api/v1/isolated/symbols
+func TestMarketGetCrossMarginSymbolsReq(t *testing.T) {
+    // GetCrossMarginSymbols
+    // Get Symbols - Cross Margin
+    // /api/v3/margin/symbols
 
+    builder := market.NewGetCrossMarginSymbolsReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
 
-    resp, err := marketApi.GetIsolatedMarginSymbols(context.TODO())
+    resp, err := marketApi.GetCrossMarginSymbols(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -28,29 +31,6 @@ func TestMarketGetMarginConfigReq(t *testing.T) {
 
 
     resp, err := marketApi.GetMarginConfig(context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestMarketGetMarkPriceDetailReq(t *testing.T) {
-    // GetMarkPriceDetail
-    // Get Mark Price Detail
-    // /api/v1/mark-price/{symbol}/current
-
-    builder := market.NewGetMarkPriceDetailReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
-
-    resp, err := marketApi.GetMarkPriceDetail(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -87,16 +67,13 @@ func TestMarketGetETFInfoReq(t *testing.T) {
 }
 
 
-func TestMarketGetCrossMarginSymbolsReq(t *testing.T) {
-    // GetCrossMarginSymbols
-    // Get Symbols - Cross Margin
-    // /api/v3/margin/symbols
+func TestMarketGetMarkPriceListReq(t *testing.T) {
+    // GetMarkPriceList
+    // Get Mark Price List
+    // /api/v3/mark-price/all-symbols
 
-    builder := market.NewGetCrossMarginSymbolsReqBuilder()
-    builder.SetSymbol(?)
-    req := builder.Build()
 
-    resp, err := marketApi.GetCrossMarginSymbols(req, context.TODO())
+    resp, err := marketApi.GetMarkPriceList(context.TODO())
     if err != nil {
         panic(err)
     }
@@ -110,13 +87,36 @@ func TestMarketGetCrossMarginSymbolsReq(t *testing.T) {
 }
 
 
-func TestMarketGetMarkPriceListReq(t *testing.T) {
-    // GetMarkPriceList
-    // Get Mark Price List
-    // /api/v3/mark-price/all-symbols
+func TestMarketGetMarkPriceDetailReq(t *testing.T) {
+    // GetMarkPriceDetail
+    // Get Mark Price Detail
+    // /api/v1/mark-price/{symbol}/current
+
+    builder := market.NewGetMarkPriceDetailReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := marketApi.GetMarkPriceDetail(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
 
 
-    resp, err := marketApi.GetMarkPriceList(context.TODO())
+func TestMarketGetIsolatedMarginSymbolsReq(t *testing.T) {
+    // GetIsolatedMarginSymbols
+    // Get Symbols - Isolated Margin
+    // /api/v1/isolated/symbols
+
+
+    resp, err := marketApi.GetIsolatedMarginSymbols(context.TODO())
     if err != nil {
         panic(err)
     }

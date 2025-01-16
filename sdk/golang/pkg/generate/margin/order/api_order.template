@@ -1,98 +1,6 @@
 # API FUNCTION TEMPLATE
 
 
-func TestOrderAddOrderV1Req(t *testing.T) {
-    // AddOrderV1
-    // Add Order - V1
-    // /api/v1/margin/order
-
-    builder := order.NewAddOrderV1ReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetCancelAfter(?).SetFunds(?).SetAutoBorrow(?).SetAutoRepay(?).SetMarginModel(?)
-    req := builder.Build()
-
-    resp, err := orderApi.AddOrderV1(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderAddOrderTestV1Req(t *testing.T) {
-    // AddOrderTestV1
-    // Add Order Test - V1
-    // /api/v1/margin/order/test
-
-    builder := order.NewAddOrderTestV1ReqBuilder()
-    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetCancelAfter(?).SetFunds(?).SetAutoBorrow(?).SetAutoRepay(?).SetMarginModel(?)
-    req := builder.Build()
-
-    resp, err := orderApi.AddOrderTestV1(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetTradeHistoryReq(t *testing.T) {
-    // GetTradeHistory
-    // Get Trade History
-    // /api/v3/hf/margin/fills
-
-    builder := order.NewGetTradeHistoryReqBuilder()
-    builder.SetSymbol(?).SetTradeType(?).SetOrderId(?).SetSide(?).SetType(?).SetLastId(?).SetLimit(?).SetStartAt(?).SetEndAt(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetTradeHistory(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
-func TestOrderGetSymbolsWithOpenOrderReq(t *testing.T) {
-    // GetSymbolsWithOpenOrder
-    // Get Symbols With Open Order
-    // /api/v3/hf/margin/order/active/symbols
-
-    builder := order.NewGetSymbolsWithOpenOrderReqBuilder()
-    builder.SetTradeType(?)
-    req := builder.Build()
-
-    resp, err := orderApi.GetSymbolsWithOpenOrder(req, context.TODO())
-    if err != nil {
-        panic(err)
-    }
-    data, err := json.Marshal(resp.ToMap())
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println("code:", resp.CommonResponse.Code)
-    fmt.Println("message:", resp.CommonResponse.Message)
-    fmt.Println("data:", string(data))
-}
-
-
 func TestOrderAddOrderReq(t *testing.T) {
     // AddOrder
     // Add Order
@@ -139,16 +47,16 @@ func TestOrderAddOrderTestReq(t *testing.T) {
 }
 
 
-func TestOrderGetOpenOrdersReq(t *testing.T) {
-    // GetOpenOrders
-    // Get Open Orders
-    // /api/v3/hf/margin/orders/active
+func TestOrderCancelOrderByOrderIdReq(t *testing.T) {
+    // CancelOrderByOrderId
+    // Cancel Order By OrderId
+    // /api/v3/hf/margin/orders/{orderId}
 
-    builder := order.NewGetOpenOrdersReqBuilder()
-    builder.SetSymbol(?).SetTradeType(?)
+    builder := order.NewCancelOrderByOrderIdReqBuilder()
+    builder.SetOrderId(?).SetSymbol(?)
     req := builder.Build()
 
-    resp, err := orderApi.GetOpenOrders(req, context.TODO())
+    resp, err := orderApi.CancelOrderByOrderId(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -185,16 +93,16 @@ func TestOrderCancelOrderByClientOidReq(t *testing.T) {
 }
 
 
-func TestOrderGetOrderByClientOidReq(t *testing.T) {
-    // GetOrderByClientOid
-    // Get Order By ClientOid
-    // /api/v3/hf/margin/orders/client-order/{clientOid}
+func TestOrderCancelAllOrdersBySymbolReq(t *testing.T) {
+    // CancelAllOrdersBySymbol
+    // Cancel All Orders By Symbol
+    // /api/v3/hf/margin/orders
 
-    builder := order.NewGetOrderByClientOidReqBuilder()
-    builder.SetSymbol(?).SetClientOid(?)
+    builder := order.NewCancelAllOrdersBySymbolReqBuilder()
+    builder.SetSymbol(?).SetTradeType(?)
     req := builder.Build()
 
-    resp, err := orderApi.GetOrderByClientOid(req, context.TODO())
+    resp, err := orderApi.CancelAllOrdersBySymbol(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -208,16 +116,39 @@ func TestOrderGetOrderByClientOidReq(t *testing.T) {
 }
 
 
-func TestOrderCancelAllOrdersBySymbolReq(t *testing.T) {
-    // CancelAllOrdersBySymbol
-    // Cancel All Orders By Symbol
-    // /api/v3/hf/margin/orders
+func TestOrderGetSymbolsWithOpenOrderReq(t *testing.T) {
+    // GetSymbolsWithOpenOrder
+    // Get Symbols With Open Order
+    // /api/v3/hf/margin/order/active/symbols
 
-    builder := order.NewCancelAllOrdersBySymbolReqBuilder()
+    builder := order.NewGetSymbolsWithOpenOrderReqBuilder()
+    builder.SetTradeType(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetSymbolsWithOpenOrder(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetOpenOrdersReq(t *testing.T) {
+    // GetOpenOrders
+    // Get Open Orders
+    // /api/v3/hf/margin/orders/active
+
+    builder := order.NewGetOpenOrdersReqBuilder()
     builder.SetSymbol(?).SetTradeType(?)
     req := builder.Build()
 
-    resp, err := orderApi.CancelAllOrdersBySymbol(req, context.TODO())
+    resp, err := orderApi.GetOpenOrders(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -254,16 +185,16 @@ func TestOrderGetClosedOrdersReq(t *testing.T) {
 }
 
 
-func TestOrderCancelOrderByOrderIdReq(t *testing.T) {
-    // CancelOrderByOrderId
-    // Cancel Order By OrderId
-    // /api/v3/hf/margin/orders/{orderId}
+func TestOrderGetTradeHistoryReq(t *testing.T) {
+    // GetTradeHistory
+    // Get Trade History
+    // /api/v3/hf/margin/fills
 
-    builder := order.NewCancelOrderByOrderIdReqBuilder()
-    builder.SetOrderId(?).SetSymbol(?)
+    builder := order.NewGetTradeHistoryReqBuilder()
+    builder.SetSymbol(?).SetTradeType(?).SetOrderId(?).SetSide(?).SetType(?).SetLastId(?).SetLimit(?).SetStartAt(?).SetEndAt(?)
     req := builder.Build()
 
-    resp, err := orderApi.CancelOrderByOrderId(req, context.TODO())
+    resp, err := orderApi.GetTradeHistory(req, context.TODO())
     if err != nil {
         panic(err)
     }
@@ -287,6 +218,75 @@ func TestOrderGetOrderByOrderIdReq(t *testing.T) {
     req := builder.Build()
 
     resp, err := orderApi.GetOrderByOrderId(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderGetOrderByClientOidReq(t *testing.T) {
+    // GetOrderByClientOid
+    // Get Order By ClientOid
+    // /api/v3/hf/margin/orders/client-order/{clientOid}
+
+    builder := order.NewGetOrderByClientOidReqBuilder()
+    builder.SetSymbol(?).SetClientOid(?)
+    req := builder.Build()
+
+    resp, err := orderApi.GetOrderByClientOid(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderAddOrderV1Req(t *testing.T) {
+    // AddOrderV1
+    // Add Order - V1
+    // /api/v1/margin/order
+
+    builder := order.NewAddOrderV1ReqBuilder()
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetCancelAfter(?).SetFunds(?).SetAutoBorrow(?).SetAutoRepay(?).SetMarginModel(?)
+    req := builder.Build()
+
+    resp, err := orderApi.AddOrderV1(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestOrderAddOrderTestV1Req(t *testing.T) {
+    // AddOrderTestV1
+    // Add Order Test - V1
+    // /api/v1/margin/order/test
+
+    builder := order.NewAddOrderTestV1ReqBuilder()
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetType(?).SetStp(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetCancelAfter(?).SetFunds(?).SetAutoBorrow(?).SetAutoRepay(?).SetMarginModel(?)
+    req := builder.Build()
+
+    resp, err := orderApi.AddOrderTestV1(req, context.TODO())
     if err != nil {
         panic(err)
     }

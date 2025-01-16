@@ -1,0 +1,255 @@
+# API FUNCTION TEMPLATE
+
+
+func TestFuturesAddOrderReq(t *testing.T) {
+    // AddOrder
+    // Add Order
+    // /api/v1/copy-trade/futures/orders
+
+    builder := futures.NewAddOrderReqBuilder()
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetRemark(?).SetStop(?).SetStopPriceType(?).SetStopPrice(?).SetReduceOnly(?).SetCloseOrder(?).SetForceHold(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.AddOrder(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesAddOrderTestReq(t *testing.T) {
+    // AddOrderTest
+    // Add Order Test
+    // /api/v1/copy-trade/futures/orders/test
+
+    builder := futures.NewAddOrderTestReqBuilder()
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetRemark(?).SetStop(?).SetStopPriceType(?).SetStopPrice(?).SetReduceOnly(?).SetCloseOrder(?).SetForceHold(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.AddOrderTest(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesAddTPSLOrderReq(t *testing.T) {
+    // AddTPSLOrder
+    // Add Take Profit And Stop Loss Order
+    // /api/v1/copy-trade/futures/st-orders
+
+    builder := futures.NewAddTPSLOrderReqBuilder()
+    builder.SetClientOid(?).SetSide(?).SetSymbol(?).SetLeverage(?).SetType(?).SetRemark(?).SetStopPriceType(?).SetReduceOnly(?).SetCloseOrder(?).SetForceHold(?).SetMarginMode(?).SetPrice(?).SetSize(?).SetTimeInForce(?).SetPostOnly(?).SetHidden(?).SetIceberg(?).SetVisibleSize(?).SetTriggerStopUpPrice(?).SetTriggerStopDownPrice(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.AddTPSLOrder(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesCancelOrderByIdReq(t *testing.T) {
+    // CancelOrderById
+    // Cancel Order By OrderId
+    // /api/v1/copy-trade/futures/orders
+
+    builder := futures.NewCancelOrderByIdReqBuilder()
+    builder.SetOrderId(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.CancelOrderById(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesCancelOrderByClientOidReq(t *testing.T) {
+    // CancelOrderByClientOid
+    // Cancel Order By ClientOid
+    // /api/v1/copy-trade/futures/orders/client-order
+
+    builder := futures.NewCancelOrderByClientOidReqBuilder()
+    builder.SetSymbol(?).SetClientOid(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.CancelOrderByClientOid(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesGetMaxOpenSizeReq(t *testing.T) {
+    // GetMaxOpenSize
+    // Get Max Open Size
+    // /api/v1/copy-trade/futures/get-max-open-size
+
+    builder := futures.NewGetMaxOpenSizeReqBuilder()
+    builder.SetSymbol(?).SetPrice(?).SetLeverage(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.GetMaxOpenSize(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesGetMaxWithdrawMarginReq(t *testing.T) {
+    // GetMaxWithdrawMargin
+    // Get Max Withdraw Margin
+    // /api/v1/copy-trade/futures/position/margin/max-withdraw-margin
+
+    builder := futures.NewGetMaxWithdrawMarginReqBuilder()
+    builder.SetSymbol(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.GetMaxWithdrawMargin(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesAddIsolatedMarginReq(t *testing.T) {
+    // AddIsolatedMargin
+    // Add Isolated Margin
+    // /api/v1/copy-trade/futures/position/margin/deposit-margin
+
+    builder := futures.NewAddIsolatedMarginReqBuilder()
+    builder.SetSymbol(?).SetMargin(?).SetBizNo(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.AddIsolatedMargin(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesRemoveIsolatedMarginReq(t *testing.T) {
+    // RemoveIsolatedMargin
+    // Remove Isolated Margin
+    // /api/v1/copy-trade/futures/position/margin/withdraw-margin
+
+    builder := futures.NewRemoveIsolatedMarginReqBuilder()
+    builder.SetSymbol(?).SetWithdrawAmount(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.RemoveIsolatedMargin(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesModifyIsolatedMarginRiskLimtReq(t *testing.T) {
+    // ModifyIsolatedMarginRiskLimt
+    // Modify Isolated Margin Risk Limit
+    // /api/v1/copy-trade/futures/position/risk-limit-level/change
+
+    builder := futures.NewModifyIsolatedMarginRiskLimtReqBuilder()
+    builder.SetSymbol(?).SetLevel(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.ModifyIsolatedMarginRiskLimt(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+
+
+func TestFuturesModifyAutoDepositStatusReq(t *testing.T) {
+    // ModifyAutoDepositStatus
+    // Modify Isolated Margin Auto-Deposit Status
+    // /api/v1/copy-trade/futures/position/margin/auto-deposit-status
+
+    builder := futures.NewModifyAutoDepositStatusReqBuilder()
+    builder.SetSymbol(?).SetStatus(?)
+    req := builder.Build()
+
+    resp, err := futuresApi.ModifyAutoDepositStatus(req, context.TODO())
+    if err != nil {
+        panic(err)
+    }
+    data, err := json.Marshal(resp.ToMap())
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("code:", resp.CommonResponse.Code)
+    fmt.Println("message:", resp.CommonResponse.Message)
+    fmt.Println("data:", string(data))
+}
+

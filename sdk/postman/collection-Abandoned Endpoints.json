@@ -1258,6 +1258,259 @@
                     "name": "Orders",
                     "item": [
                         {
+                            "name": "Add Order - Old",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{spot_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "orders"
+                                    ],
+                                    "query": []
+                                },
+                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470333)\n\n:::tip[]\nIt is recommended to use the **POST /api/v1/hf/orders** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nPlace order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.\n:::\n\n:::tip[Tips]\nPlease note that once your order enters the order book, the system will freeze the handling fees for the order ahead of time.\n\nBefore placing orders, please be sure to fully understand the meaning of the parameters for each trading pair.\n:::\n\n:::tip[Tips]\nThe maximum number of active orders per account is 2000, with a maximum of 200 active orders per trading pair.(including stop orders).\n:::\n\n**Public order placement request parameters**\n\n| Param     | Type   | Mandatory | Description |\n| --------- | ------ | --------- | ----------- |\n| clientOid | String | Yes       | clientOid, the unique identifier created by the client, use of UUID, with a maximum length of 128 bits.   |\n| side      | String | Yes       | **buy** or **sell** |\n| symbol    | String | Yes       | symbol, e.g. ETH-BTC  |\n| type      | String | No        | **limit** or **market** (default is **limit**)   |\n| remark    | String | No        | remark, length cannot exceed 50 characters (ASCII)    |\n| stp       | String | No        | self trade prevention, **CN**, **CO**, **CB** or **DC**   |\n| tradeType | String | No        | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n##### Additional Request Parameters Required by `limit` Orders\n\n| Param       | Type    | Mandatory | Description  |\n| ----------- | ------- | --------- | ------------ |\n| price       | String  | Yes       | Specify price for currency  |\n| size        | String  | Yes       | Specify quantity for currency |\n| timeInForce | String  | No        | Order timing strategy `GTC`, `GTT`, `IOC`, `FOK` (The default is `GTC`)                 |\n| cancelAfter | long    | No        | Cancel after `n` seconds，the order timing strategy is `GTT`                            |\n| postOnly    | boolean | No        | passive order labels, this is disabled when the order timing strategy is `IOC` or `FOK` |\n| hidden      | boolean | No        | Hidden or not (not shown in order book)                                                 |\n| iceberg     | boolean | No        | Whether or not only visible portions of orders are shown in iceberg orders              |\n| visibleSize | String  | No        | Maximum visible quantity in iceberg orders                                              |\n\n##### Additional request parameters required by `market` orders\n\n| Param | Type   | Mandatory | Description                                |\n| ----- | ------ | --------- | ------------------------------------------ |\n| size  | String | No        | (Select one out of two: `size` or `funds`) |\n| funds | String | No        | (Select one out of two: `size` or `funds`) |\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.<br><br>Please remember the orderId created by the service provider, it used to check for updates in order status. |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | symbol |\n| type | string | specify if the order is an 'limit' order or 'market' order. <br><br>The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.<br><br>When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.<br><br>Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged. |\n| remark | string | Order placement remarks, length cannot exceed 20 characters (ASCII) |\n| stp | string | [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC |\n| price | string | Specify price for order<br><br>When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error. |\n| size | string | Specify quantity for order<br><br>When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.<br><br>When **type** is market, select one out of two: size or funds |\n| timeInForce | string | [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading |\n| postOnly | boolean | passive order labels, this is disabled when the order timing strategy is IOC or FOK |\n| hidden | boolean | Hidden or not (not shown in order book) |\n| iceberg | boolean | Whether or not only visible portions of orders are shown in iceberg orders |\n| visibleSize | string | Maximum visible quantity in iceberg orders |\n| cancelAfter | integer | Cancel after n seconds，the order timing strategy is GTT |\n| funds | string | When **type** is market, select one out of two: size or funds |\n| tradeType | string | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n\n---\n",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "//limit order\n{\n    \"type\": \"limit\",\n    \"symbol\": \"BTC-USDT\",\n    \"side\": \"buy\",\n    \"price\": \"50000\",\n    \"size\": \"0.00001\",\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"remark\": \"order remarks\"\n}\n\n//market order 1\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"size\": \"0.00001\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n\n//market order 2\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"funds\": \"1\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Successful Response",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "",
+                                            "protocol": "https",
+                                            "host": [
+                                                "{{spot_endpoint}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "v1",
+                                                "orders"
+                                            ],
+                                            "query": []
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "name": "Content-Type",
+                                            "description": {
+                                                "content": "",
+                                                "type": "text/plain"
+                                            }
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-remaining",
+                                            "value": 1997,
+                                            "name": "gw-ratelimit-remaining"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-limit",
+                                            "value": 2000,
+                                            "name": "gw-ratelimit-limit"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-reset",
+                                            "value": 29990,
+                                            "name": "gw-ratelimit-reset"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8635b38d120007709c0f\"\n    }\n}"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Add Order Test - Old",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{spot_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "orders",
+                                        "test"
+                                    ],
+                                    "query": []
+                                },
+                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470341)\n\n:::tip[]\nIt is recommended to use the **POST /api/v1/hf/orders/test** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nOrder test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.\n:::\n\n:::tip[Tips]\nPlease note that once your order enters the order book, the system will freeze the handling fees for the order ahead of time.\n\nBefore placing orders, please be sure to fully understand the meaning of the parameters for each trading pair.\n:::\n\n:::tip[Tips]\nThe maximum number of active orders per account is 2000, with a maximum of 200 active orders per trading pair.(including stop orders).\n:::\n\n**Public order placement request parameters**\n\n| Param     | Type   | Mandatory | Description |\n| --------- | ------ | --------- | ----------- |\n| clientOid | String | Yes       | clientOid, the unique identifier created by the client, use of UUID, with a maximum length of 128 bits.   |\n| side      | String | Yes       | **buy** or **sell** |\n| symbol    | String | Yes       | symbol, e.g. ETH-BTC  |\n| type      | String | No        | **limit** or **market** (default is **limit**)   |\n| remark    | String | No        | remark, length cannot exceed 50 characters (ASCII)    |\n| stp       | String | No        | self trade prevention, **CN**, **CO**, **CB** or **DC**   |\n| tradeType | String | No        | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n##### Additional Request Parameters Required by `limit` Orders\n\n| Param       | Type    | Mandatory | Description  |\n| ----------- | ------- | --------- | ------------ |\n| price       | String  | Yes       | Specify price for currency  |\n| size        | String  | Yes       | Specify quantity for currency |\n| timeInForce | String  | No        | Order timing strategy `GTC`, `GTT`, `IOC`, `FOK` (The default is `GTC`)                 |\n| cancelAfter | long    | No        | Cancel after `n` seconds，the order timing strategy is `GTT`                            |\n| postOnly    | boolean | No        | passive order labels, this is disabled when the order timing strategy is `IOC` or `FOK` |\n| hidden      | boolean | No        | Hidden or not (not shown in order book)                                                 |\n| iceberg     | boolean | No        | Whether or not only visible portions of orders are shown in iceberg orders              |\n| visibleSize | String  | No        | Maximum visible quantity in iceberg orders                                              |\n\n##### Additional request parameters required by `market` orders\n\n| Param | Type   | Mandatory | Description                                |\n| ----- | ------ | --------- | ------------------------------------------ |\n| size  | String | No        | (Select one out of two: `size` or `funds`) |\n| funds | String | No        | (Select one out of two: `size` or `funds`) |\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.<br><br>Please remember the orderId created by the service provider, it used to check for updates in order status. |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | symbol |\n| type | string | specify if the order is an 'limit' order or 'market' order. <br><br>The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.<br><br>When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.<br><br>Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged. |\n| remark | string | Order placement remarks, length cannot exceed 20 characters (ASCII) |\n| stp | string | [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC |\n| price | string | Specify price for order<br><br>When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error. |\n| size | string | Specify quantity for order<br><br>When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.<br><br>When **type** is market, select one out of two: size or funds |\n| timeInForce | string | [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading |\n| postOnly | boolean | passive order labels, this is disabled when the order timing strategy is IOC or FOK |\n| hidden | boolean | Hidden or not (not shown in order book) |\n| iceberg | boolean | Whether or not only visible portions of orders are shown in iceberg orders |\n| visibleSize | string | Maximum visible quantity in iceberg orders |\n| cancelAfter | integer | Cancel after n seconds，the order timing strategy is GTT |\n| funds | string | When **type** is market, select one out of two: size or funds |\n| tradeType | string | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n\n---\n",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "//limit order\n{\n    \"type\": \"limit\",\n    \"symbol\": \"BTC-USDT\",\n    \"side\": \"buy\",\n    \"price\": \"50000\",\n    \"size\": \"0.00001\",\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"remark\": \"order remarks\"\n}\n\n//market order 1\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"size\": \"0.00001\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n\n//market order 2\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"funds\": \"1\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Successful Response",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "",
+                                            "protocol": "https",
+                                            "host": [
+                                                "{{spot_endpoint}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "v1",
+                                                "orders",
+                                                "test"
+                                            ],
+                                            "query": []
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "name": "Content-Type",
+                                            "description": {
+                                                "content": "",
+                                                "type": "text/plain"
+                                            }
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-remaining",
+                                            "value": 1997,
+                                            "name": "gw-ratelimit-remaining"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-limit",
+                                            "value": 2000,
+                                            "name": "gw-ratelimit-limit"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-reset",
+                                            "value": 29990,
+                                            "name": "gw-ratelimit-reset"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8776291d9e00074f1edf\"\n    }\n}"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Batch Add Orders - Old",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{spot_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "orders",
+                                        "multi"
+                                    ],
+                                    "query": []
+                                },
+                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470342)\n\n:::tip[]\nIt is recommended to use the **POST /api/v1/hf/orders/multi** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nRequest via this endpoint to place 5 orders at the same time. The order type must be a limit order of the same symbol.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderList | array | Refer to the schema section of orderList |\n| symbol | string |  |\n\n**root.orderList Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.<br><br>Please remember the orderId created by the service provider, it used to check for updates in order status. |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | symbol |\n| type | string | only limit (default is limit) |\n| remark | string | Order placement remarks, length cannot exceed 20 characters (ASCII) |\n| stp | string | [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC |\n| price | string | Specify price for order<br><br>When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error. |\n| size | string | Specify quantity for order<br><br>When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.<br><br>When **type** is market, select one out of two: size or funds |\n| timeInForce | string | [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading |\n| postOnly | boolean | passive order labels, this is disabled when the order timing strategy is IOC or FOK |\n| hidden | boolean | Hidden or not (not shown in order book) |\n| iceberg | boolean | Whether or not only visible portions of orders are shown in iceberg orders |\n| visibleSize | string | Maximum visible quantity in iceberg orders |\n| cancelAfter | integer | Cancel after n seconds，the order timing strategy is GTT |\n| tradeType | string | The type of trading : **TRADE**（Spot Trade） |\n| stop | string | Either loss or entry. Requires stopPrice to be defined |\n| stopPrice | string | Stop price, Need to be defined if stop is specified. |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| data | array | Refer to the schema section of data |\n\n**root.data.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string |  |\n| type | string |  |\n| side | string |  |\n| price | string |  |\n| size | string |  |\n| funds | string |  |\n| stp | string |  |\n| stop | string |  |\n| stopPrice | string |  |\n| timeInForce | string |  |\n| cancelAfter | integer |  |\n| postOnly | boolean |  |\n| hidden | boolean |  |\n| iceberge | boolean |  |\n| iceberg | boolean |  |\n| visibleSize | string |  |\n| channel | string |  |\n| id | string |  |\n| status | string |  |\n| failMsg | string |  |\n| clientOid | string |  |\n\n---\n",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"symbol\": \"BTC-USDT\",\n  \"orderList\": [\n    {\n      \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\",\n      \"side\": \"buy\",\n      \"type\": \"limit\",\n      \"price\": \"50000\",\n      \"size\": \"0.0001\"\n    },\n    {\n      \"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\",\n      \"side\": \"buy\",\n      \"type\": \"limit\",\n      \"price\": \"49999\",\n      \"size\": \"0.0001\"\n    }\n  ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Successful Response",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "",
+                                            "protocol": "https",
+                                            "host": [
+                                                "{{spot_endpoint}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "v1",
+                                                "orders",
+                                                "multi"
+                                            ],
+                                            "query": []
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "name": "Content-Type",
+                                            "description": {
+                                                "content": "",
+                                                "type": "text/plain"
+                                            }
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-remaining",
+                                            "value": 1997,
+                                            "name": "gw-ratelimit-remaining"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-limit",
+                                            "value": 2000,
+                                            "name": "gw-ratelimit-limit"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-reset",
+                                            "value": 29990,
+                                            "name": "gw-ratelimit-reset"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"data\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dfef434f0007efc431\",\n                \"status\": \"success\",\n                \"failMsg\": null,\n                \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\"\n            },\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"49999\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dffb378b00077b9c20\",\n                \"status\": \"fail\",\n                \"failMsg\": \"Balance insufficient!\",\n                \"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\"\n            }\n        ]\n    }\n}"
+                                }
+                            ]
+                        },
+                        {
                             "name": "Cancel Order By OrderId - Old",
                             "request": {
                                 "method": "DELETE",
@@ -1343,6 +1596,194 @@
                                     ],
                                     "cookie": [],
                                     "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a97dfef434f0007efc431\"\n        ]\n    }\n}"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Cancel Order By ClientOid - Old",
+                            "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{spot_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "order",
+                                        "client-order",
+                                        "{{clientOid}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "symbol",
+                                            "value": "BTC-USDT",
+                                            "description": "symbol"
+                                        }
+                                    ]
+                                },
+                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470344)\n\n:::tip[]\nIt is recommended to use the **DELETE /api/v1/hf/orders/client-order/{clientOid}** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nThis endpoint can be used to cancel a spot order by clientOid.\nThis endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，unique identifier created by the user |\n| cancelledOrderId | string |  |\n| cancelledOcoOrderIds | string |  |\n\n---\n",
+                                "body": {}
+                            },
+                            "response": [
+                                {
+                                    "name": "Successful Response",
+                                    "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "",
+                                            "protocol": "https",
+                                            "host": [
+                                                "{{spot_endpoint}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "v1",
+                                                "order",
+                                                "client-order",
+                                                "{{clientOid}}"
+                                            ],
+                                            "query": [
+                                                {
+                                                    "key": "symbol",
+                                                    "value": "BTC-USDT",
+                                                    "description": "symbol"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "name": "Content-Type",
+                                            "description": {
+                                                "content": "",
+                                                "type": "text/plain"
+                                            }
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-remaining",
+                                            "value": 1997,
+                                            "name": "gw-ratelimit-remaining"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-limit",
+                                            "value": 2000,
+                                            "name": "gw-ratelimit-limit"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-reset",
+                                            "value": 29990,
+                                            "name": "gw-ratelimit-reset"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"674a9a872033a50007e2790d\",\n        \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Batch Cancel Order - Old",
+                            "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "",
+                                    "protocol": "https",
+                                    "host": [
+                                        "{{spot_endpoint}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "orders"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "symbol",
+                                            "value": "BTC-USDT",
+                                            "description": "symbol"
+                                        },
+                                        {
+                                            "key": "tradeType",
+                                            "value": "TRADE",
+                                            "description": "The type of trading :TRADE(Spot Trading), MARGIN_TRADE(Cross Margin Trading), MARGIN_ISOLATED_TRADE(Isolated Margin Trading), and the default is TRADE to cancel the spot trading orders."
+                                        }
+                                    ]
+                                },
+                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470345)\n\n:::tip[]\nIt is recommended to use the **DELETE /api/v1/hf/orders/cancelAll** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nRequest via this endpoint to cancel all open orders. The response is a list of ids of the canceled orders.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| cancelledOrderIds | array | Refer to the schema section of cancelledOrderIds |\n\n---\n",
+                                "body": {}
+                            },
+                            "response": [
+                                {
+                                    "name": "Successful Response",
+                                    "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "",
+                                            "protocol": "https",
+                                            "host": [
+                                                "{{spot_endpoint}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "v1",
+                                                "orders"
+                                            ],
+                                            "query": [
+                                                {
+                                                    "key": "symbol",
+                                                    "value": "BTC-USDT",
+                                                    "description": "symbol"
+                                                },
+                                                {
+                                                    "key": "tradeType",
+                                                    "value": "TRADE",
+                                                    "description": "The type of trading :TRADE(Spot Trading), MARGIN_TRADE(Cross Margin Trading), MARGIN_ISOLATED_TRADE(Isolated Margin Trading), and the default is TRADE to cancel the spot trading orders."
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "name": "Content-Type",
+                                            "description": {
+                                                "content": "",
+                                                "type": "text/plain"
+                                            }
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-remaining",
+                                            "value": 1997,
+                                            "name": "gw-ratelimit-remaining"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-limit",
+                                            "value": 2000,
+                                            "name": "gw-ratelimit-limit"
+                                        },
+                                        {
+                                            "key": "gw-ratelimit-reset",
+                                            "value": 29990,
+                                            "name": "gw-ratelimit-reset"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a8635b38d120007709c0f\",\n            \"674a8630439c100007d3bce1\"\n        ]\n    }\n}"
                                 }
                             ]
                         },
@@ -1769,103 +2210,6 @@
                             ]
                         },
                         {
-                            "name": "Batch Cancel Order - Old",
-                            "request": {
-                                "method": "DELETE",
-                                "header": [],
-                                "url": {
-                                    "raw": "",
-                                    "protocol": "https",
-                                    "host": [
-                                        "{{spot_endpoint}}"
-                                    ],
-                                    "path": [
-                                        "api",
-                                        "v1",
-                                        "orders"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "symbol",
-                                            "value": "BTC-USDT",
-                                            "description": "symbol"
-                                        },
-                                        {
-                                            "key": "tradeType",
-                                            "value": "TRADE",
-                                            "description": "The type of trading :TRADE(Spot Trading), MARGIN_TRADE(Cross Margin Trading), MARGIN_ISOLATED_TRADE(Isolated Margin Trading), and the default is TRADE to cancel the spot trading orders."
-                                        }
-                                    ]
-                                },
-                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470345)\n\n:::tip[]\nIt is recommended to use the **DELETE /api/v1/hf/orders/cancelAll** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nRequest via this endpoint to cancel all open orders. The response is a list of ids of the canceled orders.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| cancelledOrderIds | array | Refer to the schema section of cancelledOrderIds |\n\n---\n",
-                                "body": {}
-                            },
-                            "response": [
-                                {
-                                    "name": "Successful Response",
-                                    "originalRequest": {
-                                        "method": "DELETE",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "",
-                                            "protocol": "https",
-                                            "host": [
-                                                "{{spot_endpoint}}"
-                                            ],
-                                            "path": [
-                                                "api",
-                                                "v1",
-                                                "orders"
-                                            ],
-                                            "query": [
-                                                {
-                                                    "key": "symbol",
-                                                    "value": "BTC-USDT",
-                                                    "description": "symbol"
-                                                },
-                                                {
-                                                    "key": "tradeType",
-                                                    "value": "TRADE",
-                                                    "description": "The type of trading :TRADE(Spot Trading), MARGIN_TRADE(Cross Margin Trading), MARGIN_ISOLATED_TRADE(Isolated Margin Trading), and the default is TRADE to cancel the spot trading orders."
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "status": "OK",
-                                    "code": 200,
-                                    "_postman_previewlanguage": "json",
-                                    "header": [
-                                        {
-                                            "key": "Content-Type",
-                                            "value": "application/json",
-                                            "name": "Content-Type",
-                                            "description": {
-                                                "content": "",
-                                                "type": "text/plain"
-                                            }
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-remaining",
-                                            "value": 1997,
-                                            "name": "gw-ratelimit-remaining"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-limit",
-                                            "value": 2000,
-                                            "name": "gw-ratelimit-limit"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-reset",
-                                            "value": 29990,
-                                            "name": "gw-ratelimit-reset"
-                                        }
-                                    ],
-                                    "cookie": [],
-                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderIds\": [\n            \"674a8635b38d120007709c0f\",\n            \"674a8630439c100007d3bce1\"\n        ]\n    }\n}"
-                                }
-                            ]
-                        },
-                        {
                             "name": "Get Trade History - Old",
                             "request": {
                                 "method": "GET",
@@ -2128,350 +2472,6 @@
                                     ],
                                     "cookie": [],
                                     "body": "{\n    \"code\": \"200000\",\n    \"data\": [\n        {\n            \"symbol\": \"BTC-USDT\",\n            \"tradeId\": \"11732720444522497\",\n            \"orderId\": \"674aab24754b1e00077dbc69\",\n            \"counterOrderId\": \"674aab1fb26bfb0007a18b67\",\n            \"side\": \"buy\",\n            \"liquidity\": \"taker\",\n            \"forceTaker\": false,\n            \"price\": \"96999.6\",\n            \"size\": \"0.00001\",\n            \"funds\": \"0.969996\",\n            \"fee\": \"0.000969996\",\n            \"feeRate\": \"0.001\",\n            \"feeCurrency\": \"USDT\",\n            \"stop\": \"\",\n            \"tradeType\": \"TRADE\",\n            \"type\": \"limit\",\n            \"createdAt\": 1732946724082\n        }\n    ]\n}"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Cancel Order By ClientOid - Old",
-                            "request": {
-                                "method": "DELETE",
-                                "header": [],
-                                "url": {
-                                    "raw": "",
-                                    "protocol": "https",
-                                    "host": [
-                                        "{{spot_endpoint}}"
-                                    ],
-                                    "path": [
-                                        "api",
-                                        "v1",
-                                        "order",
-                                        "client-order",
-                                        "{{clientOid}}"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "symbol",
-                                            "value": "BTC-USDT",
-                                            "description": "symbol"
-                                        }
-                                    ]
-                                },
-                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470344)\n\n:::tip[]\nIt is recommended to use the **DELETE /api/v1/hf/orders/client-order/{clientOid}** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nThis endpoint can be used to cancel a spot order by clientOid.\nThis endpoint only sends cancellation requests. The results of the requests must be obtained by checking the order status or subscribing to websocket.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n  **None**  \n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，unique identifier created by the user |\n| cancelledOrderId | string |  |\n| cancelledOcoOrderIds | string |  |\n\n---\n",
-                                "body": {}
-                            },
-                            "response": [
-                                {
-                                    "name": "Successful Response",
-                                    "originalRequest": {
-                                        "method": "DELETE",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "",
-                                            "protocol": "https",
-                                            "host": [
-                                                "{{spot_endpoint}}"
-                                            ],
-                                            "path": [
-                                                "api",
-                                                "v1",
-                                                "order",
-                                                "client-order",
-                                                "{{clientOid}}"
-                                            ],
-                                            "query": [
-                                                {
-                                                    "key": "symbol",
-                                                    "value": "BTC-USDT",
-                                                    "description": "symbol"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "status": "OK",
-                                    "code": 200,
-                                    "_postman_previewlanguage": "json",
-                                    "header": [
-                                        {
-                                            "key": "Content-Type",
-                                            "value": "application/json",
-                                            "name": "Content-Type",
-                                            "description": {
-                                                "content": "",
-                                                "type": "text/plain"
-                                            }
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-remaining",
-                                            "value": 1997,
-                                            "name": "gw-ratelimit-remaining"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-limit",
-                                            "value": 2000,
-                                            "name": "gw-ratelimit-limit"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-reset",
-                                            "value": 29990,
-                                            "name": "gw-ratelimit-reset"
-                                        }
-                                    ],
-                                    "cookie": [],
-                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"cancelledOrderId\": \"674a9a872033a50007e2790d\",\n        \"clientOid\": \"5c52e11203aa677f33e4923fb\",\n        \"cancelledOcoOrderIds\": null\n    }\n}"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Add Order - Old",
-                            "request": {
-                                "method": "POST",
-                                "header": [],
-                                "url": {
-                                    "raw": "",
-                                    "protocol": "https",
-                                    "host": [
-                                        "{{spot_endpoint}}"
-                                    ],
-                                    "path": [
-                                        "api",
-                                        "v1",
-                                        "orders"
-                                    ],
-                                    "query": []
-                                },
-                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470333)\n\n:::tip[]\nIt is recommended to use the **POST /api/v1/hf/orders** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nPlace order to the Spot trading system, you can place two major types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your funds will be put on hold for the duration of the order. The amount of funds on hold depends on the order type and parameters specified.\n:::\n\n:::tip[Tips]\nPlease note that once your order enters the order book, the system will freeze the handling fees for the order ahead of time.\n\nBefore placing orders, please be sure to fully understand the meaning of the parameters for each trading pair.\n:::\n\n:::tip[Tips]\nThe maximum number of active orders per account is 2000, with a maximum of 200 active orders per trading pair.(including stop orders).\n:::\n\n**Public order placement request parameters**\n\n| Param     | Type   | Mandatory | Description |\n| --------- | ------ | --------- | ----------- |\n| clientOid | String | Yes       | clientOid, the unique identifier created by the client, use of UUID, with a maximum length of 128 bits.   |\n| side      | String | Yes       | **buy** or **sell** |\n| symbol    | String | Yes       | symbol, e.g. ETH-BTC  |\n| type      | String | No        | **limit** or **market** (default is **limit**)   |\n| remark    | String | No        | remark, length cannot exceed 50 characters (ASCII)    |\n| stp       | String | No        | self trade prevention, **CN**, **CO**, **CB** or **DC**   |\n| tradeType | String | No        | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n##### Additional Request Parameters Required by `limit` Orders\n\n| Param       | Type    | Mandatory | Description  |\n| ----------- | ------- | --------- | ------------ |\n| price       | String  | Yes       | Specify price for currency  |\n| size        | String  | Yes       | Specify quantity for currency |\n| timeInForce | String  | No        | Order timing strategy `GTC`, `GTT`, `IOC`, `FOK` (The default is `GTC`)                 |\n| cancelAfter | long    | No        | Cancel after `n` seconds，the order timing strategy is `GTT`                            |\n| postOnly    | boolean | No        | passive order labels, this is disabled when the order timing strategy is `IOC` or `FOK` |\n| hidden      | boolean | No        | Hidden or not (not shown in order book)                                                 |\n| iceberg     | boolean | No        | Whether or not only visible portions of orders are shown in iceberg orders              |\n| visibleSize | String  | No        | Maximum visible quantity in iceberg orders                                              |\n\n##### Additional request parameters required by `market` orders\n\n| Param | Type   | Mandatory | Description                                |\n| ----- | ------ | --------- | ------------------------------------------ |\n| size  | String | No        | (Select one out of two: `size` or `funds`) |\n| funds | String | No        | (Select one out of two: `size` or `funds`) |\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.<br><br>Please remember the orderId created by the service provider, it used to check for updates in order status. |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | symbol |\n| type | string | specify if the order is an 'limit' order or 'market' order. <br><br>The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.<br><br>When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.<br><br>Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged. |\n| remark | string | Order placement remarks, length cannot exceed 20 characters (ASCII) |\n| stp | string | [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC |\n| price | string | Specify price for order<br><br>When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error. |\n| size | string | Specify quantity for order<br><br>When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.<br><br>When **type** is market, select one out of two: size or funds |\n| timeInForce | string | [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading |\n| postOnly | boolean | passive order labels, this is disabled when the order timing strategy is IOC or FOK |\n| hidden | boolean | Hidden or not (not shown in order book) |\n| iceberg | boolean | Whether or not only visible portions of orders are shown in iceberg orders |\n| visibleSize | string | Maximum visible quantity in iceberg orders |\n| cancelAfter | integer | Cancel after n seconds，the order timing strategy is GTT |\n| funds | string | When **type** is market, select one out of two: size or funds |\n| tradeType | string | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n\n---\n",
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "//limit order\n{\n    \"type\": \"limit\",\n    \"symbol\": \"BTC-USDT\",\n    \"side\": \"buy\",\n    \"price\": \"50000\",\n    \"size\": \"0.00001\",\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"remark\": \"order remarks\"\n}\n\n//market order 1\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"size\": \"0.00001\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n\n//market order 2\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"funds\": \"1\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                }
-                            },
-                            "response": [
-                                {
-                                    "name": "Successful Response",
-                                    "originalRequest": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "",
-                                            "protocol": "https",
-                                            "host": [
-                                                "{{spot_endpoint}}"
-                                            ],
-                                            "path": [
-                                                "api",
-                                                "v1",
-                                                "orders"
-                                            ],
-                                            "query": []
-                                        }
-                                    },
-                                    "status": "OK",
-                                    "code": 200,
-                                    "_postman_previewlanguage": "json",
-                                    "header": [
-                                        {
-                                            "key": "Content-Type",
-                                            "value": "application/json",
-                                            "name": "Content-Type",
-                                            "description": {
-                                                "content": "",
-                                                "type": "text/plain"
-                                            }
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-remaining",
-                                            "value": 1997,
-                                            "name": "gw-ratelimit-remaining"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-limit",
-                                            "value": 2000,
-                                            "name": "gw-ratelimit-limit"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-reset",
-                                            "value": 29990,
-                                            "name": "gw-ratelimit-reset"
-                                        }
-                                    ],
-                                    "cookie": [],
-                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8635b38d120007709c0f\"\n    }\n}"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Batch Add Orders - Old",
-                            "request": {
-                                "method": "POST",
-                                "header": [],
-                                "url": {
-                                    "raw": "",
-                                    "protocol": "https",
-                                    "host": [
-                                        "{{spot_endpoint}}"
-                                    ],
-                                    "path": [
-                                        "api",
-                                        "v1",
-                                        "orders",
-                                        "multi"
-                                    ],
-                                    "query": []
-                                },
-                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470342)\n\n:::tip[]\nIt is recommended to use the **POST /api/v1/hf/orders/multi** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nRequest via this endpoint to place 5 orders at the same time. The order type must be a limit order of the same symbol.\n:::\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderList | array | Refer to the schema section of orderList |\n| symbol | string |  |\n\n**root.orderList Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.<br><br>Please remember the orderId created by the service provider, it used to check for updates in order status. |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | symbol |\n| type | string | only limit (default is limit) |\n| remark | string | Order placement remarks, length cannot exceed 20 characters (ASCII) |\n| stp | string | [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC |\n| price | string | Specify price for order<br><br>When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error. |\n| size | string | Specify quantity for order<br><br>When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.<br><br>When **type** is market, select one out of two: size or funds |\n| timeInForce | string | [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading |\n| postOnly | boolean | passive order labels, this is disabled when the order timing strategy is IOC or FOK |\n| hidden | boolean | Hidden or not (not shown in order book) |\n| iceberg | boolean | Whether or not only visible portions of orders are shown in iceberg orders |\n| visibleSize | string | Maximum visible quantity in iceberg orders |\n| cancelAfter | integer | Cancel after n seconds，the order timing strategy is GTT |\n| tradeType | string | The type of trading : **TRADE**（Spot Trade） |\n| stop | string | Either loss or entry. Requires stopPrice to be defined |\n| stopPrice | string | Stop price, Need to be defined if stop is specified. |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| data | array | Refer to the schema section of data |\n\n**root.data.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| symbol | string |  |\n| type | string |  |\n| side | string |  |\n| price | string |  |\n| size | string |  |\n| funds | string |  |\n| stp | string |  |\n| stop | string |  |\n| stopPrice | string |  |\n| timeInForce | string |  |\n| cancelAfter | integer |  |\n| postOnly | boolean |  |\n| hidden | boolean |  |\n| iceberge | boolean |  |\n| iceberg | boolean |  |\n| visibleSize | string |  |\n| channel | string |  |\n| id | string |  |\n| status | string |  |\n| failMsg | string |  |\n| clientOid | string |  |\n\n---\n",
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\n  \"symbol\": \"BTC-USDT\",\n  \"orderList\": [\n    {\n      \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\",\n      \"side\": \"buy\",\n      \"type\": \"limit\",\n      \"price\": \"50000\",\n      \"size\": \"0.0001\"\n    },\n    {\n      \"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\",\n      \"side\": \"buy\",\n      \"type\": \"limit\",\n      \"price\": \"49999\",\n      \"size\": \"0.0001\"\n    }\n  ]\n}",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                }
-                            },
-                            "response": [
-                                {
-                                    "name": "Successful Response",
-                                    "originalRequest": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "",
-                                            "protocol": "https",
-                                            "host": [
-                                                "{{spot_endpoint}}"
-                                            ],
-                                            "path": [
-                                                "api",
-                                                "v1",
-                                                "orders",
-                                                "multi"
-                                            ],
-                                            "query": []
-                                        }
-                                    },
-                                    "status": "OK",
-                                    "code": 200,
-                                    "_postman_previewlanguage": "json",
-                                    "header": [
-                                        {
-                                            "key": "Content-Type",
-                                            "value": "application/json",
-                                            "name": "Content-Type",
-                                            "description": {
-                                                "content": "",
-                                                "type": "text/plain"
-                                            }
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-remaining",
-                                            "value": 1997,
-                                            "name": "gw-ratelimit-remaining"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-limit",
-                                            "value": 2000,
-                                            "name": "gw-ratelimit-limit"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-reset",
-                                            "value": 29990,
-                                            "name": "gw-ratelimit-reset"
-                                        }
-                                    ],
-                                    "cookie": [],
-                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"data\": [\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"50000\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dfef434f0007efc431\",\n                \"status\": \"success\",\n                \"failMsg\": null,\n                \"clientOid\": \"3d07008668054da6b3cb12e432c2b13a\"\n            },\n            {\n                \"symbol\": \"BTC-USDT\",\n                \"type\": \"limit\",\n                \"side\": \"buy\",\n                \"price\": \"49999\",\n                \"size\": \"0.0001\",\n                \"funds\": null,\n                \"stp\": \"\",\n                \"stop\": \"\",\n                \"stopPrice\": null,\n                \"timeInForce\": \"GTC\",\n                \"cancelAfter\": 0,\n                \"postOnly\": false,\n                \"hidden\": false,\n                \"iceberge\": false,\n                \"iceberg\": false,\n                \"visibleSize\": null,\n                \"channel\": \"API\",\n                \"id\": \"674a97dffb378b00077b9c20\",\n                \"status\": \"fail\",\n                \"failMsg\": \"Balance insufficient!\",\n                \"clientOid\": \"37245dbe6e134b5c97732bfb36cd4a9d\"\n            }\n        ]\n    }\n}"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Add Order Test - Old",
-                            "request": {
-                                "method": "POST",
-                                "header": [],
-                                "url": {
-                                    "raw": "",
-                                    "protocol": "https",
-                                    "host": [
-                                        "{{spot_endpoint}}"
-                                    ],
-                                    "path": [
-                                        "api",
-                                        "v1",
-                                        "orders",
-                                        "test"
-                                    ],
-                                    "query": []
-                                },
-                                "description": "# API Description\n\nFor the complete API documentation, please refer to [doc](https://www.kucoin.com/docs-new/api-3470341)\n\n:::tip[]\nIt is recommended to use the **POST /api/v1/hf/orders/test** endpoint instead of this endpoint\n:::\n\n:::info[Description]\nOrder test endpoint, the request parameters and return parameters of this endpoint are exactly the same as the order endpoint, and can be used to verify whether the signature is correct and other operations. After placing an order, the order will not enter the matching system, and the order cannot be queried.\n:::\n\n:::tip[Tips]\nPlease note that once your order enters the order book, the system will freeze the handling fees for the order ahead of time.\n\nBefore placing orders, please be sure to fully understand the meaning of the parameters for each trading pair.\n:::\n\n:::tip[Tips]\nThe maximum number of active orders per account is 2000, with a maximum of 200 active orders per trading pair.(including stop orders).\n:::\n\n**Public order placement request parameters**\n\n| Param     | Type   | Mandatory | Description |\n| --------- | ------ | --------- | ----------- |\n| clientOid | String | Yes       | clientOid, the unique identifier created by the client, use of UUID, with a maximum length of 128 bits.   |\n| side      | String | Yes       | **buy** or **sell** |\n| symbol    | String | Yes       | symbol, e.g. ETH-BTC  |\n| type      | String | No        | **limit** or **market** (default is **limit**)   |\n| remark    | String | No        | remark, length cannot exceed 50 characters (ASCII)    |\n| stp       | String | No        | self trade prevention, **CN**, **CO**, **CB** or **DC**   |\n| tradeType | String | No        | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n##### Additional Request Parameters Required by `limit` Orders\n\n| Param       | Type    | Mandatory | Description  |\n| ----------- | ------- | --------- | ------------ |\n| price       | String  | Yes       | Specify price for currency  |\n| size        | String  | Yes       | Specify quantity for currency |\n| timeInForce | String  | No        | Order timing strategy `GTC`, `GTT`, `IOC`, `FOK` (The default is `GTC`)                 |\n| cancelAfter | long    | No        | Cancel after `n` seconds，the order timing strategy is `GTT`                            |\n| postOnly    | boolean | No        | passive order labels, this is disabled when the order timing strategy is `IOC` or `FOK` |\n| hidden      | boolean | No        | Hidden or not (not shown in order book)                                                 |\n| iceberg     | boolean | No        | Whether or not only visible portions of orders are shown in iceberg orders              |\n| visibleSize | String  | No        | Maximum visible quantity in iceberg orders                                              |\n\n##### Additional request parameters required by `market` orders\n\n| Param | Type   | Mandatory | Description                                |\n| ----- | ------ | --------- | ------------------------------------------ |\n| size  | String | No        | (Select one out of two: `size` or `funds`) |\n| funds | String | No        | (Select one out of two: `size` or `funds`) |\n# API Schema\n\n## Request Schema\n\n\n**Request Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| clientOid | string | Client Order Id，The ClientOid field is a unique ID created by the user（we recommend using a UUID）, and can only contain numbers, letters, underscores （_）, and hyphens （-）. This field is returned when order information is obtained. You can use clientOid to tag your orders. ClientOid is different from the order ID created by the service provider. Please do not initiate requests using the same clientOid. The maximum length for the ClientOid is 40 characters.<br><br>Please remember the orderId created by the service provider, it used to check for updates in order status. |\n| side | string | specify if the order is to 'buy' or 'sell' |\n| symbol | string | symbol |\n| type | string | specify if the order is an 'limit' order or 'market' order. <br><br>The type of order you specify when you place your order determines whether or not you need to request other parameters and also affects the execution of the matching engine.<br><br>When placing a limit order, you must specify a price and size. The system will try to match the order according to market price or a price better than market price. If the order cannot be immediately matched, it will stay in the order book until it is matched or the user cancels.<br><br>Unlike limit orders, the price for market orders fluctuates with market prices. When placing a market order, you do not need to specify a price, you only need to specify a quantity. Market orders are filled immediately and will not enter the order book. All market orders are takers and a taker fee will be charged. |\n| remark | string | Order placement remarks, length cannot exceed 20 characters (ASCII) |\n| stp | string | [Self Trade Prevention](https://www.kucoin.com/docs-new/doc-338146) is divided into four strategies: CN, CO, CB , and DC |\n| price | string | Specify price for order<br><br>When placing a limit order, the price must be based on priceIncrement for the trading pair. The price increment (priceIncrement) is the price precision for the trading pair. For example, for the BTC-USDT trading pair, the priceIncrement is 0.00001000. So the price for your orders cannot be less than 0.00001000 and must be a multiple of priceIncrement. Otherwise, the order will return an invalid priceIncrement error. |\n| size | string | Specify quantity for order<br><br>When **type** is limit, size refers to the amount of trading targets (the asset name written in front) for the trading pair. Teh Size must be based on the baseIncrement of the trading pair. The baseIncrement represents the precision for the trading pair. The size of an order must be a positive-integer multiple of baseIncrement and must be between baseMinSize and baseMaxSize.<br><br>When **type** is market, select one out of two: size or funds |\n| timeInForce | string | [Time in force](https://www.kucoin.com/docs-new/doc-338146) is a special strategy used during trading |\n| postOnly | boolean | passive order labels, this is disabled when the order timing strategy is IOC or FOK |\n| hidden | boolean | Hidden or not (not shown in order book) |\n| iceberg | boolean | Whether or not only visible portions of orders are shown in iceberg orders |\n| visibleSize | string | Maximum visible quantity in iceberg orders |\n| cancelAfter | integer | Cancel after n seconds，the order timing strategy is GTT |\n| funds | string | When **type** is market, select one out of two: size or funds |\n| tradeType | string | The type of trading : **TRADE**（Spot Trade）, **MARGIN_TRADE** (Margin Trade). Default is **TRADE**. **Note: To improve the system performance and to accelerate order placing and processing, KuCoin has added a new interface for order placing of margin. For traders still using the current interface, please move to the new one as soon as possible. The current one will no longer accept margin orders by May 1st, 2021 (UTC). At the time, KuCoin will notify users via the announcement, please pay attention to it.** |\n\n---\n## Response Schema\n\n\n**Response Body**\n\n---\n**root Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| code | string |  |\n| data | object | Refer to the schema section of data |\n\n**root.data Schema**\n\n| name | type | description |\n| --- | --- | --- |\n| orderId | string | The unique order id generated by the trading system,which can be used later for further actions such as canceling the order. |\n\n---\n",
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "//limit order\n{\n    \"type\": \"limit\",\n    \"symbol\": \"BTC-USDT\",\n    \"side\": \"buy\",\n    \"price\": \"50000\",\n    \"size\": \"0.00001\",\n    \"clientOid\": \"5c52e11203aa677f33e493fb\",\n    \"remark\": \"order remarks\"\n}\n\n//market order 1\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"size\": \"0.00001\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n\n//market order 2\n// {\n//     \"type\": \"market\",\n//     \"symbol\": \"BTC-USDT\",\n//     \"side\": \"buy\",\n//     \"funds\": \"1\",\n//     \"clientOid\": \"5c52e11203aa677f33e493fc\",\n//     \"remark\": \"order remarks\"\n// }\n",
-                                    "options": {
-                                        "raw": {
-                                            "language": "json"
-                                        }
-                                    }
-                                }
-                            },
-                            "response": [
-                                {
-                                    "name": "Successful Response",
-                                    "originalRequest": {
-                                        "method": "POST",
-                                        "header": [],
-                                        "url": {
-                                            "raw": "",
-                                            "protocol": "https",
-                                            "host": [
-                                                "{{spot_endpoint}}"
-                                            ],
-                                            "path": [
-                                                "api",
-                                                "v1",
-                                                "orders",
-                                                "test"
-                                            ],
-                                            "query": []
-                                        }
-                                    },
-                                    "status": "OK",
-                                    "code": 200,
-                                    "_postman_previewlanguage": "json",
-                                    "header": [
-                                        {
-                                            "key": "Content-Type",
-                                            "value": "application/json",
-                                            "name": "Content-Type",
-                                            "description": {
-                                                "content": "",
-                                                "type": "text/plain"
-                                            }
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-remaining",
-                                            "value": 1997,
-                                            "name": "gw-ratelimit-remaining"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-limit",
-                                            "value": 2000,
-                                            "name": "gw-ratelimit-limit"
-                                        },
-                                        {
-                                            "key": "gw-ratelimit-reset",
-                                            "value": 29990,
-                                            "name": "gw-ratelimit-reset"
-                                        }
-                                    ],
-                                    "cookie": [],
-                                    "body": "{\n    \"code\": \"200000\",\n    \"data\": {\n        \"orderId\": \"674a8776291d9e00074f1edf\"\n    }\n}"
                                 }
                             ]
                         }
@@ -3106,7 +3106,7 @@
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
-                    "function extractPathVariable(str) {\n    const regex = /^\\{\\{(.+?)\\}\\}$/;\n    const match = str.match(regex);\n    if (match) {\n        return match[1];\n    }\n    return null;\n}\n\nfunction hasAnyFieldEmpty(obj) {\n    for (const key in obj) {\n        if (obj[key] === \"\" || obj[key] === null || obj[key] === undefined) {\n            return true;\n        }\n    }\n    return false;\n}\n\nfunction sign(text, secret) {\n    const hash = CryptoJS.HmacSHA256(text, secret);\n    return CryptoJS.enc.Base64.stringify(hash)\n}\n\nfunction auth(apiKey, method, url, data) {\n    if (hasAnyFieldEmpty(apiKey)) {\n        console.warn('The API key-related information is not configured; only the public channel API is accessible.')\n        return {'User-Agent': `Kucoin-Universal-Postman-SDK/`}\n    }\n\n    const timestamp = Date.now();\n    const text = timestamp + method.toUpperCase() + url + data;\n    const signature = sign(text, apiKey.secret);\n    return {\n        'KC-API-KEY': apiKey.key,\n        'KC-API-SIGN': signature,\n        'KC-API-TIMESTAMP': timestamp.toString(),\n        'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),\n        'Content-Type': 'application/json',\n        'User-Agent': `Kucoin-Universal-Postman-SDK/`,\n        'KC-API-KEY-VERSION': 2,\n    };\n}\n\nlet key = pm.environment.get('API_KEY')\nlet secret = pm.environment.get('API_SECRET')\nlet passphrase = pm.environment.get('API_PASSPHRASE')\n\nlet url = pm.request.url.getPathWithQuery()\nlet method = pm.request.method\nlet body = pm.request.body ? pm.request.body.toString() : ''\n\nfor (const index in pm.request.url.path) {\n    path = pm.request.url.path[index]\n    pathVar = extractPathVariable(path)\n    if (pathVar != null) {\n        let collectionVariable = pm.collectionVariables.get(pathVar);\n        if (collectionVariable != null) {\n            url = url.replace(path, collectionVariable)\n        } else {\n            console.warn('no path variable set: ' + path)\n        }\n    }\n}\n\nheader = auth({ key: key, passphrase: passphrase, secret: secret }, method, url, body)\n\nfor (const [headerName, headerValue] of Object.entries(header)) {\n    pm.request.headers.add({ key: headerName, value: headerValue })\n}"
+                    "function extractPathVariable(str) {\n    const regex = /^\\{\\{(.+?)\\}\\}$/;\n    const match = str.match(regex);\n    if (match) {\n        return match[1];\n    }\n    return null;\n}\n\nfunction hasAnyFieldEmpty(obj) {\n    for (const key in obj) {\n        if (obj[key] === \"\" || obj[key] === null || obj[key] === undefined) {\n            return true;\n        }\n    }\n    return false;\n}\n\nfunction sign(text, secret) {\n    const hash = CryptoJS.HmacSHA256(text, secret);\n    return CryptoJS.enc.Base64.stringify(hash)\n}\n\nfunction auth(apiKey, method, url, data) {\n    if (hasAnyFieldEmpty(apiKey)) {\n        console.warn('The API key-related information is not configured; only the public channel API is accessible.')\n        return {'User-Agent': `Kucoin-Universal-Postman-SDK/v1.1.0`}\n    }\n\n    const timestamp = Date.now();\n    const text = timestamp + method.toUpperCase() + url + data;\n    const signature = sign(text, apiKey.secret);\n    return {\n        'KC-API-KEY': apiKey.key,\n        'KC-API-SIGN': signature,\n        'KC-API-TIMESTAMP': timestamp.toString(),\n        'KC-API-PASSPHRASE': sign(apiKey.passphrase || '', apiKey.secret),\n        'Content-Type': 'application/json',\n        'User-Agent': `Kucoin-Universal-Postman-SDK/v1.1.0`,\n        'KC-API-KEY-VERSION': 2,\n    };\n}\n\nlet key = pm.environment.get('API_KEY')\nlet secret = pm.environment.get('API_SECRET')\nlet passphrase = pm.environment.get('API_PASSPHRASE')\n\nlet url = pm.request.url.getPathWithQuery()\nlet method = pm.request.method\nlet body = pm.request.body ? pm.request.body.toString() : ''\n\nfor (const index in pm.request.url.path) {\n    path = pm.request.url.path[index]\n    pathVar = extractPathVariable(path)\n    if (pathVar != null) {\n        let collectionVariable = pm.collectionVariables.get(pathVar);\n        if (collectionVariable != null) {\n            url = url.replace(path, collectionVariable)\n        } else {\n            console.warn('no path variable set: ' + path)\n        }\n    }\n}\n\nheader = auth({ key: key, passphrase: passphrase, secret: secret }, method, url, body)\n\nfor (const [headerName, headerValue] of Object.entries(header)) {\n    pm.request.headers.add({ key: headerName, value: headerValue })\n}"
                 ]
             }
         },

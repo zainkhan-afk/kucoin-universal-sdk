@@ -37,21 +37,96 @@ from typing_extensions import deprecated
 class PositionsAPI(ABC):
 
     @abstractmethod
-    def get_isolated_margin_risk_limit(
-            self, req: GetIsolatedMarginRiskLimitReq,
-            **kwargs: Any) -> GetIsolatedMarginRiskLimitResp:
+    def get_margin_mode(self, req: GetMarginModeReq,
+                        **kwargs: Any) -> GetMarginModeResp:
         """
-        summary: Get Isolated Margin Risk Limit
-        description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
-        documentation: https://www.kucoin.com/docs-new/api-3470263
+        summary: Get Margin Mode
+        description: This interface can query the margin mode of the current symbol.
+        documentation: https://www.kucoin.com/docs-new/api-3470259
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | FUTURES |
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | PUBLIC  |
-        | API-RATE-LIMIT      | 5       |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def switch_margin_mode(self, req: SwitchMarginModeReq,
+                           **kwargs: Any) -> SwitchMarginModeResp:
+        """
+        summary: Switch Margin Mode
+        description: This interface can modify the margin mode of the current symbol.
+        documentation: https://www.kucoin.com/docs-new/api-3470262
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_max_open_size(self, req: GetMaxOpenSizeReq,
+                          **kwargs: Any) -> GetMaxOpenSizeResp:
+        """
+        summary: Get Max Open Size
+        description: Get Maximum Open Position Size.
+        documentation: https://www.kucoin.com/docs-new/api-3470251
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_position_details(self, req: GetPositionDetailsReq,
+                             **kwargs: Any) -> GetPositionDetailsResp:
+        """
+        summary: Get Position Details
+        description: Get the position details of a specified position.
+        documentation: https://www.kucoin.com/docs-new/api-3470252
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    def get_position_list(self, req: GetPositionListReq,
+                          **kwargs: Any) -> GetPositionListResp:
+        """
+        summary: Get Position List
+        description: Get the position details of a specified position.
+        documentation: https://www.kucoin.com/docs-new/api-3470253
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 2       |
         +---------------------+---------+
         """
         pass
@@ -95,110 +170,12 @@ class PositionsAPI(ABC):
         pass
 
     @abstractmethod
-    def remove_isolated_margin(self, req: RemoveIsolatedMarginReq,
-                               **kwargs: Any) -> RemoveIsolatedMarginResp:
+    def get_cross_margin_leverage(self, req: GetCrossMarginLeverageReq,
+                                  **kwargs: Any) -> GetCrossMarginLeverageResp:
         """
-        summary: Remove Isolated Margin
-        description: Remove Isolated Margin Manually.
-        documentation: https://www.kucoin.com/docs-new/api-3470256
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 10      |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_position_details(self, req: GetPositionDetailsReq,
-                             **kwargs: Any) -> GetPositionDetailsResp:
-        """
-        summary: Get Position Details
-        description: Get the position details of a specified position.
-        documentation: https://www.kucoin.com/docs-new/api-3470252
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    @deprecated('')
-    def modify_auto_deposit_status(
-            self, req: ModifyAutoDepositStatusReq,
-            **kwargs: Any) -> ModifyAutoDepositStatusResp:
-        """
-        summary: Modify Isolated Margin Auto-Deposit Status
-        description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
-        documentation: https://www.kucoin.com/docs-new/api-3470255
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 4       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def add_isolated_margin(self, req: AddIsolatedMarginReq,
-                            **kwargs: Any) -> AddIsolatedMarginResp:
-        """
-        summary: Add Isolated Margin
-        description: Add Isolated Margin Manually.
-        documentation: https://www.kucoin.com/docs-new/api-3470257
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 4       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def modify_isolated_margin_risk_limt(
-            self, req: ModifyIsolatedMarginRiskLimtReq,
-            **kwargs: Any) -> ModifyIsolatedMarginRiskLimtResp:
-        """
-        summary: Modify Isolated Margin Risk Limit
-        description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
-        documentation: https://www.kucoin.com/docs-new/api-3470264
-        +---------------------+---------+
-        | Extra API Info      | Value   |
-        +---------------------+---------+
-        | API-DOMAIN          | FUTURES |
-        | API-CHANNEL         | PRIVATE |
-        | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 5       |
-        +---------------------+---------+
-        """
-        pass
-
-    @abstractmethod
-    def get_position_list(self, req: GetPositionListReq,
-                          **kwargs: Any) -> GetPositionListResp:
-        """
-        summary: Get Position List
-        description: Get the position details of a specified position.
-        documentation: https://www.kucoin.com/docs-new/api-3470253
+        summary: Get Cross Margin Leverage
+        description: This interface can query the current symbol’s cross-margin leverage multiple.
+        documentation: https://www.kucoin.com/docs-new/api-3470260
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -231,12 +208,12 @@ class PositionsAPI(ABC):
         pass
 
     @abstractmethod
-    def get_cross_margin_leverage(self, req: GetCrossMarginLeverageReq,
-                                  **kwargs: Any) -> GetCrossMarginLeverageResp:
+    def add_isolated_margin(self, req: AddIsolatedMarginReq,
+                            **kwargs: Any) -> AddIsolatedMarginResp:
         """
-        summary: Get Cross Margin Leverage
-        description: This interface can query the current symbol’s cross-margin leverage multiple.
-        documentation: https://www.kucoin.com/docs-new/api-3470260
+        summary: Add Isolated Margin
+        description: Add Isolated Margin Manually.
+        documentation: https://www.kucoin.com/docs-new/api-3470257
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -244,18 +221,18 @@ class PositionsAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT      | 4       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def get_max_open_size(self, req: GetMaxOpenSizeReq,
-                          **kwargs: Any) -> GetMaxOpenSizeResp:
+    def remove_isolated_margin(self, req: RemoveIsolatedMarginReq,
+                               **kwargs: Any) -> RemoveIsolatedMarginResp:
         """
-        summary: Get Max Open Size
-        description: Get Maximum Open Position Size.
-        documentation: https://www.kucoin.com/docs-new/api-3470251
+        summary: Remove Isolated Margin
+        description: Remove Isolated Margin Manually.
+        documentation: https://www.kucoin.com/docs-new/api-3470256
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -263,37 +240,39 @@ class PositionsAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT      | 10      |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def switch_margin_mode(self, req: SwitchMarginModeReq,
-                           **kwargs: Any) -> SwitchMarginModeResp:
+    def get_isolated_margin_risk_limit(
+            self, req: GetIsolatedMarginRiskLimitReq,
+            **kwargs: Any) -> GetIsolatedMarginRiskLimitResp:
         """
-        summary: Switch Margin Mode
-        description: This interface can modify the margin mode of the current symbol.
-        documentation: https://www.kucoin.com/docs-new/api-3470262
+        summary: Get Isolated Margin Risk Limit
+        description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+        documentation: https://www.kucoin.com/docs-new/api-3470263
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
         | API-DOMAIN          | FUTURES |
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
-        | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT-POOL | PUBLIC  |
+        | API-RATE-LIMIT      | 5       |
         +---------------------+---------+
         """
         pass
 
     @abstractmethod
-    def get_margin_mode(self, req: GetMarginModeReq,
-                        **kwargs: Any) -> GetMarginModeResp:
+    def modify_isolated_margin_risk_limt(
+            self, req: ModifyIsolatedMarginRiskLimtReq,
+            **kwargs: Any) -> ModifyIsolatedMarginRiskLimtResp:
         """
-        summary: Get Margin Mode
-        description: This interface can query the margin mode of the current symbol.
-        documentation: https://www.kucoin.com/docs-new/api-3470259
+        summary: Modify Isolated Margin Risk Limit
+        description: This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).
+        documentation: https://www.kucoin.com/docs-new/api-3470264
         +---------------------+---------+
         | Extra API Info      | Value   |
         +---------------------+---------+
@@ -301,7 +280,28 @@ class PositionsAPI(ABC):
         | API-CHANNEL         | PRIVATE |
         | API-PERMISSION      | FUTURES |
         | API-RATE-LIMIT-POOL | FUTURES |
-        | API-RATE-LIMIT      | 2       |
+        | API-RATE-LIMIT      | 5       |
+        +---------------------+---------+
+        """
+        pass
+
+    @abstractmethod
+    @deprecated('')
+    def modify_auto_deposit_status(
+            self, req: ModifyAutoDepositStatusReq,
+            **kwargs: Any) -> ModifyAutoDepositStatusResp:
+        """
+        summary: Modify Isolated Margin Auto-Deposit Status
+        description: This endpoint is only applicable to isolated margin and is no longer recommended. It is recommended to use cross margin instead.
+        documentation: https://www.kucoin.com/docs-new/api-3470255
+        +---------------------+---------+
+        | Extra API Info      | Value   |
+        +---------------------+---------+
+        | API-DOMAIN          | FUTURES |
+        | API-CHANNEL         | PRIVATE |
+        | API-PERMISSION      | FUTURES |
+        | API-RATE-LIMIT-POOL | FUTURES |
+        | API-RATE-LIMIT      | 4       |
         +---------------------+---------+
         """
         pass
@@ -312,13 +312,35 @@ class PositionsAPIImpl(PositionsAPI):
     def __init__(self, transport: Transport):
         self.transport = transport
 
-    def get_isolated_margin_risk_limit(
-            self, req: GetIsolatedMarginRiskLimitReq,
-            **kwargs: Any) -> GetIsolatedMarginRiskLimitResp:
+    def get_margin_mode(self, req: GetMarginModeReq,
+                        **kwargs: Any) -> GetMarginModeResp:
         return self.transport.call("futures", False, "GET",
-                                   "/api/v1/contracts/risk-limit/{symbol}",
-                                   req, GetIsolatedMarginRiskLimitResp(),
-                                   False, **kwargs)
+                                   "/api/v2/position/getMarginMode", req,
+                                   GetMarginModeResp(), False, **kwargs)
+
+    def switch_margin_mode(self, req: SwitchMarginModeReq,
+                           **kwargs: Any) -> SwitchMarginModeResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v2/position/changeMarginMode", req,
+                                   SwitchMarginModeResp(), False, **kwargs)
+
+    def get_max_open_size(self, req: GetMaxOpenSizeReq,
+                          **kwargs: Any) -> GetMaxOpenSizeResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v2/getMaxOpenSize", req,
+                                   GetMaxOpenSizeResp(), False, **kwargs)
+
+    def get_position_details(self, req: GetPositionDetailsReq,
+                             **kwargs: Any) -> GetPositionDetailsResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/position", req,
+                                   GetPositionDetailsResp(), False, **kwargs)
+
+    def get_position_list(self, req: GetPositionListReq,
+                          **kwargs: Any) -> GetPositionListResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/positions", req,
+                                   GetPositionListResp(), False, **kwargs)
 
     def get_positions_history(self, req: GetPositionsHistoryReq,
                               **kwargs: Any) -> GetPositionsHistoryResp:
@@ -332,25 +354,18 @@ class PositionsAPIImpl(PositionsAPI):
                                    "/api/v1/margin/maxWithdrawMargin", req,
                                    GetMaxWithdrawMarginResp(), False, **kwargs)
 
-    def remove_isolated_margin(self, req: RemoveIsolatedMarginReq,
-                               **kwargs: Any) -> RemoveIsolatedMarginResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v1/margin/withdrawMargin", req,
-                                   RemoveIsolatedMarginResp(), False, **kwargs)
-
-    def get_position_details(self, req: GetPositionDetailsReq,
-                             **kwargs: Any) -> GetPositionDetailsResp:
+    def get_cross_margin_leverage(self, req: GetCrossMarginLeverageReq,
+                                  **kwargs: Any) -> GetCrossMarginLeverageResp:
         return self.transport.call("futures", False, "GET",
-                                   "/api/v1/position", req,
-                                   GetPositionDetailsResp(), False, **kwargs)
+                                   "/api/v2/getCrossUserLeverage", req,
+                                   GetCrossMarginLeverageResp(), False,
+                                   **kwargs)
 
-    def modify_auto_deposit_status(
-            self, req: ModifyAutoDepositStatusReq,
-            **kwargs: Any) -> ModifyAutoDepositStatusResp:
-        return self.transport.call(
-            "futures", False, "POST",
-            "/api/v1/position/margin/auto-deposit-status", req,
-            ModifyAutoDepositStatusResp(), False, **kwargs)
+    def modify_margin_leverage(self, req: ModifyMarginLeverageReq,
+                               **kwargs: Any) -> ModifyMarginLeverageResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v2/changeCrossUserLeverage", req,
+                                   ModifyMarginLeverageResp(), False, **kwargs)
 
     def add_isolated_margin(self, req: AddIsolatedMarginReq,
                             **kwargs: Any) -> AddIsolatedMarginResp:
@@ -358,6 +373,20 @@ class PositionsAPIImpl(PositionsAPI):
                                    "/api/v1/position/margin/deposit-margin",
                                    req, AddIsolatedMarginResp(), False,
                                    **kwargs)
+
+    def remove_isolated_margin(self, req: RemoveIsolatedMarginReq,
+                               **kwargs: Any) -> RemoveIsolatedMarginResp:
+        return self.transport.call("futures", False, "POST",
+                                   "/api/v1/margin/withdrawMargin", req,
+                                   RemoveIsolatedMarginResp(), False, **kwargs)
+
+    def get_isolated_margin_risk_limit(
+            self, req: GetIsolatedMarginRiskLimitReq,
+            **kwargs: Any) -> GetIsolatedMarginRiskLimitResp:
+        return self.transport.call("futures", False, "GET",
+                                   "/api/v1/contracts/risk-limit/{symbol}",
+                                   req, GetIsolatedMarginRiskLimitResp(),
+                                   False, **kwargs)
 
     def modify_isolated_margin_risk_limt(
             self, req: ModifyIsolatedMarginRiskLimtReq,
@@ -367,39 +396,10 @@ class PositionsAPIImpl(PositionsAPI):
                                    req, ModifyIsolatedMarginRiskLimtResp(),
                                    False, **kwargs)
 
-    def get_position_list(self, req: GetPositionListReq,
-                          **kwargs: Any) -> GetPositionListResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v1/positions", req,
-                                   GetPositionListResp(), False, **kwargs)
-
-    def modify_margin_leverage(self, req: ModifyMarginLeverageReq,
-                               **kwargs: Any) -> ModifyMarginLeverageResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v2/changeCrossUserLeverage", req,
-                                   ModifyMarginLeverageResp(), False, **kwargs)
-
-    def get_cross_margin_leverage(self, req: GetCrossMarginLeverageReq,
-                                  **kwargs: Any) -> GetCrossMarginLeverageResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v2/getCrossUserLeverage", req,
-                                   GetCrossMarginLeverageResp(), False,
-                                   **kwargs)
-
-    def get_max_open_size(self, req: GetMaxOpenSizeReq,
-                          **kwargs: Any) -> GetMaxOpenSizeResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v2/getMaxOpenSize", req,
-                                   GetMaxOpenSizeResp(), False, **kwargs)
-
-    def switch_margin_mode(self, req: SwitchMarginModeReq,
-                           **kwargs: Any) -> SwitchMarginModeResp:
-        return self.transport.call("futures", False, "POST",
-                                   "/api/v2/position/changeMarginMode", req,
-                                   SwitchMarginModeResp(), False, **kwargs)
-
-    def get_margin_mode(self, req: GetMarginModeReq,
-                        **kwargs: Any) -> GetMarginModeResp:
-        return self.transport.call("futures", False, "GET",
-                                   "/api/v2/position/getMarginMode", req,
-                                   GetMarginModeResp(), False, **kwargs)
+    def modify_auto_deposit_status(
+            self, req: ModifyAutoDepositStatusReq,
+            **kwargs: Any) -> ModifyAutoDepositStatusResp:
+        return self.transport.call(
+            "futures", False, "POST",
+            "/api/v1/position/margin/auto-deposit-status", req,
+            ModifyAutoDepositStatusResp(), False, **kwargs)

@@ -9,20 +9,6 @@ import (
 
 type DebitAPI interface {
 
-	// GetBorrowHistory Get Borrow History
-	// Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
-	// Documentation: https://www.kucoin.com/docs-new/api-3470207
-	// +---------------------+---------+
-	// | Extra API Info      | Value   |
-	// +---------------------+---------+
-	// | API-DOMAIN          | SPOT    |
-	// | API-CHANNEL         | PRIVATE |
-	// | API-PERMISSION      | MARGIN  |
-	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 15      |
-	// +---------------------+---------+
-	GetBorrowHistory(req *GetBorrowHistoryReq, ctx context.Context) (*GetBorrowHistoryResp, error)
-
 	// Borrow Borrow
 	// Description: This API endpoint is used to initiate an application for cross or isolated margin borrowing.
 	// Documentation: https://www.kucoin.com/docs-new/api-3470206
@@ -37,9 +23,9 @@ type DebitAPI interface {
 	// +---------------------+---------+
 	Borrow(req *BorrowReq, ctx context.Context) (*BorrowResp, error)
 
-	// GetInterestHistory Get Interest History
-	// Description: Request via this endpoint to get the interest records of the cross/isolated margin lending.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470209
+	// GetBorrowHistory Get Borrow History
+	// Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
+	// Documentation: https://www.kucoin.com/docs-new/api-3470207
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -47,9 +33,23 @@ type DebitAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | MARGIN  |
 	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 20      |
+	// | API-RATE-LIMIT      | 15      |
 	// +---------------------+---------+
-	GetInterestHistory(req *GetInterestHistoryReq, ctx context.Context) (*GetInterestHistoryResp, error)
+	GetBorrowHistory(req *GetBorrowHistoryReq, ctx context.Context) (*GetBorrowHistoryResp, error)
+
+	// Repay Repay
+	// Description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470210
+	// +---------------------+---------+
+	// | Extra API Info      | Value   |
+	// +---------------------+---------+
+	// | API-DOMAIN          | SPOT    |
+	// | API-CHANNEL         | PRIVATE |
+	// | API-PERMISSION      | MARGIN  |
+	// | API-RATE-LIMIT-POOL | SPOT    |
+	// | API-RATE-LIMIT      | 10      |
+	// +---------------------+---------+
+	Repay(req *RepayReq, ctx context.Context) (*RepayResp, error)
 
 	// GetRepayHistory Get Repay History
 	// Description: This API endpoint is used to get the borrowing orders for cross and isolated margin accounts
@@ -65,9 +65,9 @@ type DebitAPI interface {
 	// +---------------------+---------+
 	GetRepayHistory(req *GetRepayHistoryReq, ctx context.Context) (*GetRepayHistoryResp, error)
 
-	// Repay Repay
-	// Description: This API endpoint is used to initiate an application for cross or isolated margin repayment.
-	// Documentation: https://www.kucoin.com/docs-new/api-3470210
+	// GetInterestHistory Get Interest History
+	// Description: Request via this endpoint to get the interest records of the cross/isolated margin lending.
+	// Documentation: https://www.kucoin.com/docs-new/api-3470209
 	// +---------------------+---------+
 	// | Extra API Info      | Value   |
 	// +---------------------+---------+
@@ -75,9 +75,9 @@ type DebitAPI interface {
 	// | API-CHANNEL         | PRIVATE |
 	// | API-PERMISSION      | MARGIN  |
 	// | API-RATE-LIMIT-POOL | SPOT    |
-	// | API-RATE-LIMIT      | 10      |
+	// | API-RATE-LIMIT      | 20      |
 	// +---------------------+---------+
-	Repay(req *RepayReq, ctx context.Context) (*RepayResp, error)
+	GetInterestHistory(req *GetInterestHistoryReq, ctx context.Context) (*GetInterestHistoryResp, error)
 
 	// ModifyLeverage Modify Leverage
 	// Description: This endpoint allows modifying the leverage multiplier for cross margin or isolated margin.
@@ -102,21 +102,21 @@ func NewDebitAPIImp(transport interfaces.Transport) *DebitAPIImpl {
 	return &DebitAPIImpl{transport: transport}
 }
 
-func (impl *DebitAPIImpl) GetBorrowHistory(req *GetBorrowHistoryReq, ctx context.Context) (*GetBorrowHistoryResp, error) {
-	resp := &GetBorrowHistoryResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/margin/borrow", req, resp, false)
-	return resp, err
-}
-
 func (impl *DebitAPIImpl) Borrow(req *BorrowReq, ctx context.Context) (*BorrowResp, error) {
 	resp := &BorrowResp{}
 	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/margin/borrow", req, resp, false)
 	return resp, err
 }
 
-func (impl *DebitAPIImpl) GetInterestHistory(req *GetInterestHistoryReq, ctx context.Context) (*GetInterestHistoryResp, error) {
-	resp := &GetInterestHistoryResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/margin/interest", req, resp, false)
+func (impl *DebitAPIImpl) GetBorrowHistory(req *GetBorrowHistoryReq, ctx context.Context) (*GetBorrowHistoryResp, error) {
+	resp := &GetBorrowHistoryResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/margin/borrow", req, resp, false)
+	return resp, err
+}
+
+func (impl *DebitAPIImpl) Repay(req *RepayReq, ctx context.Context) (*RepayResp, error) {
+	resp := &RepayResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/margin/repay", req, resp, false)
 	return resp, err
 }
 
@@ -126,9 +126,9 @@ func (impl *DebitAPIImpl) GetRepayHistory(req *GetRepayHistoryReq, ctx context.C
 	return resp, err
 }
 
-func (impl *DebitAPIImpl) Repay(req *RepayReq, ctx context.Context) (*RepayResp, error) {
-	resp := &RepayResp{}
-	err := impl.transport.Call(ctx, "spot", false, "Post", "/api/v3/margin/repay", req, resp, false)
+func (impl *DebitAPIImpl) GetInterestHistory(req *GetInterestHistoryReq, ctx context.Context) (*GetInterestHistoryResp, error) {
+	resp := &GetInterestHistoryResp{}
+	err := impl.transport.Call(ctx, "spot", false, "Get", "/api/v3/margin/interest", req, resp, false)
 	return resp, err
 }
 

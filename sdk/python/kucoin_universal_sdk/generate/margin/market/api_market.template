@@ -1,15 +1,18 @@
 # API FUNCTION TEMPLATE
 
 
-def test_get_isolated_margin_symbols_req(self):
+def test_get_cross_margin_symbols_req(self):
     """
-        get_isolated_margin_symbols
-        Get Symbols - Isolated Margin
-        /api/v1/isolated/symbols
+        get_cross_margin_symbols
+        Get Symbols - Cross Margin
+        /api/v3/margin/symbols
     """
 
+    builder = GetCrossMarginSymbolsReqBuilder()
+    builder.set_symbol(?)
+    req = builder.build()
     try:
-        resp = self.api.get_isolated_margin_symbols()
+        resp = self.api.get_cross_margin_symbols(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -26,25 +29,6 @@ def test_get_margin_config_req(self):
 
     try:
         resp = self.api.get_margin_config()
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
-def test_get_mark_price_detail_req(self):
-    """
-        get_mark_price_detail
-        Get Mark Price Detail
-        /api/v1/mark-price/{symbol}/current
-    """
-
-    builder = GetMarkPriceDetailReqBuilder()
-    builder.set_symbol(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_mark_price_detail(req)
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())
@@ -71,25 +55,6 @@ def test_get_etf_info_req(self):
         print("error: ", e)
         raise e
 
-def test_get_cross_margin_symbols_req(self):
-    """
-        get_cross_margin_symbols
-        Get Symbols - Cross Margin
-        /api/v3/margin/symbols
-    """
-
-    builder = GetCrossMarginSymbolsReqBuilder()
-    builder.set_symbol(?)
-    req = builder.build()
-    try:
-        resp = self.api.get_cross_margin_symbols(req)
-        print("code: ", resp.common_response.code)
-        print("msg: ", resp.common_response.message)
-        print("data: ", resp.to_json())
-    except Exception as e:
-        print("error: ", e)
-        raise e
-
 def test_get_mark_price_list_req(self):
     """
         get_mark_price_list
@@ -99,6 +64,41 @@ def test_get_mark_price_list_req(self):
 
     try:
         resp = self.api.get_mark_price_list()
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_mark_price_detail_req(self):
+    """
+        get_mark_price_detail
+        Get Mark Price Detail
+        /api/v1/mark-price/{symbol}/current
+    """
+
+    builder = GetMarkPriceDetailReqBuilder()
+    builder.set_symbol(?)
+    req = builder.build()
+    try:
+        resp = self.api.get_mark_price_detail(req)
+        print("code: ", resp.common_response.code)
+        print("msg: ", resp.common_response.message)
+        print("data: ", resp.to_json())
+    except Exception as e:
+        print("error: ", e)
+        raise e
+
+def test_get_isolated_margin_symbols_req(self):
+    """
+        get_isolated_margin_symbols
+        Get Symbols - Isolated Margin
+        /api/v1/isolated/symbols
+    """
+
+    try:
+        resp = self.api.get_isolated_margin_symbols()
         print("code: ", resp.common_response.code)
         print("msg: ", resp.common_response.message)
         print("data: ", resp.to_json())

@@ -7,6 +7,215 @@
     },
     "tags": [],
     "paths": {
+        "/api/v2/position/getMarginMode": {
+            "get": {
+                "summary": "Get Margin Mode",
+                "deprecated": false,
+                "description": "This interface can query the margin mode of the current symbol.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "symbol": {
+                                                    "type": "string",
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                },
+                                                "marginMode": {
+                                                    "type": "string",
+                                                    "description": "Margin mode: ISOLATED (isolated), CROSS (cross margin).",
+                                                    "enum": [
+                                                        "ISOLATED",
+                                                        "CROSS"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "ISOLATED",
+                                                            "name": "ISOLATED",
+                                                            "description": "isolated margin"
+                                                        },
+                                                        {
+                                                            "value": "CROSS",
+                                                            "name": "CROSS",
+                                                            "description": "cross margin"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "symbol",
+                                                "marginMode"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470259",
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Positions",
+                "x-sdk-method-name": "getMarginMode",
+                "x-sdk-method-description": "This interface can query the margin mode of the current symbol.",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"marginMode\\\": \\\"ISOLATED\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "001"
+            }
+        },
+        "/api/v2/position/changeMarginMode": {
+            "post": {
+                "summary": "Switch Margin Mode",
+                "deprecated": false,
+                "description": "This interface can modify the margin mode of the current symbol.",
+                "tags": [],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "symbol": {
+                                                    "type": "string",
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                },
+                                                "marginMode": {
+                                                    "type": "string",
+                                                    "description": "Margin mode: ISOLATED (isolated), CROSS (cross margin).",
+                                                    "enum": [
+                                                        "ISOLATED",
+                                                        "CROSS"
+                                                    ],
+                                                    "x-api-enum": [
+                                                        {
+                                                            "value": "ISOLATED",
+                                                            "name": "ISOLATED",
+                                                            "description": "isolated margin"
+                                                        },
+                                                        {
+                                                            "value": "CROSS",
+                                                            "name": "CROSS",
+                                                            "description": "cross margin"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "symbol",
+                                                "marginMode"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470262",
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Positions",
+                "x-sdk-method-name": "switchMarginMode",
+                "x-sdk-method-description": "This interface can modify the margin mode of the current symbol.",
+                "x-api-rate-limit": 2,
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "symbol": {
+                                        "type": "string",
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                                        "example": [
+                                            "XBTUSDTM",
+                                            "XBTUSDCM",
+                                            "ETHUSDTM"
+                                        ]
+                                    },
+                                    "marginMode": {
+                                        "type": "string",
+                                        "description": "Modified margin model: ISOLATED (isolated), CROSS (cross margin).",
+                                        "enum": [
+                                            "ISOLATED",
+                                            "CROSS"
+                                        ],
+                                        "x-api-enum": [
+                                            {
+                                                "value": "ISOLATED",
+                                                "name": "ISOLATED",
+                                                "description": "Isolated Margin Mode"
+                                            },
+                                            {
+                                                "value": "CROSS",
+                                                "name": "CROSS",
+                                                "description": "Cross Margin MOde"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "symbol",
+                                    "marginMode"
+                                ]
+                            },
+                            "example": "{\n  \"symbol\": \"XBTUSDTM\",\n  \"marginMode\": \"ISOLATED\"\n}"
+                        }
+                    }
+                },
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"marginMode\\\": \\\"ISOLATED\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"marginMode\\\": \\\"ISOLATED\\\"}",
+                "operationId": "002"
+            }
+        },
         "/api/v2/getMaxOpenSize": {
             "get": {
                 "summary": "Get Max Open Size",
@@ -102,105 +311,8 @@
                 "x-sdk-method-description": "Get Maximum Open Position Size.",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"maxBuyOpenSize\\\": 0,\\n        \\\"maxSellOpenSize\\\": 0\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"price\\\": \\\"example_string_default_value\\\", \\\"leverage\\\": 123456}"
-            }
-        },
-        "/api/v1/contracts/risk-limit/{symbol}": {
-            "get": {
-                "summary": "Get Isolated Margin Risk Limit",
-                "deprecated": false,
-                "description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "path",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "symbol": {
-                                                        "type": "string",
-                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
-                                                    },
-                                                    "level": {
-                                                        "type": "integer",
-                                                        "description": "level\n"
-                                                    },
-                                                    "maxRiskLimit": {
-                                                        "type": "integer",
-                                                        "description": "Upper limit USDT(includes)\n"
-                                                    },
-                                                    "minRiskLimit": {
-                                                        "type": "integer",
-                                                        "description": "Lower limit USDT\n"
-                                                    },
-                                                    "maxLeverage": {
-                                                        "type": "integer",
-                                                        "description": "Max leverage\n"
-                                                    },
-                                                    "initialMargin": {
-                                                        "type": "number",
-                                                        "description": "Initial margin rate\n"
-                                                    },
-                                                    "maintainMargin": {
-                                                        "type": "number",
-                                                        "description": "Maintenance margin rate\n"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "symbol",
-                                                    "level",
-                                                    "maxRiskLimit",
-                                                    "minRiskLimit",
-                                                    "maxLeverage",
-                                                    "initialMargin",
-                                                    "maintainMargin"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470263",
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Public",
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "getIsolatedMarginRiskLimit",
-                "x-sdk-method-description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
-                "x-api-rate-limit": 5,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 1,\\n            \\\"maxRiskLimit\\\": 100000,\\n            \\\"minRiskLimit\\\": 0,\\n            \\\"maxLeverage\\\": 125,\\n            \\\"initialMargin\\\": 0.008,\\n            \\\"maintainMargin\\\": 0.004\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 2,\\n            \\\"maxRiskLimit\\\": 500000,\\n            \\\"minRiskLimit\\\": 100000,\\n            \\\"maxLeverage\\\": 100,\\n            \\\"initialMargin\\\": 0.01,\\n            \\\"maintainMargin\\\": 0.005\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 3,\\n            \\\"maxRiskLimit\\\": 1000000,\\n            \\\"minRiskLimit\\\": 500000,\\n            \\\"maxLeverage\\\": 75,\\n            \\\"initialMargin\\\": 0.014,\\n            \\\"maintainMargin\\\": 0.007\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 4,\\n            \\\"maxRiskLimit\\\": 2000000,\\n            \\\"minRiskLimit\\\": 1000000,\\n            \\\"maxLeverage\\\": 50,\\n            \\\"initialMargin\\\": 0.02,\\n            \\\"maintainMargin\\\": 0.01\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 5,\\n            \\\"maxRiskLimit\\\": 3000000,\\n            \\\"minRiskLimit\\\": 2000000,\\n            \\\"maxLeverage\\\": 30,\\n            \\\"initialMargin\\\": 0.034,\\n            \\\"maintainMargin\\\": 0.017\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 6,\\n            \\\"maxRiskLimit\\\": 5000000,\\n            \\\"minRiskLimit\\\": 3000000,\\n            \\\"maxLeverage\\\": 20,\\n            \\\"initialMargin\\\": 0.05,\\n            \\\"maintainMargin\\\": 0.025\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 7,\\n            \\\"maxRiskLimit\\\": 8000000,\\n            \\\"minRiskLimit\\\": 5000000,\\n            \\\"maxLeverage\\\": 10,\\n            \\\"initialMargin\\\": 0.1,\\n            \\\"maintainMargin\\\": 0.05\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 8,\\n            \\\"maxRiskLimit\\\": 12000000,\\n            \\\"minRiskLimit\\\": 8000000,\\n            \\\"maxLeverage\\\": 5,\\n            \\\"initialMargin\\\": 0.2,\\n            \\\"maintainMargin\\\": 0.1\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 9,\\n            \\\"maxRiskLimit\\\": 20000000,\\n            \\\"minRiskLimit\\\": 12000000,\\n            \\\"maxLeverage\\\": 4,\\n            \\\"initialMargin\\\": 0.25,\\n            \\\"maintainMargin\\\": 0.125\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 10,\\n            \\\"maxRiskLimit\\\": 30000000,\\n            \\\"minRiskLimit\\\": 20000000,\\n            \\\"maxLeverage\\\": 3,\\n            \\\"initialMargin\\\": 0.334,\\n            \\\"maintainMargin\\\": 0.167\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 11,\\n            \\\"maxRiskLimit\\\": 40000000,\\n            \\\"minRiskLimit\\\": 30000000,\\n            \\\"maxLeverage\\\": 2,\\n            \\\"initialMargin\\\": 0.5,\\n            \\\"maintainMargin\\\": 0.25\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 12,\\n            \\\"maxRiskLimit\\\": 50000000,\\n            \\\"minRiskLimit\\\": 40000000,\\n            \\\"maxLeverage\\\": 1,\\n            \\\"initialMargin\\\": 1.0,\\n            \\\"maintainMargin\\\": 0.5\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"price\\\": \\\"example_string_default_value\\\", \\\"leverage\\\": 123456}",
+                "operationId": "003"
             }
         },
         "/api/v1/position": {
@@ -500,78 +612,8 @@
                 "x-sdk-method-description": "Get the position details of a specified position.",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"500000000000988255\\\",\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"autoDeposit\\\": false,\\n        \\\"crossMode\\\": false,\\n        \\\"maintMarginReq\\\": 0.005,\\n        \\\"riskLimit\\\": 500000,\\n        \\\"realLeverage\\\": 2.88,\\n        \\\"delevPercentage\\\": 0.18,\\n        \\\"openingTimestamp\\\": 1729155616322,\\n        \\\"currentTimestamp\\\": 1729482542135,\\n        \\\"currentQty\\\": 1,\\n        \\\"currentCost\\\": 67.4309,\\n        \\\"currentComm\\\": 0.01925174,\\n        \\\"unrealisedCost\\\": 67.4309,\\n        \\\"realisedGrossCost\\\": 0.0,\\n        \\\"realisedCost\\\": 0.01925174,\\n        \\\"isOpen\\\": true,\\n        \\\"markPrice\\\": 68900.7,\\n        \\\"markValue\\\": 68.9007,\\n        \\\"posCost\\\": 67.4309,\\n        \\\"posCross\\\": 0.01645214,\\n        \\\"posCrossMargin\\\": 0,\\n        \\\"posInit\\\": 22.4769666644,\\n        \\\"posComm\\\": 0.0539546299,\\n        \\\"posCommCommon\\\": 0.0539447199,\\n        \\\"posLoss\\\": 0.03766885,\\n        \\\"posMargin\\\": 22.5097045843,\\n        \\\"posFunding\\\": -0.0212068,\\n        \\\"posMaint\\\": 0.3931320569,\\n        \\\"maintMargin\\\": 23.9795045843,\\n        \\\"realisedGrossPnl\\\": 0.0,\\n        \\\"realisedPnl\\\": -0.06166534,\\n        \\\"unrealisedPnl\\\": 1.4698,\\n        \\\"unrealisedPnlPcnt\\\": 0.0218,\\n        \\\"unrealisedRoePcnt\\\": 0.0654,\\n        \\\"avgEntryPrice\\\": 67430.9,\\n        \\\"liquidationPrice\\\": 45314.33,\\n        \\\"bankruptPrice\\\": 44975.16,\\n        \\\"settleCurrency\\\": \\\"USDT\\\",\\n        \\\"maintainMargin\\\": 0.005,\\n        \\\"riskLimitLevel\\\": 2,\\n        \\\"marginMode\\\": \\\"ISOLATED\\\",\\n        \\\"positionSide\\\": \\\"BOTH\\\",\\n        \\\"leverage\\\": 2.88\\n    }\\n}\\n",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}"
-            }
-        },
-        "/api/v1/position/risk-limit-level/change": {
-            "post": {
-                "summary": "Modify Isolated Margin Risk Limit",
-                "deprecated": false,
-                "description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "boolean",
-                                            "description": "To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not.\n"
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470264",
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Futures",
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "modifyIsolatedMarginRiskLimt",
-                "x-sdk-method-description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
-                "x-api-rate-limit": 5,
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "symbol": {
-                                        "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
-                                    },
-                                    "level": {
-                                        "type": "integer",
-                                        "description": "level"
-                                    }
-                                },
-                                "required": [
-                                    "symbol",
-                                    "level"
-                                ]
-                            },
-                            "example": "{\n    \"symbol\" : \"XBTUSDTM\",\n    \"level\" : 2\n}"
-                        }
-                    }
-                },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": true\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"level\\\": 2}"
+                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}",
+                "operationId": "004"
             }
         },
         "/api/v1/positions": {
@@ -879,7 +921,8 @@
                 "x-sdk-method-description": "Get the position details of a specified position.",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"id\\\": \\\"500000000001046430\\\",\\n            \\\"symbol\\\": \\\"ETHUSDM\\\",\\n            \\\"crossMode\\\": true,\\n            \\\"delevPercentage\\\": 0.71,\\n            \\\"openingTimestamp\\\": 1730635780702,\\n            \\\"currentTimestamp\\\": 1730636040926,\\n            \\\"currentQty\\\": 1,\\n            \\\"currentCost\\\": -4.069805E-4,\\n            \\\"currentComm\\\": 2.441E-7,\\n            \\\"unrealisedCost\\\": -4.069805E-4,\\n            \\\"realisedGrossCost\\\": 0.0,\\n            \\\"realisedCost\\\": 2.441E-7,\\n            \\\"isOpen\\\": true,\\n            \\\"markPrice\\\": 2454.12,\\n            \\\"markValue\\\": -4.07478E-4,\\n            \\\"posCost\\\": -4.069805E-4,\\n            \\\"posInit\\\": 4.06981E-5,\\n            \\\"posMargin\\\": 4.07478E-5,\\n            \\\"realisedGrossPnl\\\": 0.0,\\n            \\\"realisedPnl\\\": -2.441E-7,\\n            \\\"unrealisedPnl\\\": -4.975E-7,\\n            \\\"unrealisedPnlPcnt\\\": -0.0012,\\n            \\\"unrealisedRoePcnt\\\": -0.0122,\\n            \\\"avgEntryPrice\\\": 2457.12,\\n            \\\"liquidationPrice\\\": 1429.96,\\n            \\\"bankruptPrice\\\": 1414.96,\\n            \\\"settleCurrency\\\": \\\"ETH\\\",\\n            \\\"isInverse\\\": true,\\n            \\\"marginMode\\\": \\\"CROSS\\\",\\n            \\\"positionSide\\\": \\\"BOTH\\\",\\n            \\\"leverage\\\": 10\\n        },\\n        {\\n            \\\"id\\\": \\\"500000000000988255\\\",\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"autoDeposit\\\": true,\\n            \\\"crossMode\\\": false,\\n            \\\"maintMarginReq\\\": 0.005,\\n            \\\"riskLimit\\\": 500000,\\n            \\\"realLeverage\\\": 2.97,\\n            \\\"delevPercentage\\\": 0.5,\\n            \\\"openingTimestamp\\\": 1729155616322,\\n            \\\"currentTimestamp\\\": 1730636040926,\\n            \\\"currentQty\\\": 1,\\n            \\\"currentCost\\\": 67.4309,\\n            \\\"currentComm\\\": -0.15936162,\\n            \\\"unrealisedCost\\\": 67.4309,\\n            \\\"realisedGrossCost\\\": 0.0,\\n            \\\"realisedCost\\\": -0.15936162,\\n            \\\"isOpen\\\": true,\\n            \\\"markPrice\\\": 68323.06,\\n            \\\"markValue\\\": 68.32306,\\n            \\\"posCost\\\": 67.4309,\\n            \\\"posCross\\\": 0.06225152,\\n            \\\"posCrossMargin\\\": 0,\\n            \\\"posInit\\\": 22.2769666644,\\n            \\\"posComm\\\": 0.0539821899,\\n            \\\"posCommCommon\\\": 0.0539447199,\\n            \\\"posLoss\\\": 0.26210915,\\n            \\\"posMargin\\\": 22.1310912243,\\n            \\\"posFunding\\\": -0.19982016,\\n            \\\"posMaint\\\": 0.4046228699,\\n            \\\"maintMargin\\\": 23.0232512243,\\n            \\\"realisedGrossPnl\\\": 0.0,\\n            \\\"realisedPnl\\\": -0.2402787,\\n            \\\"unrealisedPnl\\\": 0.89216,\\n            \\\"unrealisedPnlPcnt\\\": 0.0132,\\n            \\\"unrealisedRoePcnt\\\": 0.04,\\n            \\\"avgEntryPrice\\\": 67430.9,\\n            \\\"liquidationPrice\\\": 45704.44,\\n            \\\"bankruptPrice\\\": 45353.8,\\n            \\\"settleCurrency\\\": \\\"USDT\\\",\\n            \\\"isInverse\\\": false,\\n            \\\"maintainMargin\\\": 0.005,\\n            \\\"marginMode\\\": \\\"ISOLATED\\\",\\n            \\\"positionSide\\\": \\\"BOTH\\\",\\n            \\\"leverage\\\": 2.97\\n        }\\n    ]\\n}",
-                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\"}"
+                "x-request-example": "{\\\"currency\\\": \\\"USDT\\\"}",
+                "operationId": "005"
             }
         },
         "/api/v1/history-positions": {
@@ -1109,14 +1152,144 @@
                 "x-sdk-method-description": "This interface can query position history information records.",
                 "x-api-rate-limit": 2,
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"currentPage\\\": 1,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalNum\\\": 3,\\n        \\\"totalPage\\\": 1,\\n        \\\"items\\\": [\\n            {\\n                \\\"closeId\\\": \\\"500000000027312193\\\",\\n                \\\"userId\\\": \\\"633559791e1cbc0001f319bc\\\",\\n                \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"leverage\\\": \\\"0.0\\\",\\n                \\\"type\\\": \\\"CLOSE_SHORT\\\",\\n                \\\"pnl\\\": \\\"-3.79237944\\\",\\n                \\\"realisedGrossCost\\\": \\\"3.795\\\",\\n                \\\"withdrawPnl\\\": \\\"0.0\\\",\\n                \\\"tradeFee\\\": \\\"0.078657\\\",\\n                \\\"fundingFee\\\": \\\"0.08127756\\\",\\n                \\\"openTime\\\": 1727073653603,\\n                \\\"closeTime\\\": 1729155587945,\\n                \\\"openPrice\\\": \\\"63650.0\\\",\\n                \\\"closePrice\\\": \\\"67445.0\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\"\\n            },\\n            {\\n                \\\"closeId\\\": \\\"500000000026809668\\\",\\n                \\\"userId\\\": \\\"633559791e1cbc0001f319bc\\\",\\n                \\\"symbol\\\": \\\"SUIUSDTM\\\",\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"leverage\\\": \\\"0.0\\\",\\n                \\\"type\\\": \\\"LIQUID_SHORT\\\",\\n                \\\"pnl\\\": \\\"-1.10919296\\\",\\n                \\\"realisedGrossCost\\\": \\\"1.11297635\\\",\\n                \\\"withdrawPnl\\\": \\\"0.0\\\",\\n                \\\"tradeFee\\\": \\\"0.00200295\\\",\\n                \\\"fundingFee\\\": \\\"0.00578634\\\",\\n                \\\"openTime\\\": 1726473389296,\\n                \\\"closeTime\\\": 1728738683541,\\n                \\\"openPrice\\\": \\\"1.1072\\\",\\n                \\\"closePrice\\\": \\\"2.22017635\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\"\\n            },\\n            {\\n                \\\"closeId\\\": \\\"500000000026819355\\\",\\n                \\\"userId\\\": \\\"633559791e1cbc0001f319bc\\\",\\n                \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n                \\\"settleCurrency\\\": \\\"USDT\\\",\\n                \\\"leverage\\\": \\\"0.0\\\",\\n                \\\"type\\\": \\\"LIQUID_SHORT\\\",\\n                \\\"pnl\\\": \\\"-5.941896296\\\",\\n                \\\"realisedGrossCost\\\": \\\"5.86937042\\\",\\n                \\\"withdrawPnl\\\": \\\"0.0\\\",\\n                \\\"tradeFee\\\": \\\"0.074020096\\\",\\n                \\\"fundingFee\\\": \\\"0.00149422\\\",\\n                \\\"openTime\\\": 1726490775358,\\n                \\\"closeTime\\\": 1727061049859,\\n                \\\"openPrice\\\": \\\"58679.6\\\",\\n                \\\"closePrice\\\": \\\"64548.97042\\\",\\n                \\\"marginMode\\\": \\\"ISOLATED\\\"\\n            }\\n        ]\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\", \\\"from\\\": 123456, \\\"to\\\": 123456, \\\"limit\\\": 10, \\\"pageId\\\": 1}"
+                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\", \\\"from\\\": 123456, \\\"to\\\": 123456, \\\"limit\\\": 10, \\\"pageId\\\": 1}",
+                "operationId": "006"
             }
         },
-        "/api/v1/margin/withdrawMargin": {
-            "post": {
-                "summary": "Remove Isolated Margin",
+        "/api/v1/margin/maxWithdrawMargin": {
+            "get": {
+                "summary": "Get Max Withdraw Margin",
                 "deprecated": false,
-                "description": "Remove Isolated Margin Manually.",
+                "description": "This interface can query the maximum amount of margin that the current position supports withdrawal.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "description": "The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470258",
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Positions",
+                "x-sdk-method-name": "GetMaxWithdrawMargin",
+                "x-sdk-method-description": "This interface can query the maximum amount of margin that the current position supports withdrawal.",
+                "x-api-rate-limit": 10,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"21.1135719252\\\"\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}",
+                "operationId": "007"
+            }
+        },
+        "/api/v2/getCrossUserLeverage": {
+            "get": {
+                "summary": "Get Cross Margin Leverage",
+                "deprecated": false,
+                "description": "This interface can query the current symbol’s cross-margin leverage multiple.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "query",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "symbol": {
+                                                    "type": "string",
+                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                },
+                                                "leverage": {
+                                                    "type": "string",
+                                                    "description": "Leverage multiple"
+                                                }
+                                            },
+                                            "required": [
+                                                "symbol",
+                                                "leverage"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470260",
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Futures",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Positions",
+                "x-sdk-method-name": "getCrossMarginLeverage",
+                "x-sdk-method-description": "This interface can query the current symbol’s cross-margin leverage multiple.",
+                "x-api-rate-limit": 2,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"leverage\\\": \\\"3\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "008"
+            }
+        },
+        "/api/v2/changeCrossUserLeverage": {
+            "post": {
+                "summary": "Modify Cross Margin Leverage",
+                "deprecated": false,
+                "description": "This interface can modify the current symbol’s cross-margin leverage multiple.",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -1131,8 +1304,19 @@
                                             "type": "string"
                                         },
                                         "data": {
-                                            "type": "string",
-                                            "description": "The size of the position deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
+                                            "type": "object",
+                                            "properties": {
+                                                "symbol": {
+                                                    "type": "string"
+                                                },
+                                                "leverage": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "symbol",
+                                                "leverage"
+                                            ]
                                         }
                                     },
                                     "required": [
@@ -1144,7 +1328,7 @@
                         }
                     }
                 },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470256",
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470261",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1152,9 +1336,9 @@
                 "x-api-rate-limit-pool": "Futures",
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "RemoveIsolatedMargin",
-                "x-sdk-method-description": "Remove Isolated Margin Manually.",
-                "x-api-rate-limit": 10,
+                "x-sdk-method-name": "ModifyMarginLeverage",
+                "x-sdk-method-description": "This interface can modify the current symbol’s cross-margin leverage multiple.",
+                "x-api-rate-limit": 2,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1165,22 +1349,23 @@
                                         "type": "string",
                                         "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
-                                    "withdrawAmount": {
+                                    "leverage": {
                                         "type": "string",
-                                        "description": "The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
+                                        "description": "Leverage multiple"
                                     }
                                 },
                                 "required": [
                                     "symbol",
-                                    "withdrawAmount"
+                                    "leverage"
                                 ]
                             },
-                            "example": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": \"0.0000001\"\n}"
+                            "example": "{\n  \"symbol\": \"XBTUSDTM\",\n  \"leverage\" : \"10\"\n}"
                         }
                     }
                 },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"0.1\\\"\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"withdrawAmount\\\": \\\"0.0000001\\\"}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"leverage\\\": \\\"3\\\"\\n    }\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": \\\"10\\\"}",
+                "operationId": "009"
             }
         },
         "/api/v1/position/margin/deposit-margin": {
@@ -1446,26 +1631,17 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"6200c9b83aecfb000152ddcd\\\",\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"autoDeposit\\\": false,\\n        \\\"maintMarginReq\\\": 0.005,\\n        \\\"riskLimit\\\": 500000,\\n        \\\"realLeverage\\\": 18.72,\\n        \\\"crossMode\\\": false,\\n        \\\"delevPercentage\\\": 0.66,\\n        \\\"openingTimestamp\\\": 1646287090131,\\n        \\\"currentTimestamp\\\": 1646295055021,\\n        \\\"currentQty\\\": 1,\\n        \\\"currentCost\\\": 43.388,\\n        \\\"currentComm\\\": 0.0260328,\\n        \\\"unrealisedCost\\\": 43.388,\\n        \\\"realisedGrossCost\\\": 0,\\n        \\\"realisedCost\\\": 0.0260328,\\n        \\\"isOpen\\\": true,\\n        \\\"markPrice\\\": 43536.65,\\n        \\\"markValue\\\": 43.53665,\\n        \\\"posCost\\\": 43.388,\\n        \\\"posCross\\\": 0.000024985,\\n        \\\"posInit\\\": 2.1694,\\n        \\\"posComm\\\": 0.02733446,\\n        \\\"posLoss\\\": 0,\\n        \\\"posMargin\\\": 2.19675944,\\n        \\\"posMaint\\\": 0.24861326,\\n        \\\"maintMargin\\\": 2.34540944,\\n        \\\"realisedGrossPnl\\\": 0,\\n        \\\"realisedPnl\\\": -0.0260328,\\n        \\\"unrealisedPnl\\\": 0.14865,\\n        \\\"unrealisedPnlPcnt\\\": 0.0034,\\n        \\\"unrealisedRoePcnt\\\": 0.0685,\\n        \\\"avgEntryPrice\\\": 43388,\\n        \\\"liquidationPrice\\\": 41440,\\n        \\\"bankruptPrice\\\": 41218,\\n        \\\"userId\\\": 1234321123,\\n        \\\"settleCurrency\\\": \\\"USDT\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"string\\\", \\\"margin\\\": 0, \\\"bizNo\\\": \\\"string\\\"}"
+                "x-request-example": "{\\\"symbol\\\": \\\"string\\\", \\\"margin\\\": 0, \\\"bizNo\\\": \\\"string\\\"}",
+                "operationId": "010"
             }
         },
-        "/api/v1/margin/maxWithdrawMargin": {
-            "get": {
-                "summary": "Get Max Withdraw Margin",
+        "/api/v1/margin/withdrawMargin": {
+            "post": {
+                "summary": "Remove Isolated Margin",
                 "deprecated": false,
-                "description": "This interface can query the maximum amount of margin that the current position supports withdrawal.",
+                "description": "Remove Isolated Margin Manually.",
                 "tags": [],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "",
@@ -1479,7 +1655,7 @@
                                         },
                                         "data": {
                                             "type": "string",
-                                            "description": "The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
+                                            "description": "The size of the position deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
                                         }
                                     },
                                     "required": [
@@ -1491,7 +1667,7 @@
                         }
                     }
                 },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470258",
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470256",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1499,223 +1675,9 @@
                 "x-api-rate-limit-pool": "Futures",
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "GetMaxWithdrawMargin",
-                "x-sdk-method-description": "This interface can query the maximum amount of margin that the current position supports withdrawal.",
+                "x-sdk-method-name": "RemoveIsolatedMargin",
+                "x-sdk-method-description": "Remove Isolated Margin Manually.",
                 "x-api-rate-limit": 10,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"21.1135719252\\\"\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"example_string_default_value\\\"}"
-            }
-        },
-        "/api/v2/position/getMarginMode": {
-            "get": {
-                "summary": "Get Margin Mode",
-                "deprecated": false,
-                "description": "This interface can query the margin mode of the current symbol.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "symbol": {
-                                                    "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
-                                                },
-                                                "marginMode": {
-                                                    "type": "string",
-                                                    "description": "Margin mode: ISOLATED (isolated), CROSS (cross margin).",
-                                                    "enum": [
-                                                        "ISOLATED",
-                                                        "CROSS"
-                                                    ],
-                                                    "x-api-enum": [
-                                                        {
-                                                            "value": "ISOLATED",
-                                                            "name": "ISOLATED",
-                                                            "description": "isolated margin"
-                                                        },
-                                                        {
-                                                            "value": "CROSS",
-                                                            "name": "CROSS",
-                                                            "description": "cross margin"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "required": [
-                                                "symbol",
-                                                "marginMode"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470259",
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Futures",
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "getMarginMode",
-                "x-sdk-method-description": "This interface can query the margin mode of the current symbol.",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"marginMode\\\": \\\"ISOLATED\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
-            }
-        },
-        "/api/v2/getCrossUserLeverage": {
-            "get": {
-                "summary": "Get Cross Margin Leverage",
-                "deprecated": false,
-                "description": "This interface can query the current symbol’s cross-margin leverage multiple.",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "query",
-                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "symbol": {
-                                                    "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
-                                                },
-                                                "leverage": {
-                                                    "type": "string",
-                                                    "description": "Leverage multiple"
-                                                }
-                                            },
-                                            "required": [
-                                                "symbol",
-                                                "leverage"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470260",
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Futures",
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "getCrossMarginLeverage",
-                "x-sdk-method-description": "This interface can query the current symbol’s cross-margin leverage multiple.",
-                "x-api-rate-limit": 2,
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"leverage\\\": \\\"3\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}"
-            }
-        },
-        "/api/v2/changeCrossUserLeverage": {
-            "post": {
-                "summary": "Modify Cross Margin Leverage",
-                "deprecated": false,
-                "description": "This interface can modify the current symbol’s cross-margin leverage multiple.",
-                "tags": [],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "symbol": {
-                                                    "type": "string"
-                                                },
-                                                "leverage": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "symbol",
-                                                "leverage"
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470261",
-                "x-abandon": "normal",
-                "x-domain": "Futures",
-                "x-api-channel": "Private",
-                "x-api-permission": "Futures",
-                "x-api-rate-limit-pool": "Futures",
-                "x-sdk-service": "Futures",
-                "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "ModifyMarginLeverage",
-                "x-sdk-method-description": "This interface can modify the current symbol’s cross-margin leverage multiple.",
-                "x-api-rate-limit": 2,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1726,29 +1688,129 @@
                                         "type": "string",
                                         "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
-                                    "leverage": {
+                                    "withdrawAmount": {
                                         "type": "string",
-                                        "description": "Leverage multiple"
+                                        "description": "The size of the position that can be deposited. If it is USDT-margin, it represents the amount of USDT. If it is coin-margin, this value represents the number of coins\n"
                                     }
                                 },
                                 "required": [
                                     "symbol",
-                                    "leverage"
+                                    "withdrawAmount"
                                 ]
                             },
-                            "example": "{\n  \"symbol\": \"XBTUSDTM\",\n  \"leverage\" : \"10\"\n}"
+                            "example": "{\n    \"symbol\": \"XBTUSDTM\",\n    \"withdrawAmount\": \"0.0000001\"\n}"
                         }
                     }
                 },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"leverage\\\": \\\"3\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"leverage\\\": \\\"10\\\"}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": \\\"0.1\\\"\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"withdrawAmount\\\": \\\"0.0000001\\\"}",
+                "operationId": "011"
             }
         },
-        "/api/v2/position/changeMarginMode": {
-            "post": {
-                "summary": "Switch Margin Mode",
+        "/api/v1/contracts/risk-limit/{symbol}": {
+            "get": {
+                "summary": "Get Isolated Margin Risk Limit",
                 "deprecated": false,
-                "description": "This interface can modify the margin mode of the current symbol.",
+                "description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "symbol": {
+                                                        "type": "string",
+                                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
+                                                    },
+                                                    "level": {
+                                                        "type": "integer",
+                                                        "description": "level\n"
+                                                    },
+                                                    "maxRiskLimit": {
+                                                        "type": "integer",
+                                                        "description": "Upper limit USDT(includes)\n"
+                                                    },
+                                                    "minRiskLimit": {
+                                                        "type": "integer",
+                                                        "description": "Lower limit USDT\n"
+                                                    },
+                                                    "maxLeverage": {
+                                                        "type": "integer",
+                                                        "description": "Max leverage\n"
+                                                    },
+                                                    "initialMargin": {
+                                                        "type": "number",
+                                                        "description": "Initial margin rate\n"
+                                                    },
+                                                    "maintainMargin": {
+                                                        "type": "number",
+                                                        "description": "Maintenance margin rate\n"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "symbol",
+                                                    "level",
+                                                    "maxRiskLimit",
+                                                    "minRiskLimit",
+                                                    "maxLeverage",
+                                                    "initialMargin",
+                                                    "maintainMargin"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470263",
+                "x-abandon": "normal",
+                "x-domain": "Futures",
+                "x-api-channel": "Private",
+                "x-api-permission": "Futures",
+                "x-api-rate-limit-pool": "Public",
+                "x-sdk-service": "Futures",
+                "x-sdk-sub-service": "Positions",
+                "x-sdk-method-name": "getIsolatedMarginRiskLimit",
+                "x-sdk-method-description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
+                "x-api-rate-limit": 5,
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": [\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 1,\\n            \\\"maxRiskLimit\\\": 100000,\\n            \\\"minRiskLimit\\\": 0,\\n            \\\"maxLeverage\\\": 125,\\n            \\\"initialMargin\\\": 0.008,\\n            \\\"maintainMargin\\\": 0.004\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 2,\\n            \\\"maxRiskLimit\\\": 500000,\\n            \\\"minRiskLimit\\\": 100000,\\n            \\\"maxLeverage\\\": 100,\\n            \\\"initialMargin\\\": 0.01,\\n            \\\"maintainMargin\\\": 0.005\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 3,\\n            \\\"maxRiskLimit\\\": 1000000,\\n            \\\"minRiskLimit\\\": 500000,\\n            \\\"maxLeverage\\\": 75,\\n            \\\"initialMargin\\\": 0.014,\\n            \\\"maintainMargin\\\": 0.007\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 4,\\n            \\\"maxRiskLimit\\\": 2000000,\\n            \\\"minRiskLimit\\\": 1000000,\\n            \\\"maxLeverage\\\": 50,\\n            \\\"initialMargin\\\": 0.02,\\n            \\\"maintainMargin\\\": 0.01\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 5,\\n            \\\"maxRiskLimit\\\": 3000000,\\n            \\\"minRiskLimit\\\": 2000000,\\n            \\\"maxLeverage\\\": 30,\\n            \\\"initialMargin\\\": 0.034,\\n            \\\"maintainMargin\\\": 0.017\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 6,\\n            \\\"maxRiskLimit\\\": 5000000,\\n            \\\"minRiskLimit\\\": 3000000,\\n            \\\"maxLeverage\\\": 20,\\n            \\\"initialMargin\\\": 0.05,\\n            \\\"maintainMargin\\\": 0.025\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 7,\\n            \\\"maxRiskLimit\\\": 8000000,\\n            \\\"minRiskLimit\\\": 5000000,\\n            \\\"maxLeverage\\\": 10,\\n            \\\"initialMargin\\\": 0.1,\\n            \\\"maintainMargin\\\": 0.05\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 8,\\n            \\\"maxRiskLimit\\\": 12000000,\\n            \\\"minRiskLimit\\\": 8000000,\\n            \\\"maxLeverage\\\": 5,\\n            \\\"initialMargin\\\": 0.2,\\n            \\\"maintainMargin\\\": 0.1\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 9,\\n            \\\"maxRiskLimit\\\": 20000000,\\n            \\\"minRiskLimit\\\": 12000000,\\n            \\\"maxLeverage\\\": 4,\\n            \\\"initialMargin\\\": 0.25,\\n            \\\"maintainMargin\\\": 0.125\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 10,\\n            \\\"maxRiskLimit\\\": 30000000,\\n            \\\"minRiskLimit\\\": 20000000,\\n            \\\"maxLeverage\\\": 3,\\n            \\\"initialMargin\\\": 0.334,\\n            \\\"maintainMargin\\\": 0.167\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 11,\\n            \\\"maxRiskLimit\\\": 40000000,\\n            \\\"minRiskLimit\\\": 30000000,\\n            \\\"maxLeverage\\\": 2,\\n            \\\"initialMargin\\\": 0.5,\\n            \\\"maintainMargin\\\": 0.25\\n        },\\n        {\\n            \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n            \\\"level\\\": 12,\\n            \\\"maxRiskLimit\\\": 50000000,\\n            \\\"minRiskLimit\\\": 40000000,\\n            \\\"maxLeverage\\\": 1,\\n            \\\"initialMargin\\\": 1.0,\\n            \\\"maintainMargin\\\": 0.5\\n        }\\n    ]\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\"}",
+                "operationId": "012"
+            }
+        },
+        "/api/v1/position/risk-limit-level/change": {
+            "post": {
+                "summary": "Modify Isolated Margin Risk Limit",
+                "deprecated": false,
+                "description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
                 "tags": [],
                 "parameters": [],
                 "responses": {
@@ -1763,37 +1825,8 @@
                                             "type": "string"
                                         },
                                         "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "symbol": {
-                                                    "type": "string",
-                                                    "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
-                                                },
-                                                "marginMode": {
-                                                    "type": "string",
-                                                    "description": "Margin mode: ISOLATED (isolated), CROSS (cross margin).",
-                                                    "enum": [
-                                                        "ISOLATED",
-                                                        "CROSS"
-                                                    ],
-                                                    "x-api-enum": [
-                                                        {
-                                                            "value": "ISOLATED",
-                                                            "name": "ISOLATED",
-                                                            "description": "isolated margin"
-                                                        },
-                                                        {
-                                                            "value": "CROSS",
-                                                            "name": "CROSS",
-                                                            "description": "cross margin"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "required": [
-                                                "symbol",
-                                                "marginMode"
-                                            ]
+                                            "type": "boolean",
+                                            "description": "To adjust the level will cancel the open order, the response can only indicate whether the submit of the adjustment request is successful or not.\n"
                                         }
                                     },
                                     "required": [
@@ -1805,7 +1838,7 @@
                         }
                     }
                 },
-                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470262",
+                "x-api-doc": "https://www.kucoin.com/docs-new/api-3470264",
                 "x-abandon": "normal",
                 "x-domain": "Futures",
                 "x-api-channel": "Private",
@@ -1813,9 +1846,9 @@
                 "x-api-rate-limit-pool": "Futures",
                 "x-sdk-service": "Futures",
                 "x-sdk-sub-service": "Positions",
-                "x-sdk-method-name": "switchMarginMode",
-                "x-sdk-method-description": "This interface can modify the margin mode of the current symbol.",
-                "x-api-rate-limit": 2,
+                "x-sdk-method-name": "modifyIsolatedMarginRiskLimt",
+                "x-sdk-method-description": "This interface can be used to obtain information about risk limit level of a specific contract(Only valid for isolated Margin).",
+                "x-api-rate-limit": 5,
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1824,45 +1857,25 @@
                                 "properties": {
                                     "symbol": {
                                         "type": "string",
-                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) ",
-                                        "example": [
-                                            "XBTUSDTM",
-                                            "XBTUSDCM",
-                                            "ETHUSDTM"
-                                        ]
+                                        "description": "Symbol of the contract, Please refer to [Get Symbol endpoint: symbol](https://www.kucoin.com/docs-new/api-3470220) "
                                     },
-                                    "marginMode": {
-                                        "type": "string",
-                                        "description": "Modified margin model: ISOLATED (isolated), CROSS (cross margin).",
-                                        "enum": [
-                                            "ISOLATED",
-                                            "CROSS"
-                                        ],
-                                        "x-api-enum": [
-                                            {
-                                                "value": "ISOLATED",
-                                                "name": "ISOLATED",
-                                                "description": "Isolated Margin Mode"
-                                            },
-                                            {
-                                                "value": "CROSS",
-                                                "name": "CROSS",
-                                                "description": "Cross Margin MOde"
-                                            }
-                                        ]
+                                    "level": {
+                                        "type": "integer",
+                                        "description": "level"
                                     }
                                 },
                                 "required": [
                                     "symbol",
-                                    "marginMode"
+                                    "level"
                                 ]
                             },
-                            "example": "{\n  \"symbol\": \"XBTUSDTM\",\n  \"marginMode\": \"ISOLATED\"\n}"
+                            "example": "{\n    \"symbol\" : \"XBTUSDTM\",\n    \"level\" : 2\n}"
                         }
                     }
                 },
-                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": {\\n        \\\"symbol\\\": \\\"XBTUSDTM\\\",\\n        \\\"marginMode\\\": \\\"ISOLATED\\\"\\n    }\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"marginMode\\\": \\\"ISOLATED\\\"}"
+                "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": true\\n}",
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"level\\\": 2}",
+                "operationId": "013"
             }
         },
         "/api/v1/position/margin/auto-deposit-status": {
@@ -1936,7 +1949,8 @@
                     }
                 },
                 "x-response-example": "{\\n    \\\"code\\\": \\\"200000\\\",\\n    \\\"data\\\": true\\n}",
-                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"status\\\": true}"
+                "x-request-example": "{\\\"symbol\\\": \\\"XBTUSDTM\\\", \\\"status\\\": true}",
+                "operationId": "014"
             }
         }
     },

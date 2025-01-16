@@ -4,6 +4,7 @@ from kucoin_universal_sdk.api.api_rest import KucoinRestService
 from kucoin_universal_sdk.generate.service.account_api import AccountService, AccountServiceImpl
 from kucoin_universal_sdk.generate.service.affiliate_api import AffiliateService, AffiliateServiceImpl
 from kucoin_universal_sdk.generate.service.broker_api import BrokerService, BrokerServiceImpl
+from kucoin_universal_sdk.generate.service.copytrading_api import CopyTradingService, CopyTradingServiceImpl
 from kucoin_universal_sdk.generate.service.earn_api import EarnService, EarnServiceImpl
 from kucoin_universal_sdk.generate.service.futures_api import FuturesService, FuturesServiceImpl
 from kucoin_universal_sdk.generate.service.margin_api import MarginService, MarginServiceImpl
@@ -26,6 +27,7 @@ class DefaultKucoinRestAPIImpl(KucoinRestService):
         self.account_service = AccountServiceImpl(transport)
         self.affiliate_service = AffiliateServiceImpl(transport)
         self.broker_service = BrokerServiceImpl(transport)
+        self.copytrading_service = CopyTradingServiceImpl(transport)
         self.earn_service = EarnServiceImpl(transport)
         self.futures_service = FuturesServiceImpl(transport)
         self.margin_service = MarginServiceImpl(transport)
@@ -40,6 +42,9 @@ class DefaultKucoinRestAPIImpl(KucoinRestService):
 
     def get_broker_service(self) -> BrokerService:
         return self.broker_service
+
+    def get_copytrading_service(self) -> CopyTradingService:
+        return self.copytrading_service
 
     def get_earn_service(self) -> EarnService:
         return self.earn_service
