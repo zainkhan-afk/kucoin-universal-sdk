@@ -66,5 +66,8 @@ When making changes to the version of the SDK, ensure the following files are up
      ```bash
      pip install kucoin-universal-sdk==1.0.1
      ```
+     
+4. **CHANGELOG File**
+   - Add release notes to the CHANGELOG
 
 Ensure all version updates are consistent across these files before committing changes.
