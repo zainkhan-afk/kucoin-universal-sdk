@@ -5,7 +5,7 @@ import time
 import urllib.parse
 from queue import Queue, Full, Empty
 from typing import Dict, List, Optional
-
+import os
 import websocket
 
 from kucoin_universal_sdk.model.common import WsMessage
@@ -157,7 +157,12 @@ class WebSocketClient:
         return self.read_msg
 
     def write(self, ms: WsMessage, timeout: float) -> WriteMsg:
-        logging.info(f"Write message: {ms}")
+        if ms.type in "ping":
+            if os.environ["log_ping_pong_messages"].lower() == "true":
+                logging.info(f"Write message: {ms}")
+        else:
+            logging.info(f"Write message: {ms}")
+        
         if not self.connected.is_set():
             raise Exception("Not connected")
 
